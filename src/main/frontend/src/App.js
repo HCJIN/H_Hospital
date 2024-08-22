@@ -1,9 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import './reset.css';
-import { Route, Router, Routes } from 'react-router-dom';
+import { Route, Router, Routes} from 'react-router-dom';
+import Login from './Login';
 
 function App() {
+
   return (
     <div className="App">
       <div className='header'>
@@ -24,7 +26,7 @@ function App() {
 
 
       <Routes>
-        <Route></Route>
+        <Route path='/loginForm' element={<Login />}></Route>
       </Routes>
     </div>
   );
