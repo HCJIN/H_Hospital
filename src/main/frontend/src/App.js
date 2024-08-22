@@ -38,6 +38,7 @@ function App() {
         <Route path='joinPage' element={<JoinPage />}></Route>
       </Routes>
 
+      
 
     </div>
   );
