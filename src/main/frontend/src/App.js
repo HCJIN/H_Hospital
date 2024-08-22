@@ -1,6 +1,6 @@
 import './App.css';
 import './reset.css';
-import { Route, Router, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Join from './component/Join';
 import JoinPage from './component/JoinPage';
 import Login from './component/Login';
