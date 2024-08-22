@@ -1,0 +1,180 @@
+.regInfo-div{
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+.regInfo-table{
+  width: 60%;
+  border-top: 2px solid #267376;
+  margin: 0 auto;
+}
+
+.regInfo-table .inpSec *{
+  vertical-align: middle;
+}
+
+.regInfo-table .desc{
+  padding-bottom: 7px;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.regInfo-table td:first-child{
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.regInfo-table td{
+  padding: 10px 0 10px 35px;
+}
+
+.regInfo-table td span{
+  color: red;
+}
+
+.regInfo-table td:last-child{
+  vertical-align: middle;
+  border-left: 1px solid #ccc;
+  line-height: 1.4;
+  border-bottom: 1px solid #ccc;
+  font-size: 13px;
+}
+
+.regInfo-table input{
+  color: #444;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+
+.regInfo-table button{
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid #464646;
+  background-color: #555;
+  font-size: 12px;
+  line-height: 1;
+  color: #fff;
+  font-weight: 400;
+  margin: 0 5px;
+  border-radius: 3px;
+}
+
+.inputText{
+  padding: 3px 3px 2px;
+  height: 24px;
+  border: 1px solid #cdcdcd;
+  background-color: #fff;
+  width: 280px;
+}
+
+#cel span{
+  color: #000;
+}
+
+.selectText{
+  padding: 0 5px;
+  border: 1px solid #cdcdcd;
+  background-color: #fff;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+#cel input{
+  width: 85px;
+}
+
+#email1, #email3{
+  width: 158px;
+}
+
+.alpha{
+  margin: 0 3px;
+  color: #000 !important;
+}
+
+/* regInfo-table-end */
+
+.regInformation{
+  width: 60%;
+  position: relative;
+  padding-top: 30px;
+  margin: 0 auto;
+}
+
+.regInformation h3{
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  line-height: 1;
+  color: #111;
+  font-weight: 600;
+}
+
+.regInformation p{
+  position: absolute;
+  left: 90px;
+  top: 31px;
+  font-size: 12px;
+  color: #db330c;
+}
+
+.regInfo-bottom-table-div{
+  width: 100%;
+  margin-top: 15px;
+}
+
+.regInfo-bottom-table{
+  width: 60%;
+  border-top: 2px solid #267376;
+  margin: 0 auto;
+}
+
+.regInfo-bottom-table td{
+  padding: 12px 0 12px 20px;
+}
+
+.regInfo-bottom-table td:first-child{
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.regInfo-bottom-table td span{
+  display: inline-block;
+  padding: 18px 0 18px 35px;
+  line-height: 1.4;
+  color: #0e787c;
+  font-weight: bold;
+}
+
+.inpSec .radio{
+  position: relative;
+  top: 1px;
+  vertical-align: top;
+}
+
+.regInfo-dl-div dl{
+  border: 1px solid #ccc;
+  padding: 0 20px 20px 20px;
+  margin: 0 0 20px 0;
+  height: 140px;
+  overflow-y: scroll;
+}
+
+.regInfo-dl-div dl dt{
+  padding: 15px 0 0 0;
+  font-weight: 600;
+}
+
+.style{
+  font-size: 18px;
+  color: #0e787c;
+}
+

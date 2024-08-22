@@ -5,6 +5,7 @@ import Join from './component/Join';
 import JoinPage from './component/JoinPage';
 import Login from './component/Login';
 import RegPage from './component/RegPage';
+import RegInfo from './component/RegInfo';
 
 function App() {
 
@@ -15,7 +16,6 @@ function App() {
       <div className='header'>
         <ul className='header-ul'>
           <li onClick={()=>{navigate('/loginForm')}}>로그인</li>
-          <li onClick={() => {navigate('/loginForm')}}>로그인</li>
           <li onClick={()=>{navigate('/MainJoin')}}>회원가입</li>
           <li>나의차트</li>
           <li>오시는길</li>
@@ -39,7 +39,10 @@ function App() {
         <Route path='joinPage' element={<JoinPage />}></Route>
         <Route path='loginForm' element={<Login />}></Route>
         <Route path='regPage' element={<RegPage />} />
+        <Route path='regInfo' element={<RegInfo />} />
       </Routes>
+
+      
     </div>
   );
 }

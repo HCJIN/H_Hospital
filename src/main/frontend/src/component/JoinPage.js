@@ -13,9 +13,9 @@ const JoinPage = () => {
   const [infoAgreeData, setInfoAgreeData] = useState(false);
   console.log(infoAgreeData)
 
-  function joinchk(){
+  function joinChk(){
     if(agreeData == true && infoAgreeData == true){
-      navigate('/')
+      navigate('/regPage')
     }
     else if(agreeData == true || infoAgreeData == false){
       alert('개인정보 수집 및 이용동의 후 회원가입 가능합니다')
@@ -52,7 +52,7 @@ const JoinPage = () => {
       </div>
       <div>
         <button className='btn-agree' type='button' onClick={()=>{
-           joinchk()
+          joinChk()
         }}>동의합니다</button>
         <button className='btn-agree' type='button' onClick={()=>{navigate('/')}}>동의하지 않습니다</button>
       </div>
