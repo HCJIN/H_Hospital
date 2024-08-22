@@ -1,0 +1,102 @@
+.join-div{
+  width: 60%;
+  margin: 30px auto;
+  margin-top: 50px;
+}
+
+.join-title p:first-child{
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.join-title p:nth-child(2){
+  padding-bottom: 15px;
+  font-size: 15px;
+}
+
+.join-title p:nth-child(3){
+  font-size: 15px;
+  padding-bottom: 7px;
+}
+
+/* join-div-end */
+
+.green{
+  color: #0e787c;
+}
+
+.join-table-first{
+  width: 100%;
+  overflow: hidden;
+  border-top: 2px solid #0e787c;
+  background-color: #f5f5f5;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  text-align: center;
+  height: 167px;
+}
+
+.join-td{
+  border-right: 1px solid #ddd;
+  width: 50%;
+}
+
+.join-tr td p{
+  padding: 47px 0 15px;
+  font-size: 15px;
+  line-height: 24px;
+  text-align: center;
+}
+
+.join-tr .btn{
+  display: inline-block;
+  border: 1px solid #06767a;
+  background-color: #0e787c;
+  font-size: 18px;
+  line-height: 1;
+  color: #fff;
+  font-weight: 600;
+  padding: 13px 12px;
+}
+
+.icon-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-size: 30px;
+}
+
+.bi-facebook{
+  color: rgb(50, 50, 255);
+  cursor: pointer;
+}
+
+.bi-instagram{
+  background: linear-gradient(
+    to right, 
+    #FF6A00,  /* 오렌지 */
+    #FF9A00,  /* 라이트 오렌지 */
+    #FF61AC,  /* 핑크 */
+    #F72585,  /* 핫핑크 */
+    #7209B7   /* 다크 퍼플 */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+}
+
+.bi-google{
+  background: linear-gradient(
+    to right, 
+    #FBBC05,  /* 노란색 */
+    #EA4335,  /* 빨간색 */
+    #4285F4,  /* 파란색 */
+    #34A853   /* 초록색 */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+}
