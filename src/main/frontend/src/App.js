@@ -1,21 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
 import './reset.css';
-import { Route, Router, Routes } from 'react-router-dom';
+import { Route, Router, Routes, useNavigate } from 'react-router-dom';
+import Join from './component/Join';
+import JoinPage from './component/JoinPage';
 
 function App() {
+
+  const navigate = useNavigate()
+  
   return (
     <div className="App">
       <div className='header'>
         <ul className='header-ul'>
-                              <li>로그인</li>
-                              <li>회원가입</li>
-                              <li>나의차트</li>
-                              <li>오시는길</li>
-                            </ul>
-                            <div className='logo-header'>
-                              <div className='logo-div'>
-                                <div className='logo'>
+          <li>로그인</li>
+          <li>회원가입</li>
+          <li>나의차트</li>
+          <li>오시는길</li>
+        </ul>
+        <div className='logo-header'>
+          <div className='logo-div'>
+            <div className='logo'>
+              <ul>
+                <li>로그인</li>
+                <li onClick={()=>{navigate('/MainJoin')}}>회원가입</li>
+                <li>나의차트</li>
+                <li>오시는길</li>
+              </ul>
+        <div className='logo-header'>
+          <div className='logo-div'>
+            <div className='logo'>
               <img src='http://localhost:8080/images/logo.png'></img>
             </div>
           </div>
@@ -24,7 +38,14 @@ function App() {
 
 
       <Routes>
-        <Route></Route>
+        {/* 일반 유저용 */}
+        <Route path='/'></Route>
+        {/* 로그인 페이지 */}
+        <Route path=''></Route>
+        {/* 회원가입 페이지 */}
+        <Route path='Mainjoin' element={<Join />}></Route>
+        <Route path='joinPage' element={<JoinPage />}></Route>
+        <Route path='/loginForm' element={<Login />}></Route>
       </Routes>
 
       <div>
@@ -91,13 +112,26 @@ function App() {
             <option>로봇수술센터</option>
           </select>
           <button type='button' onClick={() => {}}>바로가기</button>
-          
+          <select>
+            <option>관련기관</option>
+            <option>아산생명과학연구원</option>
+            <option>울산대학교의과대학</option>
+            <option>의학도서관</option>
+            <option>스마트아카데미</option>
+            <option>아산의료원 연보</option>
+          </select>
+          <button type='button' onClick={() => {}}>바로가기</button>
+        </div>
+        <div>
 
         </div>
       </div>
 
+      
+        </div>
+      </div>
     </div>
-
+  </div>
   );
 }
 
