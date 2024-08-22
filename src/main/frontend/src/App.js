@@ -8,14 +8,14 @@ function App() {
     <div className="App">
       <div className='header'>
         <ul className='header-ul'>
-          <li>로그인</li>
-          <li>회원가입</li>
-          <li>나의차트</li>
-          <li>오시는길</li>
-        </ul>
-        <div className='logo-header'>
-          <div className='logo-div'>
-            <div className='logo'>
+                              <li>로그인</li>
+                              <li>회원가입</li>
+                              <li>나의차트</li>
+                              <li>오시는길</li>
+                            </ul>
+                            <div className='logo-header'>
+                              <div className='logo-div'>
+                                <div className='logo'>
               <img src='http://localhost:8080/images/logo.png'></img>
             </div>
           </div>
