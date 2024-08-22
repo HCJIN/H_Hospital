@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="memberMapper">
+    <resultMap id="member" type="com.green.H_Hospital.member.vo.MemberVO">
+        <result column="MEM_ID" property="memId"/>
+        <result column="MEM_PW" property="memPw"/>
+        <result column="MEM_NAME" property="memName"/>
+        <result column="MEM_ADDR" property="memAddr"/>
+        <result column="ADDR_DETAIL" property="addrDetail"/>
+        <result column="MEM_TEL" property="memTel"/>
+        <result column="POST" property="post"/>
+        <result column="MEM_ROLE" property="memRole"/>
+        <result column="H_CODE" property="hCode"/>
+        <result column="GENDER" property="gender"/>
+    </resultMap>
+
+    <insert id="insertMember">
+        INSERT INTO (
+            MEM_NAME,
+            GENDER,
+            BIRTHDAY,
+            MEM_TEL
+        ) VALUES (
+            #(memName),
+            #(gender),
+            #(birthday),
+            #(memTel)
+        );
+    </insert>
+
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
