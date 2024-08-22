@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 import React, { useState } from 'react'
 import '../css/joinPage.css'
@@ -27,7 +28,6 @@ const JoinPage = () => {
     }
   }
   
-  
   return (
     <div className=''>
       <div>
@@ -44,9 +44,11 @@ const JoinPage = () => {
           <input type='radio' name='agree2' onClick={()=>{
             setInfoAgreeData(true)
           }}/>동의함
+
           <input type='radio' name='agree2'onClick={()=>{
             setInfoAgreeData(true)
           }}/>동의하지 않음
+
       </div>
       <div>
         <button className='btn-agree' type='button' onClick={()=>{

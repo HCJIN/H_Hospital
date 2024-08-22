@@ -1,5 +1,6 @@
 import './App.css';
 import './reset.css';
+<<<<<<< HEAD
 import { Route, Router, Routes, useNavigate } from 'react-router-dom';
 import Join from './component/Join';
 import JoinPage from './component/JoinPage';
@@ -10,6 +11,15 @@ function App() {
   const navigate = useNavigate()
 
 
+=======
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import Join from './component/Join';
+import JoinPage from './component/JoinPage';
+import Login from './Login';
+
+function App() {
+  const navigate = useNavigate()
+>>>>>>> main
 
   return (
     <div className="App">
@@ -29,7 +39,6 @@ function App() {
         </div>
       </div>
 
-
       <Routes>
         {/* 일반 유저용 */}
         <Route path='/'></Route>
@@ -38,10 +47,13 @@ function App() {
         {/* 회원가입 페이지 */}
         <Route path='Mainjoin' element={<Join />}></Route>
         <Route path='joinPage' element={<JoinPage />}></Route>
+<<<<<<< HEAD
         <Route path='loginForm' element={<Login />}></Route>
+=======
+        <Route path='/loginForm' element={<Login />}></Route>
+>>>>>>> main
       </Routes>
 
-      
 
     </div>
   );
