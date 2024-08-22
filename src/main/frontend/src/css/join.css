@@ -36,6 +36,7 @@
   border-right: 1px solid #ddd;
   text-align: center;
   height: 167px;
+  margin-bottom: 30px;
 }
 
 .join-td{
@@ -59,6 +60,7 @@
   color: #fff;
   font-weight: 600;
   padding: 13px 12px;
+  cursor: pointer;
 }
 
 .icon-div{
@@ -99,4 +101,151 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: pointer;
+}
+
+/* join-table-end */
+
+.service-div{
+  padding: 3px 3px 3px 0;
+  border: 1px solid #ddd;
+}
+
+.service-title{
+  padding: 20px 0 25px 0;
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+  border-bottom: 1px solid #ddd;
+}
+
+.service-title p{
+  color: #111;
+}
+
+.service-title h3{
+  font-size: 24px;
+  color: #0e787c;
+}
+
+.mychart{
+  padding: 25px 0 30px 60px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.mychart h4{
+  color: #111;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.mychart p{
+  margin-bottom: 17px;
+}
+
+.mychart span{
+  font-size: 12px;
+}
+
+.myChartBenefit{
+  padding: 24px 30px 28px 30px;
+  width: 100%;
+  background-color: #f5f5f5;
+}
+
+.myChartBenefit h4{
+  padding-bottom: 13px;
+  font-weight: 600;
+  color: #0e787c;
+  font-size: 15px;
+}
+
+.myChartBenefit ul{
+  position: relative;
+  height: 105px;
+}
+
+.myChartBenefit li{
+  position: absolute;
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+.myChartBenefit li::before{
+  content: "▶";
+  margin-right: 3px;
+  font-size: 13px;
+  vertical-align: top;
+}
+
+.benefit1{
+  top: 0;
+  left: 0;
+}
+
+.benefit2{
+  top: 28px;
+  left: 0;
+}
+
+.benefit3{
+  top: 55px;
+  left: 0;
+}
+
+.benefit4{
+  top: 84px;
+  left: 0;
+}
+
+.benefit5{
+  top: 0;
+  left: 270px;
+}
+
+.benefit6{
+  top: 28px;
+  left: 270px;
+}
+
+.benefit7{
+  top: 55px;
+  left: 270px;
+}
+
+.benefit8{
+  top: 84px;
+  left: 270px;
+}
+
+.benefit9{
+  top: 0;
+  left: 538px;
+}
+
+.benefit10{
+  top: 28px;
+  left: 538px;
+}
+
+.benefit11{
+  top: 55px;
+  left: 538px;
+}
+
+.benefit12{
+  top: 84px;
+  left: 538px;
+}
+
+.benefit13{
+  top: 0;
+  left: 807px;
+}
+
+.tip{
+  margin: 15px 0 0 0 !important;
+  color: #666;
+  font-size: 13px;
+  text-align: right;
 }
