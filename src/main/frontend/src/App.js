@@ -1,22 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import './reset.css';
-<<<<<<< HEAD
+
 import { Route, Router, Routes, useNavigate } from 'react-router-dom';
 import Join from './component/Join';
 import JoinPage from './component/JoinPage';
-
-function App() {
-
-  const navigate = useNavigate()
-
-=======
-import { Route, Router, Routes} from 'react-router-dom';
 import Login from './Login';
 
 function App() {
+  const navigate = useNavigate()
 
->>>>>>> ldh
   return (
     <div className="App">
       <div className='header'>
@@ -37,7 +30,7 @@ function App() {
 
 
       <Routes>
-<<<<<<< HEAD
+
         {/* 일반 유저용 */}
         <Route path='/'></Route>
         {/* 로그인 페이지 */}
@@ -45,12 +38,10 @@ function App() {
         {/* 회원가입 페이지 */}
         <Route path='Mainjoin' element={<Join />}></Route>
         <Route path='joinPage' element={<JoinPage />}></Route>
-=======
-        <Route path='/loginForm' element={<Login />}></Route>
->>>>>>> ldh
-      </Routes>
 
-      
+        <Route path='/loginForm' element={<Login />}></Route>
+
+      </Routes>
 
     </div>
   );
