@@ -24,6 +24,10 @@
   cursor: pointer;
 }
 
+.header-ul li:hover{
+  font-weight: bold;
+}
+
 .logo-header{
   width: 100%;
   height: 88px;
