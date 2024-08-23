@@ -91,10 +91,10 @@ const JoinPage = () => {
           </div>
           </div>
           <div className='agreeCheck'>
-            <input type='radio' name='agree1' value="Y" id='agreeCheck' onClick={()=>{
+            <input type='radio' name='agree1' id='agreeCheck' onClick={()=>{
               setAgreeData(true)
             }}/><label for="agreeCheck1">동의함</label>
-            <input type='radio' name='agree1' value="N"  onClick={()=>{
+            <input type='radio' name='agree1' onClick={()=>{
               setAgreeData(false)
             }}/><label for="agreeCheck1">동의하지 않음</label>
           </div>
@@ -152,10 +152,10 @@ const JoinPage = () => {
           </div>
         </div>
           <div className='agreeCheck'>
-            <input type='radio' name='agree2' value='Y' id='agreeCheck2' onClick={()=>{
+            <input type='radio' name='agree2' id='agreeCheck2' onClick={()=>{
               setInfoAgreeData(true)
             }}/>동의함
-            <input type='radio' name='agree2' value='N' id='agreeCheck2' onClick={()=>{
+            <input type='radio' name='agree2' id='agreeCheck2' onClick={()=>{
               setInfoAgreeData(true)
             }}/>동의하지 않음
           </div>
