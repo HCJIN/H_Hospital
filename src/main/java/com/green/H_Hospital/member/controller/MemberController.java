@@ -3,10 +3,7 @@ package com.green.H_Hospital.member.controller;
 import com.green.H_Hospital.member.service.MemberService;
 import com.green.H_Hospital.member.vo.MemberVO;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/member")
@@ -15,9 +12,17 @@ public class MemberController {
     @Resource(name = "memberService")
     private MemberService memberService;
 
+    //회원 기초정보 등록
     @PostMapping("/insertMember")
     public void insertMember(@RequestBody MemberVO memberVO){
         memberService.insertMember(memberVO);
+    }
+
+    //id 중복 체크
+    @GetMapping("/idChk/{memId}")
+    public boolean idChk(@PathVariable("memId")String memId){
+        System.out.println(memberService.idChk(memId));
+        return memberService.idChk(memId);
     }
 
 }

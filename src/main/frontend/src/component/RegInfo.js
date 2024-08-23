@@ -1,7 +1,68 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import '../css/regInfo.css'
+import axios from 'axios';
 
 const RegInfo = () => {
+
+  //id 중복 체크 여부를 저장할 변수
+  const [isCheckId, setIsCheckId] = useState(false);
+
+  //email useRef
+  const email1 = useRef();
+  const email3 = useRef();
+  const email2 = useRef();
+
+  //입력된 데이터 저장할 state
+  const [member, setMember] = useState({
+    memName : '',
+    gender : '',
+    memTel : '',
+    birthday : '',
+    memId : '',
+    memPw : '',
+    memPwChk : '',
+    email : ''
+  })
+
+  //휴대폰 인증시 insert된 데이터 받아오기
+  useEffect(()=>{
+
+  },[])
+
+  //입력된 데이터 state값에 저장
+  function memberChange(e){
+    setMember({
+      ...member,
+      [e.target.name] : e.target.name != 'email' ?
+      e.target.value :
+      email1.current.value + '@' + email3.current.value
+    })
+  }
+  console.log(member)
+
+  // email 선택 버튼 클릭시 주소창에 입력
+  function emailClick(){
+    email3.current.value = member.email2
+  }
+
+  // id 중복확인
+  function idChk(){
+    axios
+    .get(`/member/idChk/${member.memId}`)
+    .then((res)=>{
+      console.log(res.data)
+      if(res.data){
+        alert('사용 가능한 ID 입니다')
+        setIsCheckId(true)
+      }else{
+        alert('중복된 ID입니다.')
+      }
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+
   return (
     <div className='regInfo-div'>
       <table className='regInfo-table'>
@@ -33,8 +94,13 @@ const RegInfo = () => {
                 하므로 신중히 입력하여 주세요.
               </p>
               <div className='inpSec'>
-                <input type='text' className='inputText' name='memId' id='memId'/>
-                <button type='button'>중복확인</button>
+                <input type='text' className='inputText' name='memId' id='memId' onChange={(e)=>{
+                  memberChange(e)
+                  setIsCheckId(false)
+                }}/>
+                <button type='button' onClick={()=>{
+                  idChk()
+                }}>중복확인</button>
               </div>
             </td>
           </tr>
@@ -47,7 +113,9 @@ const RegInfo = () => {
                 보안등급 확인버튼 클릭 시 입력하신 비밀번호가 안전한지 여부를 확인 할 수 있습니다.
               </p>
               <div className='inpSec'>
-                <input type='password' className='inputText' name='memPw' id='memPw'/>
+                <input type='password' className='inputText' name='memPw' id='memPw' onChange={(e)=>{
+                  memberChange(e)
+                }}/>
               </div>
             </td>
           </tr>
@@ -57,7 +125,9 @@ const RegInfo = () => {
               비밀번호 확인
             </td>
             <td>
-              <input type='password' className='inputText' name='memPwChk' id='memPwChk' />
+              <input type='password' className='inputText' name='memPwChk' id='memPwChk' onChange={(e)=>{
+                  memberChange(e)
+                }}/>
             </td>
           </tr>
           <tr>
@@ -89,16 +159,19 @@ const RegInfo = () => {
                 부정확한 이메일 주소 입력 시 다른 사람에게 나의 진료예약 일정 정보가 전송될 수 도 있습니다.
               </p>
               <div className='inpSec'>
-                <select className='selectText' id='email2' name='email2'>
+                <select className='selectText' id='email2' name='email2' onChange={(e)=>{memberChange(e)}} ref={email2}>
                   <option>직접입력</option>
-                  <option>hanmail.net</option>
-                  <option>paran.com</option>
-                  <option>korea.com</option>
+                  <option value={'hanmail.net'}>hanmail.net</option>
+                  <option value={'paran.com'}>paran.com</option>
+                  <option value={'korea.com'}>korea.com</option>
+                  <option value={'naver.com'}>naver.com</option>
                 </select>
-                <button type='button'>선택</button>
-                <input type='text' className='inputText' name='email1' id='email1'/>
+                <button type='button' onClick={(e)=>{
+                  emailClick(e)
+                }}>선택</button>
+                <input type='text' className='inputText' name='email' id='email1' ref={email1} onChange={(e)=>{memberChange(e)}}/>
                 <span className='alpha'>@</span>
-                <input type='text' className='inputText' name='email3' id='email3'/>
+                <input type='text' className='inputText' name='email' id='email3' ref={email3} onChange={(e)=>{memberChange(e)}}/>
               </div>
             </td>
           </tr>

@@ -23,7 +23,9 @@ function App() {
         <div className='logo-header'>
           <div className='logo-div'>
             <div className='logo'>
-              <img src='http://localhost:8080/images/logo.png'></img>
+              <img onClick={()=>{
+                navigate('/')
+              }} src='http://localhost:8080/images/logo.png'></img>
             </div>
           </div>
         </div>
