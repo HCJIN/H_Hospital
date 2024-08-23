@@ -46,6 +46,24 @@
         WHERE MEM_ID = #{memId}
     </select>
 
+    <!-- 회원 기초정보 체크 -->
+    <select id="getMemberList" resultMap="member">
+        SELECT MEM_ID
+            ,   MEM_PW
+            ,   MEM_NAME
+            ,   MEM_ADDR
+            ,   ADDR_DETAIL
+            ,   MEM_TEL
+            ,   POST
+            ,   MEM_ROLE
+            ,   H_CODE
+            ,   GENDER
+            ,   BIRTHDAY
+            ,   EMAIL
+        FROM HOSPITAL_MEMBER
+        WHERE MEM_TEL = #{memTel}
+    </select>
+
 	
 </mapper>
 

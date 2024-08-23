@@ -1,11 +1,30 @@
 import React, { useEffect, useRef, useState } from 'react'
 import '../css/regInfo.css'
 import axios from 'axios';
+import { joinValiate } from '../validate/joinValidate';
+import { useParams } from 'react-router-dom';
 
 const RegInfo = () => {
 
+  const {memTel} = useParams();
+
   //id 중복 체크 여부를 저장할 변수
   const [isCheckId, setIsCheckId] = useState(false);
+
+  //id 유효성 검사
+  const memId_valid_tag = useRef();
+  const confirmPw_valid_tag = useRef();
+  const memPw_valid_tag = useRef();
+
+  //유효성 검사 ref 태그들을 한번에 배열로 가져가기 
+  const valid_tag = [
+    memId_valid_tag,
+    confirmPw_valid_tag,
+    memPw_valid_tag
+  ];
+
+  //유효성 검사 state
+  const [validResult, setValidResult] = useState(false);
 
   //email useRef
   const email1 = useRef();
@@ -20,25 +39,42 @@ const RegInfo = () => {
     birthday : '',
     memId : '',
     memPw : '',
-    memPwChk : '',
+    confirmPw : '',
     email : ''
   })
 
   //휴대폰 인증시 insert된 데이터 받아오기
   useEffect(()=>{
-
+    axios
+    .get(`/member/getMemberList/${memTel}`)
+    .then((res)=>{
+      console.log(res.data)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
   },[])
 
   //입력된 데이터 state값에 저장
   function memberChange(e){
-    setMember({
+    //입력한 데이터
+    const newData = {
       ...member,
       [e.target.name] : e.target.name != 'email' ?
       e.target.value :
       email1.current.value + '@' + email3.current.value
-    })
+    }
+    //입력한 데이터에 대한 validation 처리
+    //모든 데이터가 유효한 데이터면 리던 true
+    const result = joinValiate(newData, valid_tag, e.target.name);
+    setValidResult(result);
+  
+    //유효성 검사 끝난 데이터를 setMember에 저장
+    setMember(newData)
+
   }
   console.log(member)
+
 
   // email 선택 버튼 클릭시 주소창에 입력
   function emailClick(){
@@ -102,6 +138,7 @@ const RegInfo = () => {
                   idChk()
                 }}>중복확인</button>
               </div>
+              <div className='feedback' ref={memId_valid_tag}></div>
             </td>
           </tr>
           <tr>
@@ -116,6 +153,7 @@ const RegInfo = () => {
                 <input type='password' className='inputText' name='memPw' id='memPw' onChange={(e)=>{
                   memberChange(e)
                 }}/>
+                <div className='feedback' ref={memPw_valid_tag}></div>
               </div>
             </td>
           </tr>
@@ -125,9 +163,10 @@ const RegInfo = () => {
               비밀번호 확인
             </td>
             <td>
-              <input type='password' className='inputText' name='memPwChk' id='memPwChk' onChange={(e)=>{
+              <input type='password' className='inputText' name='confirmPw' id='confirmPw' onChange={(e)=>{
                   memberChange(e)
                 }}/>
+                <div className='feedback' ref={confirmPw_valid_tag}></div>
             </td>
           </tr>
           <tr>
@@ -219,7 +258,10 @@ const RegInfo = () => {
           </tbody>
         </table>
       </div>
-      
+      <div className='joinBtn-div'>
+        <button type='button'>회원가입</button>
+        <button type='button'>취소</button>
+      </div>
     </div>
   )
 }

@@ -178,3 +178,32 @@
   color: #0e787c;
 }
 
+/* regInfo-bottom-table-end */
+
+.joinBtn-div{
+  padding-top: 40px;
+  text-align: center;
+}
+
+.joinBtn-div button:first-child{
+  display: inline-block;
+  margin-right: 3px;
+  padding: 9px 15px;
+  border: 1px solid #06767a;
+  background-color: #0e787c;
+  font-size: 14px;
+  line-height: 1;
+  color: #fff;
+  font-weight: 500;
+}
+
+.joinBtn-div button:last-child{
+  display: inline-block;
+  padding: 9px 15px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 14px;
+  line-height: 1;
+  color: #444;
+  font-weight: 500;
+}

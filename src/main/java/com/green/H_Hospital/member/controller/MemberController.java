@@ -26,4 +26,10 @@ public class MemberController {
         return memberService.idChk(memId);
     }
 
+    //회원 기초정보 조회
+    @GetMapping("/getMemberList/{memTel}")
+    public MemberVO getMemberList(MemberVO memberVO){
+        return memberService.getMemberList(memberVO);
+    }
+
 }
