@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import '../css/joinPage.css'
 import { useNavigate } from 'react-router-dom'
+import RegBar from './RegBar';
 
 const JoinPage = () => {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ const JoinPage = () => {
   
   return (
     <div className=''>
+      <RegBar/>
       <div>
         <h3>이용약관</h3>
           <textarea></textarea>
