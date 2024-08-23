@@ -27,4 +27,5 @@ public class MemberServiceImpl implements MemberService{
         String selectedId = sqlSession.selectOne("memberMapper.idChk",memId);
         return selectedId == null;
     }
+
 }
