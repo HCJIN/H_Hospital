@@ -2,9 +2,14 @@ import React, { useEffect, useRef, useState } from 'react'
 import '../css/regInfo.css'
 import axios from 'axios';
 import { joinValiate } from '../validate/joinValidate';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const RegInfo = () => {
+
+  const navigate = useNavigate();
+
+  //자바에서 받아온 데이터를 저장할 state 
+  const [selectMember, setSelectMember] = useState({});
 
   const {memTel} = useParams();
 
@@ -33,27 +38,31 @@ const RegInfo = () => {
 
   //입력된 데이터 저장할 state
   const [member, setMember] = useState({
-    memName : '',
-    gender : '',
-    memTel : '',
-    birthday : '',
+    memName : selectMember.memName || '',
+    gender : selectMember.gender || '',
+    memTel : memTel,
+    birthday : selectMember.birthday || '',
     memId : '',
     memPw : '',
     confirmPw : '',
     email : ''
-  })
+  });
 
   //휴대폰 인증시 insert된 데이터 받아오기
   useEffect(()=>{
     axios
     .get(`/member/getMemberList/${memTel}`)
     .then((res)=>{
-      console.log(res.data)
+      setSelectMember(res.data);
     })
     .catch((error)=>{
       console.log(error)
     })
   },[])
+
+  //전화번호 변수 
+  const middleTel = selectMember.memTel ? selectMember.memTel.substring(3,7) : '';
+  const lastTel = selectMember.memTel ? selectMember.memTel.substring(7,11): '';
 
   //입력된 데이터 state값에 저장
   function memberChange(e){
@@ -99,21 +108,33 @@ const RegInfo = () => {
     })
   }
 
+  //회원가입 버튼 클릭시 회원기초정보 업데이트 
+  function goJoin(){
+    axios
+    .post(`/member/updateMember`, member)
+    .then((res)=>{
+      navigate('/')
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+
   return (
     <div className='regInfo-div'>
       <table className='regInfo-table'>
         <tbody>
           <tr>
             <td>성명</td>
-            <td>홍길동</td>
+            <td>{selectMember.memName}</td>
           </tr>
           <tr>
             <td>생년월일</td>
-            <td>1995.04.27</td>
+            <td>{selectMember.birthday}</td>
           </tr>
           <tr>
             <td>성별</td>
-            <td>남자</td>
+            <td>{selectMember.gender}</td>
           </tr>
           <tr>
             <td><span>✔</span>아이디</td>
@@ -184,9 +205,9 @@ const RegInfo = () => {
                   <option>016</option>
                 </select>
                 <span> - </span>
-                <input type='text' className='inputText' maxLength={4} name='celNo2' id='celNo2'></input>
+                <input type='text' className='inputText' maxLength={4} name='celNo2' id='celNo2' value={middleTel} readOnly></input>
                 <span> - </span>
-                <input type='text' className='inputText' maxLength={4} name='celNo3' id='celNo3'></input>
+                <input type='text' className='inputText' maxLength={4} name='celNo3' id='celNo3' value={lastTel} readOnly></input>
               </div>
             </td>
           </tr>
@@ -259,7 +280,7 @@ const RegInfo = () => {
         </table>
       </div>
       <div className='joinBtn-div'>
-        <button type='button'>회원가입</button>
+        <button type='button' onClick={()=>{goJoin()}}>회원가입</button>
         <button type='button'>취소</button>
       </div>
     </div>

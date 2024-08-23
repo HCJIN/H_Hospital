@@ -32,4 +32,10 @@ public class MemberController {
         return memberService.getMemberList(memberVO);
     }
 
+    //회원 기초정보 업데이트
+    @PostMapping("/updateMember")
+    public void updateMember(@RequestBody MemberVO memberVO){
+        memberService.updateMember(memberVO);
+    }
+
 }

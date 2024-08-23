@@ -36,5 +36,10 @@ public class MemberServiceImpl implements MemberService{
         return sqlSession.selectOne("memberMapper.getMemberList",memberVO);
     }
 
+    @Override
+    public void updateMember(MemberVO memberVO) {
+        sqlSession.update("memberMapper.updateMember",memberVO);
+    }
+
 
 }
