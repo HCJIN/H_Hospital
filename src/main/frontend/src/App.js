@@ -41,7 +41,7 @@ function App() {
         <Route path='joinPage' element={<JoinPage />}></Route>
         <Route path='loginForm' element={<Login />}></Route>
         <Route path='regPage' element={<RegPage />} />
-        <Route path='regInfo' element={<RegInfo />} />
+        <Route path='regInfo/:memTel' element={<RegInfo />} />
       </Routes>
 
       <div>

@@ -31,7 +31,7 @@ const RegPage = () => {
   function insertMember(){
     axios.post('/member/insertMember', insertMemberData)
     .then((res) => {
-      navigate('/regInfo')
+      navigate(`/regInfo/${insertMemberData.memTel}`)
     })
     .catch((error) => {console.log(error)})
   }
