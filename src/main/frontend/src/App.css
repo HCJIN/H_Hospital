@@ -53,3 +53,19 @@
 /* 공용 디자인 */
 /* ////////// */
 
+/* validation 디자인 */
+.feedback{
+  font-size: 0.7rem;
+  margin-top: 4px;
+  visibility: hidden;
+}
+
+.feedback.error{
+  color: red;
+  visibility: visible;
+}
+
+.feedback.good{
+  color: lightgreen;
+  visibility: visible;
+}

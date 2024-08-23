@@ -5,6 +5,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
 
@@ -27,5 +29,12 @@ public class MemberServiceImpl implements MemberService{
         String selectedId = sqlSession.selectOne("memberMapper.idChk",memId);
         return selectedId == null;
     }
+
+    //회원 기초정보 조회
+    @Override
+    public MemberVO getMemberList(MemberVO memberVO) {
+        return sqlSession.selectOne("memberMapper.getMemberList",memberVO);
+    }
+
 
 }
