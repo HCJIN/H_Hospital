@@ -13,6 +13,7 @@ public class MemberServiceImpl implements MemberService{
 
 
     // 회원 기초정보 등록
+    // 회원 가입을 위한 기본적인 정보 입력
     @Override
     public void insertMember(MemberVO memberVO) {
         sqlSession.insert("memberMapper.insertMember",memberVO);

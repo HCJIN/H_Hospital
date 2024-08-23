@@ -1,6 +1,66 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const RegPage = () => {
+
+  const navigate = useNavigate();
+
+  // 회원 가입을 위한 기본적인 정보 입력을 받아 저장할 변수
+  const [insertMemberData, setInsertMemberData] = useState({
+    memId : '',
+    memPw : '',
+    memName : '',
+    memTel : '',
+    gender : '',
+    birthday : '',
+    email : ''
+  });
+
+  // 년, 월, 일을 저장 할 변수 생성
+  const birthdayYear = useRef(); 
+  const birthdayMonth = useRef(); 
+  const birthdayDay = useRef(); 
+
+  // 전화번호를 저장 할 변수 생성
+  const memTel1 = useRef();
+  const memTel2 = useRef();
+  const memTel3 = useRef();
+
+  // 회원 가입을 위한 기본적인 정보 입력 
+  function insertMember(){
+    axios.post('/member/insertMember', insertMemberData)
+    .then((res) => {
+      navigate('/regInfo')
+    })
+    .catch((error) => {console.log(error)})
+  }
+
+  // 회원 가입을 위한 기본적인 정보를 입력했을 때 받아와 줄 함수
+  function changeInsertMember(e){
+    let result = e.target.value;
+
+    // memTel일 경우
+    if (e.target.name == 'memTel') {
+      result = memTel1.current.value + memTel2.current.value + memTel3.current.value;
+    }
+
+    // birthday일 경우
+    if (e.target.name == 'birthday') {
+      result = birthdayYear.current.value + '.' + birthdayMonth.current.value + '.' + birthdayDay.current.value;
+    }
+
+    // insertMemberData 업데이트
+    const newData = {
+      ...insertMemberData,
+      [e.target.name]: result,
+    };
+
+    setInsertMemberData(newData);
+  }
+
+  console.log(insertMemberData)
+
   return (
     <div>
       <div>가입하기</div>
@@ -20,13 +80,13 @@ const RegPage = () => {
           <tbody>
             <tr>
               <td>성명</td>
-              <td><input type='text'/></td>
+              <td><input type='text' name='memName' onChange={(e) => {changeInsertMember(e)}}/></td>
             </tr>
             <tr>
               <td>성별</td>
               <td>
-                <input type='radio'/>남성
-                <input type='radio'/>여성
+                <input type='radio' name='gender' value='남성' onChange={(e) => {changeInsertMember(e)}}/>남성
+                <input type='radio' name='gender' value='여성' onChange={(e) => {changeInsertMember(e)}}/>여성
               </td>
             </tr>
           </tbody>
@@ -34,7 +94,7 @@ const RegPage = () => {
       </div>
       <div>* 신분증에 기재된 생년월일을 입력해주세요.</div>
       <div>
-      <table>
+        <table>
           <colgroup>
             <col width="30%" />
             <col width="*" />
@@ -43,7 +103,7 @@ const RegPage = () => {
             <tr>
               <td>생년월일</td>
               <td>
-                <select>
+                <select name='birthday' ref={birthdayYear} onChange={(e) => {changeInsertMember(e)}}>
                   <option value="">년</option>
                   <option value="2011">2011 년</option>
                   <option value="2010">2010 년</option>
@@ -158,7 +218,7 @@ const RegPage = () => {
                   <option value="1901">1901 년</option>
                   <option value="1900">1900 년</option>
                 </select>
-                <select>
+                <select name='birthday' ref={birthdayMonth} onChange={(e) => {changeInsertMember(e)}}>
                   <option value="월">월</option>
                   <option value="01">1 월</option>
                   <option value="02">2 월</option>
@@ -173,7 +233,7 @@ const RegPage = () => {
                   <option value="11">11 월</option>
                   <option value="12">12 월</option>
                 </select>
-                <select>
+                <select name='birthday' ref={birthdayDay} onChange={(e) => {changeInsertMember(e)}}>
                   <option value="일">일</option>
                   <option value="01">1 일</option>
                   <option value="02">2 일</option>
@@ -211,7 +271,7 @@ const RegPage = () => {
             <tr>
               <td>휴대전화</td>
               <td>
-                <select>
+                <select name='memTel' ref={memTel1} onChange={(e) => {changeInsertMember(e)}}>
                   <option value="010">010</option>
                   <option value="011">011</option>
                   <option value="016">016</option>
@@ -220,14 +280,15 @@ const RegPage = () => {
                   <option value="019">019</option>
                 </select>
                 -
-                <input type='text' />
+                <input type='text' name='memTel' ref={memTel2} onChange={(e) => {changeInsertMember(e)}}/>
                 -
-                <input type='text' />
+                <input type='text' name='memTel' ref={memTel3} onChange={(e) => {changeInsertMember(e)}}/>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <button type='button' onClick={() => {insertMember()}} >확인</button>
     </div>
   )
 }

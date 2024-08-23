@@ -4,30 +4,38 @@
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="memberMapper">
     <resultMap id="member" type="com.green.H_Hospital.member.vo.MemberVO">
-        <id column="MEM_ID" property="memId"/>
-        <result column="MEM_PW" property="memPw"/>
-        <result column="MEM_NAME" property="memName"/>
-        <result column="MEM_ADDR" property="memAddr"/>
-        <result column="ADDR_DETAIL" property="addrDetail"/>
-        <result column="MEM_TEL" property="memTel"/>
-        <result column="POST" property="post"/>
-        <result column="MEM_ROLE" property="memRole"/>
-        <result column="H_CODE" property="hCode"/>
-        <result column="GENDER" property="gender"/>
+        <result column="MEM_ID"         property="memId"/>
+        <result column="MEM_PW"         property="memPw"/>
+        <result column="MEM_NAME"       property="memName"/>
+        <result column="MEM_ADDR"       property="memAddr"/>
+        <result column="ADDR_DETAIL"    property="addrDetail"/>
+        <result column="MEM_TEL"        property="memTel"/>
+        <result column="POST"           property="post"/>
+        <result column="MEM_ROLE"       property="memRole"/>
+        <result column="H_CODE"         property="hCode"/>
+        <result column="GENDER"         property="gender"/>
+        <result column="BIRTHDAY"       property="birthday" />
+        <result column="EMAIL"          property="email" />
     </resultMap>
 
-    <!-- 회원가입 기초 정보 등록 -->
+    <!--회원 가입을 위한 기본적인 정보 입력-->
     <insert id="insertMember">
-        INSERT INTO (
-            MEM_NAME,
-            GENDER,
-            BIRTHDAY,
-            MEM_TEL
+        INSERT INTO HOSPITAL_MEMBER(
+            MEM_ID
+            , MEM_PW
+            , MEM_NAME
+            , MEM_TEL
+            , GENDER
+            , BIRTHDAY
+            , EMAIL
         ) VALUES (
-            #(memName),
-            #(gender),
-            #(birthday),
-            #(memTel)
+            #{memId}
+            , #{memPw}
+            , #{memName}
+            , #{memTel}
+            , #{gender}
+            , #{birthday}
+            , #{email}
         );
     </insert>
 
