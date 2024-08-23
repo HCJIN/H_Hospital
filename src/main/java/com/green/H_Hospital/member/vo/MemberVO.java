@@ -14,4 +14,6 @@ public class MemberVO {
     private String memRole;
     private String hCode;
     private String gender;
+    private String birthday;
+    private String email;
 }
