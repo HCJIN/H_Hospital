@@ -1,0 +1,72 @@
+.innerCase{
+  margin: 20px
+}
+
+.agree-h3{
+  padding: 20px 10px;
+  color: #111;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.agreeTextBox{
+  width: 100%;
+  height: 250px;
+  border: 1px solid #ddd;
+  overflow-y: scroll;
+  line-height: 28px;
+}
+
+.agreeText h3{
+  padding-bottom: 15px;
+  color: #111;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.footerterms_wrap h4{
+  margin-top: 30px;
+  color: #0e787c;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+
+.footerterms_wrap > ul >li{
+  color: #666;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.footerterms_wrap h4{
+  margin-top: 30px;
+  color: #0e787c;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.footerterms_wrap > ul >li {
+  margin-top: 22px;
+  padding-left: 20px;
+  color: #666;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.agreeText .agreeCheck {
+  position: relative;
+  padding: 15px 0 20px;
+  text-align: right;
+  width: 100%;
+}
+
+.innerCase>{
+  padding:25px 0;
+}
+
+box dl dt{
+  color: #111;
+  font-weight: bold;
+  margin: 0 0 5px;
+}
+
