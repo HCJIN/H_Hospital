@@ -1,3 +1,8 @@
+.agreePage{
+  width: 60%;
+  margin: 0 auto;
+}
+
 .innerCase{
   margin: 20px
 }
@@ -8,6 +13,8 @@
   font-size: 20px;
   line-height: 1;
 }
+
+
 
 .agreeTextBox{
   width: 100%;
