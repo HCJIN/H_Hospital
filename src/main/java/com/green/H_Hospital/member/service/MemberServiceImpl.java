@@ -12,8 +12,18 @@ public class MemberServiceImpl implements MemberService{
     private SqlSessionTemplate sqlSession;
 
 
+    // 회원 기초정보 등록
     @Override
     public void insertMember(MemberVO memberVO) {
         sqlSession.insert("memberMapper.insertMember",memberVO);
+    }
+
+    // id 중복 체크
+    @Override
+    public boolean idChk(String memId) {
+        //id가 null 이면 회원가입 가능 true
+        //id가 조회되면 null 이 아니기 때문에 회원가입 불가능 false
+        String selectedId = sqlSession.selectOne("memberMapper.idChk",memId);
+        return selectedId == null;
     }
 }

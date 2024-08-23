@@ -4,7 +4,7 @@
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="memberMapper">
     <resultMap id="member" type="com.green.H_Hospital.member.vo.MemberVO">
-        <result column="MEM_ID" property="memId"/>
+        <id column="MEM_ID" property="memId"/>
         <result column="MEM_PW" property="memPw"/>
         <result column="MEM_NAME" property="memName"/>
         <result column="MEM_ADDR" property="memAddr"/>
@@ -16,6 +16,7 @@
         <result column="GENDER" property="gender"/>
     </resultMap>
 
+    <!-- 회원가입 기초 정보 등록 -->
     <insert id="insertMember">
         INSERT INTO (
             MEM_NAME,
@@ -29,6 +30,13 @@
             #(memTel)
         );
     </insert>
+
+    <!-- id 중복 체크 -->
+    <select id="idChk" resultType="string">
+        SELECT MEM_ID
+        FROM HOSPITAL_MEMBER
+        WHERE MEM_ID = #{memId}
+    </select>
 
 	
 </mapper>
