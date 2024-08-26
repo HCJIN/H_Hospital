@@ -1,5 +1,13 @@
+.agreePage{
+  width: 60%;
+  margin: 0 auto;
+  font-size: 16px;
+}
+
 .innerCase{
-  margin: 20px
+  margin: 20px;
+  color: #666;
+  font-size: 16px;
 }
 
 .agree-h3{
@@ -8,6 +16,7 @@
   font-size: 20px;
   line-height: 1;
 }
+
 
 .agreeTextBox{
   width: 100%;
@@ -64,9 +73,68 @@
   padding:25px 0;
 }
 
-box dl dt{
+.box >ul{
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+
+.innerCase>p{
+  padding: 10px 0px;
+}
+
+
+.box dl dt{
   color: #111;
   font-weight: bold;
   margin: 0 0 5px;
+  padding-top: 10px;
+}
+
+.box>h4{
+  padding-top: 15px;
+  font-size: 1.1rem;
+  color: #0e787c;
+}
+
+.box-ul{
+  color: #0e787c;
+  font-weight: 550;
+  font-size: 16px;
+}
+
+.box-caution{
+  padding-top: 20px;
+  color: rgb(224, 27, 27);
+}
+
+.btn-agree-main{
+  padding-top: 30px;
+  text-align: center;
+}
+
+.btn-agree1{
+  display: inline-block;
+  margin-right: 10px;
+  padding: 9px 13px;
+  border: 1px solid #0e787a;
+  background-color: #0e787c;
+  font-size: 13px;
+  color: #fff;
+  font-weight: 520;
+}
+
+.btn-agree2{
+  display: inline-block;
+  margin-right: 10px;
+  padding: 9px 13px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 13px;
+  color: #444;
+  font-weight: 520;
+
 }
 

@@ -10,36 +10,46 @@ const Login = () => {
       <div className='login-main-contain'>
         <div className='login-content-left'>
           <div>
-            <div>
-              <div>
-                <div>아이디   <input type='text' /></div>
-                <div>비밀번호 <input type='password'/></div>
+            <div className='main-login'>
+              <div className='login-id-pw'>
+                <ul>
+                  <li>
+                    <strong>아이디</strong>
+                    <input type='text'/>
+                  </li>
+                  <li>
+                    <strong>
+                      비밀번호
+                    </strong>
+                    <input type='password'/>
+                  </li>
+                </ul>
+                <button type='button' className='login-btn'>로그인</button>
               </div>
-              <button type='button'>로그인</button>
             </div>
-            <div>
+            <div className='id-save'>
               <input type='checkbox' /> 아이디 저장
             </div>
           </div>
-          <ul>
-            <li>아이디 찾기 |</li>
-            <li>비밀번호 찾기 |</li>
-            <li>회원가입 |</li>
-          </ul>
-          <div>
+          <div className='login-text'>
             회원 서비스를 이용하시려면 로그인이 필요합니다.
           </div>
+          <ul>
+            <li><span>아이디 찾기</span></li>
+            <li><span>비밀번호 찾기</span></li>
+            <li><span>회원가입</span></li>
+          </ul>
         </div>
         <div className='login-content-right'>
           <ul>
-            <li>서울아산병원 홈페이지 가입 후 다양한 정보와 맞춤 서비스를 이용하실 수 있습니다.</li>
-            <li>
-              의무기록사본은 로그인 없이 신청/결제 및 출력이 가능합니다. <button type='button'>의무기록복사본발급 바로가기</button>
+            <li style={{listStyle: 'inside', textIndent: '-20px', marginLeft: '20px'}}>서울아산병원 홈페이지 가입 후 다양한 정보와 맞춤 서비스를 이용하실 수 있습니다.</li>
+            <li style={{listStyle: 'inside', textIndent: '-20px', marginLeft: '20px'}}>
+              <strong style={{color : '#ec360c'}}>의무기록사본은 로그인 없이 신청/결제 및 출력이 가능합니다.</strong> <button type='button'>의무기록복사본발급 바로가기</button>
             </li>
-            <li>회원님의 개인정보보호를 위하여 약 10분 동안 화면 이동이 없을 경우 자동으로
+            <li style={{listStyle: 'inside', textIndent: '-20px', marginLeft: '20px'}}>회원님의 개인정보보호를 위하여 약 10분 동안 화면 이동이 없을 경우 자동으로
             로그아웃 처리됩니다.</li>
-            <li>비밀번호는 주기적으로 변경하고 타인에게 노출되지 않도록 주의하시기 바랍니다.</li>
-            <li>로그인 후 모든 정보는 암호화하여 전송됩니다.</li>
+            <li style={{listStyle: 'inside', textIndent: '-20px', marginLeft: '20px'}}>비밀번호는 주기적으로 변경하고 타인에게 노출되지 않도록 주의하시기 바랍니다.</li>
+            <li style={{listStyle: 'inside'}}>로그인 후 모든 정보는 암호화하여 전송됩니다.</li>
           </ul>
         </div>
       </div>
