@@ -80,6 +80,7 @@ const RegPage = () => {
 
   return (
     <div className='regPage-div'>
+      <RegBar/>
       <div className='regPage-title'>가입하기</div>
       <div className='id-ul-div'>
         <ul>

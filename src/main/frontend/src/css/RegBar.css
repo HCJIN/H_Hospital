@@ -1,5 +1,29 @@
+.bar-body{
+  border: 1px solid rgb(216, 215, 215);
+  height: 85px;
+  background-color: rgb(243, 242, 242);
+}
+
 .bar-body > ul{
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0px;
+}
+
+.bar-body > ul > li{
+  /* display: grid;
+  justify-content: center; */
+}
+
+.icon{
+  border: 1px solid red;
+  position: absolute;
+  color: rgb(105, 105, 105);
+  font-size: 35px;
+}
+
+.bar-body > ul > li > div{
+  border: 1px solid black;
+  display: inline;
+  
 }
