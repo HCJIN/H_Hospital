@@ -37,43 +37,43 @@ function App() {
 
 
       {/* 사이드 바 */}
-      <div>
-        <div>
-          <div>
+      <div className='sideBar-div'>
+          <div className='sideBar-div-tel'>
             <p><i class="bi bi-phone-vibrate"></i>대표번호</p>
             <p>052-2024-0906</p>
           </div>
-          <ul>
-            <li>
-              <i class="bi bi-pc-display-horizontal"></i>
-              <span>지금예약</span>
-            </li>
-            <li>
-              <i class="bi bi-card-checklist"></i>
-              <span>증명서발급</span>
-            </li>
-            <li>
-              <i class="bi bi-hospital"></i>
-              <span>위치</span>
-            </li>
-            <li>
-              <i class="bi bi-heart-pulse-fill"></i>
-              <span>심뇌혈관센터</span>
-            </li>
-            <li>
-              <i class="bi bi-menu-button-wide-fill"></i>
-              <span>건강검진안내</span>
-            </li>
-            <li>
-              <a href="https://www.ussunflower.or.kr/">
-                <i class="bi bi-telephone"></i>
-                <span>
-                  해바라기센터
-                </span>
-              </a>
-            </li>
-          </ul>
-        </div>
+          <div className='sideBar-div-menu'>
+            <ul>
+              <li className='sideBar-div-menu-first'>
+                <i class="bi bi-pc-display-horizontal"></i>
+                <span>지금예약</span>
+              </li>
+              <li>
+                <i class="bi bi-card-checklist"></i>
+                <span>증명서발급</span>
+              </li>
+              <li>
+                <i class="bi bi-hospital"></i>
+                <span>위치</span>
+              </li>
+              <li>
+                <i class="bi bi-heart-pulse-fill"></i>
+                <span>심뇌혈관센터</span>
+              </li>
+              <li>
+                <i class="bi bi-menu-button-wide-fill"></i>
+                <span>건강검진안내</span>
+              </li>
+              <li className='sideBar-div-menu-last'>
+                <a href="https://www.ussunflower.or.kr/" target='_blank'>
+                  <i class="bi bi-telephone"></i>
+                  <span>
+                    해바라기센터
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
       </div>
 
 
