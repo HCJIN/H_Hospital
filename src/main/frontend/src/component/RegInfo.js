@@ -61,8 +61,8 @@ const RegInfo = () => {
   },[])
 
   //전화번호 변수 
-  const middleTel = selectMember.memTel ? selectMember.memTel.substring(3,7) : '';
-  const lastTel = selectMember.memTel ? selectMember.memTel.substring(7,11): '';
+  const middleTel = selectMember.memTel ? selectMember.memTel.substring(4,8) : '';
+  const lastTel = selectMember.memTel ? selectMember.memTel.substring(9,13): '';
 
   //입력된 데이터 state값에 저장
   function memberChange(e){
