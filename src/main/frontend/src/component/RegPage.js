@@ -3,6 +3,7 @@ import '../css/regPage.css';
 import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { regPageValidata } from '../validate/regPageValidata';
+import RegBar from './RegBar';
 
 const RegPage = () => {
 
@@ -79,6 +80,7 @@ const RegPage = () => {
 
   return (
     <div className='regPage-div'>
+      <RegBar/>
       <div className='regPage-title'>가입하기</div>
       <div className='id-ul-div'>
         <ul>
