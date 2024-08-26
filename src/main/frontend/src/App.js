@@ -6,6 +6,7 @@ import JoinPage from './component/JoinPage';
 import Login from './component/Login';
 import RegPage from './component/RegPage';
 import RegInfo from './component/RegInfo';
+import MapGps from './component/MapGps';
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
         <Route path='loginForm' element={<Login />}></Route>
         <Route path='regPage' element={<RegPage />} />
         <Route path='regInfo/:memTel' element={<RegInfo />} />
+        <Route path='mapGps' element={<MapGps />} />
       </Routes>
 
       <div>
