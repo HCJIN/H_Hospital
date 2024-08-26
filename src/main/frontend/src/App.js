@@ -11,6 +11,9 @@ function App() {
 
   const navigate = useNavigate()
 
+  //사이드 메뉴 정보 관리
+
+
   return (
     <div className="App">
       <div className='header'>
@@ -31,6 +34,48 @@ function App() {
         </div>
       </div>
 
+
+      {/* 사이드 바 */}
+      <div>
+        <div>
+          <div>
+            <p><i class="bi bi-phone-vibrate"></i>대표번호</p>
+            <p>052-2024-0906</p>
+          </div>
+          <ul>
+            <li>
+              <i class="bi bi-pc-display-horizontal"></i>
+              <span>지금예약</span>
+            </li>
+            <li>
+              <i class="bi bi-card-checklist"></i>
+              <span>증명서발급</span>
+            </li>
+            <li>
+              <i class="bi bi-hospital"></i>
+              <span>위치</span>
+            </li>
+            <li>
+              <i class="bi bi-heart-pulse-fill"></i>
+              <span>심뇌혈관센터</span>
+            </li>
+            <li>
+              <i class="bi bi-menu-button-wide-fill"></i>
+              <span>건강검진안내</span>
+            </li>
+            <li>
+              <a href="https://www.ussunflower.or.kr/">
+                <i class="bi bi-telephone"></i>
+                <span>
+                  해바라기센터
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
       <Routes>
         {/* 일반 유저용 */}
         <Route path='/' />
@@ -42,6 +87,14 @@ function App() {
         <Route path='loginForm' element={<Login />}></Route>
         <Route path='regPage' element={<RegPage />} />
         <Route path='regInfo/:memTel' element={<RegInfo />} />
+        {/* 사이드 바 */}
+        <Route path='side' element={<App/>}>
+          <Route path='reservation'></Route>
+          <Route path='certificate'></Route>
+          <Route path='location'></Route>
+          <Route path='checkup'></Route>
+          <Route path='sfCenter'></Route>
+        </Route>
       </Routes>
 
       <div className='footerWrap'>
