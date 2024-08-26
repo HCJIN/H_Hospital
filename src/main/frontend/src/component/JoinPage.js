@@ -91,7 +91,7 @@ const JoinPage = () => {
           </div>
           </div>
           <div className='agreeCheck'>
-            <input type='radio' name='agree1' id='agreeCheck' onClick={()=>{
+            <input type='radio' name='agree1' onClick={()=>{
               setAgreeData(true)
             }}/><label for="agreeCheck1">동의함</label>
             <input type='radio' name='agree1' onClick={()=>{
@@ -134,13 +134,13 @@ const JoinPage = () => {
                   <dd>14세 이상 : 성명, 성별, 생년월일, 휴대전화, 아이디, 비밀번호, e-mail</dd>
                 </dl>
                 <h4>개인정보의 보유 및 이용기간</h4>
-                <p>다만, 수집목적 또는 제공받은 목적이 달성된 경우에도 상법 등 법령의 규정에 의하여 보존할 필요성이 있는 경우에는 귀하의 개인정보를 보유할 수 있습니다.</p>
-                <ul>
+                <p>개인정보는 서울아산병원이 고객에게 서비스를 제공하는 기간에 한하여 보유 및 이용되며 회원 탈퇴시에는 즉시 파기합니다.</p>
+                <ul className='box-ul'>
                   <li>① 이용기간 : 회원 가입기간 (탈퇴 후 즉시 파기 / 1년 이상 미이용 시 개인정보 분리 보관)</li>
                   <li>② 진료서비스의 제공을 위하여 수집된 경우 : 의료법 기준에 준함</li>
                 </ul>
                 <p>다만, 수집목적 또는 제공받은 목적이 달성된 경우에도 상법 등 법령의 규정에 의하여 보존할 필요성이 있는 경우에는 귀하의 개인정보를 보유할 수 있습니다.</p>
-                <p>
+                <p className='box-caution'>
                   <strong>[거부 시 불이익]</strong>
                   <br/>
                   귀하는 위 항목에 대하여 동의를 거부할 수 있으며, 동의 후에도 언제든지 철회 가능합니다.
@@ -152,11 +152,11 @@ const JoinPage = () => {
           </div>
         </div>
           <div className='agreeCheck'>
-            <input type='radio' name='agree2' id='agreeCheck2' onClick={()=>{
+            <input type='radio' name='agree2' onClick={()=>{
               setInfoAgreeData(true)
             }}/>동의함
-            <input type='radio' name='agree2' id='agreeCheck2' onClick={()=>{
-              setInfoAgreeData(true)
+            <input type='radio' name='agree2' onClick={()=>{
+              setInfoAgreeData(false)
             }}/>동의하지 않음
           </div>
       </div>
