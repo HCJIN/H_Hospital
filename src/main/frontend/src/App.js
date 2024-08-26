@@ -6,6 +6,7 @@ import JoinPage from './component/JoinPage';
 import Login from './component/Login';
 import RegPage from './component/RegPage';
 import RegInfo from './component/RegInfo';
+import MapGps from './component/MapGps';
 
 function App() {
 
@@ -95,6 +96,7 @@ function App() {
           <Route path='checkup'></Route>
           <Route path='sfCenter'></Route>
         </Route>
+        <Route path='mapGps' element={<MapGps />} />
       </Routes>
 
       <div className='footerWrap'>
