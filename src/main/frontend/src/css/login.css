@@ -11,7 +11,6 @@
 }
 
 .login-main-contain{
-  border: 1px solid black;
   padding: 30px 50px;
   background-color: #f5f5f5;
   margin-bottom: 30px;
@@ -19,6 +18,10 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  border-top: 2px solid #06767a;
+  border-bottom: 2px solid #06767a;
+  border-left: 1px solid#ddd;
+  border-right: 1px solid#ddd;
 }
 
 .login-content-left{
@@ -27,7 +30,10 @@
 
 .login-content-right{
   width: 50%;
-  padding: 15px;
+  padding: 25px;
+  margin-left: 30px;
+  border-left: 1px solid #ddd;
+  font-size: 0.95rem;
 }
 
 .login-content-left > ul{
@@ -43,24 +49,70 @@
 .main-login{
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  position: relative;
+  vertical-align: middle;
 }
 
-.main-login > button{
+.login-id-pw{
+  padding: 1px 0;
+}
+
+.login-btn{
+  padding: 0;
+}
+
+.main-login > div > ul{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 19px;
+  height: 80px;
+}
+
+.main-login > div > ul > li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 10px;
+}
+
+.main-login > div > ul > li > input{
+  padding: 3px 2px;
+  width: 300px;
+  margin-left: 10px;
+}
+
+.main-login > div > button{
   background-color: #06767a;
   color: #fff;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
+  padding: 15px 30px 15px 30px;
+  height: 80px;
+  position: absolute;
+  top: 54%;
+  right: 0;
+  transform: translateY(-50%);
+  border: none;
 }
 
 .main-login > button:hover{
   background-color: #17878b;
 }
 
-.login-text{
-  font-weight: bold;
+.id-save{
+  margin: 10px 0px;
+  margin-left: 80px;
 }
 
-/* login-table-end */
+.login-text{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* login main end */
 
 .login-form-div{
   padding: 3px 3px 3px 0;
@@ -206,3 +258,5 @@
   font-size: 13px;
   text-align: right;
 }
+
+/* login-table-end */
