@@ -2,6 +2,7 @@
   width: 100%;
   margin: 0 auto;
   margin-top: 15px;
+  margin-bottom: 100px;
 }
 
 .regInfo-table{
@@ -137,6 +138,7 @@
 
 .regInfo-bottom-table td{
   padding: 12px 0 12px 20px;
+  border-bottom: 1px solid #ccc;
 }
 
 .regInfo-bottom-table td:first-child{
@@ -183,6 +185,8 @@
 .joinBtn-div{
   padding-top: 40px;
   text-align: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 .joinBtn-div button:first-child{
@@ -195,6 +199,7 @@
   line-height: 1;
   color: #fff;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .joinBtn-div button:last-child{
@@ -206,4 +211,5 @@
   line-height: 1;
   color: #444;
   font-weight: 500;
+  cursor: pointer;
 }
