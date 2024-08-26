@@ -10,10 +10,16 @@ const Login = () => {
       <div className='login-main-contain'>
         <div className='login-content-left'>
           <div>
-            <div>
+            <div className='main-login'>
               <div>
-                <div>아이디   <input type='text' /></div>
-                <div>비밀번호 <input type='password'/></div>
+                <div>
+                  <span className='login-text'>아이디</span>
+                  <input type='text' />
+                </div>
+                <div>
+                  <span className='login-text'>비밀번호</span> 
+                  <input type='password'/>
+                </div>
               </div>
               <button type='button'>로그인</button>
             </div>
@@ -21,14 +27,14 @@ const Login = () => {
               <input type='checkbox' /> 아이디 저장
             </div>
           </div>
-          <ul>
-            <li>아이디 찾기 |</li>
-            <li>비밀번호 찾기 |</li>
-            <li>회원가입 |</li>
-          </ul>
           <div>
             회원 서비스를 이용하시려면 로그인이 필요합니다.
           </div>
+          <ul>
+            <li><span>아이디 찾기</span></li>
+            <li><span>비밀번호 찾기</span></li>
+            <li><span>회원가입</span></li>
+          </ul>
         </div>
         <div className='login-content-right'>
           <ul>
