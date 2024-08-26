@@ -1,11 +1,9 @@
 .regPage-div{
   width: 60%;
-  height: auto;
-  overflow: hidden;
-  padding-bottom: 30px;
   border-top: 2px solid #0e787c;
   border-bottom: 1px solid #0e787c;
   margin: 30px auto;
+  margin-bottom: 79px;
 }
 
 .regPage-title{
@@ -125,7 +123,7 @@ input[type="radio"]{
   margin: 0 5px;
 }
 
-
+/* birthday-table-end */
 
 .regPageBtn-div{
   width: 100%;
@@ -144,4 +142,8 @@ input[type="radio"]{
   color: #fff;
   font-weight: 500;
   cursor: pointer;
+  margin-bottom: 30px;
 }
+
+
+/* regBtn-end */

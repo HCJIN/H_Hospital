@@ -2,6 +2,7 @@
   width: 60%;
   margin: 0 auto;
   font-size: 16px;
+  margin-bottom: 100px;
 }
 
 .innerCase{
@@ -15,6 +16,7 @@
   color: #111;
   font-size: 20px;
   line-height: 1;
+  margin-top: 30px;
 }
 
 
@@ -124,6 +126,7 @@
   font-size: 13px;
   color: #fff;
   font-weight: 520;
+  cursor: pointer;
 }
 
 .btn-agree2{
@@ -135,6 +138,6 @@
   font-size: 13px;
   color: #444;
   font-weight: 520;
-
+  cursor: pointer;
 }
 
