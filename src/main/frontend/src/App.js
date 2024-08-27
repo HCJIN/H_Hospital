@@ -8,11 +8,8 @@ import RegPage from './component/RegPage';
 import RegInfo from './component/RegInfo';
 import MapGps from './component/MapGps';
 import Auth from './component/Auth';
-<<<<<<< HEAD
 import SnsRegInfo from './component/SnsRegInfo';
-=======
 import FindId from './component/FindId';
->>>>>>> jhb
 
 function App() {
 
@@ -49,10 +46,10 @@ function App() {
           <div className='sideBar-div-menu'>
             <ul>
               <li className='sideBar-div-menu-first'>
-               <div onClick={()=>{}}>
-                 <p><i className="bi bi-pc-display-horizontal"></i></p>               
-                 <span>지금예약</span>
-               </div>
+                <div onClick={()=>{}}>
+                <p><i className="bi bi-pc-display-horizontal"></i></p>               
+                <span>지금예약</span>
+              </div>
               </li>
               <li>
                 <div onClick={()=>{}}>
