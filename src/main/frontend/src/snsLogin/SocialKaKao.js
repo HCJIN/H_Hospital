@@ -1,6 +1,7 @@
 // SocialKaKao.js
 import React from 'react';
 
+
 export const handleKakaoLogin = () => {
     const Rest_api_key = 'adcad814e1275bc4c566c2bf9822fe52'; // REST API KEY
     const redirect_uri = 'http://localhost:3000/auth'; // Redirect URI
