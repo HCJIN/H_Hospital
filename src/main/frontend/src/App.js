@@ -46,31 +46,33 @@ function App() {
           <div className='sideBar-div-menu'>
             <ul>
               <li className='sideBar-div-menu-first'>
-               <div>
+               <div onClick={()=>{}}>
                  <p><i className="bi bi-pc-display-horizontal"></i></p>               
                  <span>지금예약</span>
                </div>
               </li>
               <li>
-                <div>
+                <div onClick={()=>{}}>
                   <p><i className="bi bi-card-checklist"></i></p>
                   <span>증명서발급</span>
                 </div>
               </li>
               <li>
-                <div>
+                <div onClick={()=>{
+                  navigate('/mapGps')
+                }}>
                   <p><i className="bi bi-hospital"></i></p>
                   <span>오시는길</span>
                 </div>
               </li>
               <li>
-                <div>
+                <div onClick={()=>{}}>
                   <p><i className="bi bi-heart-pulse-fill"></i></p>
                   <span>심뇌혈관센터</span>
                 </div>
               </li>
               <li>
-                <div>
+                <div onClick={()=>{}}>
                   <p><i className="bi bi-menu-button-wide-fill"></i></p>
                   <span>건강검진안내</span>
                 </div>
@@ -112,17 +114,8 @@ function App() {
         {/* 로그인 페이지 */}
         <Route path='loginForm' element={<Login />}></Route>
 
-        {/* 사이드 바 */}
-        <Route path='side' element={<App/>}>
-          <Route path='reservation'></Route>
-          <Route path='certificate'></Route>
-          <Route path='location'></Route>
-          <Route path='checkup'></Route>
-          <Route path='sfCenter'></Route>
-        </Route>
-
         {/* 오시는길 페이지  */}
-        <Route path='mapGps' element={<MapGps />} />
+        <Route path='mapGps' element={<MapGps/>} />
 
         {/* 인가코드 및 토큰 발급 페이지 */}
         <Route path='/auth' element={<Auth />} />
