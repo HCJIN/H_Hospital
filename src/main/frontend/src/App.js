@@ -8,7 +8,11 @@ import RegPage from './component/RegPage';
 import RegInfo from './component/RegInfo';
 import MapGps from './component/MapGps';
 import Auth from './component/Auth';
+<<<<<<< HEAD
 import SnsRegInfo from './component/SnsRegInfo';
+=======
+import FindId from './component/FindId';
+>>>>>>> jhb
 
 function App() {
 
@@ -45,32 +49,46 @@ function App() {
           <div className='sideBar-div-menu'>
             <ul>
               <li className='sideBar-div-menu-first'>
-                <i className="bi bi-pc-display-horizontal"></i>
-                <span>지금예약</span>
+               <div onClick={()=>{}}>
+                 <p><i className="bi bi-pc-display-horizontal"></i></p>               
+                 <span>지금예약</span>
+               </div>
               </li>
               <li>
-                <i className="bi bi-card-checklist"></i>
-                <span>증명서발급</span>
+                <div onClick={()=>{}}>
+                  <p><i className="bi bi-card-checklist"></i></p>
+                  <span>증명서발급</span>
+                </div>
               </li>
               <li>
-                <i className="bi bi-hospital"></i>
-                <span>위치</span>
+                <div onClick={()=>{
+                  navigate('/mapGps')
+                }}>
+                  <p><i className="bi bi-hospital"></i></p>
+                  <span>오시는길</span>
+                </div>
               </li>
               <li>
-                <i className="bi bi-heart-pulse-fill"></i>
-                <span>심뇌혈관센터</span>
+                <div onClick={()=>{}}>
+                  <p><i className="bi bi-heart-pulse-fill"></i></p>
+                  <span>심뇌혈관센터</span>
+                </div>
               </li>
               <li>
-                <i className="bi bi-menu-button-wide-fill"></i>
-                <span>건강검진안내</span>
+                <div onClick={()=>{}}>
+                  <p><i className="bi bi-menu-button-wide-fill"></i></p>
+                  <span>건강검진안내</span>
+                </div>
               </li>
               <li className='sideBar-div-menu-last'>
-                <a href="https://www.ussunflower.or.kr/" target='_blank'>
-                  <i className="bi bi-telephone"></i>
-                  <span>
-                    해바라기센터
-                  </span>
-                </a>
+                <div>
+                  <a href="https://www.ussunflower.or.kr/" target='_blank'>
+                    <p><i className="bi bi-brightness-low-fill"></i></p>
+                    <span>
+                      해바라기센터
+                    </span>
+                  </a>
+                </div>
               </li>
             </ul>
           </div>
@@ -99,17 +117,11 @@ function App() {
         {/* 로그인 페이지 */}
         <Route path='loginForm' element={<Login />}></Route>
 
-        {/* 사이드 바 */}
-        <Route path='side' element={<App/>}>
-          <Route path='reservation'></Route>
-          <Route path='certificate'></Route>
-          <Route path='location'></Route>
-          <Route path='checkup'></Route>
-          <Route path='sfCenter'></Route>
-        </Route>
+        {/* 아이디 찾기 */}
+        <Route path='findId' element={<FindId/>}/>
 
         {/* 오시는길 페이지  */}
-        <Route path='mapGps' element={<MapGps />} />
+        <Route path='mapGps' element={<MapGps/>} />
 
         {/* 인가코드 및 토큰 발급 페이지 */}
         <Route path='/auth' element={<Auth />} />
