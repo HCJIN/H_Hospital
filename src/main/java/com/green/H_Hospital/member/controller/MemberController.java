@@ -1,9 +1,12 @@
 package com.green.H_Hospital.member.controller;
 
+import com.green.H_Hospital.kakao.KakaoApi;
 import com.green.H_Hospital.member.service.MemberService;
 import com.green.H_Hospital.member.vo.MemberVO;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/member")
@@ -11,6 +14,9 @@ public class MemberController {
 
     @Resource(name = "memberService")
     private MemberService memberService;
+
+    @Resource(name = "kakaoApi")
+    private KakaoApi kakaoApi;
 
     //회원 기초정보 등록
     // 회원 가입을 위한 기본적인 정보 입력
@@ -37,5 +43,16 @@ public class MemberController {
     public void updateMember(@RequestBody MemberVO memberVO){
         memberService.updateMember(memberVO);
     }
+
+    //token 받아서 정보 전달
+    @GetMapping("/kaKaoCode")
+    public void accessToken(@RequestParam("accessToken") String accessToken){
+        // 사용자 정보 받기
+        Map<String, Object> userInfo = kakaoApi.getUserInfo(accessToken);
+
+        System.out.println("Kakao User Info: " + userInfo);
+    }
+
+
 
 }

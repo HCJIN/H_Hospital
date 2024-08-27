@@ -1,14 +1,16 @@
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Auth = () => {
 
   const navigate = useNavigate();
 
+  const [accessToken, setAccessToken] = useState('');
+
   const getToken = async () => {
     const token = new URL(window.location.href).searchParams.get("code");
-    console.log(token)
+    console.log("인가코드 : " + token)
     const res = axios.post(
       "https://kauth.kakao.com/oauth/token",
       {
@@ -31,7 +33,21 @@ const Auth = () => {
     .then((res)=>{
       if(res){
         localStorage.setItem("token", JSON.stringify(res.data.access_token));
-        navigate("/");
+        setAccessToken(res.data.access_token)
+        console.log("토큰 : " + res.data.access_token)
+        
+        axios
+        .get('http://localhost:3000/member/kaKaoCode',{
+          params: {
+            accessToken: res.data.access_token
+          }
+        })
+        .then((res)=>{
+          console.log(res.data)
+        })
+        .catch((error)=>{
+          console.log(error)
+        })
       }
     })
     .catch((error)=>{
