@@ -7,6 +7,7 @@ import Login from './component/Login';
 import RegPage from './component/RegPage';
 import RegInfo from './component/RegInfo';
 import MapGps from './component/MapGps';
+import Auth from './component/Auth';
 
 function App() {
 
@@ -39,34 +40,34 @@ function App() {
       {/* 사이드 바 */}
       <div className='sideBar-div'>
           <div className='sideBar-div-tel'>
-            <p><i class="bi bi-phone-vibrate"></i>대표번호</p>
+            <p><i className="bi bi-phone-vibrate"></i>대표번호</p>
             <p>052-2024-0906</p>
           </div>
           <div className='sideBar-div-menu'>
             <ul>
               <li className='sideBar-div-menu-first'>
-                <i class="bi bi-pc-display-horizontal"></i>
+                <i className="bi bi-pc-display-horizontal"></i>
                 <span>지금예약</span>
               </li>
               <li>
-                <i class="bi bi-card-checklist"></i>
+                <i className="bi bi-card-checklist"></i>
                 <span>증명서발급</span>
               </li>
               <li>
-                <i class="bi bi-hospital"></i>
+                <i className="bi bi-hospital"></i>
                 <span>위치</span>
               </li>
               <li>
-                <i class="bi bi-heart-pulse-fill"></i>
+                <i className="bi bi-heart-pulse-fill"></i>
                 <span>심뇌혈관센터</span>
               </li>
               <li>
-                <i class="bi bi-menu-button-wide-fill"></i>
+                <i className="bi bi-menu-button-wide-fill"></i>
                 <span>건강검진안내</span>
               </li>
               <li className='sideBar-div-menu-last'>
                 <a href="https://www.ussunflower.or.kr/" target='_blank'>
-                  <i class="bi bi-telephone"></i>
+                  <i className="bi bi-telephone"></i>
                   <span>
                     해바라기센터
                   </span>
@@ -80,14 +81,25 @@ function App() {
       <Routes>
         {/* 일반 유저용 */}
         <Route path='/' />
+
         {/* 로그인 페이지 */}
         <Route path='' />
+
         {/* 회원가입 페이지 */}
         <Route path='Mainjoin' element={<Join />}></Route>
+
+        {/* 회원가입동의 페이지 */}
         <Route path='joinPage' element={<JoinPage />}></Route>
-        <Route path='loginForm' element={<Login />}></Route>
+
+        {/* 회원기초정보 등록 페이지 */}
         <Route path='regPage' element={<RegPage />} />
+
+        {/* 회원정보 등록 페이지 */}
         <Route path='regInfo/:memTel' element={<RegInfo />} />
+
+        {/* 로그인 페이지 */}
+        <Route path='loginForm' element={<Login />}></Route>
+
         {/* 사이드 바 */}
         <Route path='side' element={<App/>}>
           <Route path='reservation'></Route>
@@ -96,7 +108,13 @@ function App() {
           <Route path='checkup'></Route>
           <Route path='sfCenter'></Route>
         </Route>
+
+        {/* 오시는길 페이지  */}
         <Route path='mapGps' element={<MapGps />} />
+
+        {/* 인가코드 및 토큰 발급 페이지 */}
+        <Route path='/auth' element={<Auth />} />
+
       </Routes>
 
       <div className='footerWrap'>
