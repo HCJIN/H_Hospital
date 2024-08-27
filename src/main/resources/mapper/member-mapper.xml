@@ -39,11 +39,11 @@
         );
     </insert>
 
-    <!-- id 중복 체크 -->
+    <!-- 이메일 중복 체크 -->
     <select id="idChk" resultType="string">
-        SELECT MEM_ID
+        SELECT EMAIL
         FROM HOSPITAL_MEMBER
-        WHERE MEM_ID = #{memId}
+        WHERE EMAIL = #{email}
     </select>
 
     <!-- 회원 기초정보 체크 -->
@@ -73,6 +73,27 @@
             ,   EMAIL = #{email}
         WHERE MEM_TEL = #{memTel}
     </update>
+
+    <!-- sns 회원가입 -->
+    <insert id="insertSnsMember">
+        INSERT INTO hospital_member
+            (MEM_ID
+            ,   MEM_NAME
+            ,   BIRTHDAY
+            ,   GENDER
+            ,   EMAIL
+            ,   MEM_PW
+            ,   MEM_TEL)
+        VALUES(
+            #{memId}
+            ,   #{memName}
+            ,   #{birthday}
+            ,   #{gender}
+            ,   #{email}
+            ,   #{memPw}
+            ,   #{memTel}
+        )
+    </insert>
 </mapper>
 
 

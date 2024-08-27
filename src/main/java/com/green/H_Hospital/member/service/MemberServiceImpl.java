@@ -23,10 +23,10 @@ public class MemberServiceImpl implements MemberService{
 
     // id 중복 체크
     @Override
-    public boolean idChk(String memId) {
+    public boolean idChk(String email) {
         //id가 null 이면 회원가입 가능 true
         //id가 조회되면 null 이 아니기 때문에 회원가입 불가능 false
-        String selectedId = sqlSession.selectOne("memberMapper.idChk",memId);
+        String selectedId = sqlSession.selectOne("memberMapper.idChk",email);
         return selectedId == null;
     }
 
@@ -36,9 +36,16 @@ public class MemberServiceImpl implements MemberService{
         return sqlSession.selectOne("memberMapper.getMemberList",memberVO);
     }
 
+    //회원가입 업데이트
     @Override
     public void updateMember(MemberVO memberVO) {
         sqlSession.update("memberMapper.updateMember",memberVO);
+    }
+
+    //sns 회원가입
+    @Override
+    public void insertSnsMember(MemberVO memberVO) {
+        sqlSession.insert("memberMapper.insertSnsMember",memberVO);
     }
 
 
