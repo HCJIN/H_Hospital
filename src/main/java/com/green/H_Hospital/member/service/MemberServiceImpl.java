@@ -46,7 +46,13 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public void insertSnsMember(MemberVO memberVO) {
         sqlSession.insert("memberMapper.insertSnsMember",memberVO);
-    }
+    //id 찾기
+    @Override
+    public MemberVO findId(String memTel) {
+        sqlSession.selectOne("memberMapper.findId", memTel);
+        //id 중복체크 참고해서 다시 해보기
+        return null;
 
+    }
 
 }

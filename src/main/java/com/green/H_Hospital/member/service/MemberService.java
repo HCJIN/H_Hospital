@@ -21,5 +21,9 @@ public interface MemberService {
     //sns 회원가입
     void insertSnsMember(MemberVO memberVO);
 
+    //id 찾기
+    MemberVO findId(String memTel);
+
+
 
 }
