@@ -6,7 +6,7 @@ const Auth = () => {
 
   const navigate = useNavigate();
 
-  const [accessToken, setAccessToken] = useState('');
+  const [userInfo, setUserInfo] = useState({});
 
   const getToken = async () => {
     const token = new URL(window.location.href).searchParams.get("code");
@@ -15,7 +15,7 @@ const Auth = () => {
       "https://kauth.kakao.com/oauth/token",
       {
         grant_type: "authorization_code",
-        client_id: 'adcad814e1275bc4c566c2bf9822fe52',
+        client_id: 'fcaac90717961c96e110a08056effef4',
         redirect_uri : 'http://localhost:3000/auth',
         code : token,
       },
@@ -33,7 +33,6 @@ const Auth = () => {
     .then((res)=>{
       if(res){
         localStorage.setItem("token", JSON.stringify(res.data.access_token));
-        setAccessToken(res.data.access_token)
         console.log("토큰 : " + res.data.access_token)
         
         axios
@@ -44,6 +43,8 @@ const Auth = () => {
         })
         .then((res)=>{
           console.log(res.data)
+          setUserInfo(res.data);
+          navigate('/snsRegInfo', {state:{userInfo:res.data}});
         })
         .catch((error)=>{
           console.log(error)

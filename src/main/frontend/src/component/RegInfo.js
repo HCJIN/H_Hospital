@@ -93,14 +93,14 @@ const RegInfo = () => {
   // id 중복확인
   function idChk(){
     axios
-    .get(`/member/idChk/${member.memId}`)
+    .get(`/member/idChk/${member.email}`)
     .then((res)=>{
       console.log(res.data)
       if(res.data){
-        alert('사용 가능한 ID 입니다')
+        alert('사용 가능한 이메일 입니다')
         setIsCheckId(true)
       }else{
-        alert('중복된 ID입니다.')
+        alert('이미 가입된 이메일 주소입니다.')
       }
     })
     .catch((error)=>{
@@ -137,6 +137,33 @@ const RegInfo = () => {
             <td>{selectMember.gender}</td>
           </tr>
           <tr>
+            <td><span>✔</span>e-mail</td>
+            <td>
+              <p className='desc'>
+                입력하신 이메일로 H-hospital의 진료예약내역이 전송되오니 정확하게 입력하여 주시기 바랍니다. <br/>
+                부정확한 이메일 주소 입력 시 다른 사람에게 나의 진료예약 일정 정보가 전송될 수 도 있습니다.
+              </p>
+              <div className='inpSec'>
+                <select className='selectText' id='email2' name='email2' onChange={(e)=>{memberChange(e)}} ref={email2}>
+                  <option>직접입력</option>
+                  <option value={'hanmail.net'}>hanmail.net</option>
+                  <option value={'paran.com'}>paran.com</option>
+                  <option value={'korea.com'}>korea.com</option>
+                  <option value={'naver.com'}>naver.com</option>
+                </select>
+                <button type='button' onClick={(e)=>{
+                  emailClick(e)
+                }}>선택</button>
+                <input type='text' className='inputText' name='email' id='email1' ref={email1} onChange={(e)=>{memberChange(e)}}/>
+                <span className='alpha'>@</span>
+                <input type='text' className='inputText' name='email' id='email3' ref={email3} onChange={(e)=>{memberChange(e)}}/>
+                <button type='button' onClick={()=>{
+                  idChk()
+                }}>중복확인</button>
+              </div>
+            </td>
+          </tr>
+          {/* <tr>
             <td><span>✔</span>아이디</td>
             <td>
               <p className='desc'>
@@ -161,7 +188,7 @@ const RegInfo = () => {
               </div>
               <div className='feedback' ref={memId_valid_tag}></div>
             </td>
-          </tr>
+          </tr> */}
           <tr>
             <td><span>✔</span>비밀번호</td>
             <td>
@@ -208,30 +235,6 @@ const RegInfo = () => {
                 <input type='text' className='inputText' maxLength={4} name='celNo2' id='celNo2' value={middleTel} readOnly></input>
                 <span> - </span>
                 <input type='text' className='inputText' maxLength={4} name='celNo3' id='celNo3' value={lastTel} readOnly></input>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><span>✔</span>e-mail</td>
-            <td>
-              <p className='desc'>
-                입력하신 이메일로 H-hospital의 진료예약내역이 전송되오니 정확하게 입력하여 주시기 바랍니다. <br/>
-                부정확한 이메일 주소 입력 시 다른 사람에게 나의 진료예약 일정 정보가 전송될 수 도 있습니다.
-              </p>
-              <div className='inpSec'>
-                <select className='selectText' id='email2' name='email2' onChange={(e)=>{memberChange(e)}} ref={email2}>
-                  <option>직접입력</option>
-                  <option value={'hanmail.net'}>hanmail.net</option>
-                  <option value={'paran.com'}>paran.com</option>
-                  <option value={'korea.com'}>korea.com</option>
-                  <option value={'naver.com'}>naver.com</option>
-                </select>
-                <button type='button' onClick={(e)=>{
-                  emailClick(e)
-                }}>선택</button>
-                <input type='text' className='inputText' name='email' id='email1' ref={email1} onChange={(e)=>{memberChange(e)}}/>
-                <span className='alpha'>@</span>
-                <input type='text' className='inputText' name='email' id='email3' ref={email3} onChange={(e)=>{memberChange(e)}}/>
               </div>
             </td>
           </tr>

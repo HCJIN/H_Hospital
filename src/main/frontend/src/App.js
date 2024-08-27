@@ -8,6 +8,7 @@ import RegPage from './component/RegPage';
 import RegInfo from './component/RegInfo';
 import MapGps from './component/MapGps';
 import Auth from './component/Auth';
+import SnsRegInfo from './component/SnsRegInfo';
 
 function App() {
 
@@ -22,8 +23,6 @@ function App() {
         <ul className='header-ul'>
           <li onClick={()=>{navigate('/loginForm')}}>로그인</li>
           <li onClick={()=>{navigate('/MainJoin')}}>회원가입</li>
-          <li>나의차트</li>
-          <li>오시는길</li>
         </ul>
         <div className='logo-header'>
           <div className='logo-div'>
@@ -97,7 +96,7 @@ function App() {
         <Route path='/' />
 
         {/* 로그인 페이지 */}
-        <Route path='' />
+        <Route path='/loginForm' />
 
         {/* 회원가입 페이지 */}
         <Route path='Mainjoin' element={<Join />}></Route>
@@ -119,6 +118,9 @@ function App() {
 
         {/* 인가코드 및 토큰 발급 페이지 */}
         <Route path='/auth' element={<Auth />} />
+
+        {/* sns연동 후 회원가입 페이지 */}
+        <Route path='/snsRegInfo' element={<SnsRegInfo />} />
 
       </Routes>
 
