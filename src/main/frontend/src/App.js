@@ -45,32 +45,44 @@ function App() {
           <div className='sideBar-div-menu'>
             <ul>
               <li className='sideBar-div-menu-first'>
-                <i class="bi bi-pc-display-horizontal"></i>
-                <span>지금예약</span>
+               <div>
+                 <p><i className="bi bi-pc-display-horizontal"></i></p>               
+                 <span>지금예약</span>
+               </div>
               </li>
               <li>
-                <i class="bi bi-card-checklist"></i>
-                <span>증명서발급</span>
+                <div>
+                  <p><i className="bi bi-card-checklist"></i></p>
+                  <span>증명서발급</span>
+                </div>
               </li>
               <li>
-                <i class="bi bi-hospital"></i>
-                <span>위치</span>
+                <div>
+                  <p><i className="bi bi-hospital"></i></p>
+                  <span>오시는길</span>
+                </div>
               </li>
               <li>
-                <i class="bi bi-heart-pulse-fill"></i>
-                <span>심뇌혈관센터</span>
+                <div>
+                  <p><i className="bi bi-heart-pulse-fill"></i></p>
+                  <span>심뇌혈관센터</span>
+                </div>
               </li>
               <li>
-                <i class="bi bi-menu-button-wide-fill"></i>
-                <span>건강검진안내</span>
+                <div>
+                  <p><i className="bi bi-menu-button-wide-fill"></i></p>
+                  <span>건강검진안내</span>
+                </div>
               </li>
               <li className='sideBar-div-menu-last'>
-                <a href="https://www.ussunflower.or.kr/" target='_blank'>
-                  <i class="bi bi-telephone"></i>
-                  <span>
-                    해바라기센터
-                  </span>
-                </a>
+                <div>
+                  <a href="https://www.ussunflower.or.kr/" target='_blank'>
+                    <p><i className="bi bi-brightness-low-fill"></i></p>
+                    <span>
+                      해바라기센터
+                    </span>
+                  </a>
+                </div>
               </li>
             </ul>
           </div>

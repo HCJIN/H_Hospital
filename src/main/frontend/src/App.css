@@ -65,11 +65,35 @@
   padding: 15px 10px;
   background-image: linear-gradient(402deg, #166b6e, #81b9d4);
   color: #fff;
-}
-.sideBar-div-menu{
   text-align: center;
 }
 
+.sideBar-div-tel p:nth-child(1){
+  font-weight: 800;  
+}
+.sideBar-div-tel p:nth-child(1) i{
+  margin-right: 3px;
+}
+
+.sideBar-div-tel p:nth-child(2){
+  font-size: 13px;
+}
+
+
+.sideBar-div-menu{
+  text-align: center;
+  font-weight: 600;
+  color: #444;
+}
+
+.sideBar-div-menu span:hover{
+  color: #086166;
+  transition: 0.4s;
+}
+
+.sideBar-div-menu li div{
+  cursor: pointer;
+}
 
 .sideBar-div .sideBar-div-menu li:nth-child(n +2):nth-child(-n + 8){
   background-color: #fff;
@@ -78,7 +102,7 @@
 }
 
 .sideBar-div-menu-first{
-  padding: 15px;
+  padding: 28px;
   background-image: linear-gradient(402deg, #166b6e, #81b9d4);
   color: #fff;
   border-top-left-radius: 10px;
@@ -86,15 +110,19 @@
 }
 
 .sideBar-div-menu-last{
-  padding: 15px;
   background-image: linear-gradient(402deg, #166b6e, #81b9d4);
   color: #fff;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-
 }
 
-
+.sideBar-div-menu i {
+  font-size: 35px;
+}
+a{
+  color: #fff;
+  text-decoration-line: none;
+}
 
 /* 사이드 바 end */
 
