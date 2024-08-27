@@ -8,6 +8,7 @@ import RegPage from './component/RegPage';
 import RegInfo from './component/RegInfo';
 import MapGps from './component/MapGps';
 import Auth from './component/Auth';
+import FindId from './component/FindId';
 
 function App() {
 
@@ -113,6 +114,9 @@ function App() {
 
         {/* 로그인 페이지 */}
         <Route path='loginForm' element={<Login />}></Route>
+
+        {/* 아이디 찾기 */}
+        <Route path='findId' element={<FindId/>}/>
 
         {/* 오시는길 페이지  */}
         <Route path='mapGps' element={<MapGps/>} />

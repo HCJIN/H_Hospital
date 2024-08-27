@@ -18,5 +18,8 @@ public interface MemberService {
     //기초정보 업데이트
     void updateMember(MemberVO memberVO);
 
+    //id 찾기
+    MemberVO findId(String memTel);
+
 
 }

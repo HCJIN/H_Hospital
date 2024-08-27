@@ -73,6 +73,16 @@
             ,   EMAIL = #{email}
         WHERE MEM_TEL = #{memTel}
     </update>
+
+    <!-- 아이디 찾기 -->
+    <select id="findId" resultType="string">
+        SELECT MEM_ID
+            , GENDER
+            , BIRTHDAY
+            , MEM_TEL
+        FROM hospital_member
+        WHERE MEM_TEL = #{memTel}
+    </select>
 </mapper>
 
 

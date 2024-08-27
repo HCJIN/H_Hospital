@@ -41,5 +41,14 @@ public class MemberServiceImpl implements MemberService{
         sqlSession.update("memberMapper.updateMember",memberVO);
     }
 
+    //id 찾기
+    @Override
+    public MemberVO findId(String memTel) {
+        sqlSession.selectOne("memberMapper.findId", memTel);
+        //id 중복체크 참고해서 다시 해보기
+        return null;
+
+    }
+
 
 }
