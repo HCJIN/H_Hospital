@@ -1,8 +1,13 @@
 import React from 'react'
 import '../css/join.css'
 import { useNavigate } from 'react-router-dom'
+import {handleKakaoLogin} from '../snsLogin/SocialKaKao'
 
 const Join = () => {
+
+  //자바스크립트API key
+  // 3611ba047b8bf83c3c5bc4749dff80f6
+
   const navigate = useNavigate()
 
   return (
@@ -31,9 +36,9 @@ const Join = () => {
                   <strong>SNS 간편로그인 연동</strong>
                 </p>
                 <div className='icon-div'>
-                  <i className="bi bi-facebook"></i>
-                  <i className="bi bi-instagram"></i>
-                  <i className="bi bi-google"></i>
+                  <img src='http://localhost:8080/images/kakaoBlack.png' onClick={handleKakaoLogin}></img>
+                  <img src='http://localhost:8080/images/Google.png'></img>
+                  <img src='http://localhost:8080/images/Naver.png'></img>
                 </div>
               </td>
             </tr>
