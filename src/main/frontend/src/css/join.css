@@ -71,35 +71,9 @@
   font-size: 30px;
 }
 
-.bi-facebook{
-  color: rgb(50, 50, 255);
-  cursor: pointer;
-}
-
-.bi-instagram{
-  background: linear-gradient(
-    to right, 
-    #FF6A00,  /* 오렌지 */
-    #FF9A00,  /* 라이트 오렌지 */
-    #FF61AC,  /* 핑크 */
-    #F72585,  /* 핫핑크 */
-    #7209B7   /* 다크 퍼플 */
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  cursor: pointer;
-}
-
-.bi-google{
-  background: linear-gradient(
-    to right, 
-    #FBBC05,  /* 노란색 */
-    #EA4335,  /* 빨간색 */
-    #4285F4,  /* 파란색 */
-    #34A853   /* 초록색 */
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.icon-div img{
+  width: 35px;
+  height: 35px;
   cursor: pointer;
 }
 
