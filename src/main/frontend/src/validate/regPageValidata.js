@@ -15,7 +15,7 @@ export const regPageValidata = (newData, valid_tag, tagName) => {
   const regex_memName = /^[가-힣]{2,10}$/;
 
   //연락처 010-숫자4개-숫자4개
-  const regex_memTel = /^010|011|016|017|018|019-\d{4}-\d{4}$/;
+  const regex_memTel = /^010-\d{4}-\d{4}$/;
 
   switch(tagName){
     case 'memName' :

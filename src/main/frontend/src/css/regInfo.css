@@ -71,6 +71,10 @@
   width: 280px;
 }
 
+.birthday-td select{
+  margin-right: 5px;
+}
+
 #cel span{
   color: #000;
 }

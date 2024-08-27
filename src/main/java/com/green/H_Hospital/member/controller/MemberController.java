@@ -26,10 +26,10 @@ public class MemberController {
     }
 
     //id 중복 체크
-    @GetMapping("/idChk/{memId}")
-    public boolean idChk(@PathVariable("memId")String memId){
-        System.out.println(memberService.idChk(memId));
-        return memberService.idChk(memId);
+    @GetMapping("/idChk/{email}")
+    public boolean idChk(@PathVariable("email")String email){
+        System.out.println(memberService.idChk(email));
+        return memberService.idChk(email);
     }
 
     //회원 기초정보 조회
@@ -46,11 +46,17 @@ public class MemberController {
 
     //token 받아서 정보 전달
     @GetMapping("/kaKaoCode")
-    public void accessToken(@RequestParam("accessToken") String accessToken){
+    public Map<String, Object> accessToken(@RequestParam("accessToken") String accessToken){
         // 사용자 정보 받기
         Map<String, Object> userInfo = kakaoApi.getUserInfo(accessToken);
 
-        System.out.println("Kakao User Info: " + userInfo);
+        return userInfo;
+    }
+
+    //sns회원가입
+    @PostMapping("/insertSnsMember")
+    public void insertSnsMember(@RequestBody MemberVO memberVO){
+        memberService.insertSnsMember(memberVO);
     }
 
 
