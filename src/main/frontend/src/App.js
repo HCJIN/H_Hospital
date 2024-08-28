@@ -12,6 +12,7 @@ import SnsRegInfo from './component/SnsRegInfo';
 import FindId from './component/FindId';
 import MainPage from './component/MainPage';
 import { useEffect, useState } from 'react';
+import FindPw from './component/FindPw';
 
 function App() {
 
@@ -160,6 +161,9 @@ function App() {
 
         {/* 아이디 찾기 */}
         <Route path='findId' element={<FindId/>}/>
+
+        {/* 비밀번호 찾기 */}
+        <Route path='findPw' element={<FindPw/>} />
 
         {/* 오시는길 페이지  */}
         <Route path='mapGps' element={<MapGps/>} />

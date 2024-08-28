@@ -27,6 +27,8 @@ public interface MemberService {
     //로그인
     MemberVO login(MemberVO memberVO);
 
+    //pw 찾기
+    MemberVO findPw(String memId);
 
 
 }

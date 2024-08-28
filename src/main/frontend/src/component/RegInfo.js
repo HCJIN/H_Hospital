@@ -123,7 +123,7 @@ const RegInfo = () => {
 
   return (
     <div className='regInfo-div'>
-      <RegBar step={2}/>
+      <RegBar step={3}/>
       <table className='regInfo-table'>
         <tbody>
           <tr>
