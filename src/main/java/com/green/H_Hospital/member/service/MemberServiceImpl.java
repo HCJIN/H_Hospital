@@ -47,7 +47,6 @@ public class MemberServiceImpl implements MemberService{
     public void insertSnsMember(MemberVO memberVO) {
         sqlSession.insert("memberMapper.insertSnsMember", memberVO);
 
-
     }
 
     //id 찾기
