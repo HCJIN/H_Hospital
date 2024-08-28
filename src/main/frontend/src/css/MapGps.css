@@ -1,0 +1,103 @@
+.map-container{
+  width: 60%;
+  margin: auto;
+}
+
+.map-head{
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 1.5;
+  margin: 10px 0px;
+}
+
+.map-hospital-addr{
+  margin-bottom: 14px;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  color: #0e787c !important;
+}
+
+.map-hospital-addr > h4 > span{
+  font-size: 15px;
+  color: #444;
+  padding-left: 10px;
+}
+
+.map-public-transportation {
+  margin: 25px 0px;
+}
+
+.map-public-transportation > ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.map-public-transportation > ul > li {
+  border: 1px solid #c0c0c0;
+  border-right: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  cursor: pointer;
+}
+
+.map-public-transportation > ul > li:last-child {
+  border-right: 1px solid #c0c0c0;
+}
+
+.map-public-transportation > ul > li:hover{
+  background-color: #0e787c;
+  color: white;
+}
+
+.map-public-transportation-content{
+  margin-top: 24px;
+}
+
+.map-busInfo-container > p{
+  margin-bottom: 24px;
+  font-size: 15px;
+}
+
+.map-busInfo-container > ul > li{
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  border-bottom: 1px solid #ddd;
+  margin: 20px 0px;
+}
+
+.map-busInfo-container > ul > li:last-child{
+  border: none;
+}
+
+.map-busInfo-container > ul > li > div{
+  margin-bottom: 20px;
+}
+
+.map-busInfo-container > ul > li > div:first-child{
+  width: 108px;
+  font-size: 18px;
+  color: #0e787c;
+  margin: -2px 0 0 -2px;
+  font-weight: 600;
+}
+
+.map-busInfo-container > ul > li > div:last-child{
+  width: 100%;
+}
+
+.map-busInfo-container > ul > li > div:last-child > ul{
+  margin-top: 5px;
+}
+
+.map-busInfo-container > ul > li > div:last-child > ul > li{
+  font-size: 13px;
+  line-height: 18px;
+  color: #0e787c;
+}
