@@ -24,6 +24,9 @@ public interface MemberService {
     //id 찾기
     MemberVO findId(String memTel);
 
+    //로그인
+    MemberVO login(MemberVO memberVO);
+
 
 
 }

@@ -53,10 +53,16 @@ public class MemberController {
         return userInfo;
     }
 
-    //sns회원가입
+    //sns 회원가입
     @PostMapping("/insertSnsMember")
     public void insertSnsMember(@RequestBody MemberVO memberVO){
         memberService.insertSnsMember(memberVO);
+    }
+
+    //로그인
+    @PostMapping("/login")
+    public MemberVO memberLogin(@RequestBody MemberVO memberVO){
+        return memberService.login(memberVO);
     }
 
 
