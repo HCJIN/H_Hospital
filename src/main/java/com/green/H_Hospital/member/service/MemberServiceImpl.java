@@ -45,7 +45,11 @@ public class MemberServiceImpl implements MemberService{
     //sns 회원가입
     @Override
     public void insertSnsMember(MemberVO memberVO) {
-        sqlSession.insert("memberMapper.insertSnsMember",memberVO);
+        sqlSession.insert("memberMapper.insertSnsMember", memberVO);
+
+
+    }
+
     //id 찾기
     @Override
     public MemberVO findId(String memTel) {

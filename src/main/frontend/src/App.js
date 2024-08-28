@@ -8,11 +8,9 @@ import RegPage from './component/RegPage';
 import RegInfo from './component/RegInfo';
 import MapGps from './component/MapGps';
 import Auth from './component/Auth';
-<<<<<<< HEAD
 import SnsRegInfo from './component/SnsRegInfo';
-=======
 import FindId from './component/FindId';
->>>>>>> jhb
+
 
 function App() {
 
