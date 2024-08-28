@@ -1,3 +1,4 @@
+
 import React, { useRef, useState } from 'react'
 import '../css/FindId.css'
 import userEvent from '@testing-library/user-event';
@@ -28,14 +29,14 @@ const FindId = () => {
   // id 찾기를 위한 기본 정보
   function insertFindId(){
 
-    if(insertFindIdData.memName == '' || insertFindIdData.birthday == '' || insertFindIdData.memTel == ''){
+    if(insertFindIdData.memName == '' || insertFindIdData.birthday == '' || insertFindIdData.memTel == '' || insertFindIdData.gender == ''){
       alert('빈 칸을 모두 채워주세요')
       return
     }
     axios.post('/member/findId', insertFindIdData)
     .then((res)=>{
         console.log(res.data)
-      // navigate(/successFindId/${insertFindIdData.memTel})
+      // navigate(`/successFindId/${insertFindIdData.memTel}`)
     })
     .catch((error)=>{
       console.log(error)
@@ -58,6 +59,7 @@ const FindId = () => {
     //데이터 저장
     setInsertFindIdData(telBdData);
   }
+  console.log(insertFindIdData)
 
 
 
@@ -69,10 +71,12 @@ const FindId = () => {
           <span>회원가입 시 등록한 정보로 사용자를 확인해 주세요</span>
         </div>
         <div className='find-content'>
-          <p>등록 정보로 찾기</p>
-          <span>회원가입 시 등록한 정보를 아래에 입력해 주세요</span>
-          <table>
-            <tbody>
+          <div className='findId-content-title'>
+            <p>등록 정보로 찾기</p>
+            <span>회원가입 시 등록한 정보를 아래에 입력해 주세요</span>
+          </div>
+          <table className='findId-table'>
+            <tbody className='findId-table-body'>
             <tr>
               <td>이름</td>
               <td><input type='text' name='memName' onChange={(e)=>{changeInsertFindId(e)}}></input></td>
@@ -80,8 +84,8 @@ const FindId = () => {
             <tr>
               <td>성별</td>
               <td>
-                <input type='radio' name='gender' onChange={(e)=>{changeInsertFindId(e)}}/> 남성
-                <input type='radio' name='gender' onChange={(e)=>{changeInsertFindId(e)}}/> 여성
+                <input type='radio' name='gender' value='남성' onChange={(e)=>{changeInsertFindId(e)}}/> 남성
+                <input type='radio' name='gender' value='여성' onChange={(e)=>{changeInsertFindId(e)}}/> 여성
               </td>
             </tr>
             <tr>
@@ -266,7 +270,10 @@ const FindId = () => {
             </tr>
             </tbody>
           </table>
-          <button className='findId-btn' type='button' onClick={()=>{insertFindId()}}>확인</button>
+          <div className='findId-btn-div'>
+            <button className='findId-btn' type='button' onClick={()=>{insertFindId()}}>확인</button>
+          </div>
+         
         </div>
       </div>
     </div>
