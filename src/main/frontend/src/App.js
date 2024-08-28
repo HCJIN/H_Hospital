@@ -12,6 +12,10 @@ import SnsRegInfo from './component/SnsRegInfo';
 import FindId from './component/FindId';
 import MainPage from './component/MainPage';
 import { useEffect, useState } from 'react';
+<<<<<<< HEAD
+=======
+
+>>>>>>> hcj
 
 function App() {
 
