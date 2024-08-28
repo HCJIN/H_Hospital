@@ -81,20 +81,129 @@ const MapGps = () => {
               </li>
               <li>
                 <div>탑승장소</div>
-                <div>asd</div>
+                <div>
+                  <p style={{marginBottom: 30}}>
+                    [병원에서 탑승 시] - 감염관리센터(CIC) 앞
+                    <img src='https://www.amc.seoul.kr/asan/images/infor/location_img07.jpg' alt='' style={{marginTop: 30}} />
+                  </p>
+                  <p>
+                    [잠실나루역에서 탑승 시] - 1번 출구 서울책보고 앞
+                    <img src='https://www.amc.seoul.kr/asan/images/infor/location_img02.jpg' alt='' style={{marginTop: 30}} />
+                  </p>
+                </div>
               </li>
               <li>
                 <div>도보</div>
-                <div>asd</div>
+                <div>
+                  <img src='	https://www.amc.seoul.kr/asan/images/infor/location_img06.jpg' alt='' />
+                </div>
               </li>
             </ul>
           </div>
         )}
         {selectedOption === 'publicTransport' && (
-          <div>대중교통 이용 시 내용이 여기에 표시됩니다.</div>
+          <div className='map-publicTransport-container'>
+            <ul>
+              <li>
+                <h4>지하철 이용시</h4>
+                <div className='subway'>
+                  <div className='green'>잠실나루역</div>
+                  <div>
+                    1번 출구 <strong>→</strong> 순환버스 또는 도보(10분)로 이동 <br/>
+                    3번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>4318</span> 버스 승차 <strong>→</strong> 하차(서울아산병원 동관) <br/>
+                  </div>
+                </div>
+                <div className='subway'>
+                  <div className='green'>
+                    잠실역
+                  </div>
+                  <div>
+                    7번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>4318</span> 버스 승차 <strong>→</strong> 하차(서울아산병원 동관)
+                  </div>
+                </div>
+                <div className='subway'>
+                  <div className='purple'>천호역</div>
+                  <div>
+                    9번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>4318</span> 버스 또는 <span style={{color: '#058b40', fontWeight: 'bold'}}>112-5</span> 버스 승차 <strong>→</strong> 하차(서울아산병원 동관)
+                  </div>
+                </div>
+                <div className='subway'>
+                  <div className='purple'>강동역</div>
+                  <div>
+                  1번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>112-5</span> 버스 승차 <strong>→</strong> 하차(서울아산병원 동관)
+                  </div>
+                </div>
+                <div className='subway'>
+                  <div className='pink'>
+                    강동구청역
+                  </div>
+                  <div>
+                    5번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>112-5</span> 버스 승차 <strong>→</strong> 하차(서울아산병원 동관)
+                  </div>
+                </div>
+                <div className='subway'>
+                  <div className='pink'>
+                    몽촌토성역
+                  </div>
+                  <div>
+                    1번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>4318</span> 버스 승차 <strong>→</strong> 하차(서울아산병원 동관)
+                  </div>
+                </div>
+                <div className='subway'>
+                  <div className='yellow'>
+                    한성백제역
+                  </div>
+                  <div>
+                    2번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>30</span> 버스 또는 <span style={{color: '#058b40', fontWeight: 'bold'}}>340</span> 버스 승차 <strong>→</strong> 올림픽회관 하차 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>4318</span> 버스 승차 <strong>→</strong> 하차(서울아산병원 동관)
+                  </div>
+                </div>
+              </li>
+              <li>
+                <h4>버스 이용 시</h4>
+                <div>
+                  <div className='bus-info'>
+                    <div>4318</div>
+                    <div><span style={{color: '#0e787c', fontWeight: 'bold' }}>서울아산병원 동관</span> (사당역 ↔ 서울아산병원)</div>
+                  </div>
+                  <div className='bus-info'>
+                    <div>112-5</div>
+                    <div><span style={{color: '#0e787c', fontWeight: 'bold' }}>서울아산병원 동관</span> (한솔아파트 ↔ 서울아산병원)</div>
+                  </div>
+                  <div className='bus-info'>
+                    <div>97</div>
+                    <div><span style={{color: '#0e787c', fontWeight: 'bold' }}>서울아산병원 동관</span> (남양주 호평동 ↔ 강변역 ↔ 서울아산병원)</div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
         )}
         {selectedOption === 'detour' && (
-          <div>병원 진입 혼잡시 우회길 안내 내용이 여기에 표시됩니다.</div>
+          <div>
+            <ul>
+              <li className='detuor-li'>
+                <div className='detour-load'>
+                  <div>최단거리 진입 방법</div>
+                  <div>올림픽대로 → 병원(진입 시 2개 차선 이용)</div>
+                </div>
+                <img src='https://www.amc.seoul.kr/asan/images/infor/location_img03.jpg' alt='' />
+              </li>
+              <li className='detuor-li'>
+                <div className='detour-load'>
+                  <div>병원 진입로 혼잡 시 우회 방법</div>
+                  <div>송파세무서 전 우회전 → 풍성중학교 앞 우회전</div>
+                </div>
+                <img src='https://www.amc.seoul.kr/asan/images/infor/location_img04.jpg' alt='' />
+              </li>
+              <li className='detuor-li'>
+                <div className='detour-load' style={{width: '900px', fontSize: '15.4px'}}>
+                  <div>올림픽대로 출입구 혼잡 시 우회 방법</div>
+                  <div>잠실철교 부근 정체 시 → 천호대교 분기점 우측 → 한가람로 방향으로 유턴 → 병원</div>
+                </div>
+                <img src='https://www.amc.seoul.kr/asan/images/infor/location_img05.jpg' alt='' />
+              </li>
+            </ul>
+          </div>
         )}
       </div>
       </div>

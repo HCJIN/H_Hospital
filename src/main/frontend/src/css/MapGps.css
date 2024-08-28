@@ -101,3 +101,103 @@
   line-height: 18px;
   color: #0e787c;
 }
+
+.map-publicTransport-container > ul > li{
+  border-bottom: 1px solid #ddd;
+}
+
+.map-publicTransport-container > ul > li:last-child{
+  border: none;
+}
+
+.map-publicTransport-container > ul > li > h4{
+  font-size: 20px;
+  margin: 10px 0px;
+}
+
+.subway{
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin: 10px 0px;
+}
+
+.green{
+  color: #058b40;
+  background: url(https://www.amc.seoul.kr/asan/images/infor/ico_subwayLine.gif)  0 3px no-repeat;
+  width: 150px;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  height: 50px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.purple{
+  color: #674498;
+  background: url(https://www.amc.seoul.kr/asan/images/infor/ico_subwayLine.gif) 0 -267px no-repeat;
+  width: 150px;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  height: 50px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.pink{
+  color: #e84087;
+  background: url(https://www.amc.seoul.kr/asan/images/infor/ico_subwayLine.gif) 0 -357px no-repeat;
+  width: 150px;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  height: 50px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.yellow{
+  color: #b2933f;
+  background: url(https://www.amc.seoul.kr/asan/images/infor/ico_subwayLine.gif) 0 -447px no-repeat;
+  width: 150px;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  height: 50px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.bus-info{
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin-bottom: 10px;
+}
+
+.bus-info > div:first-child{
+  width: 100px;
+  text-align: center;
+  padding: 2px 0;
+  background: #009a44;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 50px
+}
+
+.detuor-li{
+  margin-bottom: 30px;
+}
+
+.detour-load{
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin-bottom: 20px;
+}
+
+.detour-load > div:first-child{
+  font-size: 18px;
+  color: #0e787c;
+  margin: 0 20px 0 0;
+  font-weight: 600;
+}
