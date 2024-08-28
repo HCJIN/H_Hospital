@@ -13,7 +13,8 @@ import FindId from './component/FindId';
 import MainPage from './component/MainPage';
 import { useEffect, useState } from 'react';
 import SuccessFindId from './component/SuccessFindId';
-
+import FindPw from './component/FindPw';
+import Reservation from './component/Reservation';
 
 function App() {
 
@@ -88,7 +89,9 @@ function App() {
           </div>
           <div className='sideBar-div-menu'>
             <ul>
-              <li className='sideBar-div-menu-first'>
+              <li className='sideBar-div-menu-first' onClick={()=>{
+                navigate('/reservation')
+              }}>
                 <div onClick={()=>{}}>
                 <p><i className="bi bi-pc-display-horizontal"></i></p>               
                 <span>지금예약</span>
@@ -163,8 +166,10 @@ function App() {
         {/* 아이디 찾기 */}
         <Route path='findId' element={<FindId/>}/>
 
-        {/* 아이디 찾기 성공 */}
         <Route path='successFindId' element={<SuccessFindId/>}/>
+
+        {/* 비밀번호 찾기 */}
+        <Route path='findPw' element={<FindPw/>} />
 
         {/* 오시는길 페이지  */}
         <Route path='mapGps' element={<MapGps/>} />
@@ -174,6 +179,9 @@ function App() {
 
         {/* sns연동 후 회원가입 페이지 */}
         <Route path='/snsRegInfo' element={<SnsRegInfo />} />
+
+        {/* 예약 페이지 */}
+        <Route path='/reservation' element={<Reservation />} />
 
       </Routes>
 

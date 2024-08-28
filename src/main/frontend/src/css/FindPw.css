@@ -1,0 +1,64 @@
+.findPw-container{
+  border: 1px solid brown;
+  width: 700px;
+  height: 650px;
+  margin: 30px auto;
+}
+
+.findPw-body{
+  border-top: 2px solid #0e787c;
+  border-bottom: 1px solid #0e787c;
+  height: 350px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.findPw-body > p{
+  font-size: 23px;
+  font-weight: bold;
+  color: #267376;
+  margin-top: 30px;
+}
+
+.findPw-body > div{
+  text-align: left;
+  margin-left: 70px;
+}
+
+.table-container{
+  border-top: 2px solid #0e787c;
+  border-bottom: 1px solid lightgray;
+  margin: 10px auto;
+  width: 80%;
+  height: 150px;
+  text-align: left;
+}
+
+.table-container > tbody > tr > td{
+  border-bottom: 1px solid lightgrey;
+  padding: 9px 15px;
+}
+
+.table-container > tbody > tr > td:nth-child(1){
+  border-right: 1px solid lightgrey;
+  width: 100px;
+  height: 40px;
+  background-color: rgba(243, 242, 242, 0.753);
+  color: #0e787c;
+  font-weight: bold;
+}
+
+.findPw-body > button{
+  background-color: #0e787c;
+  font-size: 14px;
+  color: white;
+  border: none;
+  width: 57px;
+  height: 33px;
+  cursor: pointer;
+}
+
+/* input{
+  border-color: lightgray;
+} */
+

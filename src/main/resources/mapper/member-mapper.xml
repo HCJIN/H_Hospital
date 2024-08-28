@@ -115,6 +115,17 @@
         AND MEM_PW = #{memPw};
     </select>
 
+    <!--비밀번호 찾기-->
+    <select id="findPw" resultType="string">
+        SELECT MEM_PW
+            , MEM_ID
+            , MEM_NAME
+            , GENDER
+            , BIRTHDAY
+        FROM HOSPITAL_MEMBER
+        WHERE MEM_ID = #{memId}
+    </select>
+
 </mapper>
 
 

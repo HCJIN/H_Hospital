@@ -29,14 +29,175 @@
 
 .map-public-transportation > ul {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   text-align: center;
   width: 100%;
 }
 
-.map-public-transportation > ul > li{
-  vertical-align: middle;
-  width: 300px;
+.map-public-transportation > ul > li {
+  border: 1px solid #c0c0c0;
+  border-right: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  cursor: pointer;
+}
+
+.map-public-transportation > ul > li:last-child {
+  border-right: 1px solid #c0c0c0;
+}
+
+.map-public-transportation > ul > li:hover{
+  background-color: #0e787c;
+  color: white;
+}
+
+.map-public-transportation-content{
+  margin-top: 24px;
+}
+
+.map-busInfo-container > p{
+  margin-bottom: 24px;
+  font-size: 15px;
+}
+
+.map-busInfo-container > ul > li{
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  border-bottom: 1px solid #ddd;
+  margin: 20px 0px;
+}
+
+.map-busInfo-container > ul > li:last-child{
+  border: none;
+}
+
+.map-busInfo-container > ul > li > div{
+  margin-bottom: 20px;
+}
+
+.map-busInfo-container > ul > li > div:first-child{
+  width: 108px;
+  font-size: 18px;
+  color: #0e787c;
+  margin: -2px 0 0 -2px;
+  font-weight: 600;
+}
+
+.map-busInfo-container > ul > li > div:last-child{
+  width: 100%;
+}
+
+.map-busInfo-container > ul > li > div:last-child > ul{
+  margin-top: 5px;
+}
+
+.map-busInfo-container > ul > li > div:last-child > ul > li{
+  font-size: 13px;
+  line-height: 18px;
+  color: #0e787c;
+}
+
+.map-publicTransport-container > ul > li{
+  border-bottom: 1px solid #ddd;
+}
+
+.map-publicTransport-container > ul > li:last-child{
+  border: none;
+}
+
+.map-publicTransport-container > ul > li > h4{
+  font-size: 20px;
+  margin: 10px 0px;
+}
+
+.subway{
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin: 10px 0px;
+}
+
+.green{
+  color: #058b40;
+  background: url(https://www.amc.seoul.kr/asan/images/infor/ico_subwayLine.gif)  0 3px no-repeat;
+  width: 150px;
+  padding-left: 35px;
+  margin-bottom: 10px;
   height: 50px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.purple{
+  color: #674498;
+  background: url(https://www.amc.seoul.kr/asan/images/infor/ico_subwayLine.gif) 0 -267px no-repeat;
+  width: 150px;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  height: 50px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.pink{
+  color: #e84087;
+  background: url(https://www.amc.seoul.kr/asan/images/infor/ico_subwayLine.gif) 0 -357px no-repeat;
+  width: 150px;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  height: 50px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.yellow{
+  color: #b2933f;
+  background: url(https://www.amc.seoul.kr/asan/images/infor/ico_subwayLine.gif) 0 -447px no-repeat;
+  width: 150px;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  height: 50px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.bus-info{
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin-bottom: 10px;
+}
+
+.bus-info > div:first-child{
+  width: 100px;
+  text-align: center;
+  padding: 2px 0;
+  background: #009a44;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 50px
+}
+
+.detuor-li{
+  margin-bottom: 30px;
+}
+
+.detour-load{
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  margin-bottom: 20px;
+}
+
+.detour-load > div:first-child{
+  font-size: 18px;
+  color: #0e787c;
+  margin: 0 20px 0 0;
+  font-weight: 600;
 }
