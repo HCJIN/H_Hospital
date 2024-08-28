@@ -22,7 +22,7 @@ public interface MemberService {
     void insertSnsMember(MemberVO memberVO);
 
     //id 찾기
-    MemberVO findId(String memTel);
+    MemberVO findId(MemberVO memberVO);
 
 
 

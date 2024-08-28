@@ -55,9 +55,7 @@ const RegPage = () => {
 
   // 회원 가입을 위한 기본적인 정보를 입력했을 때 받아와 줄 함수
   function changeInsertMember(e){
-
-    let result = e.target.value;
-
+    
     const newData = {
       ...insertMemberData,
       [e.target.name]: e.target.name === 'memTel' 

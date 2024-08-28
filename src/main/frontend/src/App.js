@@ -9,11 +9,9 @@ import RegInfo from './component/RegInfo';
 import MapGps from './component/MapGps';
 import Auth from './component/Auth';
 import SnsRegInfo from './component/SnsRegInfo';
-<<<<<<< HEAD
 import FindId from './component/FindId';
 import MainPage from './component/MainPage';
-=======
->>>>>>> jbh
+import SuccessFindId from './component/SuccessFindId';
 
 
 function App() {
@@ -102,7 +100,7 @@ function App() {
         <Route path='/' element={<MainPage />}/>
 
         {/* 로그인 페이지 */}
-        <Route path='/loginForm' />
+        <Route path='/loginForm' element={<Login/>} />
 
         {/* 회원가입 페이지 */}
         <Route path='Mainjoin' element={<Join />}></Route>
@@ -121,6 +119,9 @@ function App() {
 
         {/* 아이디 찾기 */}
         <Route path='findId' element={<FindId/>}/>
+
+        {/* 아이디 찾기 성공 */}
+        <Route path='successFindId' element={<SuccessFindId/>}/>
 
         {/* 오시는길 페이지  */}
         <Route path='mapGps' element={<MapGps/>} />
