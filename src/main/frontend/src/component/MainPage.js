@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../css/mainPage.css';
-import mainVideo from '../video/ush_video.mp4';
+import axios from 'axios';
+import NaverNewsComponent from './NaverNewsComponent';
 
 const MainPage = () => {
+
+  const [news, setNews] = useState([]);
+
+  const handleNewsData = (data) => {
+    setNews(data);
+  };
+
   return (
     <div className='mainPage-div'>
       <div className='mainPage-container'>
@@ -74,7 +82,18 @@ const MainPage = () => {
             </p>
           </div>
           <div className='main-section-right-div'>
-            <div className='news-div'>
+            {news.length === 0 ? (
+                <p>뉴스 데이터가 없습니다.</p>
+              ) : (
+                news.map((item, index) => (
+                  <div className='news-div' key={index}>
+                    <div className='news-box'>언론 보도</div>
+                    <p>{item.title}</p>
+                    <div><span>{item.date}</span></div>
+                  </div>
+                ))
+              )}
+            {/* <div className='news-div'>
               <div className='news-box'>언론 보도</div>
               <p>[한국일보] 다음 팬데믹 향방가를 진단검사....신속 대응체계 속도 낸다</p>
               <div><span>2024-08-27</span></div>
@@ -93,9 +112,12 @@ const MainPage = () => {
               <div className='news-box'>언론 보도</div>
               <p>[한국일보] 다음 팬데믹 향방가를 진단검사....신속 대응체계 속도 낸다</p>
               <div><span>2024-08-27</span></div>
-            </div>
+            </div> */}
           </div>
         </div>
+      </div>
+      <div>
+          <NaverNewsComponent onNewsData={handleNewsData}/>
       </div>
     </div>
   )
