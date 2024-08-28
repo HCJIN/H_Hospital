@@ -1,7 +1,72 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../css/login.css'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
-const Login = () => {
+const Login = ({loginInfo, setLoginInfo}) => {
+
+  const navigate = useNavigate();
+
+  //로그인 성공 실패 여부를 저장하는 변수
+  const [isLoginSuccess, setIsLoginSuccess] = useState(false);
+
+  //입력한 id, pw를 저장할 변수
+  const [loginData, setLoginData] = useState({
+    memId : '',
+    memPw : ''
+  });
+
+  //input에 입력할 값 객체에 저장 
+  function memberChange(e){
+    setLoginData({
+      ...loginData,
+      [e.target.name] : e.target.value
+    })
+  }
+  console.log(loginData)
+
+  //로그인 버튼 클릭시 로그인
+  function login(){
+    //id, pw 입력 여부 확인
+    if(loginData.memId == '' || loginData.memPw == ''){
+      alert('비어있는 값이 있습니다.')
+      return
+    }
+
+    axios
+    .post('/member/login', loginData)
+    .then((res)=>{
+      if(res.data != ''){
+        alert('로그인 성공')
+        setIsLoginSuccess(true);
+        //sesstionStorage에 로그인한 회원의 정보 저장
+        const loginInfo = {
+          memId : res.data.memId,
+          memName : res.data.memName,
+          memRole : res.data.memRole
+        }
+
+        //로그인 정보를 가진 객체를 문자열 형태로 변환 
+        //객체 -> 문자열로 변환한 데이터를 JSON 데이터로 부른다.
+        window.sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo));
+
+        //로그인 정보를 저장하기 위해 만든 state 변수 loginInfo(App.js생성)에 로그인 정보를 저장
+        setLoginInfo(loginInfo)
+        navigate('/')
+      }else{
+        alert('아이디 또는 비밀번호 확인이 필요합니다.');
+        setIsLoginSuccess(false);
+      }
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+
+
+
+
+
   return (
     <div className='login-div'>
       <div className='login-head'>
@@ -15,16 +80,16 @@ const Login = () => {
                 <ul>
                   <li>
                     <strong>아이디</strong>
-                    <input type='text'/>
+                    <input type='text' name='memId' onChange={(e)=>{memberChange(e)}}/>
                   </li>
                   <li>
                     <strong>
                       비밀번호
                     </strong>
-                    <input type='password'/>
+                    <input type='password' name='memPw' onChange={(e)=>{memberChange(e)}}/>
                   </li>
                 </ul>
-                <button type='button' className='login-btn'>로그인</button>
+                <button type='button' className='login-btn' onClick={()=>{login()}}>로그인</button>
               </div>
             </div>
             <div className='id-save'>

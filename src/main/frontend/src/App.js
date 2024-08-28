@@ -11,10 +11,34 @@ import Auth from './component/Auth';
 import SnsRegInfo from './component/SnsRegInfo';
 import FindId from './component/FindId';
 import MainPage from './component/MainPage';
+import { useEffect, useState } from 'react';
 
 function App() {
 
   const navigate = useNavigate()
+
+  //로그인 정보를 저장 할 수 있는 state 변수
+  const [loginInfo, setLoginInfo] = useState({});
+
+  //로그인 성공 시 loginInfo에 로그인 정보를 저장하지만 
+  //새로고침하면 App.js 다시 시작하면서 loginInfo 변수의 값이 초기화된다.
+  //새로고침을 하더라도 sessionStorage에 로그인 정보는 존재하니,
+  //새로고침 할때 만약 로그인 정보가 sessionStorage에 남아있다면
+  //loginInfo state변수에 로그인 정보를 저장시켜야 함.
+  useEffect(()=>{
+    //세션에 저장된 로그인 정보 가져 옴
+    const sessionLoginInfo = window.sessionStorage.getItem('loginInfo');
+
+    //세션에 로그인 정보가 있으면...
+    if(sessionLoginInfo != null){
+      //로그인 정보를 저장할 loginInfo에 저장
+      //1. 세션에서 가져온 데이터를 객체로 변환
+      const obj_loginInfo = JSON.parse(sessionLoginInfo);
+
+      //2. 로그인 정보를 loginInfo에 저장
+      setLoginInfo(obj_loginInfo);
+    }
+  },[])
 
   //사이드 메뉴 정보 관리
 
@@ -22,10 +46,26 @@ function App() {
   return (
     <div className="App">
       <div className='header'>
-        <ul className='header-ul'>
-          <li onClick={()=>{navigate('/loginForm')}}>로그인</li>
-          <li onClick={()=>{navigate('/MainJoin')}}>회원가입</li>
-        </ul>
+        {
+          Object.keys(loginInfo).length == 0
+          ?
+          <ul className='header-ul'>
+            <li onClick={()=>{navigate('/loginForm')}}>로그인</li>
+            <li onClick={()=>{navigate('/MainJoin')}}>회원가입</li>
+          </ul>
+          :
+          <div className='login'>
+            {loginInfo.memName}님 반갑습니다
+            <span onClick={()=>{
+              //세션에 저장된 로그인 정보 삭제
+              window.sessionStorage.removeItem('loginInfo');
+              //loginInfo state 값을 바꿔줌
+              setLoginInfo({});
+              //메인 페이지로 이동
+              navigate('/')
+            }}>Logout</span>
+          </div>
+        }
         <div className='logo-header'>
           <div className='logo-div'>
             <div className='logo'>
@@ -95,10 +135,13 @@ function App() {
 
       <Routes>
         {/* 일반 유저용 */}
-        <Route path='/' element={<MainPage />}/>
+        <Route path='/' >
+          {/* 메인페이지 */}
+          <Route path='' element={<MainPage/>}/>
+        </Route>
 
         {/* 로그인 페이지 */}
-        <Route path='/loginForm' />
+        <Route path='/loginForm' element={<Login setLoginInfo={setLoginInfo} loginInfo={loginInfo}/>}/>
 
         {/* 회원가입 페이지 */}
         <Route path='Mainjoin' element={<Join />}></Route>

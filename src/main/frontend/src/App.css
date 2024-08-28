@@ -49,6 +49,25 @@
   cursor: pointer;
 }
 
+.login{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 90%;
+  height: 38px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.login span{
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.login span:hover{
+  font-weight: bold;
+}
+
 /* logo-end */
 
 .sideBar-div{
