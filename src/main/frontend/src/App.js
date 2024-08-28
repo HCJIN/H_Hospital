@@ -10,6 +10,7 @@ import MapGps from './component/MapGps';
 import Auth from './component/Auth';
 import SnsRegInfo from './component/SnsRegInfo';
 import FindId from './component/FindId';
+import MainPage from './component/MainPage';
 
 
 function App() {
@@ -47,10 +48,10 @@ function App() {
           <div className='sideBar-div-menu'>
             <ul>
               <li className='sideBar-div-menu-first'>
-               <div onClick={()=>{}}>
-                 <p><i className="bi bi-pc-display-horizontal"></i></p>               
-                 <span>지금예약</span>
-               </div>
+              <div onClick={()=>{}}>
+                <p><i className="bi bi-pc-display-horizontal"></i></p>               
+                <span>지금예약</span>
+              </div>
               </li>
               <li>
                 <div onClick={()=>{}}>
@@ -95,7 +96,7 @@ function App() {
 
       <Routes>
         {/* 일반 유저용 */}
-        <Route path='/' />
+        <Route path='/' element={<MainPage />}/>
 
         {/* 로그인 페이지 */}
         <Route path='/loginForm' />
