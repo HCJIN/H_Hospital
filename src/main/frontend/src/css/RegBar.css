@@ -1,51 +1,46 @@
 .bar-body{
+  width: 1147px;
   border: 1px solid rgb(216, 215, 215);
-  height: 80px;
+  height: 85px;
   background-color: rgb(243, 242, 242);
+  padding: 0px 100px;
+  margin: 30px auto;
+  border-top: 2px solid #267376;
 }
 
-.bar-body > ul:nth-child(1) > li > div:nth-child(1){
-  padding: 1px 10px 10px 10px;
+
+.bar-body > ul{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+
+
+/* 절차 디자인. 기본적으로 선택되지 않았을때 */
+.step{
+  display: flex;
+  gap: 12px; 
+  align-items: center;
+  color: rgb(90, 90, 90);
+}
+
+.step > span{
+  font-size: 2.5rem;
+}
+
+.font{
+  font-size: 1rem;
+}
+
+.font > div:nth-child(1){
+  font-size: 0.8rem;
+}
+
+.active{
+  padding: 10px;
   background-color: #0e787c;
   color: white;
   border-radius: 20px;
 }
 
-.icon1{
-  color: white;
-  font-size: 40px;
-}
-
-.bar-body{
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.icon{
-  color: rgb(105, 105, 105);
-  font-size: 40px;
-}
-
-.bar-body ul > li > div{
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.font > div:nth-child(1){
-  font-size: 13px;
-}
-
-.font > div:nth-child(2){
-  font-size: 18px;
-}
-
-/* .agreePage{
-  display: flex;
-  align-items: center;
-}
-
-.regConfirm{
-  display: flex;
-  align-items: center;
-} */

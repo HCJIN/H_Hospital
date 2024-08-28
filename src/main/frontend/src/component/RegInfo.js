@@ -3,6 +3,7 @@ import '../css/regInfo.css'
 import axios from 'axios';
 import { joinValiate } from '../validate/joinValidate';
 import { useNavigate, useParams } from 'react-router-dom';
+import RegBar from './RegBar';
 
 const RegInfo = () => {
 
@@ -122,6 +123,7 @@ const RegInfo = () => {
 
   return (
     <div className='regInfo-div'>
+      <RegBar step={2}/>
       <table className='regInfo-table'>
         <tbody>
           <tr>
@@ -289,5 +291,7 @@ const RegInfo = () => {
     </div>
   )
 }
+
+
 
 export default RegInfo
