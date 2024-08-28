@@ -63,10 +63,6 @@ const Login = ({loginInfo, setLoginInfo}) => {
     })
   }
 
-
-
-
-
   return (
     <div className='login-div'>
       <div className='login-head'>
