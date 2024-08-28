@@ -12,10 +12,8 @@ import SnsRegInfo from './component/SnsRegInfo';
 import FindId from './component/FindId';
 import MainPage from './component/MainPage';
 import { useEffect, useState } from 'react';
-<<<<<<< HEAD
-=======
+import SuccessFindId from './component/SuccessFindId';
 
->>>>>>> hcj
 
 function App() {
 
@@ -164,6 +162,9 @@ function App() {
 
         {/* 아이디 찾기 */}
         <Route path='findId' element={<FindId/>}/>
+
+        {/* 아이디 찾기 성공 */}
+        <Route path='successFindId' element={<SuccessFindId/>}/>
 
         {/* 오시는길 페이지  */}
         <Route path='mapGps' element={<MapGps/>} />

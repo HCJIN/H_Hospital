@@ -96,13 +96,15 @@
     </insert>
 
     <!-- 아이디 찾기 -->
-    <select id="findId" resultType="string">
+    <select id="findId" resultMap="member">
         SELECT MEM_ID
             , GENDER
             , BIRTHDAY
             , MEM_TEL
         FROM hospital_member
         WHERE MEM_TEL = #{memTel}
+        AND BIRTHDAY = #{birthday}
+        AND MEM_NAME = #{memName}
     </select>
 
     <!-- 로그인 -->
