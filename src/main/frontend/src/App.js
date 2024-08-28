@@ -87,7 +87,7 @@ function App() {
           <div className='sideBar-div-menu'>
             <ul>
               <li className='sideBar-div-menu-first'>
-              <div onClick={()=>{}}>
+                <div onClick={()=>{}}>
                 <p><i className="bi bi-pc-display-horizontal"></i></p>               
                 <span>지금예약</span>
               </div>
