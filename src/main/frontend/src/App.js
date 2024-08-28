@@ -12,6 +12,7 @@ import SnsRegInfo from './component/SnsRegInfo';
 import FindId from './component/FindId';
 import MainPage from './component/MainPage';
 import { useEffect, useState } from 'react';
+import Reservation from './component/Reservation';
 
 function App() {
 
@@ -86,7 +87,9 @@ function App() {
           </div>
           <div className='sideBar-div-menu'>
             <ul>
-              <li className='sideBar-div-menu-first'>
+              <li className='sideBar-div-menu-first' onClick={()=>{
+                navigate('/reservation')
+              }}>
                 <div onClick={()=>{}}>
                 <p><i className="bi bi-pc-display-horizontal"></i></p>               
                 <span>지금예약</span>
@@ -169,6 +172,9 @@ function App() {
 
         {/* sns연동 후 회원가입 페이지 */}
         <Route path='/snsRegInfo' element={<SnsRegInfo />} />
+
+        {/* 예약 페이지 */}
+        <Route path='/reservation' element={<Reservation />} />
 
       </Routes>
 
