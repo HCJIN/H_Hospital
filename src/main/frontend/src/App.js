@@ -10,6 +10,7 @@ import MapGps from './component/MapGps';
 import Auth from './component/Auth';
 import SnsRegInfo from './component/SnsRegInfo';
 import FindId from './component/FindId';
+import MainPage from './component/MainPage';
 
 function App() {
 
@@ -94,7 +95,7 @@ function App() {
 
       <Routes>
         {/* 일반 유저용 */}
-        <Route path='/' />
+        <Route path='/' element={<MainPage />}/>
 
         {/* 로그인 페이지 */}
         <Route path='/loginForm' />

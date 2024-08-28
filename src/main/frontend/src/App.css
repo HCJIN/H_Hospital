@@ -57,6 +57,7 @@
   top: 30%;
   transform: translate(-8%, -30%);
   border-radius: 10px;
+  z-index: 8888;
 }
 
 .sideBar-div-tel{
