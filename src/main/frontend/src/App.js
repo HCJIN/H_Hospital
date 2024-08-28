@@ -9,8 +9,11 @@ import RegInfo from './component/RegInfo';
 import MapGps from './component/MapGps';
 import Auth from './component/Auth';
 import SnsRegInfo from './component/SnsRegInfo';
+<<<<<<< HEAD
 import FindId from './component/FindId';
 import MainPage from './component/MainPage';
+=======
+>>>>>>> jbh
 
 function App() {
 
