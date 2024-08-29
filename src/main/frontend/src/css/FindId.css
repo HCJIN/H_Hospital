@@ -26,10 +26,12 @@
   padding: 30px;
   border-top: 2px solid #0e787c;
   border-bottom: 1px solid #0e787c;
+  width: 700px;
 }
 
 .findId-content-title{
   margin-bottom: 30px;
+  width: 100%;
 }
 
 .findId-content-title p{
@@ -41,13 +43,14 @@
 }
 .findId-content-title span{
   font-size: 16px;
-  text-align: center;
   font-weight: 600;
   color: #616161;
 }
 
 .findId-table{
+  margin: 0 auto;
   margin-bottom: 30px;
+  width: 600px;
 }
 
 input, select {
@@ -87,6 +90,14 @@ input:focus{
 .findId-table-body td:nth-child(2){
   border: 1px solid #b9b9b9;
   border-right: none;
+}
+
+.tel-input1{
+  width: 80px;
+}
+
+.tel-input2{
+  width: 80px;
 }
 
 

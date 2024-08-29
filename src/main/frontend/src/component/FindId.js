@@ -8,6 +8,8 @@ import { Navigate, useNavigate } from 'react-router-dom';
 const FindId = () => {
   const navigate = useNavigate();
 
+  const [memInfo, setMemInfo] = useState({});
+
   //id찾기 정보를 입력 받아 저장할 변수
   const [insertFindIdData, setInsertFindIdData] = useState({
     memName : '',
@@ -29,14 +31,36 @@ const FindId = () => {
   // id 찾기를 위한 기본 정보
   function insertFindId(){
 
-    if(insertFindIdData.memName == '' || insertFindIdData.birthday == '' || insertFindIdData.memTel == '' || insertFindIdData.gender == ''){
-      alert('빈 칸을 모두 채워주세요')
-      return
+    if(!insertFindIdData.memName.trim()){
+      alert('이름을 입력해 주세요')
+      return;
     }
+    if(!insertFindIdData.gender){
+      alert('성별을 클릭해 주세요')
+      return;
+    }
+    if(!insertFindIdData.birthday || 
+      bdYear.current.value === "" ||
+      bdMonth.current.value === "" ||
+      bdDay.current.value === "" ||
+      bdYear.current.value === '년' ||
+      bdMonth.current.value === '월' ||
+      bdDay.current.value === '일'){ 
+      
+      alert('생년월일을 클릭해 주세요')
+      return;
+    }
+    if(!insertFindIdData.memTel || memTel2.current.value.trim() === '' || memTel3.current.value.trim() === '') {
+      alert('전화번호를 입력해 주세요')
+      return;
+    }
+
+
     axios.post('/member/findId', insertFindIdData)
     .then((res)=>{
         console.log(res.data)
-      // navigate(`/successFindId/${insertFindIdData.memTel}`)
+        setMemInfo(res.data);
+        navigate('/successFindId',{state:{memInfo:res.data}})
     })
     .catch((error)=>{
       console.log(error)
@@ -263,9 +287,9 @@ const FindId = () => {
                   <option selected value='010'>010</option>
                 </select>
                 -
-                <input type='text' name='memTel' ref={memTel2} onChange={(e)=>{changeInsertFindId(e)}}></input>
+                <input type='text' name='memTel' className='tel-input1' ref={memTel2} onChange={(e)=>{changeInsertFindId(e)}}></input>
                 -
-                <input type='text' name='memTel' ref={memTel3} onChange={(e)=>{changeInsertFindId(e)}}></input>
+                <input type='text' name='memTel' className='tel-input2' ref={memTel3} onChange={(e)=>{changeInsertFindId(e)}}></input>
               </td>
             </tr>
             </tbody>
