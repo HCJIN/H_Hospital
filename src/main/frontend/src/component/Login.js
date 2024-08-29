@@ -98,7 +98,7 @@ const Login = ({loginInfo, setLoginInfo}) => {
           <ul>
             <li><span>아이디 찾기</span></li>
             <li><span>비밀번호 찾기</span></li>
-            <li><span>회원가입</span></li>
+            <li><span onClick={() => {navigate('/mainJoin')}}>회원가입</span></li>
           </ul>
         </div>
         <div className='login-content-right'>
