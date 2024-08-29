@@ -46,6 +46,37 @@ const RegPage = () => {
 
   // 회원 가입을 위한 기본적인 정보 입력 
   function insertMember(){
+
+    // 필수 입력값 체크, 이름(trim(): 공백이 포함된곳을 제거해 준다.)
+    if (!insertMemberData.memName.trim()) {
+      alert('성명을 입력해 주세요.');
+      return;
+    }
+
+    // 필수 입력값 체크, 성별
+    if (!insertMemberData.gender) {
+      alert('성별을 선택해 주세요.');
+      return;
+    }
+
+    // 필수 입력값 체크, 생년월일
+    if (!insertMemberData.birthday || 
+      birthdayYear.current.value === '' || 
+      birthdayMonth.current.value === '' || 
+      birthdayDay.current.value === '' || 
+      birthdayYear.current.value === '년' || 
+      birthdayMonth.current.value === '월' || 
+      birthdayDay.current.value === '일') {
+    alert('생년월일을 올바르게 선택해 주세요.');
+    return;
+    }
+
+    // 필수 입력값 체크, 전화번호
+    if (!insertMemberData.memTel || memTel2.current.value.trim() === '' || memTel3.current.value.trim() === '') {
+      alert('휴대전화 번호를 올바르게 입력해 주세요.');
+      return;
+    }
+
     axios.post('/member/insertMember', insertMemberData)
     .then((res) => {
       navigate(`/regInfo/${insertMemberData.memTel}`)
@@ -55,6 +86,7 @@ const RegPage = () => {
 
   // 회원 가입을 위한 기본적인 정보를 입력했을 때 받아와 줄 함수
   function changeInsertMember(e){
+
     
     const newData = {
       ...insertMemberData,
@@ -69,6 +101,7 @@ const RegPage = () => {
     // 모든 데이터가 유효한 데이터면 리턴 true    
     const valid = regPageValidata(newData, valid_tag, e.target.name);
     setValidResult(valid);
+
 
     //유효성 검사 끝난 데이터를 저장
     setInsertMemberData(newData);
