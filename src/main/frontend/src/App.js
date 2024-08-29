@@ -57,7 +57,7 @@ function App() {
           <ul className='header-ul'>
             <li onClick={()=>{navigate('/loginForm')}}>로그인</li>
             <li onClick={()=>{navigate('/MainJoin')}}>회원가입</li>
-            <li onClick={() => {navigate('/adminJoin')}}>직원 회원가입</li>
+            <li onClick={() => {navigate('/admin/adminJoin')}}>직원 회원가입</li>
           </ul>
           :
           <div className='login'>
