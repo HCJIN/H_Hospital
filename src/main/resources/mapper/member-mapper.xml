@@ -118,7 +118,7 @@
     </select>
 
     <!--비밀번호 찾기-->
-    <select id="findPw" resultType="String">
+    <select id="findPw" resultMap="member">
         SELECT MEM_PW
         FROM HOSPITAL_MEMBER
         WHERE EMAIL = #{email};

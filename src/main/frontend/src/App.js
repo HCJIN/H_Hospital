@@ -15,7 +15,13 @@ import { useEffect, useState } from 'react';
 import SuccessFindId from './component/SuccessFindId';
 import FindPw from './component/FindPw';
 import Reservation from './component/Reservation';
+<<<<<<< HEAD
 import AdminLogin from './component/AdminLogin';
+=======
+import AdminLogin from './component/AdminJoin';
+import AdminJoin from './component/AdminJoin';
+
+>>>>>>> jbh
 
 function App() {
 
@@ -56,6 +62,7 @@ function App() {
           <ul className='header-ul'>
             <li onClick={()=>{navigate('/loginForm')}}>로그인</li>
             <li onClick={()=>{navigate('/MainJoin')}}>회원가입</li>
+            <li onClick={() => {navigate('/adminJoin')}}>직원 회원가입</li>
           </ul>
           :
           <div className='login'>
@@ -151,6 +158,9 @@ function App() {
 
         {/* 회원가입 페이지 */}
         <Route path='Mainjoin' element={<Join />}></Route>
+
+        {/* 직원 회원가입 페이지 */}
+        <Route path='adminJoin' element={<AdminJoin/>} />
 
         {/* 회원가입동의 페이지 */}
         <Route path='joinPage' element={<JoinPage />}></Route>

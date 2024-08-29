@@ -63,7 +63,7 @@ public class MemberServiceImpl implements MemberService{
 
     //pw 찾기
     @Override
-    public String findPw(String email) {
+    public MemberVO findPw(MemberVO email) {
         return sqlSession.selectOne("memberMapper.findPw", email);
     }
 
