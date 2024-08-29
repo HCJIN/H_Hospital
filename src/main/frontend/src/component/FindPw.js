@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import '../css/FindPw.css';
 import axios from 'axios';
 
@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const FindPw = () => {
 
-  const[findPw, setFindPw] = useState([]);
+  const[findPw, setFindPw] = useState('');
 
   const[email, setEmail] = useState('');
 
