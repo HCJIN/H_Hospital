@@ -6,10 +6,10 @@ import lombok.Data;
 @Data
 public class ReservationVO {
     private int resId;
-    private String date;
-    private String time;
+    private String resDate;
+    private String resTime;
     private String doctorId;
     private String serviceType;
     private String status;
-    private MemberVO memNum;
+    private int memNum;
 }

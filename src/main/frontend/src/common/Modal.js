@@ -2,19 +2,23 @@ import { useState, useRef, useEffect } from "react";
 import '../css/modal.css';
 import DatePickerInput from "../component/DatePicker";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Modal = ({ setShow, clickCloseBtn, memNum }) => {
+
+  const navigate = useNavigate();
 
   //member 정보가 들어갈 useState
   const [member, setMember] = useState({});
 
   //예약정보가 들어갈 state
-  const [newReservation, setNewReservation] = useState({});
-
-  //날짜와 시간 데이터 입력될 useState
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
-
+  const [newReservation, setNewReservation] = useState({
+    resDate : '',
+    resTime : '',
+    serviceType : '',
+    memNum : memNum
+  });
+  console.log(newReservation)
 
   const modalContainer = useRef(null);
 
@@ -29,35 +33,46 @@ const Modal = ({ setShow, clickCloseBtn, memNum }) => {
     })
   },[])
 
-  //날짜 시간 입력시 데이터가 들어갈 함수
+  // 날짜 및 시간 입력시 데이터가 들어갈 함수
   const handleDateChange = (datePart, timePart) => {
-    setDate(datePart);
-    setTime(timePart);
+    setNewReservation({
+      ...newReservation,
+      resDate: datePart,
+      resTime: timePart
+    });
     console.log("Selected Date: ", datePart);
     console.log("Selected Time: ", timePart);
   };
 
   //입력값이 들어가면 state에 저장
-  function inputReservation(){
-    
+  function inputReservation(e){
+    setNewReservation({
+      ...newReservation,
+      [e.target.name] : e.target.value
+    })
+  }
+
+  //예약하기를 눌렸을때
+  function reservation(){
+    if(newReservation.serviceType == ''){
+      alert('빈값을 채워주세요.')
+      return
+    }else{
+      axios
+      .post(`/reservation/insertReservation`, newReservation)
+      .then((res)=>{
+        alert('예약이 완료되었습니다.')
+        navigate('/')
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+    }
   }
 
   return (
     <div className="modal-container show" ref={modalContainer}>
       <div className="modal">
-        <div className="modal-header">
-          <span
-            onClick={() => {
-              modalContainer.current.className = 'modal-container';
-              setTimeout(() => {
-                setShow(false);
-                clickCloseBtn();
-              }, 300);
-            }}
-          >
-            Close
-          </span>
-        </div>
         <div className="modal-content">
           <div className="poptit-wrap">
             <p className="ptit">고객 간편 진료예약 서비스</p>
@@ -99,7 +114,9 @@ const Modal = ({ setShow, clickCloseBtn, memNum }) => {
                     <span className="star">진료항목</span>
                   </th>
                   <td>
-                    <textarea name="serviceType"></textarea>
+                    <textarea name="serviceType" onChange={(e)=>{
+                      inputReservation(e)
+                    }}></textarea>
                     <p className="textbite-wrap">
                       *
                       <span className="count">0</span>
@@ -119,20 +136,19 @@ const Modal = ({ setShow, clickCloseBtn, memNum }) => {
             </table>
           </div>
         </div>
-        <div className="modal-footer">
+        <div className="btn-agree-main">
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn-agree1"
             onClick={() => {
-              modalContainer.current.className = 'modal-container';
-              setTimeout(() => {
-                setShow(false);
-                clickCloseBtn();
-              }, 300);
+                reservation();
             }}
           >
-            확인
+            예약하기
           </button>
+          <button type="button" className="btn-agree2" onClick={()=>{
+            setShow(false)
+          }}>닫기</button>
         </div>
       </div>
     </div>
