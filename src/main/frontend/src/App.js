@@ -154,9 +154,6 @@ function App() {
         {/* 회원가입 페이지 */}
         <Route path='Mainjoin' element={<Join />}></Route>
 
-        {/* 직원 회원가입 페이지 */}
-        <Route path='adminJoin' element={<AdminJoin/>} />
-
         {/* 회원가입동의 페이지 */}
         <Route path='joinPage' element={<JoinPage />}></Route>
 
@@ -168,9 +165,6 @@ function App() {
 
         {/* 로그인 페이지 */}
         <Route path='loginForm' element={<Login />}></Route>
-
-        {/* 관리자 로그인 페이지 */}
-        <Route path='login' element={<AdminLogin/>}/>
 
         {/* 아이디 찾기 */}
         <Route path='findId' element={<FindId/>}/>
@@ -192,6 +186,14 @@ function App() {
         {/* 예약 페이지 */}
         <Route path='/reservation' element={<Reservation />} />
 
+        {/* 관리자용  */}
+        <Route path='/admin'>
+          {/* 관리자 로그인 페이지 */}
+          <Route path='login' element={<AdminLogin/>}/>
+
+          {/* 직원 회원가입 페이지 */}
+          <Route path='adminJoin' element={<AdminJoin/>} />
+        </Route>      
 
       </Routes>
 
