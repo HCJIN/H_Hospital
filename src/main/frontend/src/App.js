@@ -15,13 +15,8 @@ import { useEffect, useState } from 'react';
 import SuccessFindId from './component/SuccessFindId';
 import FindPw from './component/FindPw';
 import Reservation from './component/Reservation';
-<<<<<<< HEAD
-import AdminLogin from './component/AdminLogin';
-=======
 import AdminLogin from './component/AdminJoin';
 import AdminJoin from './component/AdminJoin';
-
->>>>>>> jbh
 
 function App() {
 

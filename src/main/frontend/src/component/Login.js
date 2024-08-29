@@ -100,11 +100,7 @@ const Login = ({loginInfo, setLoginInfo}) => {
             회원 서비스를 이용하시려면 로그인이 필요합니다.
           </div>
           <ul>
-<<<<<<< HEAD
             <li><span onClick={()=>{navigate('/findId')}}>아이디 찾기</span></li>
-=======
-            <li><span>아이디 찾기</span></li>
->>>>>>> jbh
             <li><span onClick={() => {navigate('/findPw')}}>비밀번호 찾기</span></li>
             <li><span onClick={() => {navigate('/mainJoin')}}>회원가입</span></li>
           </ul>
