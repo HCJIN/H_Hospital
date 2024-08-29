@@ -28,7 +28,7 @@ public interface MemberService {
     MemberVO login(MemberVO memberVO);
 
     //pw 찾기
-    MemberVO findPw(String memId);
+    String findPw(String email);
 
 
 }

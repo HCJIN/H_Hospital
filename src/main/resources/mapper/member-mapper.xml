@@ -117,15 +117,16 @@
     </select>
 
     <!--비밀번호 찾기-->
-    <select id="findPw" resultType="string">
+    <select id="findPw" resultType="String">
         SELECT MEM_PW
-            , MEM_ID
-            , MEM_NAME
-            , GENDER
-            , BIRTHDAY
         FROM HOSPITAL_MEMBER
-        WHERE MEM_ID = #{memId}
+        WHERE EMAIL = #{email};
     </select>
+
+    <update id="" >
+        UPDATE HOSPITAL_MEMBER
+        SET MEM_PW = #{memPw}
+    </update>
 
 </mapper>
 

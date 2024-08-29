@@ -1,11 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../css/FindPw.css';
+import axios from 'axios';
 
 
 
 const FindPw = () => {
+
+  const[findPw, setFindPw] = useState([]);
+
+  const[email, setEmail] = useState('');
+
+  function changeMemId(e){
+    setEmail(e.target.value);
+  }
+
+  const findPwInfo = () => {
+    axios.get(`/member/findPw/${email}`)
+    .then((res) => {
+      setFindPw(res.data)
+    })
+    .catch((error) => {console.log(error)});
+  };
+
+  console.log(email)
+
   return (
-    
       <div className='findPw-container'>
         <div className='findPw-header'>
           <h1>비밀번호 찾기</h1> <br/>
@@ -18,36 +37,15 @@ const FindPw = () => {
             <tbody>
               <tr>
                 <td>아이디</td>
-                <td><input type='text' name='' onChange={() => {}}/></td>
+                <td><input type='text' name='email' onChange={(e) => {changeMemId(e)}}/></td>
               </tr>
               <tr>
                 <td>이름</td>
-                <td><input type='text' name='' onChange={() => {}}/></td>
-              </tr>
-              <tr>
-                <td>성별</td>
-                <td>
-                  <input type='radio' name='gender'/>남성
-                  <input type='radio' name='gender'/>여성
-                </td>
-              </tr>
-              <tr>
-                <td>생년월일</td>
-                <td>
-                  <select>
-                    <option disabled selected>년</option>
-                  </select>
-                  <select>
-                    <option disabled selected>월</option>
-                  </select>
-                  <select>
-                    <option disabled selected>일</option>
-                  </select>
-                </td>
+                <td><input type='text' name='memName' /></td>
               </tr>
             </tbody>
           </table>
-          <button type='button' onClick={() => {}}>확인</button>
+          <button type='button' onClick={() => {findPwInfo()}}>확인</button>
         </div>
       </div>
     

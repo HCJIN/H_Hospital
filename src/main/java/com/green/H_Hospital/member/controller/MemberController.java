@@ -66,6 +66,7 @@ public class MemberController {
         return memberService.login(memberVO);
     }
 
+
     //id 찾기
     @PostMapping("/findId")
     public MemberVO findId(@RequestBody MemberVO memberVO){
@@ -73,5 +74,18 @@ public class MemberController {
     }
 
 
+
+
+    //비밀번호 찾기
+    @GetMapping("/findPw/{email}")
+    public String findPwInfo(@PathVariable String email ){
+        try {
+            System.out.println(email);
+            return memberService.findPw(email);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "오류 발생: " + e.getMessage();
+        }
+    }
 
 }

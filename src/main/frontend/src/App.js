@@ -14,7 +14,11 @@ import MainPage from './component/MainPage';
 import { useEffect, useState } from 'react';
 import SuccessFindId from './component/SuccessFindId';
 import FindPw from './component/FindPw';
+<<<<<<< HEAD
 import Reservation from './component/Reservation';
+=======
+import AdminLogin from './component/AdminLogin';
+>>>>>>> jbh
 
 function App() {
 
@@ -162,6 +166,9 @@ function App() {
 
         {/* 로그인 페이지 */}
         <Route path='loginForm' element={<Login />}></Route>
+
+        {/* 관리자 로그인 페이지 */}
+        <Route path='login' element={<AdminLogin/>}/>
 
         {/* 아이디 찾기 */}
         <Route path='findId' element={<FindId/>}/>
