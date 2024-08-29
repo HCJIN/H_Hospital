@@ -187,6 +187,7 @@ function App() {
         {/* 예약 페이지 */}
         <Route path='/reservation' element={<Reservation />} />
 
+
       </Routes>
 
       <div className='footerWrap'>
