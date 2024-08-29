@@ -99,6 +99,7 @@
     <!-- 아이디 찾기 -->
     <select id="findId" resultMap="member">
         SELECT MEM_ID
+            , MEM_NAME
             , GENDER
             , BIRTHDAY
             , MEM_TEL

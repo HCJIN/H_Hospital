@@ -1,0 +1,57 @@
+.successId-div{
+  margin: 100px auto;
+  width: 40%;
+  height: 390px;
+}
+
+.successId-div-div{
+
+  padding: 50px;
+  margin-bottom: 60px;
+  border-top: 2px solid #0e787c;
+  border-bottom: 1px solid #0e787c;
+  width: 700px;
+  height: 300px;
+
+}
+
+.successId-title{
+  font-size: 1.9rem;
+  margin-bottom: 30px;
+  color: #0e787c;
+  font-weight: 700;
+  text-align: center;
+}
+
+.successId-message p{
+  text-align: center;
+}
+.successId-message span{
+  font-weight: 800;  
+}
+
+.successId-table td{
+  padding: 50px 100px;
+  width: 650px;
+  font-size: 25px;
+  text-align: center;
+}
+
+.successId-btn{
+  text-align: center;
+  margin-right: 50px;
+}
+
+.successId-btn button{
+  margin-left: 10px;
+  border: none;
+  padding: 8px 15px;
+  background-color: #0e787c;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 3px;
+}
+
+.successId-btn button:hover{
+  cursor: pointer;
+}
