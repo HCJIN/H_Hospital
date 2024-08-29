@@ -10,7 +10,8 @@
       <result column="DOCTOR_ID" property="doctorId"/>
       <result column="SERVICE_TYPE" property="serviceType"/>
       <result column="STATUS" property="status"/>
-      <association property="memNum" javaType="com.green.H_Hospital.member.vo.MemberVO" resultMap="member" />
+      <result column="MEM_NUM" property="memNum"/>
+<!--      <association property="memNum" javaType="com.green.H_Hospital.member.vo.MemberVO" resultMap="member" />-->
    </resultMap>
 
    <!-- 예약회원 정보 조회 -->
@@ -19,6 +20,21 @@
       FROM hospital_member h
       WHERE h.MEM_NUM = #{memNum};
    </select>
+
+   <!-- 예약정보 입력 -->
+   <insert id="insertReservation">
+      INSERT INTO hospital_reservation (
+         MEM_NUM,
+         RES_DATE,
+         RES_TIME,
+         SERVICE_TYPE
+      ) VALUES (
+         #{memNum},
+         #{resDate},
+         #{resTime},
+         #{serviceType}
+      );
+   </insert>
 
 </mapper>
 

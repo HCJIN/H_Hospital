@@ -1,38 +1,39 @@
 import DatePicker from 'react-datepicker'; // datepicker 가져오기
 import { useState, useRef } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-import { subDays } from 'date-fns'; // 요건 이전 날짜 숨길 때 선택적으로 필요.
+import { format, isWeekend, setHours, setMinutes, startOfDay } from 'date-fns'; // date-fns를 사용하여 날짜 포맷
 
 const DatePickerInput = ({ selectDate, onSelectedDateChange = () => {} }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const datePickerRef = useRef(null); // 달력 아이콘 클릭 시 클릭해줄 위치(DatePicker)
+  const datePickerRef = useRef(null); // DatePicker에 대한 ref
 
-  const handleImageClick = () => {
-    if (datePickerRef.current) {
-      datePickerRef.current.setFocus();
+  // 현재 선택된 날짜의 minTime과 maxTime을 반환
+  const getMinTime = (date) => {
+    return startOfDay(date); // 기본적으로 날짜의 시작 시간(00:00)으로 설정
+  };
+
+  const getMaxTime = (date) => {
+    if (isWeekend(date)) {
+      return setHours(setMinutes(startOfDay(date), 0), 13); // 주말에는 오후 1시까지
     }
+    return setHours(setMinutes(startOfDay(date), 0), 18); // 평일에는 오후 6시까지
   };
 
   const handleDateChange = (date) => {
     setSelectedDate(date); // 선택된 날짜와 시간 저장
 
-    // 날짜 부분만 추출
-    const datePart = date.toLocaleDateString('ko-KR', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    });
-
-    // 시간 부분만 추출
-    const timePart = date.toLocaleTimeString('ko-KR', {
-      hour: '2-digit',
-      minute: '2-digit',
-    });
+    // 날짜와 시간 포맷
+    const formattedDate = format(date, 'yyyy-MM-dd'); // YYYY-MM-DD
+    const formattedTime = format(date, 'HH:mm'); // HH:mm
 
     // 날짜와 시간을 부모 컴포넌트로 전달
-    onSelectedDateChange(datePart, timePart);
+    onSelectedDateChange(formattedDate, formattedTime);
   };
+
+  // 현재 선택된 날짜의 minTime과 maxTime 설정
+  const minTime = getMinTime(selectedDate);
+  const maxTime = getMaxTime(selectedDate);
 
   return (
     <div className="relative w-[379px] h-[56px]">
@@ -45,8 +46,10 @@ const DatePickerInput = ({ selectDate, onSelectedDateChange = () => {} }) => {
         minDate={new Date()} // 현재 날짜 이전은 모두 선택 불가
         showTimeSelect // 시간 선택 옵션 추가
         timeFormat="HH:mm" // 시간 형식 설정
-        timeIntervals={15} // 시간 선택 간격 (15분 간격)
+        timeIntervals={30} // 시간 선택 간격 (30분 간격)
         timeCaption="Time" // 시간 선택란 캡션
+        minTime={minTime} // 동적으로 설정된 최소 시간
+        maxTime={maxTime} // 동적으로 설정된 최대 시간
       />
     </div>
   );
