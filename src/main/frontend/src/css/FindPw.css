@@ -1,7 +1,7 @@
 .findPw-container{
-  border: 1px solid brown;
+  /* border: 1px solid brown; */
   width: 700px;
-  height: 650px;
+  height: 500px;
   margin: 30px auto;
 }
 
@@ -30,13 +30,14 @@
   border-bottom: 1px solid lightgray;
   margin: 10px auto;
   width: 80%;
-  height: 150px;
+  /* height: 5%; */
   text-align: left;
 }
 
 .table-container > tbody > tr > td{
   border-bottom: 1px solid lightgrey;
-  padding: 9px 15px;
+  vertical-align: middle;
+  padding: 25px;
 }
 
 .table-container > tbody > tr > td:nth-child(1){
@@ -58,7 +59,7 @@
   cursor: pointer;
 }
 
-/* input{
+.table-container > tbody > tr > td > input {
   border-color: lightgray;
-} */
-
+  width: 200px;
+}

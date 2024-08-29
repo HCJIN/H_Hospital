@@ -101,7 +101,7 @@ const Login = ({loginInfo, setLoginInfo}) => {
           </div>
           <ul>
             <li><span>아이디 찾기</span></li>
-            <li><span>비밀번호 찾기</span></li>
+            <li><span onClick={() => {navigate('/findPw')}}>비밀번호 찾기</span></li>
             <li><span>회원가입</span></li>
           </ul>
         </div>

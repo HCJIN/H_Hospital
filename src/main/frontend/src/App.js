@@ -13,6 +13,7 @@ import FindId from './component/FindId';
 import MainPage from './component/MainPage';
 import { useEffect, useState } from 'react';
 import FindPw from './component/FindPw';
+import AdminLogin from './component/AdminLogin';
 
 function App() {
 
@@ -158,6 +159,9 @@ function App() {
 
         {/* 로그인 페이지 */}
         <Route path='loginForm' element={<Login />}></Route>
+
+        {/* 관리자 로그인 페이지 */}
+        <Route path='login' element={<AdminLogin/>}/>
 
         {/* 아이디 찾기 */}
         <Route path='findId' element={<FindId/>}/>
