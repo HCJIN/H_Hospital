@@ -1,25 +1,61 @@
-import { useRef } from "react"
-import '../css/modal.css'
+import { useState, useRef, useEffect } from "react";
+import '../css/modal.css';
+import DatePickerInput from "../component/DatePicker";
+import axios from "axios";
 
-const Modal = ({setShow, clickCloseBtn}) => {
+const Modal = ({ setShow, clickCloseBtn, memNum }) => {
 
-  //content : 모달에서 보여지는 내용
-  //setShow : 모달을 닫는 코드
-  //clickCloseBtn : 모달의 확인버튼 클릭 시 실행할 코드
+  //member 정보가 들어갈 useState
+  const [member, setMember] = useState({});
 
-  const modalContainer = useRef();
+  //예약정보가 들어갈 state
+  const [newReservation, setNewReservation] = useState({});
 
-  return(
+  //날짜와 시간 데이터 입력될 useState
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+
+
+  const modalContainer = useRef(null);
+
+  useEffect(()=>{
+    axios
+    .get(`/reservation/getMember/${memNum}`)
+    .then((res)=>{
+      setMember(res.data);
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  },[])
+
+  //날짜 시간 입력시 데이터가 들어갈 함수
+  const handleDateChange = (datePart, timePart) => {
+    setDate(datePart);
+    setTime(timePart);
+    console.log("Selected Date: ", datePart);
+    console.log("Selected Time: ", timePart);
+  };
+
+  //입력값이 들어가면 state에 저장
+  function inputReservation(){
+    
+  }
+
+  return (
     <div className="modal-container show" ref={modalContainer}>
       <div className="modal">
         <div className="modal-header">
-          <span onClick={()=>{
-            modalContainer.current.className = 
-            'modal-container';
-            setTimeout(()=>{
-              setShow(false);
-              clickCloseBtn();
-            },300)}}>
+          <span
+            onClick={() => {
+              modalContainer.current.className = 'modal-container';
+              setTimeout(() => {
+                setShow(false);
+                clickCloseBtn();
+              }, 300);
+            }}
+          >
+            Close
           </span>
         </div>
         <div className="modal-content">
@@ -35,7 +71,7 @@ const Modal = ({setShow, clickCloseBtn}) => {
           </p>
           <p className="timetext-wrap">
             상담시간 : 평일 08:30 ~ 17:30 / 토요일 08:30 ~ 12:30(공휴일 제외)
-            <br></br>
+            <br />
             <span>※ 상담 전화 연결 3회 이상 실패 시 간편예약접수가 자동으로 취소 되오니, 이점 양해하여 주시기 바랍니다.</span>
           </p>
           <p className="required-input">
@@ -44,19 +80,19 @@ const Modal = ({setShow, clickCloseBtn}) => {
           <div className="ptbl-view02-wrap">
             <table className="ptbl-view02">
               <colgroup>
-                <col width='25%'></col>
-                <col width='75%'></col>
+                <col width='25%' />
+                <col width='75%' />
               </colgroup>
               <tbody>
                 <tr>
                   <th>성명</th>
-                  <td>황찬진</td>
+                  <td>{member.memName}</td>
                 </tr>
                 <tr>
                   <th>
-                    <sapn className="star">휴대전화</sapn>
+                    <span className="star">휴대전화</span>
                   </th>
-                  <td>010-6676-7910</td>
+                  <td>{member.memTel}</td>
                 </tr>
                 <tr>
                   <th>
@@ -66,32 +102,41 @@ const Modal = ({setShow, clickCloseBtn}) => {
                     <textarea name="serviceType"></textarea>
                     <p className="textbite-wrap">
                       *
-                      <sapn className="count">0</sapn>
+                      <span className="count">0</span>
                       byte / 최대
                       <span className="maxcount">200</span>
                       byte(한글 100자, 영문 200자)
                     </p>
                   </td>
                 </tr>
-                <tr></tr>
+                <tr>
+                  <th>예약하기</th>
+                  <td>
+                    <DatePickerInput onSelectedDateChange={handleDateChange} />
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
         </div>
         <div className="modal-footer">
-          <button type="button" className="btn btn-primary" onClick={()=>{
-            modalContainer.current.className = 'modal-container';
-            setTimeout(()=>{
-              //모달창 닫기
-              setShow(false);
-              clickCloseBtn();
-            },300)
-          }}>확인</button>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              modalContainer.current.className = 'modal-container';
+              setTimeout(() => {
+                setShow(false);
+                clickCloseBtn();
+              }, 300);
+            }}
+          >
+            확인
+          </button>
         </div>
       </div>
     </div>
-  )
+  );
+};
 
-}
-
-export default Modal
+export default Modal;

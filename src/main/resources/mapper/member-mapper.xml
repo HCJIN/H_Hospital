@@ -16,6 +16,7 @@
         <result column="GENDER"         property="gender"/>
         <result column="BIRTHDAY"       property="birthday" />
         <result column="EMAIL"          property="email" />
+        <result column="MEM_NUM"        property="memNum" />
     </resultMap>
 
     <!--회원 가입을 위한 기본적인 정보 입력-->
@@ -109,9 +110,9 @@
 
     <!-- 로그인 -->
     <select id="login" resultMap="member">
-        SELECT MEM_ID, MEM_NAME, MEM_ROLE
+        SELECT MEM_NUM, MEM_ID, MEM_NAME, MEM_ROLE, EMAIL
         FROM hospital_member
-        WHERE MEM_ID = #{memId}
+        WHERE EMAIL = #{email}
         AND MEM_PW = #{memPw};
     </select>
 

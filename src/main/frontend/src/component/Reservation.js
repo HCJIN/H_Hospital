@@ -7,6 +7,13 @@ const Reservation = () => {
 
   const navigate = useNavigate();
 
+  // 로그인 정보 가져오기
+  const loginInfo = JSON.parse(window.sessionStorage.getItem("loginInfo"));
+  const isLoggedIn = loginInfo && loginInfo.email;  // 로그인 상태 확인
+  const memNum = loginInfo ? loginInfo.memNum : null;  // memNum 가져오기
+  console.log(memNum)
+
+
   //모달창 불린 유무
   const [show, setShow] = useState(false);
 
@@ -17,6 +24,10 @@ const Reservation = () => {
 
   //회원예약 클릭
   function reservation(){
+    if(!isLoggedIn){
+      alert('로그인 해주세요')
+      return;
+    }
     setShow(true);
   }
 
@@ -50,7 +61,7 @@ const Reservation = () => {
 
         {/* 회원예약 클릭시 열리는 모달 */}
         {
-          show ? <Modal setShow={setShow} clickCloseBtn={onClickModalBtn}/> : null
+          show ? <Modal setShow={setShow} clickCloseBtn={onClickModalBtn} memNum={memNum}/> : null
         }
 
         {/* <div className='reservation-box'>

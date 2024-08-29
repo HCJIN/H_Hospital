@@ -12,15 +12,9 @@ import SnsRegInfo from './component/SnsRegInfo';
 import FindId from './component/FindId';
 import MainPage from './component/MainPage';
 import { useEffect, useState } from 'react';
-<<<<<<< HEAD
 import SuccessFindId from './component/SuccessFindId';
 import FindPw from './component/FindPw';
 import Reservation from './component/Reservation';
-=======
-import FindPw from './component/FindPw';
-import Reservation from './component/Reservation';
-
->>>>>>> hcj
 
 function App() {
 

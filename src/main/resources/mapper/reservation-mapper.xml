@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="reservationMapper">
+   <resultMap id="reservation" type="com.green.H_Hospital.reservation.vo.ReservationVO">
+      <result column="RES_ID" property="resId"/>
+      <result column="RES_DATE" property="resDate"/>
+      <result column="RES_TIME" property="resTime"/>
+      <result column="DOCTOR_ID" property="doctorId"/>
+      <result column="SERVICE_TYPE" property="serviceType"/>
+      <result column="STATUS" property="status"/>
+      <association property="memNum" javaType="com.green.H_Hospital.member.vo.MemberVO" resultMap="member" />
+   </resultMap>
+
+   <!-- 예약회원 정보 조회 -->
+   <select id="getMember" resultMap="memberMapper.member" >
+      SELECT h.MEM_NAME, h.MEM_TEL, h.MEM_NUM
+      FROM hospital_member h
+      WHERE h.MEM_NUM = #{memNum};
+   </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

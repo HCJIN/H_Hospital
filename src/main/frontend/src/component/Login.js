@@ -13,7 +13,9 @@ const Login = ({loginInfo, setLoginInfo}) => {
   //입력한 id, pw를 저장할 변수
   const [loginData, setLoginData] = useState({
     memId : '',
-    memPw : ''
+    memPw : '',
+    email : '',
+    memNum : ''
   });
 
   //input에 입력할 값 객체에 저장 
@@ -28,7 +30,7 @@ const Login = ({loginInfo, setLoginInfo}) => {
   //로그인 버튼 클릭시 로그인
   function login(){
     //id, pw 입력 여부 확인
-    if(loginData.memId == '' || loginData.memPw == ''){
+    if(loginData.email == '' || loginData.memPw == ''){
       alert('비어있는 값이 있습니다.')
       return
     }
@@ -43,7 +45,9 @@ const Login = ({loginInfo, setLoginInfo}) => {
         const loginInfo = {
           memId : res.data.memId,
           memName : res.data.memName,
-          memRole : res.data.memRole
+          memRole : res.data.memRole,
+          email : res.data.email,
+          memNum : res.data.memNum
         }
 
         //로그인 정보를 가진 객체를 문자열 형태로 변환 
@@ -76,7 +80,7 @@ const Login = ({loginInfo, setLoginInfo}) => {
                 <ul>
                   <li>
                     <strong>아이디</strong>
-                    <input type='text' name='memId' onChange={(e)=>{memberChange(e)}}/>
+                    <input type='text' name='email' onChange={(e)=>{memberChange(e)}}/>
                   </li>
                   <li>
                     <strong>

@@ -8,9 +8,11 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.4",
     "bootstrap": "^5.3.3",
+    "date-fns": "^3.6.0",
     "http-proxy-middleware": "^3.0.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
+    "react-datepicker": "^7.3.0",
     "react-dom": "^18.3.1",
     "react-kakao-login": "^2.1.1",
     "react-kakao-maps-sdk": "^1.1.27",
@@ -43,5 +45,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8080"
+  "proxy": "http://localhost:8080",
+  "devDependencies": {
+    "@types/react-datepicker": "^7.0.0"
+  }
 }
