@@ -16,7 +16,7 @@ const Join = () => {
       <div className='join-title'>
         <p>회원가입</p>
         <p>
-          <span className='green'>서울아산병원 홈페이지 회원가입을 환영합니다.</span>서울아산병원 홈페이지의 회원이 되시면 <span className='green'>다양한 정보와 맞춤 서비스</span>를 이용하실 수 있습니다.
+          <span className='join-green'>서울아산병원 홈페이지 회원가입을 환영합니다.</span>서울아산병원 홈페이지의 회원이 되시면 <span className='join-green'>다양한 정보와 맞춤 서비스</span>를 이용하실 수 있습니다.
         </p>
         <p>
           회원가입절차가 연령에 따라 다르오니, 해당되는 회원가입 유형을 선택하여 진행하여 주세요.
