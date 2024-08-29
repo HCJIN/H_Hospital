@@ -59,10 +59,17 @@ public class MemberController {
         memberService.insertSnsMember(memberVO);
     }
 
+
     //로그인
     @PostMapping("/login")
-    public MemberVO memberLogin(@RequestBody MemberVO memberVO){
+    public MemberVO memberLogin(@RequestBody MemberVO memberVO) {
         return memberService.login(memberVO);
+    }
+
+    //id 찾기
+    @PostMapping("/findId")
+    public MemberVO findId(@RequestBody MemberVO memberVO){
+        return memberService.findId(memberVO);
     }
 
 

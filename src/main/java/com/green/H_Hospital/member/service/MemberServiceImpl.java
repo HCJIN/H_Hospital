@@ -51,11 +51,8 @@ public class MemberServiceImpl implements MemberService{
 
     //id 찾기
     @Override
-    public MemberVO findId(String memTel) {
-        sqlSession.selectOne("memberMapper.findId", memTel);
-        //id 중복체크 참고해서 다시 해보기
-        return null;
-
+    public MemberVO findId(MemberVO memberVO) {
+         return sqlSession.selectOne("memberMapper.findId", memberVO);
     }
 
     //로그인
