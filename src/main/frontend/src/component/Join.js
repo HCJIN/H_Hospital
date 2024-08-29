@@ -2,6 +2,7 @@ import React from 'react'
 import '../css/join.css'
 import { useNavigate } from 'react-router-dom'
 import {handleKakaoLogin} from '../snsLogin/SocialKaKao'
+import Naver from '../snsLogin/Naver'
 
 const Join = () => {
 
@@ -37,7 +38,7 @@ const Join = () => {
                 </p>
                 <div className='icon-div'>
                   <img src='http://localhost:8080/images/kakaoBlack.png' onClick={handleKakaoLogin}></img>
-                  <img src='http://localhost:8080/images/Naver.png'></img>
+                  <img src='http://localhost:8080/images/Naver.png' onClick={Naver} ></img>
                 </div>
               </td>
             </tr>
