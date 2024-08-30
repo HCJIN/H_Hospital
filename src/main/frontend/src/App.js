@@ -17,6 +17,9 @@ import FindPw from './component/FindPw';
 import Reservation from './component/Reservation';
 import AdminLogin from './component/AdminJoin';
 import AdminJoin from './component/AdminJoin';
+import AdminRegInfo from './component/AdminRegInfo';
+import AdminRegPage from './component/AdminRegPage';
+import AdminJoinPage from './component/AdminJoinPage';
 
 function App() {
 
@@ -193,7 +196,16 @@ function App() {
 
           {/* 직원 회원가입 페이지 */}
           <Route path='adminJoin' element={<AdminJoin/>} />
-        </Route>      
+        </Route> 
+
+          {/* 직원가입동의 페이지 */}
+        <Route path='adminJoinPage' element={<AdminJoinPage />}></Route>
+
+          {/* 직원 기초정보 등록 페이지 */}
+        <Route path='adminRegPage' element={<AdminRegPage />} />
+
+          {/* 직원 등록 페이지 */}
+        <Route path='adminRegInfo/:memTel' element={< AdminRegInfo/>} />
 
       </Routes>
 

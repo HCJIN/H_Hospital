@@ -27,7 +27,7 @@ const AdminJoin = () => {
                 <p>
                   <strong>서울아산병원 직원 회원가입</strong>
                 </p>
-                <button className='btn btn-primary' type='button' onClick={()=>{navigate('/joinPage')}}>직원 회원가입하기</button>
+                <button className='btn btn-primary' type='button' onClick={()=>{navigate('/adminJoinPage')}}>직원 회원가입하기</button>
               </td>
               <td>
                 <p>
