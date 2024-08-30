@@ -81,7 +81,7 @@
             ,   MEM_TEL
             ,   POST
             ,   MEM_ROLE
-            ,   H_CODE
+            ,   HOSPITAL_CODE
             ,   GENDER
             ,   BIRTHDAY
             ,   EMAIL

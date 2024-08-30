@@ -3,6 +3,7 @@ import '../css/regInfo.css'
 import axios from 'axios';
 import { snsValidata } from '../validate/snsValidata';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import RegBar from './RegBar';
 
 const SnsRegInfo = () => {
 
@@ -100,6 +101,7 @@ const SnsRegInfo = () => {
 
   return (
     <div className='regInfo-div'>
+      <RegBar step={3}/>
       <table className='regInfo-table'>
         <tbody>
           <tr>

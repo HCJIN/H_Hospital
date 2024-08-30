@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../css/login.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { handleKakaoLogin } from '../snsLogin/SocialKaKao';
+import Naver from '../snsLogin/Naver';
 
 const Login = ({loginInfo, setLoginInfo}) => {
 
   const navigate = useNavigate();
 
+  const [memberList, setMemberList] = useState([]);
+  const [userInfo, setUserInfo] = useState({});
+
   //로그인 성공 실패 여부를 저장하는 변수
   const [isLoginSuccess, setIsLoginSuccess] = useState(false);
-
+  
   //입력한 id, pw를 저장할 변수
   const [loginData, setLoginData] = useState({
     memId : '',
@@ -17,6 +22,21 @@ const Login = ({loginInfo, setLoginInfo}) => {
     email : '',
     memNum : ''
   });
+
+  // 데이터 정보를 받아오는 함수
+  useEffect(() => {
+    const fetchMemberList = async () => {
+      try {
+        const res = await axios.get('/member/memberList');
+        setMemberList(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchMemberList();
+  }, []);
+
 
   //input에 입력할 값 객체에 저장 
   function memberChange(e){
@@ -67,6 +87,95 @@ const Login = ({loginInfo, setLoginInfo}) => {
     })
   }
 
+  // 토큰을 받아오는 함수
+  const getToken = async () => {
+    const token = new URL(window.location.href).searchParams.get('code');
+    console.log('인가코드 : ' + token);
+
+    const params = new URLSearchParams();
+    params.append('grant_type', 'authorization_code');
+    params.append('client_id', 'fcaac90717961c96e110a08056effef4');
+    params.append('redirect_uri', 'http://localhost:3000/Mainjoin');
+    params.append('code', token);
+
+    try {
+      const res = await axios.post(
+        'https://kauth.kakao.com/oauth/token',
+        params.toString(),  // URLSearchParams를 문자열로 변환
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+          },
+        }
+      );
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const processTokenAndCheckMember = async () => {
+      // memberList가 비어 있으면 데이터가 아직 로드되지 않은 상태임
+      if (memberList.length === 0) return;
+
+      try {
+        const tokenResponse = await getToken();
+        if (tokenResponse) {
+          const accessToken = tokenResponse.data.access_token;
+          sessionStorage.setItem('token', JSON.stringify(accessToken));
+          console.log('토큰 : ' + accessToken);
+
+          const kakaoResponse = await axios.get('http://localhost:3000/member/kaKaoCode', {
+            params: { accessToken },
+          });
+
+          const isExistingMember = memberList.some(
+            (e) => e.email.trim().toLowerCase() === kakaoResponse.data.email.trim().toLowerCase()
+          );
+          console.log('Member List:', memberList);
+          console.log('Incoming Email:', kakaoResponse.data.email);
+          console.log('Is Existing Member:', isExistingMember);
+
+          axios
+          .get(`/member/getMember/${kakaoResponse.data.email}`)
+          .then((res)=>{
+            if(res.data != ''){
+              setIsLoginSuccess(true);
+  
+              //sesstionStorage에 로그인한 회원의 정보 저장
+              const loginInfo = {
+                memName : res.data.memName,
+                memRole : res.data.memRole,
+                email : res.data.email,
+                memNum : res.data.memNum
+              }
+  
+              //로그인 정보를 가진 객체를 문자열 형태로 변환
+              //객체 -> 문자열로 변환한 데이터를 JSON 데이터로 부른다. 
+              window.sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo));
+  
+              //로그인 정보를 저장하기 위해 만든 state 변수 loginInfo(App.js생성)에 로그인 정보를 저장
+              setLoginInfo(loginInfo)
+              navigate('/')
+            }else{
+              setIsLoginSuccess(false);
+              setUserInfo(kakaoResponse.data);
+              navigate('/snsRegInfo', { state: { userInfo: kakaoResponse.data } });
+            }
+          })
+          .catch((error)=>{
+            console.log(error)
+          })
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    processTokenAndCheckMember();
+  }, [memberList]);
+
   return (
     <div className='login-div'>
       <div className='login-head'>
@@ -96,8 +205,14 @@ const Login = ({loginInfo, setLoginInfo}) => {
               <input type='checkbox' /> 아이디 저장
             </div>
           </div>
-          <div className='login-text'>
-            회원 서비스를 이용하시려면 로그인이 필요합니다.
+          <div className='icon-box'>
+            <p>
+              <strong>SNS 간편로그인 연동</strong>
+            </p>
+            <div className='icon-div'>
+              <img src='http://localhost:8080/images/kakaoBlack.png' onClick={handleKakaoLogin} alt="Kakao Login" />
+              <img src='http://localhost:8080/images/Naver.png' onClick={Naver} alt="Naver Login" />
+            </div>
           </div>
           <ul>
             <li><span onClick={()=>{navigate('/findId')}}>아이디 찾기</span></li>

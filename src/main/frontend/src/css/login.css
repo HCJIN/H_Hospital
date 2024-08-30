@@ -11,7 +11,7 @@
 }
 
 .login-main-contain{
-  padding: 30px 50px;
+  padding: 30px 50px 10px 50px;
   background-color: #f5f5f5;
   margin-bottom: 30px;
   display: flex;
@@ -30,7 +30,7 @@
 
 .login-content-right{
   width: 50%;
-  padding: 25px;
+  padding: 0px 25px 25px 25px;
   margin-left: 30px;
   border-left: 1px solid #ddd;
   font-size: 0.95rem;
@@ -38,8 +38,9 @@
 
 .login-content-left > ul{
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  gap: 20px;
 }
 
 .login-content-left > ul span:hover{
@@ -65,9 +66,9 @@
 .main-login > div > ul{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  gap: 19px;
-  height: 80px;
+  justify-content: center;
+  gap: 10px;
+  height: 40px;
 }
 
 .main-login > div > ul > li {
@@ -103,13 +104,22 @@
 }
 
 .id-save{
-  margin: 10px 0px;
   margin-left: 80px;
+  padding-top: 30px;
 }
 
 .login-text{
   text-align: center;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
+}
+
+.icon-box{
+  text-align: center;
+  margin: 8px auto;
+}
+
+.icon-box p{
+  margin-bottom: 4px;
 }
 
 /* login main end */
