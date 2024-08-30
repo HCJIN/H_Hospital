@@ -74,18 +74,11 @@ public class MemberController {
     }
 
 
-
-
-    //비밀번호 찾기
-    @GetMapping("/findPw/{email}")
-    public String findPwInfo(@PathVariable String email ){
-        try {
-            System.out.println(email);
-            return memberService.findPw(email);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "오류 발생: " + e.getMessage();
-        }
+    //pw 찾기
+    @PostMapping("/findPw")
+    public MemberVO findPw(@RequestBody MemberVO memberVO){
+        return memberService.findPw(memberVO);
     }
+
 
 }

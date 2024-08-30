@@ -60,7 +60,6 @@ input, select {
 
 input:hover{
   border-radius: 2px;
-  cursor: pointer;
 }
 
 input:focus{

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("memberService")
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private SqlSessionTemplate sqlSession;
@@ -18,7 +18,7 @@ public class MemberServiceImpl implements MemberService{
     // 회원 가입을 위한 기본적인 정보 입력
     @Override
     public void insertMember(MemberVO memberVO) {
-        sqlSession.insert("memberMapper.insertMember",memberVO);
+        sqlSession.insert("memberMapper.insertMember", memberVO);
     }
 
     // id 중복 체크
@@ -26,20 +26,20 @@ public class MemberServiceImpl implements MemberService{
     public boolean idChk(String email) {
         //id가 null 이면 회원가입 가능 true
         //id가 조회되면 null 이 아니기 때문에 회원가입 불가능 false
-        String selectedId = sqlSession.selectOne("memberMapper.idChk",email);
+        String selectedId = sqlSession.selectOne("memberMapper.idChk", email);
         return selectedId == null;
     }
 
     //회원 기초정보 조회
     @Override
     public MemberVO getMemberList(MemberVO memberVO) {
-        return sqlSession.selectOne("memberMapper.getMemberList",memberVO);
+        return sqlSession.selectOne("memberMapper.getMemberList", memberVO);
     }
 
     //회원가입 업데이트
     @Override
     public void updateMember(MemberVO memberVO) {
-        sqlSession.update("memberMapper.updateMember",memberVO);
+        sqlSession.update("memberMapper.updateMember", memberVO);
     }
 
     //sns 회원가입
@@ -49,22 +49,23 @@ public class MemberServiceImpl implements MemberService{
 
     }
 
-    //id 찾기
-    @Override
-    public MemberVO findId(MemberVO memberVO) {
-         return sqlSession.selectOne("memberMapper.findId", memberVO);
-    }
-
     //로그인
     @Override
     public MemberVO login(MemberVO memberVO) {
         return sqlSession.selectOne("memberMapper.login", memberVO);
     }
 
+    //id 찾기
+    @Override
+    public MemberVO findId(MemberVO memberVO) {
+        return sqlSession.selectOne("memberMapper.findId", memberVO);
+    }
+
     //pw 찾기
     @Override
-    public String findPw(String email) {
-        return sqlSession.selectOne("memberMapper.findPw", email);
+    public MemberVO findPw(MemberVO memberVO) {
+        return sqlSession.selectOne("memberMapper.findPw", memberVO);
     }
+
 
 }

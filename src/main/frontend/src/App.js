@@ -16,6 +16,7 @@ import SuccessFindId from './component/SuccessFindId';
 import FindPw from './component/FindPw';
 import Reservation from './component/Reservation';
 import AdminLogin from './component/AdminLogin';
+import SetNewPw from './component/SetNewPw';
 
 function App() {
 
@@ -174,6 +175,8 @@ function App() {
 
         {/* 비밀번호 찾기 */}
         <Route path='findPw' element={<FindPw/>} />
+
+        <Route path='setNewPw' element={<SetNewPw/>}/>
 
         {/* 오시는길 페이지  */}
         <Route path='mapGps' element={<MapGps/>} />

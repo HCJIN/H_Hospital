@@ -1,28 +1,53 @@
 import React, { useEffect, useState } from 'react'
 import '../css/FindPw.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const FindPw = () => {
 
-  const[findPw, setFindPw] = useState([]);
+  const navigate = useNavigate();
 
-  const[email, setEmail] = useState('');
+  const [memInfo, setMemInfo] = useState({});
 
-  function changeMemId(e){
-    setEmail(e.target.value);
+  //pw찾기 정보를 입력 받아 저장할 변수
+  const [insertFindPwData, setInsertFindPwData] = useState({
+    email : '',
+    memName : ''
+  })
+
+  // pw 찾기를 위한 기본 정보
+  function insertFindPw(){
+    
+    if(!insertFindPwData.email.trim()){
+      alert('아이디를 입력해 주세요')
+      return
+    }
+    if(!insertFindPwData.memName){
+      alert('이름을 입력해 주세요')
+      return;
+    }
+
+    axios.post('/member/findPw', insertFindPwData)
+    .then((res)=>{
+      setMemInfo(res.data)
+      navigate('/setNewPw',{state:{memInfo:res.data}})
+    })
+    .catch((error)=>{
+      console.log(error)
+      alert('오류가 발생했습니다')
+    })
   }
 
-  const findPwInfo = () => {
-    axios.get(`/member/findPw/${email}`)
-    .then((res) => {
-      setFindPw(res.data)
+  function changeInsertFindId(e){
+    setInsertFindPwData({
+      ...insertFindPwData,
+      [e.target.name] : e.target.value
     })
-    .catch((error) => {console.log(error)});
-  };
+    
+  }
 
-  console.log(email)
 
   return (
       <div className='findPw-container'>
@@ -37,15 +62,17 @@ const FindPw = () => {
             <tbody>
               <tr>
                 <td>아이디</td>
-                <td><input type='text' name='email' onChange={(e) => {changeMemId(e)}}/></td>
+                <td><input type='text' name='email'
+                onChange={(e)=>{changeInsertFindId(e)}}/></td>
               </tr>
               <tr>
                 <td>이름</td>
-                <td><input type='text' name='memName' /></td>
+                <td><input type='text' name='memName'
+                onChange={(e)=>{changeInsertFindId(e)}}/></td>
               </tr>
             </tbody>
           </table>
-          <button type='button' onClick={() => {findPwInfo()}}>확인</button>
+          <button type='button' onClick={()=>{insertFindPw()}}>확인</button>
         </div>
       </div>
     

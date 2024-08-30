@@ -21,14 +21,14 @@ public interface MemberService {
     //sns 회원가입
     void insertSnsMember(MemberVO memberVO);
 
-    //id 찾기
-    MemberVO findId(MemberVO memberVO);
-
     //로그인
     MemberVO login(MemberVO memberVO);
 
+    //id 찾기
+    MemberVO findId(MemberVO memberVO);
+
     //pw 찾기
-    String findPw(String email);
+    MemberVO findPw(MemberVO memberVO);
 
 
 }
