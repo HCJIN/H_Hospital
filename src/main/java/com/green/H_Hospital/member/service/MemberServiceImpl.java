@@ -41,6 +41,12 @@ public class MemberServiceImpl implements MemberService {
         return sqlSession.selectOne("memberMapper.getMemberList", memberVO);
     }
 
+    //회원 기초정보 조회2
+    @Override
+    public MemberVO getMember(MemberVO memberVO) {
+        return sqlSession.selectOne("memberMapper.getMember",memberVO);
+    }
+
     //회원가입 업데이트
     @Override
     public void updateMember(MemberVO memberVO) {

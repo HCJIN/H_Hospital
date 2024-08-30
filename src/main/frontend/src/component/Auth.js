@@ -31,7 +31,7 @@ const Auth = () => {
       {
         grant_type: 'authorization_code',
         client_id: 'fcaac90717961c96e110a08056effef4',
-        redirect_uri: 'http://localhost:3000/auth',
+        redirect_uri: 'http://localhost:3000/Mainjoin',
         code: token,
       },
       {
