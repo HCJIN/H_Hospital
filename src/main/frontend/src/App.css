@@ -158,9 +158,10 @@ a{
 
 .footerWrap{
   width: 100%;
-  height: 210px;
+  height: 250px;
   background-color: #7e8389;
   min-width: 1280px;
+  padding-bottom: 30px;
 }
 
 .footerMenu{
@@ -172,8 +173,7 @@ a{
 .footerLogo{
   float: left;
   width: 310px;
-  margin-top: 50px;
-  margin-bottom: 17px;
+  margin-top: 55px;
 }
 
 .address{

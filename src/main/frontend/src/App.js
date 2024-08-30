@@ -77,7 +77,7 @@ function App() {
             <div className='logo'>
               <img onClick={()=>{
                 navigate('/')
-              }} src='http://localhost:8080/images/logo.png'></img>
+              }} src='http://localhost:8080/images/ulsan_logo.png'></img>
             </div>
           </div>
         </div>
@@ -201,7 +201,7 @@ function App() {
         <div className='footerMenu'>
           <div className='footerLogo'>
             <p>
-              <img src='http://localhost:8080/images/footlogo.png'></img>
+              <img src='http://localhost:8080/images/ulsan_footer_logo.png'></img>
             </p>
             <p className='address'>
               울산광역시 남구 삼산중로 100번길 26 H_HOSPITAL<br/>

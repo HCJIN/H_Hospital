@@ -78,7 +78,7 @@ const Modal = ({ setShow, clickCloseBtn, memNum }) => {
             <p className="ptit">고객 간편 진료예약 서비스</p>
             <div className="close">
               전화문의
-              <span>1688-7575</span>
+              <span>1599-1044</span>
             </div>
           </div>
           <p className="pcont-tit01">
