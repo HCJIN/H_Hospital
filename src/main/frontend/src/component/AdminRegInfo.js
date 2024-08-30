@@ -114,7 +114,7 @@ const AdminRegInfo = () => {
     axios
     .post('/member/updateAdmin', member)
     .then((res)=>{
-      // navigate('/')
+      navigate('/')
     })
     .catch((error)=>{
       console.log(error)

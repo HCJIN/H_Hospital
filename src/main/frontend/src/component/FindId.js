@@ -15,7 +15,8 @@ const FindId = () => {
     memName : '',
     gender : '',
     birthday : '',
-    memTel : ''
+    memTel : '',
+    email : ''
   })
 
   //생년월일을 저장할 변수

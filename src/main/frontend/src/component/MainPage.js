@@ -59,7 +59,7 @@ const MainPage = () => {
                 </p>
               </div>
             </div>
-            <div className='main-icon-box'>
+            <div className='main-icon-box last-box'>
               <i className="bi bi-calendar-check"></i>
               <div>
                 <strong>건강검진 안내</strong>

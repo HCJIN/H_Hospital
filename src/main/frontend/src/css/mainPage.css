@@ -48,23 +48,35 @@
 
 .main-section .main-icon-div {
   position: absolute;
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
   z-index: 3; /* 필요한 경우 메인 섹션 내 요소에도 우선순위 부여 */
   top: 50%;
   left: 10%;
   display: flex;
+  align-items: center;
   transform: translateY(-50%);
 }
 
 .main-icon-box{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 22px;
-  gap: 20px ;
+  font-size: 18px;
+  gap: 20px;
+  margin: 0 auto;
   margin-right: 30px;
   cursor: pointer;
+}
+
+.main-icon-box::after{
+  content: "|";
+  height: 30px;
+  font-size: 45px;
+  color: #0e787c;
+  margin-left: 30px;
+}
+
+.last-box::after{
+  content: "";
 }
 
 .main-icon-box:hover.main-icon-box > div strong{
