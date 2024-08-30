@@ -79,7 +79,7 @@ const AdminRegPage = () => {
 
     axios.post('/member/insertMember', insertMemberData)
     .then((res) => {
-      navigate(`/adminRegInfo/${insertMemberData.memTel}`)
+      navigate(`/admin/adminRegInfo/${insertMemberData.memTel}`)
     })
     .catch((error) => {console.log(error)})
   }

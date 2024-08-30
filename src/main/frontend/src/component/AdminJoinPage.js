@@ -16,7 +16,7 @@ const AdminJoinPage = () => {
 
   function joinChk(){
     if(agreeData == true && infoAgreeData == true){
-      navigate('/adminRegPage')
+      navigate('/admin/adminRegPage')
     }
     else if(agreeData == true || infoAgreeData == false){
       alert('개인정보 수집 및 이용동의 후 회원가입 가능합니다')

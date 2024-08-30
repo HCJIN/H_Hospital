@@ -18,6 +18,9 @@ public interface MemberService {
     //기초정보 업데이트
     void updateMember(MemberVO memberVO);
 
+    //직원 기초정보 업데이트
+    void updateAdmin(MemberVO memberVO);
+
     //sns 회원가입
     void insertSnsMember(MemberVO memberVO);
 

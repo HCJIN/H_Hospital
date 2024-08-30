@@ -196,16 +196,16 @@ function App() {
 
           {/* 직원 회원가입 페이지 */}
           <Route path='adminJoin' element={<AdminJoin/>} />
-        </Route> 
 
-          {/* 직원가입동의 페이지 */}
-        <Route path='adminJoinPage' element={<AdminJoinPage />}></Route>
+          {/* 직원 가입동의 페이지 */}
+          <Route path='adminJoinPage' element={<AdminJoinPage/>} />
 
           {/* 직원 기초정보 등록 페이지 */}
-        <Route path='adminRegPage' element={<AdminRegPage />} />
+          <Route path='adminRegPage' element={<AdminRegPage />} />
 
           {/* 직원 등록 페이지 */}
-        <Route path='adminRegInfo/:memTel' element={< AdminRegInfo/>} />
+          <Route path='adminRegInfo/:memTel' element={< AdminRegInfo/>} />
+        </Route> 
 
       </Routes>
 

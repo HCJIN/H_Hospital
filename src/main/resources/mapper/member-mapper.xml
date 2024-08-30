@@ -75,6 +75,17 @@
         WHERE MEM_TEL = #{memTel}
     </update>
 
+    <!-- 직원가입 기초정보 업데이트 -->
+    <update id="updateAdmin">
+        UPDATE HOSPITAL_MEMBER
+        SET
+        MEM_ID = #{memId}
+        ,   MEM_PW = #{memPw}
+        ,   EMAIL = #{email}
+        ,   H_CODE = #{hCode}
+        WHERE MEM_TEL = #{memTel}
+    </update>
+
     <!-- sns 회원가입 -->
     <insert id="insertSnsMember">
         INSERT INTO hospital_member

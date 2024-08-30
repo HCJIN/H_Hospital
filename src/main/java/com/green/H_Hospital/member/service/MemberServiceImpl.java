@@ -42,6 +42,12 @@ public class MemberServiceImpl implements MemberService{
         sqlSession.update("memberMapper.updateMember",memberVO);
     }
 
+    //직원가입 기초정보 업데이트
+    @Override
+    public void updateAdmin(MemberVO memberVO) {
+        sqlSession.update("memberMapper.updateAdmin", memberVO);
+    }
+
     //sns 회원가입
     @Override
     public void insertSnsMember(MemberVO memberVO) {
