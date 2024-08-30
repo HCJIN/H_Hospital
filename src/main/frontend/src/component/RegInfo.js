@@ -85,7 +85,6 @@ const RegInfo = () => {
   }
   console.log(member)
 
-
   // email 선택 버튼 클릭시 주소창에 입력
   function emailClick(){
     email3.current.value = member.email2

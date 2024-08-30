@@ -48,6 +48,7 @@ public class MemberController {
     //직원가입 기초정보 업데이트
     @PostMapping("/updateAdmin")
     public void updateAdmin(@RequestBody MemberVO memberVO){
+        System.out.println(memberVO);
         memberService.updateAdmin(memberVO);
     }
 

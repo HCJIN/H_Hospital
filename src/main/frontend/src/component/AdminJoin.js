@@ -29,14 +29,14 @@ const AdminJoin = () => {
                 </p>
                 <button className='btn btn-primary' type='button' onClick={()=>{navigate('/admin/adminJoinPage')}}>직원 회원가입하기</button>
               </td>
-              <td>
+              {/* <td>
                 <p>
                   <strong>SNS 간편로그인 연동</strong>
                 </p>
                 <div className='icon-div'>
                   <img src='http://localhost:8080/images/kakaoBlack.png' onClick={handleKakaoLogin}></img>
                 </div>
-              </td>
+              </td> */}
             </tr>
           </tbody>
         </table>

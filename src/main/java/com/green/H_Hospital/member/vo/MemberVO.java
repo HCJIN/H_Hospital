@@ -13,7 +13,7 @@ public class MemberVO {
     private String memTel;
     private String post;
     private String memRole;
-    private String hCode;
+    private String hospitalCode;
     private String gender;
     private String birthday;
     private String email;

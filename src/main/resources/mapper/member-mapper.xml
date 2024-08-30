@@ -12,7 +12,7 @@
         <result column="MEM_TEL"        property="memTel"/>
         <result column="POST"           property="post"/>
         <result column="MEM_ROLE"       property="memRole"/>
-        <result column="H_CODE"         property="hCode"/>
+        <result column="HOSPITAL_CODE"         property="hospitalCode"/>
         <result column="GENDER"         property="gender"/>
         <result column="BIRTHDAY"       property="birthday" />
         <result column="EMAIL"          property="email" />
@@ -63,7 +63,7 @@
             ,   MEM_TEL
             ,   POST
             ,   MEM_ROLE
-            ,   H_CODE
+            ,   HOSPITAL_CODE
             ,   GENDER
             ,   BIRTHDAY
             ,   EMAIL
@@ -88,7 +88,7 @@
         MEM_ID = #{memId}
         ,   MEM_PW = #{memPw}
         ,   EMAIL = #{email}
-        ,   H_CODE = #{hCode}
+        ,   HOSPITAL_CODE = #{hospitalCode}
         WHERE MEM_TEL = #{memTel}
     </update>
 

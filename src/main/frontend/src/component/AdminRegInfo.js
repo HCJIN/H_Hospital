@@ -47,7 +47,7 @@ const AdminRegInfo = () => {
     memPw : '',
     confirmPw : '',
     email : '',
-    hCode : ''
+    hospitalCode : ''
   });
 
   //휴대폰 인증시 insert된 데이터 받아오기
@@ -82,10 +82,8 @@ const AdminRegInfo = () => {
   
     //유효성 검사 끝난 데이터를 setMember에 저장
     setMember(newData)
-
   }
-  console.log(member)
-
+  console.log(member.hCode)
 
   // email 선택 버튼 클릭시 주소창에 입력
   function emailClick(){
@@ -110,17 +108,20 @@ const AdminRegInfo = () => {
     })
   }
 
-  //회원가입 버튼 클릭시 회원기초정보 업데이트 
+  //직원가입 버튼 클릭시 직원기초정보 업데이트 
   function goJoin(){
+    console.log(member)
     axios
-    .post(`/member/updateMember`, member)
+    .post('/member/updateAdmin', member)
     .then((res)=>{
-      navigate('/')
+      // navigate('/')
     })
     .catch((error)=>{
       console.log(error)
     })
   }
+
+  console.log(selectMember)
 
   return (
     <div className='regInfo-div'>
@@ -243,9 +244,7 @@ const AdminRegInfo = () => {
           </tr>
           <tr>
             <td><span>✔</span>직원코드</td>
-            <td><input type='text' className='inputText' name='hCode' id='hCode' onChange={(e)=>{
-                  memberChange(e)
-                }}/></td>
+            <td><input type='text' className='inputText' name='hospitalCode'  onChange={(e)=>{memberChange(e)}}/></td>
           </tr>
         </tbody>
       </table>
