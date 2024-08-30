@@ -19,6 +19,12 @@
         <result column="MEM_NUM"        property="memNum" />
     </resultMap>
 
+    <!-- 멤버리스트 조회 -->
+    <select id="memberList" resultMap="member">
+        SELECT *
+        FROM HOSPITAL_MEMBER;
+    </select>
+
     <!--회원 가입을 위한 기본적인 정보 입력-->
     <insert id="insertMember">
         INSERT INTO HOSPITAL_MEMBER(
