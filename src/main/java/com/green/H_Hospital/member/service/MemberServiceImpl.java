@@ -13,6 +13,11 @@ public class MemberServiceImpl implements MemberService{
     @Autowired
     private SqlSessionTemplate sqlSession;
 
+    //멤버리스트 조회
+    @Override
+    public List<MemberVO> memberList() {
+        return sqlSession.selectList("memberMapper.memberList");
+    }
 
     // 회원 기초정보 등록
     // 회원 가입을 위한 기본적인 정보 입력
