@@ -63,7 +63,7 @@ const Join = ({loginInfo, setLoginInfo}) => {
         const tokenResponse = await getToken();
         if (tokenResponse) {
           const accessToken = tokenResponse.data.access_token;
-          localStorage.setItem('token', JSON.stringify(accessToken));
+          sessionStorage.setItem('token', JSON.stringify(accessToken));
           console.log('토큰 : ' + accessToken);
 
           const kakaoResponse = await axios.get('http://localhost:3000/member/kaKaoCode', {
