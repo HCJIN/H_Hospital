@@ -39,6 +39,9 @@ public interface MemberService {
     //pw 찾기
     MemberVO findPw(MemberVO memberVO);
 
+    //pw 변경
+    MemberVO setNewPw(MemberVO memberVO);
+
 
 
 }
