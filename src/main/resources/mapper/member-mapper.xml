@@ -19,6 +19,12 @@
         <result column="MEM_NUM"        property="memNum" />
     </resultMap>
 
+    <!-- 멤버리스트 조회 -->
+    <select id="memberList" resultMap="member">
+        SELECT *
+        FROM HOSPITAL_MEMBER;
+    </select>
+
     <!--회원 가입을 위한 기본적인 정보 입력-->
     <insert id="insertMember">
         INSERT INTO HOSPITAL_MEMBER(
@@ -107,10 +113,18 @@
         )
     </insert>
 
+    <!-- 로그인 -->
+    <select id="login" resultMap="member">
+        SELECT MEM_NUM, MEM_ID, MEM_NAME, MEM_ROLE, EMAIL
+        FROM hospital_member
+        WHERE EMAIL = #{email}
+        AND MEM_PW = #{memPw};
+    </select>
+
     <!-- 아이디 찾기 -->
     <select id="findId" resultMap="member">
-        SELECT MEM_ID
-            , MEM_NAME
+        SELECT MEM_NAME
+            , EMAIL
             , GENDER
             , BIRTHDAY
             , MEM_TEL
@@ -120,53 +134,23 @@
         AND MEM_NAME = #{memName}
     </select>
 
-    <!-- 로그인 -->
-    <select id="login" resultMap="member">
-        SELECT MEM_NUM, MEM_ID, MEM_NAME, MEM_ROLE, EMAIL
-        FROM hospital_member
-        WHERE EMAIL = #{email}
-        AND MEM_PW = #{memPw};
-    </select>
-
     <!--비밀번호 찾기-->
     <select id="findPw" resultMap="member">
-        SELECT MEM_PW
-        FROM HOSPITAL_MEMBER
-        WHERE EMAIL = #{email};
+        SELECT EMAIL
+            , MEM_NAME
+            , MEM_PW
+        FROM hospital_member
+        WHERE EMAIL = #{email}
+        AND MEM_NAME = #{memName}
     </select>
 
-    <update id="" >
-        UPDATE HOSPITAL_MEMBER
-        SET MEM_PW = #{memPw}
-    </update>
+
+    <!--비밀번호 재설정-->
+
+
+
 
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

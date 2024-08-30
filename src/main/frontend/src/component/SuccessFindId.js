@@ -22,7 +22,7 @@ const SuccessFindId = () => {
           <table className='successId-table'>
             <tbody>
               <tr>
-                <td>"{memInfo.memId}"</td>
+                <td>"{memInfo.email}"</td>
               </tr>
             </tbody>
           </table>

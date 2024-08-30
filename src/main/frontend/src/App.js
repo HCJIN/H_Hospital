@@ -20,6 +20,7 @@ import AdminJoin from './component/AdminJoin';
 import AdminRegInfo from './component/AdminRegInfo';
 import AdminRegPage from './component/AdminRegPage';
 import AdminJoinPage from './component/AdminJoinPage';
+import SetNewPw from './component/SetNewPw';
 
 function App() {
 
@@ -176,6 +177,8 @@ function App() {
 
         {/* 비밀번호 찾기 */}
         <Route path='findPw' element={<FindPw/>} />
+
+        <Route path='setNewPw' element={<SetNewPw/>}/>
 
         {/* 오시는길 페이지  */}
         <Route path='mapGps' element={<MapGps/>} />

@@ -6,6 +6,7 @@ import com.green.H_Hospital.member.vo.MemberVO;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -80,11 +81,20 @@ public class MemberController {
     }
 
 
-    //비밀번호 찾기
-    @GetMapping("/findPw/{email}")
-    public MemberVO findPw(@PathVariable MemberVO email) {
-        return memberService.findPw(email);
+    //멤버리스트 조회
+    @GetMapping("/memberList")
+    public List<MemberVO> getMemberList(){
+       return memberService.memberList();
     }
+
+
+    //pw 찾기
+    @PostMapping("/findPw")
+    public MemberVO findPw(@RequestBody MemberVO memberVO){
+        return memberService.findPw(memberVO);
+    }
+
+
 }
 
 
