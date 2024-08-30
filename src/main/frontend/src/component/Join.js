@@ -12,7 +12,7 @@ const Join = ({loginInfo, setLoginInfo}) => {
 
   //로그인 성공 실패 여부를 저장하는 변수
   const [isLoginSuccess, setIsLoginSuccess] = useState(false);
-
+  
   // 데이터 정보를 받아오는 함수
   useEffect(() => {
     const fetchMemberList = async () => {
@@ -143,7 +143,7 @@ const Join = ({loginInfo, setLoginInfo}) => {
                 </p>
                 <div className='icon-div'>
                   <img src='http://localhost:8080/images/kakaoBlack.png' onClick={handleKakaoLogin} alt="Kakao Login" />
-                  <img src='http://localhost:8080/images/Naver.png' onClick={Naver} alt="Naver Login" />
+                  <Naver />
                 </div>
               </td>
             </tr>

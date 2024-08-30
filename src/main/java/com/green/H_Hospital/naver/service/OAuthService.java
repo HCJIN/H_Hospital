@@ -1,6 +1,9 @@
 package com.green.H_Hospital.naver.service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.ResponseEntity;
@@ -42,10 +45,11 @@ public class OAuthService {
     public String getUserInfo(String accessToken) {
         String userInfoUrl = "https://openapi.naver.com/v1/nid/me";
 
-        String url = UriComponentsBuilder.fromHttpUrl(userInfoUrl)
-                .toUriString();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + accessToken);
+        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
 
-        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class, accessToken);
+        ResponseEntity<String> response = restTemplate.exchange(userInfoUrl, HttpMethod.GET, requestEntity, String.class);
         return response.getBody();
     }
 }
