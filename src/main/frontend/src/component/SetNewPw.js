@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import '../css/setNewPw.css';
-import { joinValiate } from '../validate/joinValidate';
+import { joinValiate } from '../validate/pwValidate';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -13,31 +13,34 @@ const SetNewPw = () => {
     memPw: '',
     confirmMemPw: ''
   });
+  console.log(newPw)
 
-  // Ref 객체 초기화
-  const memPw_valid_tag = useRef(null);
-  const confirmPw_valid_tag = useRef(null);
+  //id 유효성 검사
+  const confirmPw_valid_tag = useRef();
+  const memPw_valid_tag = useRef();
 
-  // 유효성 검사 ref 태그를 배열로 관리
-  const valid_tags = [
-    memPw_valid_tag,
-    confirmPw_valid_tag
+  //유효성 검사 ref 태그들을 한번에 배열로 가져가기 
+  const valid_tag = [
+    confirmPw_valid_tag,
+    memPw_valid_tag
   ];
 
   // 유효성 검사 state
   const [validResult, setValidResult] = useState(false);
 
   function pwChange(e) {
-    const { name, value } = e.target;
-    setNewPw(prevData => {
-      const updatedData = { ...prevData, [name]: value };
+    //입력한 데이터
+    const newData = {
+      ...newPw,
+      [e.target.name] : e.target.value
+    }
+    //입력한 데이터에 대한 validation 처리
+    //모든 데이터가 유효한 데이터면 리던 true
+    const result = joinValiate(newData, valid_tag, e.target.name);
+    setValidResult(result);
 
-      // 유효성 검사 수행
-      const result = joinValiate(updatedData, valid_tags, name);
-      setValidResult(result);
-
-      return updatedData;
-    });
+    //유효성 검사 끝난 데이터를 setMember에 저장
+    setNewPw(newData)
   }
 
   function pwSubmit() {
@@ -83,10 +86,11 @@ const SetNewPw = () => {
                   <input
                     type='password'
                     name='memPw'
-                    value={newPw.memPw}
-                    onChange={pwChange}
+                    onChange={(e)=>{
+                      pwChange(e)
+                    }}
                   />
-                  <div ref={memPw_valid_tag}></div>
+                  <div className='feedback' ref={memPw_valid_tag}></div>
                 </td>
               </tr>
               <tr>
@@ -94,11 +98,12 @@ const SetNewPw = () => {
                 <td>
                   <input
                     type='password'
-                    name='confirmMemPw'
-                    value={newPw.confirmMemPw}
-                    onChange={pwChange}
+                    name='confirmPw'
+                    onChange={(e)=>{
+                      pwChange(e)
+                    }}
                   />
-                  <div ref={confirmPw_valid_tag}></div>
+                  <div className='feedback' ref={confirmPw_valid_tag}></div>
                 </td>
               </tr>
               <tr>
