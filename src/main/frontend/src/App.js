@@ -21,6 +21,7 @@ import AdminRegInfo from './component/AdminRegInfo';
 import AdminRegPage from './component/AdminRegPage';
 import AdminJoinPage from './component/AdminJoinPage';
 import SetNewPw from './component/SetNewPw';
+import ReservationCheck from './component/ReservationCheck';
 
 function App() {
 
@@ -125,9 +126,9 @@ function App() {
                 </div>
               </li>
               <li>
-                <div onClick={()=>{}}>
+                <div onClick={()=>{navigate('/reservationCheck')}}>
                   <p><i className="bi bi-menu-button-wide-fill"></i></p>
-                  <span>건강검진안내</span>
+                  <span>진료예약조회</span>
                 </div>
               </li>
               <li className='sideBar-div-menu-last'>
@@ -191,6 +192,9 @@ function App() {
 
         {/* 예약 페이지 */}
         <Route path='/reservation' element={<Reservation />} />
+
+        {/* 진료예약조회 페이지 */}
+        <Route path='/reservationCheck' element={<ReservationCheck/>} />
 
         {/* 관리자용  */}
         <Route path='/admin'>
