@@ -1,7 +1,7 @@
 // 로그인 버튼 컴포넌트
 import React from "react";
 
-export const Naver = () => {
+const Naver = () => {
   const NAVER_CLIENT_ID = 'qI2_h1WbGfM_bhsFxjTv'; // 발급받은 클라이언트 아이디
   const REDIRECT_URI = "http://localhost:3000/oauth"; // Callback URL
   const STATE = "flase";
