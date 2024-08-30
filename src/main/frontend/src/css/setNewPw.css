@@ -1,0 +1,42 @@
+.setPw-div{
+  width: 700px;
+  height: 550px;
+  margin: 100px auto;
+}
+
+
+.setPw-title{
+  margin-bottom: 20px;
+}
+
+.setPw-title h3{
+  font-size: 1.7rem;
+  color: #0e787c;
+  margin-bottom: 10px;
+}
+
+.setPw-title span{
+  color: #474747;  
+}
+
+.setPw-table-content{
+  border-top: 2px solid #0e787c;
+  border-bottom: 1px solid #0e787c;
+}
+
+.setPw-table-body{
+}
+
+.setPw-btn{
+  margin-bottom: 20px;
+  text-align: center;
+}
+button{
+  border: none;
+  border-radius: 3px;
+  background-color: #0e787c;
+  color: #eee;
+  padding: 10px;
+  width: 90px;
+
+}
