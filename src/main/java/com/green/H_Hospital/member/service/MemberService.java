@@ -18,6 +18,9 @@ public interface MemberService {
     //기초정보 조회
     MemberVO getMemberList(MemberVO memberVO);
 
+    //기초정보 조회2
+    MemberVO getMember(MemberVO memberVO);
+
     //기초정보 업데이트
     void updateMember(MemberVO memberVO);
 

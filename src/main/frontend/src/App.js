@@ -155,7 +155,7 @@ function App() {
         <Route path='/loginForm' element={<Login setLoginInfo={setLoginInfo} loginInfo={loginInfo}/>}/>
 
         {/* 회원가입 페이지 */}
-        <Route path='Mainjoin' element={<Join />}></Route>
+        <Route path='Mainjoin' element={<Join setLoginInfo={setLoginInfo} loginInfo={loginInfo}/>}></Route>
 
         {/* 회원가입동의 페이지 */}
         <Route path='joinPage' element={<JoinPage />}></Route>

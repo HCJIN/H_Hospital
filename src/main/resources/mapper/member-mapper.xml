@@ -71,6 +71,25 @@
         WHERE MEM_TEL = #{memTel}
     </select>
 
+    <!-- 회원 기초정보 체크2 -->
+    <select id="getMember" resultMap="member">
+        SELECT MEM_ID
+            ,   MEM_PW
+            ,   MEM_NAME
+            ,   MEM_ADDR
+            ,   ADDR_DETAIL
+            ,   MEM_TEL
+            ,   POST
+            ,   MEM_ROLE
+            ,   H_CODE
+            ,   GENDER
+            ,   BIRTHDAY
+            ,   EMAIL
+            ,   MEM_NUM
+        FROM HOSPITAL_MEMBER
+        WHERE EMAIL = #{email}
+    </select>
+
 	<!-- 회원가입 기초정보 업데이트 -->
     <update id="updateMember">
         UPDATE HOSPITAL_MEMBER
