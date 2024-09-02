@@ -59,6 +59,10 @@
   font-size: 14px;
 }
 
+.top-menu{
+  display: none;
+}
+
 .login span{
   margin: 0 10px;
   cursor: pointer;
@@ -329,6 +333,10 @@ a{
 
 /* icon-div-end */
 
+.sideBar-div{
+  display: block;
+}
+
 @media screen and (min-width: 1280px) and (max-width: 1516px){
   .sideBar-div{
     position: fixed;
@@ -388,6 +396,13 @@ a{
     height: 45px;
   }
   /* main-icon-div-end */
+
+  .footerLogo{
+    float: left;
+    width: 310px;
+    margin-top: 50px;
+    margin-left: 30px;
+  }
 }
 
 @media screen and (min-width: 770px) and (max-width: 1025px) {
@@ -412,8 +427,8 @@ a{
   .footerLogo{
     float: left;
     width: 310px;
-    margin-top: 10px;
-    margin-left: 20px;
+    margin-top: 0px;
+    margin-left: 30px;
   }
 
   .footerMenu{
@@ -430,7 +445,7 @@ a{
     position: absolute;
     gap: 10px ;
     top: 50px;
-    left: 75%;
+    left: 55%;
   }
   
   .footerMenu2 select, .footerMenu3 select{
@@ -445,8 +460,8 @@ a{
     align-items: center;
     position: absolute;
     gap: 10px ;
-    top: 80px;
-    left: 75%;
+    top: 110px;
+    left: 55%;
   }
   
   .footerMenu2-select{
@@ -485,15 +500,25 @@ a{
   /* footerMenu2,3-end */
   
   .main-icon-div{
-    display: none;
+    margin-right: 10px;
   }
   /* main-icon-div-end */
 
 }
 
 @media screen and (max-width: 767px) {
+
   .sideBar-div{
     display: none;
+  }
+
+  
+  .sideBar-div.show{
+    display: block;
+  }
+  
+  .top-menu{
+    display: block;
   }
   /* sideBar-end */
 
