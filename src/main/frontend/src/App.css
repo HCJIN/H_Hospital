@@ -160,7 +160,6 @@ a{
   width: 100%;
   height: 250px;
   background-color: #7e8389;
-  min-width: 1280px;
   padding-bottom: 30px;
 }
 
@@ -329,6 +328,262 @@ a{
 }
 
 /* icon-div-end */
+
+@media screen and (min-width: 1280px) and (max-width: 1516px){
+  .sideBar-div{
+    position: fixed;
+    left: 3%;
+    top: 50%;
+    transform: translate(-8%, -50%);
+    border-radius: 10px;
+    z-index: 8888;
+  }
+  /* sideBar-end */
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1279px) {
+
+  .sideBar-div{
+    position: fixed;
+    left: 3%;
+    top: 50%;
+    transform: translate(-8%, -50%);
+    border-radius: 10px;
+    z-index: 8888;
+  }
+  /* sideBar-end */
+
+  .footerMenu{
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  /* footerLogo-end */
+  
+  .footerMenu-ul ul li {
+    color: #fff;
+    letter-spacing: 0;
+    font-size: 10px;
+    font-weight: 400;
+    padding: 0 0 0 2px;
+    cursor: pointer;
+    position: relative; /* ::before를 위한 위치 설정 */
+    overflow: hidden;   /* 게이지 바가 요소 밖으로 넘치지 않도록 설정 */
+  }
+  /* footerMenu-end */
+  
+  .footerMenu2-select{
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+  }
+  /* footerMenu2,3-end */
+  
+  .main-icon-div{
+    position: absolute;
+    top: 106px;
+    right: 10px;
+    width: 175px;
+    height: 45px;
+  }
+  /* main-icon-div-end */
+}
+
+@media screen and (min-width: 770px) and (max-width: 1025px) {
+
+  .sideBar-div{
+    position: fixed;
+    left: 3%;
+    top: 50%;
+    transform: translate(-8%, -50%);
+    border-radius: 10px;
+    z-index: 8888;
+  }
+  /* sideBar-end */
+
+  .footerWrap{
+    width: 100%;
+    height: 200px;
+    background-color: #7e8389;
+    padding-bottom: 30px;
+  }
+
+  .footerLogo{
+    float: left;
+    width: 310px;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+
+  .footerMenu{
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .footerMenu2{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    gap: 10px ;
+    top: 50px;
+    left: 75%;
+  }
+  
+  .footerMenu2 select, .footerMenu3 select{
+    width: 148px;
+    font-size: 12px;
+  }
+  
+  .footerMenu3{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    gap: 10px ;
+    top: 80px;
+    left: 75%;
+  }
+  
+  .footerMenu2-select{
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+  }
+  
+  .footerMenu3-select{
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .footerMenu-ul ul {
+    display: none;
+  }
+
+  .footerMenu-ul ul li {
+    color: #fff;
+    letter-spacing: 0;
+    font-size: 10px;
+    font-weight: 400;
+    padding: 0 0 0 2px;
+    cursor: pointer;
+    position: relative; /* ::before를 위한 위치 설정 */
+    overflow: hidden;   /* 게이지 바가 요소 밖으로 넘치지 않도록 설정 */
+  }
+  /* footerMenu-end */
+  
+  .footerMenu2-select{
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+  }
+  /* footerMenu2,3-end */
+  
+  .main-icon-div{
+    display: none;
+  }
+  /* main-icon-div-end */
+
+}
+
+@media screen and (max-width: 767px) {
+  .sideBar-div{
+    display: none;
+  }
+  /* sideBar-end */
+
+  .footerWrap{
+    width: 100%;
+    height: 200px;
+    background-color: #7e8389;
+    padding-bottom: 30px;
+  }
+
+  .footerLogo{
+    float: left;
+    width: 310px;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+  .footerMenu{
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .footerMenu2{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    gap: 10px ;
+    top: 20px;
+    left: 75%;
+  }
+  
+  .footerMenu2 select, .footerMenu3 select{
+    width: 128px;
+    font-size: 12px;
+  }
+  
+  .footerMenu3{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    gap: 10px ;
+    top: 80px;
+    left: 75%;
+  }
+  
+  .footerMenu2-select{
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+  }
+  
+  .footerMenu3-select{
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .footerMenu-ul ul {
+    display: none;
+  }
+
+  .footerMenu-ul ul li {
+    color: #fff;
+    letter-spacing: 0;
+    font-size: 10px;
+    font-weight: 400;
+    padding: 0 0 0 2px;
+    cursor: pointer;
+    position: relative; /* ::before를 위한 위치 설정 */
+    overflow: hidden;   /* 게이지 바가 요소 밖으로 넘치지 않도록 설정 */
+  }
+  /* footerMenu-end */
+  
+  .footerMenu2-select{
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+  }
+  /* footerMenu2,3-end */
+  
+  .main-icon-div{
+    display: none;
+  }
+  /* main-icon-div-end */
+}
 
 
 
