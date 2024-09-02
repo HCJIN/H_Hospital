@@ -4,6 +4,7 @@ import axios from 'axios';
 import { joinValiate } from '../validate/joinValidate';
 import { useNavigate, useParams } from 'react-router-dom';
 import RegBar from './RegBar';
+import { getCLS } from 'web-vitals';
 
 const AdminRegInfo = () => {
 
@@ -55,6 +56,7 @@ const AdminRegInfo = () => {
     axios
     .get(`/member/getMemberList/${memTel}`)
     .then((res)=>{
+      console.log(res.data)
       setSelectMember(res.data);
     })
     .catch((error)=>{
