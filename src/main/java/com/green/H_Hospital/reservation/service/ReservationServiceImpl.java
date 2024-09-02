@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("reservationService")
 public class ReservationServiceImpl implements ReservationService{
 
@@ -22,5 +24,11 @@ public class ReservationServiceImpl implements ReservationService{
     @Override
     public void insertReservation(ReservationVO reservationVO) {
         sqlSession.insert("reservationMapper.insertReservation", reservationVO);
+    }
+
+    //진료예약조회
+    @Override
+    public List<ReservationVO> getReservation() {
+        return sqlSession.selectList("reservationMapper.getReservation");
     }
 }

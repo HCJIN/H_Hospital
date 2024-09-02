@@ -171,8 +171,6 @@
         WHERE EMAIL = #{email}
     </update>
 
-
-
 </mapper>
 
 
