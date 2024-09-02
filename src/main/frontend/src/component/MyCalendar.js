@@ -3,11 +3,12 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import '../css/MyCalendar.css';
 
-function MyCalendar() {
+function MyCalendar({onDateChange}) {
   const [value, setValue] = useState(new Date());
 
   const onChange = (date) => {
     setValue(date);
+    onDateChange(date); //날짜 변경 시 상위 컴포넌트로 전달
   };
 
   return (
