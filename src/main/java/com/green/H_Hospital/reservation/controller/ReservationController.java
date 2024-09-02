@@ -6,6 +6,8 @@ import com.green.H_Hospital.reservation.vo.ReservationVO;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/reservation")
 public class ReservationController {
@@ -22,5 +24,11 @@ public class ReservationController {
     @PostMapping("/insertReservation")
     public void insertReservation(@RequestBody ReservationVO reservationVO){
         reservationService.insertReservation(reservationVO);
+    }
+
+    //진료예약조회
+    @GetMapping("/reservationAll")
+    public List<ReservationVO> getReservation(){
+        return reservationService.getReservation();
     }
 }

@@ -12,4 +12,5 @@ public class ReservationVO {
     private String serviceType;
     private String status;
     private int memNum;
+    private MemberVO memberVO;
 }
