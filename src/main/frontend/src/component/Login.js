@@ -3,7 +3,6 @@ import '../css/login.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { handleKakaoLogin } from '../snsLogin/SocialKaKao';
-import Naver from '../snsLogin/Naver';
 
 const Login = ({loginInfo, setLoginInfo}) => {
 
@@ -211,7 +210,6 @@ const Login = ({loginInfo, setLoginInfo}) => {
             </p>
             <div className='icon-div'>
               <img src='http://localhost:8080/images/kakaoBlack.png' onClick={handleKakaoLogin} alt="Kakao Login" />
-              <img src='http://localhost:8080/images/Naver.png' onClick={Naver} alt="Naver Login" />
             </div>
           </div>
           <ul>
