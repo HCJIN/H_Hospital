@@ -22,6 +22,7 @@ import AdminRegPage from './component/AdminRegPage';
 import AdminJoinPage from './component/AdminJoinPage';
 import SetNewPw from './component/SetNewPw';
 import ReservationCheck from './component/ReservationCheck';
+import ServiceCenter from './component/ServiceCenter';
 
 function App() {
 
@@ -155,7 +156,7 @@ function App() {
                   </div>
                 </li>
                 <li>
-                  <div onClick={()=>{}}>
+                  <div onClick={()=>{navigate('/serviceCenter')}}>
                     <p><i className="bi bi-heart-pulse-fill"></i></p>
                     <span>심뇌혈관센터</span>
                   </div>
@@ -232,6 +233,9 @@ function App() {
 
         {/* 진료예약조회 페이지 */}
         <Route path='/reservationCheck' element={<ReservationCheck/>} />
+
+        {/* 고객센터 페이지 */}
+        <Route path='/serviceCenter' element={<ServiceCenter/>}/>
 
         {/* 관리자용  */}
         <Route path='/admin'>
