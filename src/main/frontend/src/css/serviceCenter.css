@@ -1,0 +1,154 @@
+.serviceCenter-div{
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+
+.title{
+  width: 70%;
+  margin: 0 auto;
+}
+
+.title h2{
+  color: #333;
+  font-size: 1.375rem;
+  font-weight: bold;
+  letter-spacing: -.025rem;
+}
+
+/* title-end */
+
+.section-div{
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.section-container{
+  display: flex;
+  align-items: flex-start;
+}
+
+.section-container-left{
+  width: auto;
+}
+
+.left-side{
+  width: 190px;
+}
+
+.side-menu-ul{
+  background-color: #fff;
+  border: 1px solid #e5e5e5e5;
+}
+
+.side-menu-ul li{
+  padding: 12px 24px;
+}
+
+.side-menu-ul > li h3{
+  font-size: 1rem;
+  color: #333;
+  font-weight: 300;
+  line-height: 1.25rem;
+  word-break: break-all;
+}
+
+/* side-menu-end */
+
+.cscenter-box{
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  margin-top: 10px;
+  padding: 20px;
+  width: 190px;
+}
+
+.cscenter-top{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 10px;
+}
+
+.bi-telephone{
+  display: inline-flex;
+  height: 20px;
+  margin-right: 5px;
+  margin-top: 5px;
+  width: 20px;
+}
+
+.cscenter-top h4{
+  color: #333;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 24px;
+  word-break: break-all;
+}
+
+.cscenter-bottom h4{
+  padding: 20px;
+  font-size: 1.2rem;
+  color: #525252;
+  line-height: 20px;
+  font-weight: bold;
+}
+
+/* section-left-end */
+
+.section-container-right{
+  flex: 1;
+  margin-left: 20px;
+}
+
+.mycont{
+  border: 1px solid #e5e5e5;
+}
+
+.right-top-div{
+  border-bottom: 1px solid #e5e5e5;
+  padding: 18px 26px;
+}
+
+.right-title{
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* right-title-end */
+
+.right-bottom-div{
+  padding: 18px 26px 80px;
+}
+
+.list-title{
+  align-items: center;
+  display: flex;
+  font-size: .875rem;
+  justify-content: space-between;
+  padding: 14px 20px;
+}
+
+.list-title span{
+  color: #333;
+  font-size: .875rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.bold{
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+  display: flex;
+  font-size: .875rem;
+  justify-content: space-between;
+  padding: 14px 20px;
+}
+
+.bold span{
+  font-weight: 700;
+}
+
