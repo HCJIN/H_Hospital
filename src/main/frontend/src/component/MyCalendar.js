@@ -15,9 +15,6 @@ function MyCalendar() {
       <Calendar
         onChange={onChange}
         value={value}
-        tileContent={({ date, view }) => 
-          view === 'month' && date.getDate() === 5 ? <p>Special</p> : null
-        }
       />
       <p>선택한 날짜: {value.toDateString()}</p>
     </div>
