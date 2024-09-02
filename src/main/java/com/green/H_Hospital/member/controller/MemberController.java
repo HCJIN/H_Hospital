@@ -94,7 +94,6 @@ public class MemberController {
        return memberService.memberList();
     }
 
-
     //pw 찾기
     @PostMapping("/findPw")
     public MemberVO findPw(@RequestBody MemberVO memberVO){
@@ -103,8 +102,8 @@ public class MemberController {
 
     //pw 변경
     @PostMapping("/setNewPw")
-    public MemberVO setNewPw(@RequestBody MemberVO memberVO){
-        return memberService.setNewPw(memberVO);
+    public void setNewPw(@RequestBody MemberVO memberVO){
+        memberService.setNewPw(memberVO);
     }
 
 

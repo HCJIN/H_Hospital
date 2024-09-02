@@ -167,7 +167,7 @@
     <!--비밀번호 재설정-->
     <update id="setNewPw">
         UPDATE hospital_member
-        SET MEM_PW = {memPw}
+        SET MEM_PW = #{memPw}
         WHERE EMAIL = #{email}
     </update>
 

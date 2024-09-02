@@ -1,9 +1,17 @@
+h1{
+  text-align: center;
+  padding: 50px;
+  font-size: 2.4rem;
+  color: #0e787c;
+}
+
 /* MyCalendar.css */
 .calendar-container {
   width: 70%;
   height: 70%;
   margin: 30px auto;
   padding: 30px;
+  margin-top: 0;
   background-color: #f7f9fc;
   border: 1px solid #d1e0e0;
   border-radius: 8px;
@@ -31,7 +39,7 @@
 }
 
 .react-calendar__tile--active {
-  background-color: #4caf50;
+  background-color: #0e787c;
   color: white;
 }
 
@@ -44,7 +52,7 @@
 }
 
 .react-calendar__navigation button {
-  color: #4caf50;
+  color: #0e787c;
   font-size: 2rem;
   padding-left: 30px;
   padding-right: 30px;

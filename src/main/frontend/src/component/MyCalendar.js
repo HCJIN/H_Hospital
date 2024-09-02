@@ -11,12 +11,15 @@ function MyCalendar() {
   };
 
   return (
-    <div className="calendar-container">
-      <Calendar
-        onChange={onChange}
-        value={value}
-      />
-      <p>선택한 날짜: {value.toDateString()}</p>
+    <div>
+      <h1>예약자명단 조회</h1>
+      <div className="calendar-container">
+        <Calendar
+          onChange={onChange}
+          value={value}
+        />
+        <p>선택한 날짜: {value.toDateString()}</p>
+      </div>
     </div>
   );
 }
