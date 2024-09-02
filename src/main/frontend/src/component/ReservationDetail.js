@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import '../css/reservationDetail.css'
 
-const ReservationDetail = () => {
+const ReservationDetail = ({selectedDate}) => {
 
   const [reservationInfo, setReservationInfo] = useState([]);
 
@@ -16,17 +16,23 @@ const ReservationDetail = () => {
     });
   }, []);
 
-  // `index`를 매개변수로 받아 해당 인덱스의 `memberVO`의 이름을 반환합니다.
-  function memberVOMemName(index) {
-    // reservationInfo의 해당 인덱스가 존재하고 memberVO가 정의되어 있으면 이름을 반환
-    return reservationInfo[index].memberVO.memName || '';
-  }
+    // 선택된 날짜와 일치하는 예약 정보를 필터링합니다.
+    const filteredReservations = reservationInfo.filter(reservation =>{}
+      //<여기부터 수정해>
+      // new Date(reservation.resDate).toDateString() === selectedDate.toDateString()
+    );
 
-  // `index`를 매개변수로 받아 해당 인덱스의 `memberVO`의 전화번호를 반환합니다.
-  function memberVOMemTel(index) {
-    // reservationInfo의 해당 인덱스가 존재하고 memberVO가 정의되어 있으면 전화번호를 반환
-    return reservationInfo[index].memberVO.memTel || '';
-  }
+  // // `index`를 매개변수로 받아 해당 인덱스의 `memberVO`의 이름을 반환합니다.
+  // function memberVOMemName(index) {
+  //   // reservationInfo의 해당 인덱스가 존재하고 memberVO가 정의되어 있으면 이름을 반환
+  //   return reservationInfo[index].memberVO.memName || '';
+  // }
+
+  // // `index`를 매개변수로 받아 해당 인덱스의 `memberVO`의 전화번호를 반환합니다.
+  // function memberVOMemTel(index) {
+  //   // reservationInfo의 해당 인덱스가 존재하고 memberVO가 정의되어 있으면 전화번호를 반환
+  //   return reservationInfo[index].memberVO.memTel || '';
+  // }
 
 
   console.log(reservationInfo);
@@ -47,23 +53,21 @@ const ReservationDetail = () => {
         </thead>
         <tbody>
           {
-            reservationInfo.map((reservationInfo, i) => {
-              return(
-                <tr key={i}>
-                  <td>{reservationInfo.memNum}</td>
-                  <td>{memberVOMemName(i)}</td>
-                  <td>{memberVOMemTel(i)}</td>
-                  <td>{reservationInfo.serviceType}</td>
-                  <td>{reservationInfo.resDate}</td>
-                  <td>{reservationInfo.resTime}</td>
-                </tr>
-              )
-            })
-          }
+            filteredReservations.map((reservation, i) => (
+              <tr key={i}>
+                <td>{reservation.memNum}</td>
+                <td>{reservation.memberVO?.memName || ''}</td>
+                <td>{reservation.memberVO?.memTel || ''}</td>
+                <td>{reservation.serviceType}</td>
+                <td>{reservation.resDate}</td>
+                <td>{reservation.resTime}</td>
+              </tr>
+              ))
+            }
         </tbody>
       </table>
     </div>
-  )
+  );
 }
 
 export default ReservationDetail
