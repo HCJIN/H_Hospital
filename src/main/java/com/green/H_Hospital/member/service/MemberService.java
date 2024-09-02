@@ -40,7 +40,7 @@ public interface MemberService {
     MemberVO findPw(MemberVO memberVO);
 
     //pw 변경
-    MemberVO setNewPw(MemberVO memberVO);
+    void setNewPw(MemberVO memberVO);
 
 
 

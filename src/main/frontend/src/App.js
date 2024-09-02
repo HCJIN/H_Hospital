@@ -21,6 +21,7 @@ import AdminRegInfo from './component/AdminRegInfo';
 import AdminRegPage from './component/AdminRegPage';
 import AdminJoinPage from './component/AdminJoinPage';
 import SetNewPw from './component/SetNewPw';
+import ReservationCheck from './component/ReservationCheck';
 
 function App() {
 
@@ -28,6 +29,10 @@ function App() {
 
   //로그인 정보를 저장 할 수 있는 state 변수
   const [loginInfo, setLoginInfo] = useState({});
+
+  //사이드바 메뉴 상태 저장 state
+  const [show, setShow] = useState(true);
+  const [menuLabel, setMenuLabel] = useState("메뉴")
 
   //로그인 성공 시 loginInfo에 로그인 정보를 저장하지만 
   //새로고침하면 App.js 다시 시작하면서 loginInfo 변수의 값이 초기화된다.
@@ -49,7 +54,34 @@ function App() {
     }
   },[])
 
-  //사이드 메뉴 정보 관리
+  //사이드바 토글 및 메뉴 이름 변경
+  function handleMenuClick(){
+    setShow(!show);
+    setMenuLabel(!show ? "메뉴닫기" : "메뉴");
+  }
+
+  // 화면 크기가 변경될 때 사이드바 상태를 업데이트
+  useEffect(() => {
+    
+    function handleResize() {
+      // 767px 이상으로 화면이 커지면 사이드바를 보이도록 설정
+      if (window.innerWidth > 767) {
+        setShow(true);
+        setMenuLabel("메뉴");
+      }else{
+        setShow(false)
+      }
+    }
+
+    // 윈도우 리사이즈 이벤트 리스너 등록
+    window.addEventListener('resize', handleResize);
+
+    // 컴포넌트가 언마운트될 때 리스너 제거
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+
+  }, []);
 
 
   return (
@@ -59,6 +91,7 @@ function App() {
           Object.keys(loginInfo).length == 0
           ?
           <ul className='header-ul'>
+            <li className='top-menu' onClick={handleMenuClick}>{menuLabel}</li>
             <li onClick={()=>{navigate('/loginForm')}}>로그인</li>
             <li onClick={()=>{navigate('/MainJoin')}}>회원가입</li>
             <li onClick={() => {navigate('/admin/adminJoin')}}>직원 회원가입</li>
@@ -89,60 +122,65 @@ function App() {
 
 
       {/* 사이드 바 */}
-      <div className='sideBar-div'>
-          <div className='sideBar-div-tel'>
-            <p><i className="bi bi-phone-vibrate"></i>대표번호</p>
-            <p>052-2024-0906</p>
-          </div>
-          <div className='sideBar-div-menu'>
-            <ul>
-              <li className='sideBar-div-menu-first' onClick={()=>{
-                navigate('/reservation')
-              }}>
-                <div onClick={()=>{}}>
-                <p><i className="bi bi-pc-display-horizontal"></i></p>               
-                <span>지금예약</span>
-              </div>
-              </li>
-              <li>
-                <div onClick={()=>{}}>
-                  <p><i className="bi bi-card-checklist"></i></p>
-                  <span>증명서발급</span>
-                </div>
-              </li>
-              <li>
-                <div onClick={()=>{
-                  navigate('/mapGps')
+
+      {
+        show && ( 
+          <div className={`sideBar-div ${show ? "show" : ""}`}>
+            <div className='sideBar-div-tel'>
+              <p><i className="bi bi-phone-vibrate"></i>대표번호</p>
+              <p>052-2024-0906</p>
+            </div>
+            <div className='sideBar-div-menu'>
+              <ul>
+                <li className='sideBar-div-menu-first' onClick={()=>{
+                  navigate('/reservation')
                 }}>
-                  <p><i className="bi bi-hospital"></i></p>
-                  <span>오시는길</span>
+                  <div onClick={()=>{}}>
+                  <p><i className="bi bi-pc-display-horizontal"></i></p>               
+                  <span>지금예약</span>
                 </div>
-              </li>
-              <li>
-                <div onClick={()=>{}}>
-                  <p><i className="bi bi-heart-pulse-fill"></i></p>
-                  <span>심뇌혈관센터</span>
-                </div>
-              </li>
-              <li>
-                <div onClick={()=>{}}>
-                  <p><i className="bi bi-menu-button-wide-fill"></i></p>
-                  <span>건강검진안내</span>
-                </div>
-              </li>
-              <li className='sideBar-div-menu-last'>
-                <div>
-                  <a href="https://www.ussunflower.or.kr/" target='_blank'>
-                    <p><i className="bi bi-brightness-low-fill"></i></p>
-                    <span>
-                      해바라기센터
-                    </span>
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </div>
-      </div>
+                </li>
+                <li>
+                  <div onClick={()=>{}}>
+                    <p><i className="bi bi-card-checklist"></i></p>
+                    <span>증명서발급</span>
+                  </div>
+                </li>
+                <li>
+                  <div onClick={()=>{
+                    navigate('/mapGps')
+                  }}>
+                    <p><i className="bi bi-hospital"></i></p>
+                    <span>오시는길</span>
+                  </div>
+                </li>
+                <li>
+                  <div onClick={()=>{}}>
+                    <p><i className="bi bi-heart-pulse-fill"></i></p>
+                    <span>심뇌혈관센터</span>
+                  </div>
+                </li>
+                <li>
+                  <div onClick={()=>{navigate('/reservationCheck')}}>
+                    <p><i className="bi bi-menu-button-wide-fill"></i></p>
+                    <span>진료예약조회</span>
+                  </div>
+                </li>
+                <li className='sideBar-div-menu-last'>
+                  <div>
+                    <a href="https://www.ussunflower.or.kr/" target='_blank'>
+                      <p><i className="bi bi-brightness-low-fill"></i></p>
+                      <span>
+                        해바라기센터
+                      </span>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+        </div>
+      )}
+      
 
 
       <Routes>
@@ -192,6 +230,9 @@ function App() {
         {/* 예약 페이지 */}
         <Route path='/reservation' element={<Reservation />} />
 
+        {/* 진료예약조회 페이지 */}
+        <Route path='/reservationCheck' element={<ReservationCheck/>} />
+
         {/* 관리자용  */}
         <Route path='/admin'>
           {/* 관리자 로그인 페이지 */}
@@ -238,60 +279,62 @@ function App() {
               <li>홈페이지이용문의</li>
             </ul>
           </div>
-          <div className='footerMenu2'>
-            <div className='footerMenu2-select'>
-              <select>
-                <option>진료과</option>
-                <option>=====진료과=====</option>
-                <option>가정의학과</option>
-                <option>감염내과</option>
-                <option>=====암병원=====</option>
-                <option>CAR T 센터</option>
-                <option>간암센터</option>
-                <option>=====어린이병원=====</option>
-                <option>소아감염과</option>
-                <option>소아소화기영양과</option>
-                <option>=====심장병원=====</option>
-                <option>대동맥질환센터</option>
-                <option>말초혈관질환센터</option>
-              </select>
-              <button type='button' onClick={() => {}}>바로가기</button>
+          <div className='footerMenuWrap'>
+            <div className='footerMenu2'>
+              <div className='footerMenu2-select'>
+                <select>
+                  <option>진료과</option>
+                  <option>=====진료과=====</option>
+                  <option>가정의학과</option>
+                  <option>감염내과</option>
+                  <option>=====암병원=====</option>
+                  <option>CAR T 센터</option>
+                  <option>간암센터</option>
+                  <option>=====어린이병원=====</option>
+                  <option>소아감염과</option>
+                  <option>소아소화기영양과</option>
+                  <option>=====심장병원=====</option>
+                  <option>대동맥질환센터</option>
+                  <option>말초혈관질환센터</option>
+                </select>
+                <button type='button' onClick={() => {}}>바로가기</button>
+              </div>
+              <div className='footerMenu2-select'>
+                <select>
+                  <option>재단 및 재단산하병원</option>
+                  <option>아산사회복지재단</option>
+                  <option>강릉아산병원</option>
+                  <option>영덕아산병원</option>
+                  <option>정읍아산병원</option>
+                  <option>홍천아산병원</option>
+                </select>
+                <button type='button' onClick={() => {}}>바로가기</button>
+              </div>
             </div>
-            <div className='footerMenu2-select'>
-              <select>
-                <option>재단 및 재단산하병원</option>
-                <option>아산사회복지재단</option>
-                <option>강릉아산병원</option>
-                <option>영덕아산병원</option>
-                <option>정읍아산병원</option>
-                <option>홍천아산병원</option>
-              </select>
-              <button type='button' onClick={() => {}}>바로가기</button>
-            </div>
+            <div className='footerMenu3'>
+              <div className='footerMenu3-select'>
+                <select>
+                  <option>센터/클리닉/연구원/기타</option>
+                  <option>간센터</option>
+                  <option>건강증진센터</option>
+                  <option>국제진료센터</option>
+                  <option>당뇨병진료센터</option>
+                  <option>로봇수술센터</option>
+                </select>
+                <button type='button' onClick={() => {}}>바로가기</button>
+              </div>
+              <div className='footerMenu3-select'>
+                <select>
+                  <option>센터/클리닉/연구원/기타</option>
+                  <option>간센터</option>
+                  <option>건강증진센터</option>
+                  <option>국제진료센터</option>
+                  <option>당뇨병진료센터</option>
+                  <option>로봇수술센터</option>
+                </select>
+                <button type='button' onClick={() => {}}>바로가기</button>
+              </div>
           </div>
-          <div className='footerMenu3'>
-            <div className='footerMenu3-select'>
-              <select>
-                <option>센터/클리닉/연구원/기타</option>
-                <option>간센터</option>
-                <option>건강증진센터</option>
-                <option>국제진료센터</option>
-                <option>당뇨병진료센터</option>
-                <option>로봇수술센터</option>
-              </select>
-              <button type='button' onClick={() => {}}>바로가기</button>
-            </div>
-            <div className='footerMenu3-select'>
-              <select>
-                <option>센터/클리닉/연구원/기타</option>
-                <option>간센터</option>
-                <option>건강증진센터</option>
-                <option>국제진료센터</option>
-                <option>당뇨병진료센터</option>
-                <option>로봇수술센터</option>
-              </select>
-              <button type='button' onClick={() => {}}>바로가기</button>
-            </div>
           </div>
           <div className='main-icon-div'>
             <img className='main-icon' src='http://localhost:8080/images/ban01.png'></img>

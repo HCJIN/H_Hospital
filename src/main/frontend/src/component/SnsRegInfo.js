@@ -3,6 +3,7 @@ import '../css/regInfo.css'
 import axios from 'axios';
 import { snsValidata } from '../validate/snsValidata';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import RegBar from './RegBar';
 
 const SnsRegInfo = () => {
 
@@ -100,6 +101,7 @@ const SnsRegInfo = () => {
 
   return (
     <div className='regInfo-div'>
+      <RegBar step={3}/>
       <table className='regInfo-table'>
         <tbody>
           <tr>
@@ -330,7 +332,7 @@ const SnsRegInfo = () => {
             <td><span>✔</span>휴대전화</td>
             <td>
               <p className='desc'>
-                입력하신 휴대전화번호로 서울아산병원의 진료예약내역이 전송되오니 정확하게 입력하여 주시기 바랍니다.
+                입력하신 휴대전화번호로 울산메디칼센터의 진료예약내역이 전송되오니 정확하게 입력하여 주시기 바랍니다.
                 <br></br>
                 부정확한 휴대본 번호 입력 시 다른 사람에게 나의 진료예약 일정 정보가 전송될 수 도 있습니다.
               </p>

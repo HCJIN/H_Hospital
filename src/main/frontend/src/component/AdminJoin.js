@@ -13,7 +13,7 @@ const AdminJoin = () => {
       <div className='join-title'>
         <p>직원 회원가입</p>
         <p>
-          <span className='join-green'>서울아산병원 홈페이지 회원가입을 환영합니다.</span>서울아산병원 홈페이지의 직원이 되시면 <span className='join-green'>다양한 정보와 맞춤 서비스</span>를 이용하실 수 있습니다.
+          <span className='join-green'>울산메디칼센터 홈페이지 회원가입을 환영합니다.</span>울산메디칼센터 홈페이지의 직원이 되시면 <span className='join-green'>다양한 정보와 맞춤 서비스</span>를 이용하실 수 있습니다.
         </p>
         <p>
           회원가입절차가 연령에 따라 다르오니, 해당되는 회원가입 유형을 선택하여 진행하여 주세요.
@@ -25,7 +25,7 @@ const AdminJoin = () => {
             <tr className='join-tr'>
               <td className='join-td'>
                 <p>
-                  <strong>서울아산병원 직원 회원가입</strong>
+                  <strong>울산메디칼센터 직원 회원가입</strong>
                 </p>
                 <button className='btn btn-primary' type='button' onClick={()=>{navigate('/admin/adminJoinPage')}}>직원 회원가입하기</button>
               </td>
@@ -43,9 +43,9 @@ const AdminJoin = () => {
       </div>
       <div className='service-div'>
         <div className='service-title'>
-          <h3>서울아산병원 홈페이지 직원을 위한 맞춤 서비스</h3>
+          <h3>울산메디칼센터 홈페이지 직원을 위한 맞춤 서비스</h3>
           <p>
-            서울아산병원 홈페이지의 직원의 되시면
+            울산메디칼센터 홈페이지의 직원의 되시면
             <strong>다양한 정보와 맞춤 서비스</strong>
             를 이용하실 수 있습니다.
           </p>
@@ -53,7 +53,7 @@ const AdminJoin = () => {
         <div className='mychart'>
           <h4>나의차트</h4>
           <p>
-            서울아산병원에서 이루어진 진료와 관련된 모든 정보를 확인할 수 있으며, 그 외 다양한 서비스를 이용할 수 있습니다.<br></br>
+            울산메디칼센터에서 이루어진 진료와 관련된 모든 정보를 확인할 수 있으며, 그 외 다양한 서비스를 이용할 수 있습니다.<br></br>
             <span>(개인정보보호를 위해 일부는 제한된 정보가 제공됩니다.)</span>
           </p>
         </div>

@@ -37,7 +37,7 @@ const MapGps = () => {
       <div className='map-head'>오시는길</div>
       <div className='map-hospital-addr'>
         <h4>
-          서울아산병원
+          울산메디칼센터
           <span>
             05505 서울특별시 송파구 올림픽로43길 88 (풍납2동 388-1)
           </span>
@@ -48,7 +48,7 @@ const MapGps = () => {
         <ul>
         <li onClick={() => handleClick('busInfo')}>
           순환버스 안내 <br />
-          (잠실나루역 ↔ 서울아산병원)
+          (잠실나루역 ↔ 울산메디칼센터)
         </li>
         <li onClick={() => handleClick('publicTransport')}>
           대중교통 이용 시
@@ -110,7 +110,7 @@ const MapGps = () => {
                   <div className='green'>잠실나루역</div>
                   <div>
                     1번 출구 <strong>→</strong> 순환버스 또는 도보(10분)로 이동 <br/>
-                    3번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>4318</span> 버스 승차 <strong>→</strong> 하차(서울아산병원 동관) <br/>
+                    3번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>4318</span> 버스 승차 <strong>→</strong> 하차(울산메디칼센터 동관) <br/>
                   </div>
                 </div>
                 <div className='subway'>
@@ -118,19 +118,19 @@ const MapGps = () => {
                     잠실역
                   </div>
                   <div>
-                    7번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>4318</span> 버스 승차 <strong>→</strong> 하차(서울아산병원 동관)
+                    7번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>4318</span> 버스 승차 <strong>→</strong> 하차(울산메디칼센터 동관)
                   </div>
                 </div>
                 <div className='subway'>
                   <div className='purple'>천호역</div>
                   <div>
-                    9번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>4318</span> 버스 또는 <span style={{color: '#058b40', fontWeight: 'bold'}}>112-5</span> 버스 승차 <strong>→</strong> 하차(서울아산병원 동관)
+                    9번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>4318</span> 버스 또는 <span style={{color: '#058b40', fontWeight: 'bold'}}>112-5</span> 버스 승차 <strong>→</strong> 하차(울산메디칼센터 동관)
                   </div>
                 </div>
                 <div className='subway'>
                   <div className='purple'>강동역</div>
                   <div>
-                  1번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>112-5</span> 버스 승차 <strong>→</strong> 하차(서울아산병원 동관)
+                  1번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>112-5</span> 버스 승차 <strong>→</strong> 하차(울산메디칼센터 동관)
                   </div>
                 </div>
                 <div className='subway'>
@@ -138,7 +138,7 @@ const MapGps = () => {
                     강동구청역
                   </div>
                   <div>
-                    5번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>112-5</span> 버스 승차 <strong>→</strong> 하차(서울아산병원 동관)
+                    5번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>112-5</span> 버스 승차 <strong>→</strong> 하차(울산메디칼센터 동관)
                   </div>
                 </div>
                 <div className='subway'>
@@ -146,7 +146,7 @@ const MapGps = () => {
                     몽촌토성역
                   </div>
                   <div>
-                    1번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>4318</span> 버스 승차 <strong>→</strong> 하차(서울아산병원 동관)
+                    1번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>4318</span> 버스 승차 <strong>→</strong> 하차(울산메디칼센터 동관)
                   </div>
                 </div>
                 <div className='subway'>
@@ -154,7 +154,7 @@ const MapGps = () => {
                     한성백제역
                   </div>
                   <div>
-                    2번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>30</span> 버스 또는 <span style={{color: '#058b40', fontWeight: 'bold'}}>340</span> 버스 승차 <strong>→</strong> 올림픽회관 하차 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>4318</span> 버스 승차 <strong>→</strong> 하차(서울아산병원 동관)
+                    2번 출구 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>30</span> 버스 또는 <span style={{color: '#058b40', fontWeight: 'bold'}}>340</span> 버스 승차 <strong>→</strong> 올림픽회관 하차 <strong>→</strong> <span style={{color: '#058b40', fontWeight: 'bold'}}>4318</span> 버스 승차 <strong>→</strong> 하차(울산메디칼센터 동관)
                   </div>
                 </div>
               </li>
@@ -163,15 +163,15 @@ const MapGps = () => {
                 <div>
                   <div className='bus-info'>
                     <div>4318</div>
-                    <div><span style={{color: '#0e787c', fontWeight: 'bold' }}>서울아산병원 동관</span> (사당역 ↔ 서울아산병원)</div>
+                    <div><span style={{color: '#0e787c', fontWeight: 'bold' }}>울산메디칼센터 동관</span> (사당역 ↔ 울산메디칼센터)</div>
                   </div>
                   <div className='bus-info'>
                     <div>112-5</div>
-                    <div><span style={{color: '#0e787c', fontWeight: 'bold' }}>서울아산병원 동관</span> (한솔아파트 ↔ 서울아산병원)</div>
+                    <div><span style={{color: '#0e787c', fontWeight: 'bold' }}>울산메디칼센터 동관</span> (한솔아파트 ↔ 울산메디칼센터)</div>
                   </div>
                   <div className='bus-info'>
                     <div>97</div>
-                    <div><span style={{color: '#0e787c', fontWeight: 'bold' }}>서울아산병원 동관</span> (남양주 호평동 ↔ 강변역 ↔ 서울아산병원)</div>
+                    <div><span style={{color: '#0e787c', fontWeight: 'bold' }}>울산메디칼센터 동관</span> (남양주 호평동 ↔ 강변역 ↔ 울산메디칼센터)</div>
                   </div>
                 </div>
               </li>

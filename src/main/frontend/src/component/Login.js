@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../css/login.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { handleKakaoLogin } from '../snsLogin/SocialKaKao';
+import Naver from '../snsLogin/Naver';
 
 const Login = ({loginInfo, setLoginInfo}) => {
 
   const navigate = useNavigate();
 
+  const [memberList, setMemberList] = useState([]);
+  const [userInfo, setUserInfo] = useState({});
+
   //로그인 성공 실패 여부를 저장하는 변수
   const [isLoginSuccess, setIsLoginSuccess] = useState(false);
-
+  
   //입력한 id, pw를 저장할 변수
   const [loginData, setLoginData] = useState({
     memId : '',
@@ -17,6 +22,21 @@ const Login = ({loginInfo, setLoginInfo}) => {
     email : '',
     memNum : ''
   });
+
+  // 데이터 정보를 받아오는 함수
+  useEffect(() => {
+    const fetchMemberList = async () => {
+      try {
+        const res = await axios.get('/member/memberList');
+        setMemberList(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchMemberList();
+  }, []);
+
 
   //input에 입력할 값 객체에 저장 
   function memberChange(e){
@@ -67,6 +87,95 @@ const Login = ({loginInfo, setLoginInfo}) => {
     })
   }
 
+  // 토큰을 받아오는 함수
+  const getToken = async () => {
+    const token = new URL(window.location.href).searchParams.get('code');
+    console.log('인가코드 : ' + token);
+
+    const params = new URLSearchParams();
+    params.append('grant_type', 'authorization_code');
+    params.append('client_id', 'fcaac90717961c96e110a08056effef4');
+    params.append('redirect_uri', 'http://localhost:3000/Mainjoin');
+    params.append('code', token);
+
+    try {
+      const res = await axios.post(
+        'https://kauth.kakao.com/oauth/token',
+        params.toString(),  // URLSearchParams를 문자열로 변환
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+          },
+        }
+      );
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const processTokenAndCheckMember = async () => {
+      // memberList가 비어 있으면 데이터가 아직 로드되지 않은 상태임
+      if (memberList.length === 0) return;
+
+      try {
+        const tokenResponse = await getToken();
+        if (tokenResponse) {
+          const accessToken = tokenResponse.data.access_token;
+          sessionStorage.setItem('token', JSON.stringify(accessToken));
+          console.log('토큰 : ' + accessToken);
+
+          const kakaoResponse = await axios.get('http://localhost:3000/member/kaKaoCode', {
+            params: { accessToken },
+          });
+
+          const isExistingMember = memberList.some(
+            (e) => e.email.trim().toLowerCase() === kakaoResponse.data.email.trim().toLowerCase()
+          );
+          console.log('Member List:', memberList);
+          console.log('Incoming Email:', kakaoResponse.data.email);
+          console.log('Is Existing Member:', isExistingMember);
+
+          axios
+          .get(`/member/getMember/${kakaoResponse.data.email}`)
+          .then((res)=>{
+            if(res.data != ''){
+              setIsLoginSuccess(true);
+  
+              //sesstionStorage에 로그인한 회원의 정보 저장
+              const loginInfo = {
+                memName : res.data.memName,
+                memRole : res.data.memRole,
+                email : res.data.email,
+                memNum : res.data.memNum
+              }
+  
+              //로그인 정보를 가진 객체를 문자열 형태로 변환
+              //객체 -> 문자열로 변환한 데이터를 JSON 데이터로 부른다. 
+              window.sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo));
+  
+              //로그인 정보를 저장하기 위해 만든 state 변수 loginInfo(App.js생성)에 로그인 정보를 저장
+              setLoginInfo(loginInfo)
+              navigate('/')
+            }else{
+              setIsLoginSuccess(false);
+              setUserInfo(kakaoResponse.data);
+              navigate('/snsRegInfo', { state: { userInfo: kakaoResponse.data } });
+            }
+          })
+          .catch((error)=>{
+            console.log(error)
+          })
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    processTokenAndCheckMember();
+  }, [memberList]);
+
   return (
     <div className='login-div'>
       <div className='login-head'>
@@ -96,8 +205,14 @@ const Login = ({loginInfo, setLoginInfo}) => {
               <input type='checkbox' /> 아이디 저장
             </div>
           </div>
-          <div className='login-text'>
-            회원 서비스를 이용하시려면 로그인이 필요합니다.
+          <div className='icon-box'>
+            <p>
+              <strong>SNS 간편로그인 연동</strong>
+            </p>
+            <div className='icon-div'>
+              <img src='http://localhost:8080/images/kakaoBlack.png' onClick={handleKakaoLogin} alt="Kakao Login" />
+              <img src='http://localhost:8080/images/Naver.png' onClick={Naver} alt="Naver Login" />
+            </div>
           </div>
           <ul>
             <li><span onClick={()=>{navigate('/findId')}}>아이디 찾기</span></li>
@@ -107,7 +222,7 @@ const Login = ({loginInfo, setLoginInfo}) => {
         </div>
         <div className='login-content-right'>
           <ul>
-            <li style={{listStyle: 'inside', textIndent: '-20px', marginLeft: '20px'}}>서울아산병원 홈페이지 가입 후 다양한 정보와 맞춤 서비스를 이용하실 수 있습니다.</li>
+            <li style={{listStyle: 'inside', textIndent: '-20px', marginLeft: '20px'}}>울산메디칼센터 홈페이지 가입 후 다양한 정보와 맞춤 서비스를 이용하실 수 있습니다.</li>
             <li style={{listStyle: 'inside', textIndent: '-20px', marginLeft: '20px'}}>
               <strong style={{color : '#ec360c'}}>의무기록사본은 로그인 없이 신청/결제 및 출력이 가능합니다.</strong> <button type='button'>의무기록복사본발급 바로가기</button>
             </li>
@@ -120,9 +235,9 @@ const Login = ({loginInfo, setLoginInfo}) => {
       </div>
       <div className='login-form-div'>
         <div className='login-form-title'>
-          <h3>서울아산병원 홈페이지 회원을 위한 맞춤 서비스</h3>
+          <h3>울산메디칼센터 홈페이지 회원을 위한 맞춤 서비스</h3>
           <p>
-            서울아산병원 홈페이지의 회원의 되시면
+            울산메디칼센터 홈페이지의 회원의 되시면
             <strong>다양한 정보와 맞춤 서비스</strong>
             를 이용하실 수 있습니다.
           </p>
@@ -130,7 +245,7 @@ const Login = ({loginInfo, setLoginInfo}) => {
         <div className='mychart'>
           <h4>나의차트</h4>
           <p>
-            서울아산병원에서 이루어진 진료와 관련된 모든 정보를 확인할 수 있으며, 그 외 다양한 서비스를 이용할 수 있습니다.<br></br>
+            울산메디칼센터에서 이루어진 진료와 관련된 모든 정보를 확인할 수 있으며, 그 외 다양한 서비스를 이용할 수 있습니다.<br></br>
             <span>(개인정보보호를 위해 일부는 제한된 정보가 제공됩니다.)</span>
           </p>
         </div>

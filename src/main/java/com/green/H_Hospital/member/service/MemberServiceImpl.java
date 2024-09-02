@@ -83,9 +83,10 @@ public class MemberServiceImpl implements MemberService {
         return sqlSession.selectOne("memberMapper.findPw", memberVO);
     }
 
+    //새비밀번호 업데이트
     @Override
-    public MemberVO setNewPw(MemberVO memberVO) {
-        return sqlSession.selectOne("memberMapper.setNewPw", memberVO);
+    public void setNewPw(MemberVO memberVO) {
+        sqlSession.selectOne("memberMapper.setNewPw", memberVO);
     }
 
 

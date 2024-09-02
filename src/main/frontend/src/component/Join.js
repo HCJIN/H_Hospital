@@ -12,7 +12,7 @@ const Join = ({loginInfo, setLoginInfo}) => {
 
   //로그인 성공 실패 여부를 저장하는 변수
   const [isLoginSuccess, setIsLoginSuccess] = useState(false);
-
+  
   // 데이터 정보를 받아오는 함수
   useEffect(() => {
     const fetchMemberList = async () => {
@@ -121,7 +121,7 @@ const Join = ({loginInfo, setLoginInfo}) => {
       <div className='join-title'>
         <p>회원가입</p>
         <p>
-          <span className='join-green'>서울아산병원 홈페이지 회원가입을 환영합니다.</span> 서울아산병원 홈페이지의 회원이 되시면 <span className='join-green'>다양한 정보와 맞춤 서비스</span>를 이용하실 수 있습니다.
+          <span className='join-green'>울산메디칼센터 홈페이지 회원가입을 환영합니다.</span> 울산메디칼센터 홈페이지의 회원이 되시면 <span className='join-green'>다양한 정보와 맞춤 서비스</span>를 이용하실 수 있습니다.
         </p>
         <p>
           회원가입절차가 연령에 따라 다르오니, 해당되는 회원가입 유형을 선택하여 진행하여 주세요.
@@ -143,7 +143,7 @@ const Join = ({loginInfo, setLoginInfo}) => {
                 </p>
                 <div className='icon-div'>
                   <img src='http://localhost:8080/images/kakaoBlack.png' onClick={handleKakaoLogin} alt="Kakao Login" />
-                  <img src='http://localhost:8080/images/Naver.png' onClick={Naver} alt="Naver Login" />
+                  <Naver />
                 </div>
               </td>
             </tr>
@@ -152,9 +152,9 @@ const Join = ({loginInfo, setLoginInfo}) => {
       </div>
       <div className='service-div'>
         <div className='service-title'>
-          <h3>서울아산병원 홈페이지 회원을 위한 맞춤 서비스</h3>
+          <h3>울산메디칼센터 홈페이지 회원을 위한 맞춤 서비스</h3>
           <p>
-            서울아산병원 홈페이지의 회원이 되시면
+            울산메디칼센터 홈페이지의 회원이 되시면
             <strong>다양한 정보와 맞춤 서비스</strong>
             를 이용하실 수 있습니다.
           </p>
@@ -162,7 +162,7 @@ const Join = ({loginInfo, setLoginInfo}) => {
         <div className='mychart'>
           <h4>나의차트</h4>
           <p>
-            서울아산병원에서 이루어진 진료와 관련된 모든 정보를 확인할 수 있으며, 그 외 다양한 서비스를 이용할 수 있습니다.<br />
+            울산메디칼센터에서 이루어진 진료와 관련된 모든 정보를 확인할 수 있으며, 그 외 다양한 서비스를 이용할 수 있습니다.<br />
             <span>(개인정보보호를 위해 일부는 제한된 정보가 제공됩니다.)</span>
           </p>
         </div>

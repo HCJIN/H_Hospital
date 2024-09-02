@@ -81,7 +81,7 @@
             ,   MEM_TEL
             ,   POST
             ,   MEM_ROLE
-            ,   H_CODE
+            ,   HOSPITAL_CODE
             ,   GENDER
             ,   BIRTHDAY
             ,   EMAIL
@@ -167,7 +167,7 @@
     <!--비밀번호 재설정-->
     <update id="setNewPw">
         UPDATE hospital_member
-        SET MEM_PW = {memPw}
+        SET MEM_PW = #{memPw}
         WHERE EMAIL = #{email}
     </update>
 
