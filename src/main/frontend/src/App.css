@@ -596,7 +596,6 @@ a{
     overflow: hidden;   /* 게이지 바가 요소 밖으로 넘치지 않도록 설정 */
   }
   /* footerMenu-end */
-  
   .footerMenu2-select{
     display: flex;
     justify-content: center;

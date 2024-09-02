@@ -76,7 +76,13 @@ const Login = ({loginInfo, setLoginInfo}) => {
 
         //로그인 정보를 저장하기 위해 만든 state 변수 loginInfo(App.js생성)에 로그인 정보를 저장
         setLoginInfo(loginInfo)
-        navigate('/')
+
+        //직원 OR 일반 사용자 구분 후 리디렉션
+        if(res.data.memRole != 'USER'){
+          navigate('/patientChart')  
+        } else{
+          navigate('/')
+        }
       }else{
         alert('아이디 또는 비밀번호 확인이 필요합니다.');
         setIsLoginSuccess(false);

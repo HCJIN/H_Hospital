@@ -22,6 +22,7 @@ import AdminRegPage from './component/AdminRegPage';
 import AdminJoinPage from './component/AdminJoinPage';
 import SetNewPw from './component/SetNewPw';
 import ReservationCheck from './component/ReservationCheck';
+import PatientChart from './component/PatientChart';
 
 function App() {
 
@@ -157,7 +158,7 @@ function App() {
                 <li>
                   <div onClick={()=>{}}>
                     <p><i className="bi bi-heart-pulse-fill"></i></p>
-                    <span>심뇌혈관센터</span>
+                    <span>고객센터</span>
                   </div>
                 </li>
                 <li>
@@ -249,6 +250,9 @@ function App() {
 
           {/* 직원 등록 페이지 */}
           <Route path='adminRegInfo/:memTel' element={< AdminRegInfo/>} />
+
+          {/* 환자 차트 페이지 */}
+          <Route path='patientChart' element={<PatientChart/>}/>
         </Route> 
 
       </Routes>
