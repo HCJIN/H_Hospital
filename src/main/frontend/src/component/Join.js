@@ -115,6 +115,12 @@ const Join = ({loginInfo, setLoginInfo}) => {
     processTokenAndCheckMember();
   }, [memberList]);
 
+  // local에있는 key값 모두 지우는 함수
+  function clearAllLocalStorage() {
+    localStorage.clear();
+    console.log('All items have been removed from localStorage.');
+}
+
   return (
     <div className='join-div'>
       <div className='join-title'>
