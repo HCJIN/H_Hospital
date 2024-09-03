@@ -24,6 +24,7 @@ import SetNewPw from './component/SetNewPw';
 import ReservationCheck from './component/ReservationCheck';
 import ServiceCenter from './component/ServiceCenter';
 import PatientChart from './component/PatientChart';
+import HospitalSheet from './component/HospitalSheet';
 
 function App() {
 
@@ -143,7 +144,9 @@ function App() {
                 </div>
                 </li>
                 <li>
-                  <div onClick={()=>{}}>
+                  <div onClick={()=>{
+                    navigate('/hospitalSheet')
+                  }}>
                     <p><i className="bi bi-card-checklist"></i></p>
                     <span>증명서발급</span>
                   </div>
@@ -237,6 +240,9 @@ function App() {
 
         {/* 고객센터 페이지 */}
         <Route path='/serviceCenter' element={<ServiceCenter/>}/>
+
+        {/* 증명서 발급 페이지 */}
+        <Route path='/hospitalSheet' element={<HospitalSheet />} />
 
         {/* 관리자용  */}
         <Route path='/admin'>
