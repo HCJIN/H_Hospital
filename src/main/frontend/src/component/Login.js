@@ -22,6 +22,32 @@ const Login = ({loginInfo, setLoginInfo}) => {
     memNum : ''
   });
 
+  //체크박스 상태 관리
+  const[isIdSaveChecked, setIsIdSaveChecked] = useState(false);
+  console.log(isIdSaveChecked)
+
+  useEffect(() => {
+    //페이지 로드 시 저장된 아이디 불러오기
+    const savedId = localStorage.getItem('savedId');
+    console.log(savedId)
+    if (savedId){
+      setLoginData((prevData) => ({...prevData, email: savedId}));
+      setIsIdSaveChecked(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    // isIdSaveChecked가 false이면 로컬 스토리지에서 저장된 아이디를 삭제합니다.
+    // 이는 체크박스가 선택 해제될 때 아이디 저장 기능을 비활성화하는 처리입니다.
+    if (!isIdSaveChecked) {
+      localStorage.removeItem('savedId');
+    } else {
+      // isIdSaveChecked가 true이면 로컬 스토리지에 아이디를 저장합니다.
+      // 체크박스가 선택될 때 아이디 저장 기능을 활성화하는 처리입니다.
+      localStorage.setItem('savedId', loginData.email);
+    }
+  }, [isIdSaveChecked, loginData.email]); // isIdSaveChecked 또는 loginData.email이 변경될 때마다 useEffect가 실행됩니다.
+
   // 데이터 정보를 받아오는 함수
   useEffect(() => {
     const fetchMemberList = async () => {
@@ -74,7 +100,14 @@ const Login = ({loginInfo, setLoginInfo}) => {
         window.sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo));
 
         //로그인 정보를 저장하기 위해 만든 state 변수 loginInfo(App.js생성)에 로그인 정보를 저장
-        setLoginInfo(loginInfo)
+        setLoginInfo(loginInfo);
+
+        //아이디 저장
+        if(isIdSaveChecked){
+          localStorage.setItem('savedId', loginData.email);
+        } else{
+          localStorage.removeItem('saveId');
+        }
 
         //직원 OR 일반 사용자 구분 후 리디렉션
         if(res.data.memRole != 'USER'){
@@ -181,6 +214,10 @@ const Login = ({loginInfo, setLoginInfo}) => {
     processTokenAndCheckMember();
   }, [memberList]);
 
+  const handleCheckboxChange = (e) => {
+    setIsIdSaveChecked(e.target.checked);
+  };
+
   return (
     <div className='login-div'>
       <div className='login-head'>
@@ -194,20 +231,27 @@ const Login = ({loginInfo, setLoginInfo}) => {
                 <ul>
                   <li>
                     <strong>아이디</strong>
-                    <input type='text' name='email' onChange={(e)=>{memberChange(e)}}/>
+                    <input type='text' name='email'
+                      value={loginData.email}
+                      onChange={(e)=>{memberChange(e)}}/>
                   </li>
                   <li>
                     <strong>
                       비밀번호
                     </strong>
-                    <input type='password' name='memPw' onChange={(e)=>{memberChange(e)}}/>
+                    <input type='password' name='memPw'
+                      value={loginData.memPw}
+                      onChange={(e)=>{memberChange(e)}}/>
                   </li>
                 </ul>
                 <button type='button' className='login-btn' onClick={()=>{login()}}>로그인</button>
               </div>
             </div>
             <div className='id-save'>
-              <input type='checkbox' /> 아이디 저장
+              <input type='checkbox'
+                checked={isIdSaveChecked}
+                onChange={handleCheckboxChange}
+                /> 아이디 저장
             </div>
           </div>
           <div className='icon-box'>
