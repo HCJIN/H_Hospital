@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="chartMapper">
+   <resultMap id="chart" type="com.green.H_Hospital.chart.vo.ChartVO">
+      <id column="CHART_NUM"     property="chartNum"/>
+      <result column="DISEASE"   property="disease"/>
+      <result column="SURGERY"   property="surgery"/>
+      <result column="SYMPTOMS"  property="symptoms"/>
+      <result column="MEM_NUM"   property="memNum"/>
+      <result column="RES_ID"    property="resId"/>
+   </resultMap>
+
+   <!--환자 정보를 조회하는 쿼리-->
+   <select id="getPatientInfo" resultMap="chart">
+      SELECT CHART_NUM
+         , MEM_NAME
+         , MEM_TEL
+         , GENDER
+         , TIMESTAMPDIFF(YEAR, BIRTHDAY, CURDATE()) AS AGE
+         , MEM_NUM
+         , DISEASE
+         , SURGERY
+         , SERVICE_TYPE
+         , SYMPTOMS
+      FROM HOSPITAL_DOCTOR D, HOSPITAL_MEMBER M, HOSPITAL_RESERVATION R
+      WHERE D.MEM_NUM = M.MEM_NUM
+      AND D.RES_ID = R.RES_ID
+   </select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
