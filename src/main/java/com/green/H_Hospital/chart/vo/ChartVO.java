@@ -4,6 +4,8 @@ import com.green.H_Hospital.member.vo.MemberVO;
 import com.green.H_Hospital.reservation.vo.ReservationVO;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ChartVO {
     private int chartNum;
@@ -12,6 +14,6 @@ public class ChartVO {
     private String symptoms;
     private int memNum;
     private int resId;
-    private MemberVO memberVO;
-    private ReservationVO reservationVO;
+    private List<MemberVO> memberVOList;
+    private List<ReservationVO> reservationVOList ;
 }
