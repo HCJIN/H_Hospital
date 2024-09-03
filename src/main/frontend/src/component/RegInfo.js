@@ -285,7 +285,7 @@ const RegInfo = () => {
       </div>
       <div className='joinBtn-div'>
         <button type='button' onClick={()=>{goJoin()}}>회원가입</button>
-        <button type='button'>취소</button>
+        <button type='button' onClick={()=>{navigate('/')}}>취소</button>
       </div>
     </div>
   )
