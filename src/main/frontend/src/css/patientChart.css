@@ -1,0 +1,10 @@
+
+.chart-div{
+  width: 80%;
+  margin: auto;
+}
+
+.chart-content table{
+  border: 1px solid black;
+  width: 50%;
+}
