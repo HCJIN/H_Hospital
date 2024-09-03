@@ -101,6 +101,9 @@ function App() {
           </ul>
           :
           <div className='login'>
+            <span className='top-menu' onClick={handleMenuClick}>
+              {menuLabel}
+            </span>
             {loginInfo.memName}님 반갑습니다
             <span onClick={()=>{
               //세션에 저장된 로그인 정보 삭제

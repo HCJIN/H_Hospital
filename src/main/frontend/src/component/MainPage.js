@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import '../css/mainPage.css';
 import axios from 'axios';
 import NaverNewsComponent from './NaverNewsComponent';
+import { useNavigate } from 'react-router-dom';
 
 const MainPage = () => {
+
+  const navigate = useNavigate();
 
   const [news, setNews] = useState([]);
 
@@ -51,7 +54,9 @@ const MainPage = () => {
             </div>
             <div className='main-icon-box'>
               <i className="bi bi-calendar-week"></i>
-              <div>
+              <div onClick={()=>{
+                navigate('/reservation')
+              }}>
                 <strong>진료예약</strong>
                 <p>
                   회원/비회원 편리하게<br></br>

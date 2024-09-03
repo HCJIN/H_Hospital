@@ -56,6 +56,9 @@ const ServiceCenter = () => {
                   </div>
                 </div>
               </div>
+              <div className='writing'>
+                <button type='button' className='joinBtn-writing'>글쓰기</button>
+              </div>
             </div>
           </div>
         </div>

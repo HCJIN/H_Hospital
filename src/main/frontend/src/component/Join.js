@@ -4,18 +4,24 @@ import { useNavigate } from 'react-router-dom';
 import { handleKakaoLogin } from '../snsLogin/SocialKaKao';
 import axios from 'axios';
 
-const Join = ({loginInfo, setLoginInfo}) => {
+const Join = ({ loginInfo, setLoginInfo }) => {
+
   const navigate = useNavigate();
+
+  // 상태 변수: 전체 회원 목록을 저장합니다.
   const [memberList, setMemberList] = useState([]);
+
+  // 상태 변수: 카카오로부터 받아온 사용자 정보를 저장합니다.
   const [userInfo, setUserInfo] = useState({});
 
-  //로그인 성공 실패 여부를 저장하는 변수
+  // 상태 변수: 로그인 성공 여부를 저장합니다.
   const [isLoginSuccess, setIsLoginSuccess] = useState(false);
-  
-  // 데이터 정보를 받아오는 함수
+
+  // 회원 목록을 서버에서 받아오는 useEffect
   useEffect(() => {
     const fetchMemberList = async () => {
       try {
+        // 서버에서 회원 목록을 가져옵니다.
         const res = await axios.get('/member/memberList');
         setMemberList(res.data);
       } catch (error) {
@@ -23,52 +29,58 @@ const Join = ({loginInfo, setLoginInfo}) => {
       }
     };
 
-    fetchMemberList();
+    fetchMemberList(); // 컴포넌트가 마운트될 때 회원 목록을 가져옵니다.
   }, []);
 
-  // 토큰을 받아오는 함수
+  // 카카오에서 토큰을 받아오는 함수
   const getToken = async () => {
+    
+    // URL에서 인가 코드를 추출합니다.
     const token = new URL(window.location.href).searchParams.get('code');
     console.log('인가코드 : ' + token);
 
     const params = new URLSearchParams();
-    params.append('grant_type', 'authorization_code');
-    params.append('client_id', 'fcaac90717961c96e110a08056effef4');
-    params.append('redirect_uri', 'http://localhost:3000/Mainjoin');
-    params.append('code', token);
+    params.append('grant_type', 'authorization_code'); // 인가 코드로 토큰을 요청합니다.
+    params.append('client_id', 'fcaac90717961c96e110a08056effef4'); // 카카오 애플리케이션의 클라이언트 ID
+    params.append('redirect_uri', 'http://localhost:3000/Mainjoin'); // 리다이렉트 URI
+    params.append('code', token); // 인가 코드 추가
 
     try {
+      // 카카오의 토큰 발급 API를 호출합니다.
       const res = await axios.post(
         'https://kauth.kakao.com/oauth/token',
         params.toString(),  // URLSearchParams를 문자열로 변환
         {
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8', // 헤더 설정
           },
         }
       );
-      return res;
+      return res; // 토큰 응답 반환
     } catch (error) {
-      console.log(error);
+      console.log(error); // 오류가 발생하면 콘솔에 로그를 남깁니다.
     }
   };
 
   useEffect(() => {
     const processTokenAndCheckMember = async () => {
-      // memberList가 비어 있으면 데이터가 아직 로드되지 않은 상태임
+      // 회원 목록이 아직 로드되지 않았다면 함수 종료
       if (memberList.length === 0) return;
 
       try {
+        // 토큰을 받아옵니다.
         const tokenResponse = await getToken();
         if (tokenResponse) {
           const accessToken = tokenResponse.data.access_token;
-          sessionStorage.setItem('token', JSON.stringify(accessToken));
+          sessionStorage.setItem('token', JSON.stringify(accessToken)); // 토큰을 세션 스토리지에 저장합니다.
           console.log('토큰 : ' + accessToken);
 
+          // 카카오 서버에서 사용자 정보를 가져옵니다.
           const kakaoResponse = await axios.get('http://localhost:3000/member/kaKaoCode', {
             params: { accessToken },
           });
 
+          // 현재 사용자의 이메일이 기존 회원 목록에 있는지 확인합니다.
           const isExistingMember = memberList.some(
             (e) => e.email.trim().toLowerCase() === kakaoResponse.data.email.trim().toLowerCase()
           );
@@ -76,50 +88,50 @@ const Join = ({loginInfo, setLoginInfo}) => {
           console.log('Incoming Email:', kakaoResponse.data.email);
           console.log('Is Existing Member:', isExistingMember);
 
+          // 사용자 정보를 서버에서 가져와 로그인 여부를 확인합니다.
           axios
-          .get(`/member/getMember/${kakaoResponse.data.email}`)
-          .then((res)=>{
-            if(res.data != ''){
-              setIsLoginSuccess(true);
-  
-              //sesstionStorage에 로그인한 회원의 정보 저장
-              const loginInfo = {
-                memName : res.data.memName,
-                memRole : res.data.memRole,
-                email : res.data.email,
-                memNum : res.data.memNum
+            .get(`/member/getMember/${kakaoResponse.data.email}`)
+            .then((res) => {
+              if (res.data != '') {
+                setIsLoginSuccess(true);
+
+                // 로그인한 회원의 정보를 세션 스토리지에 저장합니다.
+                const loginInfo = {
+                  memName: res.data.memName,
+                  memRole: res.data.memRole,
+                  email: res.data.email,
+                  memNum: res.data.memNum
+                };
+
+                // 로그인 정보를 문자열로 변환하여 저장합니다.
+                window.sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo));
+
+                // 상위 컴포넌트에 로그인 정보를 전달합니다.
+                setLoginInfo(loginInfo);
+                navigate('/'); // 홈 페이지로 이동합니다.
+              } else {
+                setIsLoginSuccess(false);
+                setUserInfo(kakaoResponse.data);
+                navigate('/snsRegInfo', { state: { userInfo: kakaoResponse.data } }); // 신규 사용자 등록 페이지로 이동합니다.
               }
-  
-              //로그인 정보를 가진 객체를 문자열 형태로 변환
-              //객체 -> 문자열로 변환한 데이터를 JSON 데이터로 부른다. 
-              window.sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo));
-  
-              //로그인 정보를 저장하기 위해 만든 state 변수 loginInfo(App.js생성)에 로그인 정보를 저장
-              setLoginInfo(loginInfo)
-              navigate('/')
-            }else{
-              setIsLoginSuccess(false);
-              setUserInfo(kakaoResponse.data);
-              navigate('/snsRegInfo', { state: { userInfo: kakaoResponse.data } });
-            }
-          })
-          .catch((error)=>{
-            console.log(error)
-          })
+            })
+            .catch((error) => {
+              console.log(error); // 오류가 발생하면 콘솔에 로그를 남깁니다.
+            });
         }
       } catch (error) {
-        console.log(error);
+        console.log(error); // 오류가 발생하면 콘솔에 로그를 남깁니다.
       }
     };
 
-    processTokenAndCheckMember();
+    processTokenAndCheckMember(); // 컴포넌트가 마운트될 때 토큰 처리 및 회원 체크를 수행합니다.
   }, [memberList]);
 
-  // local에있는 key값 모두 지우는 함수
+  // localStorage의 모든 항목을 제거하는 함수
   function clearAllLocalStorage() {
     localStorage.clear();
     console.log('All items have been removed from localStorage.');
-}
+  }
 
   return (
     <div className='join-div'>
