@@ -251,9 +251,9 @@ const Login = ({loginInfo, setLoginInfo}) => {
               <input type='checkbox'
                 checked={isIdSaveChecked}
                 onChange={handleCheckboxChange}
-                /> 아이디 저장
+                /> 아이디 저장 
             </div>
-          </div>
+          </div> 
           <div className='icon-box'>
             <p>
               <strong>SNS 간편로그인 연동</strong>
@@ -261,7 +261,7 @@ const Login = ({loginInfo, setLoginInfo}) => {
             <div className='icon-div'>
               <img src='http://localhost:8080/images/kakaoBlack.png' onClick={handleKakaoLogin} alt="Kakao Login" />
             </div>
-          </div>
+          </div> 
           <ul>
             <li><span onClick={()=>{navigate('/findId')}}>아이디 찾기</span></li>
             <li><span onClick={() => {navigate('/findPw')}}>비밀번호 찾기</span></li>
@@ -285,8 +285,8 @@ const Login = ({loginInfo, setLoginInfo}) => {
         <div className='login-form-title'>
           <h3>울산메디칼센터 홈페이지 회원을 위한 맞춤 서비스</h3>
           <p>
-            울산메디칼센터 홈페이지의 회원의 되시면
-            <strong>다양한 정보와 맞춤 서비스</strong>
+            울산메디칼센터 홈페이지의 회원이 되시면 
+            <strong> 다양한 정보와 맞춤 서비스</strong>
             를 이용하실 수 있습니다.
           </p>
         </div>

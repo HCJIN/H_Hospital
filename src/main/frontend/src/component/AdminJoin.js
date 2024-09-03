@@ -45,8 +45,8 @@ const AdminJoin = () => {
         <div className='service-title'>
           <h3>울산메디칼센터 홈페이지 직원을 위한 맞춤 서비스</h3>
           <p>
-            울산메디칼센터 홈페이지의 직원의 되시면
-            <strong>다양한 정보와 맞춤 서비스</strong>
+            울산메디칼센터 홈페이지의 직원이 되시면
+            <strong> 다양한 정보와 맞춤 서비스</strong>
             를 이용하실 수 있습니다.
           </p>
         </div>

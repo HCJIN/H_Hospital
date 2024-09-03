@@ -159,7 +159,7 @@ const Join = ({loginInfo, setLoginInfo}) => {
           <h3>울산메디칼센터병원 홈페이지 회원을 위한 맞춤 서비스</h3>
           <p>
             울산메디칼센터병원 홈페이지의 회원이 되시면
-            <strong>다양한 정보와 맞춤 서비스</strong>
+            <strong> 다양한 정보와 맞춤 서비스</strong>
             를 이용하실 수 있습니다.
           </p>
         </div>
