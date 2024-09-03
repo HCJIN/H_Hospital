@@ -1,7 +1,7 @@
 h1{
   text-align: center;
-  padding: 50px;
-  font-size: 2.4rem;
+  padding: 30px;
+  font-size: 2rem;
   color: #0e787c;
 }
 
@@ -65,5 +65,5 @@ h1{
 }
 
 .react-calendar__month-view__days > button{
-  height: 110px;
+  height: 90px;
 }

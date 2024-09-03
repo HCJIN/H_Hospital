@@ -8,6 +8,7 @@
 .container3 > h2{
   margin-top: 10px;
   text-align: center;
+  color: #0e787c;
 }
 
 .container3 > table{
@@ -18,7 +19,8 @@
 }
 
 .container3 > table > thead{
-  background-color: rgb(184, 226, 184);
+  background-color: #0e787c;
+  color: #fff;
   font-weight: bold;
 } 
 

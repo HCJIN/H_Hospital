@@ -46,7 +46,7 @@
          , RES_TIME
       FROM HOSPITAL_MEMBER h, HOSPITAL_RESERVATION r
       WHERE h.MEM_NUM = r.MEM_NUM
-      ORDER BY RES_DATE DESC;
+      ORDER BY RES_TIME ASC;
    </select>
 
 </mapper>
