@@ -30,7 +30,7 @@ const ReservationDetail = ({ selectedDate }) => {
             <td>NO.</td>
             <td>성명</td>
             <td>휴대전화</td>
-            <td>진료항목 내역</td>
+            <td>증상</td>
             <td>예약일정</td>
             <td>예약시간</td>
           </tr>
