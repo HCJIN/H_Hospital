@@ -31,4 +31,10 @@ public class ReservationServiceImpl implements ReservationService{
     public List<ReservationVO> getReservation() {
         return sqlSession.selectList("reservationMapper.getReservation");
     }
+
+    // 환자 차트에서 모든 환자 조회
+    @Override
+    public List<ReservationVO> getPatientInfoAll() {
+        return sqlSession.selectList("reservationMapper.getPatientInfoAll");
+    }
 }

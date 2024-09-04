@@ -16,4 +16,7 @@ public interface ReservationService {
 
     //진료예약조회
     List<ReservationVO> getReservation();
+
+    // 환자 차트에서 모든 환자 조회
+    List<ReservationVO> getPatientInfoAll();
 }

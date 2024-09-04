@@ -31,4 +31,10 @@ public class ReservationController {
     public List<ReservationVO> getReservation(){
         return reservationService.getReservation();
     }
+
+    // 환자 차트에서 모든 환자 조회
+    @GetMapping("/getPatientInfoAll")
+    public List<ReservationVO> getPatientInfoAll(){
+        return reservationService.getPatientInfoAll();
+    }
 }
