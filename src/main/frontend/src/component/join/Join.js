@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import '../css/join.css';
+import '../../css/join.css';
 import { useNavigate } from 'react-router-dom';
-import { handleKakaoLogin } from '../snsLogin/SocialKaKao';
+import { handleKakaoLogin } from '../../snsLogin/SocialKaKao';
 import axios from 'axios';
 
 const Join = ({ loginInfo, setLoginInfo }) => {

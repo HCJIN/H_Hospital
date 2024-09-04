@@ -3,9 +3,9 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import '../css/joinPage.css'
 import { useNavigate } from 'react-router-dom'
-import RegBar from './RegBar';
+import RegBar from '../component/RegBar';
 
-const JoinPage = () => {
+const AdminJoinPage = () => {
   const navigate = useNavigate();
 
   //동의
@@ -16,7 +16,7 @@ const JoinPage = () => {
 
   function joinChk(){
     if(agreeData == true && infoAgreeData == true){
-      navigate('/regPage')
+      navigate('/admin/adminRegPage')
     }
     else if(agreeData == true || infoAgreeData == false){
       alert('개인정보 수집 및 이용동의 후 회원가입 가능합니다')
@@ -171,4 +171,4 @@ const JoinPage = () => {
   )
 }
 
-export default JoinPage
+export default AdminJoinPage

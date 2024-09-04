@@ -3,7 +3,7 @@ import '../css/regPage.css';
 import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { regPageValidata } from '../validate/regPageValidata';
-import RegBar from './RegBar';
+import RegBar from '../component/RegBar';
 
 const AdminRegPage = () => {
 

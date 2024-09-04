@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import '../css/modal.css';
-import DatePickerInput from "../component/DatePicker";
+import DatePickerInput from "../component/calendar/DatePicker";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 

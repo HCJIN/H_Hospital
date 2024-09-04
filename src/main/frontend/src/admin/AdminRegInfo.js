@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
-import '../css/regInfo.css'
+import '../css/adminRegInfo.css'
 import axios from 'axios';
 import { joinValiate } from '../validate/joinValidate';
 import { useNavigate, useParams } from 'react-router-dom';
-import RegBar from './RegBar';
+import RegBar from '../component/RegBar';
+import { getCLS } from 'web-vitals';
 
-const RegInfo = () => {
+const AdminRegInfo = () => {
 
   const navigate = useNavigate();
 
@@ -46,7 +47,8 @@ const RegInfo = () => {
     memId : '',
     memPw : '',
     confirmPw : '',
-    email : ''
+    email : '',
+    hospitalCode : ''
   });
 
   //휴대폰 인증시 insert된 데이터 받아오기
@@ -54,6 +56,7 @@ const RegInfo = () => {
     axios
     .get(`/member/getMemberList/${memTel}`)
     .then((res)=>{
+      console.log(res.data)
       setSelectMember(res.data);
     })
     .catch((error)=>{
@@ -81,9 +84,8 @@ const RegInfo = () => {
   
     //유효성 검사 끝난 데이터를 setMember에 저장
     setMember(newData)
-
   }
-  console.log(member)
+  console.log(member.hCode)
 
   // email 선택 버튼 클릭시 주소창에 입력
   function emailClick(){
@@ -108,10 +110,11 @@ const RegInfo = () => {
     })
   }
 
-  //회원가입 버튼 클릭시 회원기초정보 업데이트 
+  //직원가입 버튼 클릭시 직원기초정보 업데이트 
   function goJoin(){
+    console.log(member)
     axios
-    .post(`/member/updateMember`, member)
+    .post('/member/updateAdmin', member)
     .then((res)=>{
       navigate('/')
     })
@@ -119,6 +122,8 @@ const RegInfo = () => {
       console.log(error)
     })
   }
+
+  console.log(selectMember)
 
   return (
     <div className='regInfo-div'>
@@ -239,6 +244,10 @@ const RegInfo = () => {
               </div>
             </td>
           </tr>
+          <tr>
+            <td><span>✔</span>직원코드</td>
+            <td><input type='text' className='inputText' name='hospitalCode'  onChange={(e)=>{memberChange(e)}}/></td>
+          </tr>
         </tbody>
       </table>
 
@@ -285,7 +294,7 @@ const RegInfo = () => {
       </div>
       <div className='joinBtn-div'>
         <button type='button' onClick={()=>{goJoin()}}>회원가입</button>
-        <button type='button' onClick={()=>{navigate('/')}}>취소</button>
+        <button type='button'>취소</button>
       </div>
     </div>
   )
@@ -293,4 +302,4 @@ const RegInfo = () => {
 
 
 
-export default RegInfo
+export default AdminRegInfo

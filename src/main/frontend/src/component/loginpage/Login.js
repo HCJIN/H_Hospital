@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import '../css/login.css'
+import '../../css/login.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
-import { handleKakaoLogin } from '../snsLogin/SocialKaKao';
+import { handleKakaoLogin } from '../../snsLogin/SocialKaKao';
 
 const Login = ({loginInfo, setLoginInfo}) => {
 

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import '../css/reservationDetail.css';
+import '../../css/reservationDetail.css';
 
 const ReservationDetail = ({ selectedDate }) => {
   const [reservationInfo, setReservationInfo] = useState([]);

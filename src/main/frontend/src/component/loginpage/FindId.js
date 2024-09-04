@@ -1,162 +1,123 @@
-import axios from 'axios';
-import '../css/regPage.css';
+
 import React, { useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { regPageValidata } from '../validate/regPageValidata';
-import RegBar from './RegBar';
+import '../../css/FindId.css'
+import userEvent from '@testing-library/user-event';
+import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-const RegPage = () => {
-
+const FindId = () => {
   const navigate = useNavigate();
 
-  //유효성 검사 확인 state
-  const [validResult, setValidResult] = useState(false);
+  const [memInfo, setMemInfo] = useState({});
 
-  // 회원 가입을 위한 기본적인 정보 입력을 받아 저장할 변수
-  const [insertMemberData, setInsertMemberData] = useState({
-    memId : '',
-    memPw : '',
+  //id찾기 정보를 입력 받아 저장할 변수
+  const [insertFindIdData, setInsertFindIdData] = useState({
     memName : '',
-    memTel : '',
     gender : '',
     birthday : '',
+    memTel : '',
     email : ''
-  });
+  })
 
-  // 년, 월, 일을 저장 할 변수 생성
-  const birthdayYear = useRef(); 
-  const birthdayMonth = useRef(); 
-  const birthdayDay = useRef(); 
+  //생년월일을 저장할 변수
+  const bdYear = useRef();
+  const bdMonth = useRef();
+  const bdDay = useRef();
 
-  //이름 유효성 검사 태그
-  const memName_valid_tag = useRef();
-  //전화번호 유효성 검사 태그
-  const memTel_valid_tag = useRef();
-
-  // 전화번호를 저장 할 변수 생성
+  //전화번호를 저장할 변수
   const memTel1 = useRef();
   const memTel2 = useRef();
   const memTel3 = useRef();
 
-  //유효성 검사 ref 태그들을 한번에 배열로 가져가기 
-  const valid_tag = [
-    memName_valid_tag,
-    memTel_valid_tag
-  ]
+  // id 찾기를 위한 기본 정보
+  function insertFindId(){
 
-  // 회원 가입을 위한 기본적인 정보 입력 
-  function insertMember(){
-
-    // 필수 입력값 체크, 이름(trim(): 공백이 포함된곳을 제거해 준다.)
-    if (!insertMemberData.memName.trim()) {
-      alert('성명을 입력해 주세요.');
+    if(!insertFindIdData.memName.trim()){
+      alert('이름을 입력해 주세요')
+      return;
+    }
+    if(!insertFindIdData.gender){
+      alert('성별을 클릭해 주세요')
+      return;
+    }
+    if(!insertFindIdData.birthday || 
+      bdYear.current.value === "" ||
+      bdMonth.current.value === "" ||
+      bdDay.current.value === "" ||
+      bdYear.current.value === '년' ||
+      bdMonth.current.value === '월' ||
+      bdDay.current.value === '일'){ 
+      
+      alert('생년월일을 클릭해 주세요')
+      return;
+    }
+    if(!insertFindIdData.memTel || memTel2.current.value.trim() === '' || memTel3.current.value.trim() === '') {
+      alert('전화번호를 입력해 주세요')
       return;
     }
 
-    // 필수 입력값 체크, 성별
-    if (!insertMemberData.gender) {
-      alert('성별을 선택해 주세요.');
-      return;
-    }
 
-    // 필수 입력값 체크, 생년월일
-    if (!insertMemberData.birthday || 
-      birthdayYear.current.value === '' || 
-      birthdayMonth.current.value === '' || 
-      birthdayDay.current.value === '' || 
-      birthdayYear.current.value === '년' || 
-      birthdayMonth.current.value === '월' || 
-      birthdayDay.current.value === '일') {
-    alert('생년월일을 올바르게 선택해 주세요.');
-    return;
-    }
-
-    // 필수 입력값 체크, 전화번호
-    if (!insertMemberData.memTel || memTel2.current.value.trim() === '' || memTel3.current.value.trim() === '') {
-      alert('휴대전화 번호를 올바르게 입력해 주세요.');
-      return;
-    }
-
-    axios.post('/member/insertMember', insertMemberData)
-    .then((res) => {
-      navigate(`/regInfo/${insertMemberData.memTel}`)
+    axios.post('/member/findId', insertFindIdData)
+    .then((res)=>{
+        console.log(res.data)
+        setMemInfo(res.data);
+        navigate('/successFindId',{state:{memInfo:res.data}})
     })
-    .catch((error) => {console.log(error)})
+    .catch((error)=>{
+      console.log(error)
+      alert('오류가 발생했습니다')
+    })
   }
+  
+  // //id 찾기를 위해 입력한 정보를 받아와 줄 함수
+  function changeInsertFindId(e){
 
-  // 회원 가입을 위한 기본적인 정보를 입력했을 때 받아와 줄 함수
-  function changeInsertMember(e){
-
-    
-    const newData = {
-      ...insertMemberData,
-      [e.target.name]: e.target.name === 'memTel' 
+    const telBdData ={
+      ...insertFindIdData,
+      [e.target.name] : e.target.name === 'memTel'
         ? memTel1.current.value + '-' + memTel2.current.value + '-' + memTel3.current.value
         : e.target.name === 'birthday'
-        ? birthdayYear.current.value + '.' + birthdayMonth.current.value + '.' +birthdayDay.current.value
+        ? bdYear.current.value + '.' + bdMonth.current.value + '.' + bdDay.current.value
         : e.target.value
-    };
+    }
 
-    //입력한 데이터에 대한 validation 처리
-    // 모든 데이터가 유효한 데이터면 리턴 true    
-    const valid = regPageValidata(newData, valid_tag, e.target.name);
-    setValidResult(valid);
-
-
-    //유효성 검사 끝난 데이터를 저장
-    setInsertMemberData(newData);
+    //데이터 저장
+    setInsertFindIdData(telBdData);
   }
+  console.log(insertFindIdData)
 
-  console.log(insertMemberData)
+
 
   return (
-    <div className='regPage-div'>
-      <RegBar step={2}/>
-      <div className='regPage-title'>가입하기</div>
-      <div className='id-ul-div'>
-        <ul>
-          <li>아이디/비밀번호 분실 등 본인 여부 확인이 필요한 경우를 위해 <span>신분증에 기재된 성명, 생년월일, 성별</span>을 입력해주세요.</li>
-          <li><span>허위 정보를 입력하시는 경우 정확한 본인확인이 불가능하여 아이디/비밀번호 분실시 도움을 드리기 어렵습니다.</span></li>
-        </ul>
-      </div>
-      <div className='ps-div'>* 성명, 성별은 가입 이후 수정할 수 없습니다.</div>
-      <div>
-        <table className='regPage-table'>
-          <colgroup>
-            <col width="30%" />
-            <col width="*" />
-          </colgroup>
-          <tbody>
-            <tr className='name'>
-              <td>성명</td>
-              <td>
-                <input type='text' name='memName' onChange={(e) => {changeInsertMember(e)}}/>
-                <div className='feedback' ref={memName_valid_tag}></div>
-              </td>
+    <div className='findId-div'>
+      <div className='findId-div-div'>
+        <div className='find-header'>
+          <h3>아이디 찾기</h3>
+          <span>회원가입 시 등록한 정보로 사용자를 확인해 주세요</span>
+        </div>
+        <div className='find-content'>
+          <div className='findId-content-title'>
+            <p>등록 정보로 찾기</p>
+            <span>회원가입 시 등록한 정보를 아래에 입력해 주세요</span>
+          </div>
+          <table className='findId-table'>
+            <tbody className='findId-table-body'>
+            <tr>
+              <td>이름</td>
+              <td><input type='text' name='memName' onChange={(e)=>{changeInsertFindId(e)}}></input></td>
             </tr>
-            <tr className='gender'>
+            <tr>
               <td>성별</td>
               <td>
-                <input type='radio' name='gender' value='남성' onChange={(e) => {changeInsertMember(e)}}/>남성
-                <input type='radio' name='gender' value='여성' onChange={(e) => {changeInsertMember(e)}}/>여성
+                <input type='radio' name='gender' value='남성' onChange={(e)=>{changeInsertFindId(e)}}/> 남성
+                <input type='radio' name='gender' value='여성' onChange={(e)=>{changeInsertFindId(e)}}/> 여성
               </td>
             </tr>
-          </tbody>
-        </table>
-      </div>
-      <div className='birthday-ps-div'>* 신분증에 기재된 생년월일을 입력해주세요.</div>
-      <div>
-        <table className='birthday-table'>
-          <colgroup>
-            <col width="30%" />
-            <col width="*" />
-          </colgroup>
-          <tbody>
-            <tr className='birthday'>
+            <tr>
               <td>생년월일</td>
               <td>
-                <select name='birthday' ref={birthdayYear} onChange={(e) => {changeInsertMember(e)}}>
-                  <option value="">년</option>
+                <select name='birthday' ref={bdYear} onChange={(e)=>{changeInsertFindId(e)}}>
+                  <option value=''>년</option>
                   <option value="2011">2011 년</option>
                   <option value="2010">2010 년</option>
                   <option value="2009">2009 년</option>
@@ -270,8 +231,8 @@ const RegPage = () => {
                   <option value="1901">1901 년</option>
                   <option value="1900">1900 년</option>
                 </select>
-                <select name='birthday' ref={birthdayMonth} onChange={(e) => {changeInsertMember(e)}}>
-                  <option value="월">월</option>
+                <select name='birthday' ref={bdMonth} onChange={(e)=>{changeInsertFindId(e)}}>
+                  <option value=''>월</option>
                   <option value="01">1 월</option>
                   <option value="02">2 월</option>
                   <option value="03">3 월</option>
@@ -285,8 +246,8 @@ const RegPage = () => {
                   <option value="11">11 월</option>
                   <option value="12">12 월</option>
                 </select>
-                <select name='birthday' ref={birthdayDay} onChange={(e) => {changeInsertMember(e)}}>
-                  <option value="일">일</option>
+                <select name='birthday' ref={bdDay} onChange={(e)=>{changeInsertFindId(e)}}>
+                  <option value=''>일</option>
                   <option value="01">1 일</option>
                   <option value="02">2 일</option>
                   <option value="03">3 일</option>
@@ -320,32 +281,28 @@ const RegPage = () => {
                 </select>
               </td>
             </tr>
-            <tr className='Tel'>
-              <td>휴대전화</td>
+            <tr>
+              <td>전화번호</td>
               <td>
-                <select name='memTel' ref={memTel1} onChange={(e) => {changeInsertMember(e)}}>
-                  <option value="010">010</option>
-                  <option value="011">011</option>
-                  <option value="016">016</option>
-                  <option value="017">017</option>
-                  <option value="018">018</option>
-                  <option value="019">019</option>
+                <select name='memTel' ref={memTel1} onChange={(e)=>{changeInsertFindId(e)}}>
+                  <option selected value='010'>010</option>
                 </select>
-                <span>-</span>
-                <input type='text' name='memTel' ref={memTel2} onChange={(e) => {changeInsertMember(e)}}/>
-                <span>-</span>
-                <input type='text' name='memTel' ref={memTel3} onChange={(e) => {changeInsertMember(e)}}/>
-                <div className='feedback' ref={memTel_valid_tag}></div>
+                -
+                <input type='text' name='memTel' className='tel-input1' ref={memTel2} onChange={(e)=>{changeInsertFindId(e)}}></input>
+                -
+                <input type='text' name='memTel' className='tel-input2' ref={memTel3} onChange={(e)=>{changeInsertFindId(e)}}></input>
               </td>
             </tr>
-          </tbody>
-        </table>
-      </div>
-      <div className='regPageBtn-div'>
-        <button type='button' className='regBtn' onClick={() => {insertMember()}} >확인</button>
+            </tbody>
+          </table>
+          <div className='findId-btn-div'>
+            <button className='findId-btn' type='button' onClick={()=>{insertFindId()}}>확인</button>
+          </div>
+         
+        </div>
       </div>
     </div>
   )
 }
 
-export default RegPage
+export default FindId
