@@ -17,14 +17,14 @@ const PatientChart = () => {
     });
   }
 
-  // 환자 한명의 정보를 조회한 데이터를 저장 할 변수
+  // 모든 환자 정보를 조회한 데이터를 저장 할 변수
   const [patienData, setPatienData] = useState([]);
 
   console.log(patienData)
 
-  // 환자 한명의 정보를 조회하는 함수
+  // 모든 환자의 정보를 조회하는 함수
   useEffect(() => {
-    axios.get('/chart/getPatientInfo')
+    axios.get('/reservation/getPatientInfoAll')
     .then((res) => {
       setPatienData(res.data)
     })
@@ -34,14 +34,7 @@ const PatientChart = () => {
   // 조회된 환자 정보를 검색 했을 때 원하는 환자의 정보를 table에 출력할 함수
 
   // 조회된 환자 정보를 검색 했을 때 그 환자의 모든 기록을 나타나게 할 함수
-  // function searchPatientChart(){
-  //   patienData.forEach((patien, i) => {
-  //     if(patien[i].memberV){
-
-  //     }
-  //   });
-  // }
-
+  
   return (
     <div className='chart-div'>
       <div className='chart-content'>
@@ -51,6 +44,11 @@ const PatientChart = () => {
           <input type='text' name='memName' onChange={(e) => {changeSelectName(e)}} />
           {/* 부트스트랩으로 검색 버튼 찾기 */}
         </div>
+        {/* 이부분은 환자 한명의 정보를 나타내는 함수로 만들어야 하는 부분이다. */}
+        {/* 
+          첫 화면을 출력할 때, 모두 빈 값으로 넣어두고 모든 환자가 나타나는 부분의 환자 한명을 클릭 했을 때
+          해당하는 환자의 정보를 출력하는 걸로 만들어야 한다.
+        */}
         {/* 환자 정보 이름, 휴대전화, 성별, 나이(나이는 년도를 기준으로 mapper에서 바꿀것) */}
         <ul>
           <li></li>
@@ -96,7 +94,7 @@ const PatientChart = () => {
             <button type='button'>수정</button>
           </div>
         </div>
-        {/* 여기에 이름으로 검색한 환자의 모든 기록이 나오면 좋을 것 같음 */}
+        {/* 모든 환자 정보를 이곳으로 적으면 된다. */}
       </div>
     </div>
   )
