@@ -10,6 +10,23 @@ const MainPage = () => {
 
   const [news, setNews] = useState([]);
 
+  //배경이미지 
+  const bg_1 = 'http://localhost:8080/images/img-visual.jpg';
+  const bg_2 = 'http://localhost:8080/images/img-visual-02.png';
+  const bg_3 = 'http://localhost:8080/images/img-visual-03.jpg';
+
+  const [bgIndex, setBgIndex] = useState(0);
+
+  //배경이미지를 담을 배열
+  const bgList = [bg_1, bg_2, bg_3]; 
+
+  useEffect(() => {
+    const bgTimer = setInterval(() => {
+      setBgIndex((prevIndex) => (prevIndex + 1) % bgList.length);
+    }, 5000);
+    return () => clearInterval(bgTimer);
+  }, [bgList.length]);
+
   const handleNewsData = (data) => {
     setNews(data);
   };
@@ -18,17 +35,58 @@ const MainPage = () => {
     <div className='mainPage-div'>
       <div className='mainPage-container'>
         <div className='item'>
-          <img src='http://localhost:8080/images/img-visual.jpg'></img>
-          <div className='content'>
-            <span>
-              <strong>공감</strong>,
-              또 하나의 치료
-            </span>
-            <br></br>
-            <span>
-              질병 치료를 넘어 환자의 마음까지 치유하겠습니다.
-            </span>
-          </div>
+          {bgList.map((bg, index) => (
+            <div key={index} className={`bg-image-wrapper ${
+              index === bgIndex ? 'active1' : ''
+            }`}>
+              <img
+                src={bg}
+                className={`bg-image BG_Image__${index} ${
+                  index === bgIndex ? 'active1' : ''
+                }`}
+                alt={`BG_${index}`}
+              />
+              <div className={`BG_Text ${
+                index === bgIndex ? 'fade-in' : 'fade-out'
+              }`}>
+                {index === 0 && (
+                  <div className='content'>
+                    <span>
+                      <strong>공감</strong>,
+                      또 하나의 치료
+                    </span>
+                    <br></br>
+                    <span>
+                      질병 치료를 넘어 환자의 마음까지 치유하겠습니다.
+                    </span>
+                  </div>
+                )}
+                {index === 1 && (
+                  <div className='content'>
+                    <span>
+                      회전형 중입자 치료기
+                    </span>
+                    <br></br>
+                    <span>
+                      췌장 · 폐 · 간암 치료시작 
+                    </span>
+                  </div>
+                )}
+                {index === 2 && (
+                  <div className='content'>
+                    <span>
+                      For your 
+                      <strong> Heart</strong>,
+                    </span>
+                    <br></br>
+                    <span>
+                    정확한 판단과 빠른 치료지원으로 당신의 심장을 지키겠습니다.
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
         <div className='main-section'>
           <div className='main-icon-div'>

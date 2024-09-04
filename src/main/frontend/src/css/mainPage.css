@@ -8,10 +8,86 @@
   max-width: 100%;
 }
 
-.content{
+.item {
+  display: block;
+  width: 100%;
+  position: relative;
+  padding-top: 50vh;
+  height: 130px;
+}
+
+.bg-image {
+  transition: opacity 2s ease-in-out; /* 전환 시간 확인 */
   position: absolute;
-  top: 50%;
-  left: 30%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-position: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 0;
+}
+
+.BG_Image > img {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  background-position: 50%;
+}
+
+.BG_Image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.bg-image.active1 {
+  opacity: 1;
+  z-index: 1;
+}
+
+.BG_Image__0 {
+  z-index: 1;
+}
+
+.BG_Image__1 {
+  z-index: 0;
+}
+
+.BG_Image__2 {
+  z-index: 0;
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.BG_Text {
+  position: absolute;
+  top: 60%;
+  left: 43%;
+  transform: translate(-43%, -60%);
+  z-index: 2;
+  text-align: left;
+  color: #fff;
+}
+
+/* main-bg-end */
+
+.content{
   text-align: left;
   transform: translate(-30%, -50%);
   z-index: 2;
@@ -177,11 +253,7 @@
 @media screen and (min-width: 1280px) and (max-width: 1516px){
 
   .content{
-    position: absolute;
-    top: 50%;
-    left: 33%;
     text-align: left;
-    transform: translate(-30%, -50%);
     z-index: 2;
   }
   
@@ -225,15 +297,16 @@
 
 @media screen and (min-width: 1025px) and (max-width: 1279px) {
   
-  .content{
+  .BG_Text {
     position: absolute;
-    top: 50%;
-    left: 33%;
-    text-align: left;
-    transform: translate(-30%, -50%);
+    top: 60%;
+    left: 53%;
+    transform: translate(-53%, -60%);
     z-index: 2;
+    text-align: left;
+    color: #fff;
   }
-  
+
   .content span:first-child{
     font-size: 50px;
     line-height: 72px;
@@ -340,15 +413,17 @@
 
 @media screen and (min-width: 770px) and (max-width: 1025px) {
 
-  .content{
+
+  .BG_Text {
     position: absolute;
-    top: 50%;
-    left: 38%;
-    text-align: left;
-    transform: translate(-30%, -50%);
+    top: 60%;
+    left: 60%;
+    transform: translate(-60%, -60%);
     z-index: 2;
+    text-align: left;
+    color: #fff;
   }
-  
+
   .content span:first-child{
     font-size: 45px;
     line-height: 72px;
@@ -466,26 +541,27 @@
 
 @media screen and (max-width: 767px) {
 
+  .content{
+    width: 350px;
+  }
+
   .logo img{
     margin-left: -100px;
   }
 
-  .item img{
-    height: 300px;
-  }
-
-  .content{
+  .BG_Text {
     position: absolute;
-    top: 50%;
-    left: 30%;
-    text-align: left;
-    transform: translate(-30%, -50%);
+    top: 40%;
+    left: 85%;
+    transform: translate(-80%, 70%);
     z-index: 2;
+    text-align: left;
+    color: #fff;
   }
   
   .content span:first-child{
-    font-size: 55px;
-    line-height: 72px;
+    font-size: 35px;
+    line-height: 20px;
     text-align: left;
   }
 
