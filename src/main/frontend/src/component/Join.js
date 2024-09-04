@@ -58,12 +58,13 @@ const Join = ({ loginInfo, setLoginInfo }) => {
       );
       return res; // 토큰 응답 반환
     } catch (error) {
-      console.log(error); // 오류가 발생하면 콘솔에 로그를 남깁니다.
+      console.log(error);
     }
   };
 
   useEffect(() => {
     const processTokenAndCheckMember = async () => {
+      
       // 회원 목록이 아직 로드되지 않았다면 함수 종료
       if (memberList.length === 0) return;
 
