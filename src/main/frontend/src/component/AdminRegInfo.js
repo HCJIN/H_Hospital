@@ -48,7 +48,8 @@ const AdminRegInfo = () => {
     memPw : '',
     confirmPw : '',
     email : '',
-    hospitalCode : ''
+    hospitalCode : '',
+    memRole : 'admin'
   });
 
   //휴대폰 인증시 insert된 데이터 받아오기

@@ -39,13 +39,19 @@
   width: 60%;
   margin: 0 auto;
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   height: 88px;
-  font-size: 15px;
+  font-size: 17px;
+  font-weight: bold;
+  /* border: 1px solid purple; */
 }
 
 .logo img{
+  cursor: pointer;
+}
+
+.logo div{
   cursor: pointer;
 }
 
