@@ -4,14 +4,16 @@
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="reservationMapper">
    <resultMap id="reservation" type="com.green.H_Hospital.reservation.vo.ReservationVO">
-      <result column="RES_ID" property="resId"/>
-      <result column="RES_DATE" property="resDate"/>
-      <result column="RES_TIME" property="resTime"/>
-      <result column="DOCTOR_ID" property="doctorId"/>
-      <result column="SERVICE_TYPE" property="serviceType"/>
-      <result column="STATUS" property="status"/>
-      <result column="MEM_NUM" property="memNum"/>
-      <collection property="memberVO" resultMap="memberMapper.member" />
+      <id column="RES_NUM"              property="resNum"/>
+      <result column="RES_DATE"           property="resDate"/>
+      <result column="RES_TIME"           property="resTime"/>
+      <result column="SERVICE_TYPE"       property="serviceType"/>
+      <result column="STATUS"             property="status"/>
+      <result column="DISEASE"            property="disease"/>
+      <result column="SURGERY"            property="surgery"/>
+      <result column="MEM_NUM"            property="memNum"/>
+      <collection property="memberVO"     resultMap="memberMapper.member" />
+      <collection property="memberVOList"             resultMap="memberMapper.member" />
    </resultMap>
 
    <!-- 예약회원 정보 조회 -->
@@ -48,6 +50,8 @@
       WHERE h.MEM_NUM = r.MEM_NUM
       ORDER BY RES_TIME ASC;
    </select>
+
+
 
 </mapper>
 

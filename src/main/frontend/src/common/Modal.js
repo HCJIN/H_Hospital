@@ -111,7 +111,7 @@ const Modal = ({ setShow, clickCloseBtn, memNum }) => {
                 </tr>
                 <tr>
                   <th>
-                    <span className="star">진료항목</span>
+                    <span className="star">증상</span>
                   </th>
                   <td>
                     <textarea name="serviceType" onChange={(e)=>{

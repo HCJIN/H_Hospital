@@ -8,10 +8,7 @@ public class MemberVO {
     private String memId;
     private String memPw;
     private String memName;
-    private String memAddr;
-    private String addrDetail;
     private String memTel;
-    private String post;
     private String memRole;
     private String hospitalCode;
     private String gender;
