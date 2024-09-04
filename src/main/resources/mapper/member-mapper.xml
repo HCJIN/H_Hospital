@@ -99,6 +99,7 @@
         ,   MEM_PW = #{memPw}
         ,   EMAIL = #{email}
         ,   HOSPITAL_CODE = #{hospitalCode}
+        ,   MEM_ROLE = #{memRole}
         WHERE MEM_TEL = #{memTel}
     </update>
 

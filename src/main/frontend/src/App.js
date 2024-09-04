@@ -86,6 +86,17 @@ function App() {
 
   }, []);
 
+  //'admin'으로 로그인 했을때 상단에 '진료예약조회'메뉴 띄우는 함수 
+  function upperMenu(){
+    if(loginInfo.memRole == 'admin'){
+      return(
+        <div onClick={() => {navigate('/reservationCheck')}}>진료예약조회</div>
+      )
+    }
+  }
+
+  console.log(loginInfo)
+
 
   return (
     <div className="App">
@@ -121,6 +132,9 @@ function App() {
               <img onClick={()=>{
                 navigate('/')
               }} src='http://localhost:8080/images/ulsan_logo.png'></img>
+              {
+                upperMenu()
+              }
             </div>
           </div>
         </div>
@@ -168,12 +182,12 @@ function App() {
                     <span>고객센터</span>
                   </div>
                 </li>
-                <li>
+                {/* <li>
                   <div onClick={()=>{navigate('/reservationCheck')}}>
                     <p><i className="bi bi-menu-button-wide-fill"></i></p>
                     <span>진료예약조회</span>
                   </div>
-                </li>
+                </li> */}
                 <li className='sideBar-div-menu-last'>
                   <div>
                     <a href="https://www.ussunflower.or.kr/" target='_blank'>
