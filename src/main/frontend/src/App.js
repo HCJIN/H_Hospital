@@ -86,11 +86,14 @@ function App() {
 
   }, []);
 
-  //'admin'으로 로그인 했을때 상단에 '진료예약조회'메뉴 띄우는 함수 
+  //직원으로 로그인 했을때 상단에 '진료예약조회'메뉴 띄우는 함수 
   function upperMenu(){
     if(loginInfo.memRole == 'admin'){
       return(
-        <div onClick={() => {navigate('/reservationCheck')}}>진료예약조회</div>
+        <div>
+          <span onClick={() => {navigate('/admin/patientChart')}}>진료차트</span>
+          <span onClick={() => {navigate('/reservationCheck')}}>진료예약조회</span>
+        </div>
       )
     }
   }
