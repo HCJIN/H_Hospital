@@ -4,13 +4,17 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { format, isWeekend, setHours, setMinutes, startOfDay } from 'date-fns'; // date-fns를 사용하여 날짜 포맷
 
 const DatePickerInput = ({ selectDate, onSelectedDateChange = () => {} }) => {
+
+  const [reservation, setReservation] = useState([]);
+
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const datePickerRef = useRef(null); // DatePicker에 대한 ref
 
   // 현재 선택된 날짜의 minTime과 maxTime을 반환
+  // 평일 및 주말의 최소 및 최대 시간 설정
   const getMinTime = (date) => {
-    return startOfDay(date); // 기본적으로 날짜의 시작 시간(00:00)으로 설정
+    return setHours(setMinutes(startOfDay(date), 0), 9); // 오전 9시로 설정
   };
 
   const getMaxTime = (date) => {
