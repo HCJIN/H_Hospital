@@ -143,7 +143,7 @@ function App() {
 
       {/* 사이드 바 */}
 
-      {
+      {/* {
         show && ( 
           <div className={`sideBar-div ${show ? "show" : ""}`}>
             <div className='sideBar-div-tel'>
@@ -201,7 +201,7 @@ function App() {
               </ul>
             </div>
         </div>
-      )}
+      )} */}
       
 
 
@@ -279,7 +279,7 @@ function App() {
           <Route path='adminRegInfo/:memTel' element={< AdminRegInfo/>} />
 
           {/* 환자 차트 페이지 */}
-          <Route path='patientChart' element={<PatientChart/>}/>
+          <Route path='patientChart/:memNum/:resDate' element={<PatientChart/>}/>
         </Route> 
 
       </Routes>

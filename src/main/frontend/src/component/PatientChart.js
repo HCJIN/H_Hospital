@@ -1,61 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import '../css/patientChart.css'
+import { useParams } from 'react-router-dom'
 import axios from 'axios';
 
 const PatientChart = () => {
 
-  // 환자명을 검색했을 때 그 데이터를 저장 할 변수
-  const[selectName, setSelectName ] = useState('');
+  // url 파라미터로 가져온 memNum, resDate
+  const {memNum, resDate} = useParams();
 
-  console.log(selectName)
+  // 환자 데이터를 저장 할 변수
+  const [patientData, setPatientData] = useState([]);
 
-  // 환자명을 검색했을 때 값을 불러오는 함수
-  function changeSelectName(e){
-    setSelectName({
-      ...selectName,
-      [e.target.name] : e.target.value
-    });
-  }
-
-  // 모든 환자 정보를 조회한 데이터를 저장 할 변수
-  const [patienData, setPatienData] = useState([]);
-
-  console.log(patienData)
-
-  // 모든 환자의 정보를 조회하는 함수
+  // memNum과 resDate를 조건으로 클릭한 사람의 모든 정보를 받아온다.
   useEffect(() => {
-    axios.get('/reservation/getPatientInfoAll')
+    // 데이터 fetching을 위한 GET 요청
+    axios.get('/reservation/getPatientInfoAll', {
+      params: { memNum, resDate } // 쿼리 파라미터로 memNum과 resDate를 보냅니다.
+    })
     .then((res) => {
-      setPatienData(res.data)
+      setPatientData(res.data); // 데이터 상태를 업데이트합니다.
     })
     .catch((error) => {console.log(error)})
-  }, [])
-
-  // 조회된 환자 정보를 검색 했을 때 원하는 환자의 정보를 table에 출력할 함수
-
-  // 조회된 환자 정보를 검색 했을 때 그 환자의 모든 기록을 나타나게 할 함수
+  }, [memNum, resDate]); // memNum과 resDate가 변경될 때마다 useEffect가 실행됩니다.
   
   return (
     <div className='chart-div'>
       <div className='chart-content'>
-        {/* 이름을 검색했을 때 그에 상응하는 환자 검색 */}
-        {/* 환자를 검색하지 않으면 조회된 데이터가 없다고 조건문으로 넣기 */}
-        <div>
-          <input type='text' name='memName' onChange={(e) => {changeSelectName(e)}} />
-          {/* 부트스트랩으로 검색 버튼 찾기 */}
-        </div>
-        {/* 이부분은 환자 한명의 정보를 나타내는 함수로 만들어야 하는 부분이다. */}
-        {/* 
-          첫 화면을 출력할 때, 모두 빈 값으로 넣어두고 모든 환자가 나타나는 부분의 환자 한명을 클릭 했을 때
-          해당하는 환자의 정보를 출력하는 걸로 만들어야 한다.
-        */}
-        {/* 환자 정보 이름, 휴대전화, 성별, 나이(나이는 년도를 기준으로 mapper에서 바꿀것) */}
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
         <div>
           {/* 환자 번호, 환자 병명, 수술여부 , 증상*/}
           <table>
@@ -67,7 +37,9 @@ const PatientChart = () => {
             </colgroup>
             <thead>
               <tr>
-                <td><h2>증상</h2></td>
+                <td>
+                  <h2>증상</h2>
+                </td>
               </tr>
               <tr>
                 <td>환자 번호</td>
@@ -93,8 +65,8 @@ const PatientChart = () => {
           <div>
             <button type='button'>수정</button>
           </div>
+          {/* 여기에 환자의 병원 이력을 출력하면 좋을 것 같음 */}
         </div>
-        {/* 모든 환자 정보를 이곳으로 적으면 된다. */}
       </div>
     </div>
   )

@@ -65,18 +65,20 @@
    </select>
 
    <!--환자 차트에서 모든 환자 조회-->
-   <select id="getPatientInfoAll" resultMap="reservationWithMemberList">
+   <select id="getPatientInfoAll" resultMap="reservation">
       SELECT RES_NUM
          , MEM_NAME
          , MEM_TEL
          , GENDER
-         , TIMESTAMPDIFF(YEAR, BIRTHDAY, CURDATE()) AS AGE
+         , TIMESTAMPDIFF(YEAR, BIRTHDAY, CURDATE()) AS BIRTHDAY
          , M.MEM_NUM
          , SERVICE_TYPE
          , DISEASE
          , SURGERY
       FROM HOSPITAL_RESERVATION R, HOSPITAL_MEMBER M
       WHERE R.MEM_NUM = M.MEM_NUM
+      AND R.MEM_NUM = #{memNum}
+      AND RES_DATE = #{resDate};
    </select>
 
 </mapper>
