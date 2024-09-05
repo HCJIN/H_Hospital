@@ -25,6 +25,7 @@ import ReservationCheck from './component/calendar/ReservationCheck';
 import ServiceCenter from './component/ServiceCenter';
 import PatientChart from './component/PatientChart';
 import HospitalSheet from './component/HospitalSheet';
+import FindDoctor from './component/FindDoctor';
 
 function App() {
 
@@ -261,6 +262,9 @@ function App() {
         {/* 증명서 발급 페이지 */}
         <Route path='/hospitalSheet' element={<HospitalSheet />} />
 
+        {/* 의료진 찾기 페이지 */}
+        <Route path='/findDoctor' element={<FindDoctor/>}/>
+
         {/* 관리자용  */}
         <Route path='/admin'>
           {/* 관리자 로그인 페이지 */}
@@ -319,14 +323,13 @@ function App() {
                   <option>가정의학과</option>
                   <option>감염내과</option>
                   <option>=====암병원=====</option>
-                  <option>CAR T 센터</option>
+                  <option>대장암센터</option>
                   <option>간암센터</option>
                   <option>=====어린이병원=====</option>
                   <option>소아감염과</option>
                   <option>소아소화기영양과</option>
                   <option>=====심장병원=====</option>
-                  <option>대동맥질환센터</option>
-                  <option>말초혈관질환센터</option>
+                  <option>심장병원</option>
                 </select>
                 <button type='button' onClick={() => {}}>바로가기</button>
               </div>
