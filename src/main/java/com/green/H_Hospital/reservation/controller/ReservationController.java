@@ -31,4 +31,14 @@ public class ReservationController {
     public List<ReservationVO> getReservation(){
         return reservationService.getReservation();
     }
+
+    // 진료예약 조회에서 클릭했을 때 클릭한 사람의 모든 정보를 불러 오는 메서드
+    @GetMapping("/getPatientInfoAll")
+    public ReservationVO getPatientInfoAll(
+            @RequestParam("memNum") String memNum,
+            @RequestParam("resDate") String resDate
+    ){
+        return reservationService.getPatientInfoAll(memNum, resDate);
+    }
+
 }

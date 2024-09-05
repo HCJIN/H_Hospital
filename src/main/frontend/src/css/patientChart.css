@@ -4,7 +4,12 @@
   margin: auto;
 }
 
-.chart-content table{
+.chart-content > table{
   border: 1px solid black;
-  width: 50%;
+  width: 80%;
+  margin: auto;
+}
+
+.chart-content > table > thead > tr:first-child > td {
+  text-align: start;
 }

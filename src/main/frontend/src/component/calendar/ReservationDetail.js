@@ -1,8 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import '../../css/reservationDetail.css';
+import { useNavigate } from 'react-router-dom';
 
 const ReservationDetail = ({ selectedDate }) => {
+
+  const navigate = useNavigate()
+
   const [reservationInfo, setReservationInfo] = useState([]);
 
   useEffect(() => {
@@ -45,10 +49,10 @@ const ReservationDetail = ({ selectedDate }) => {
             </tr>
             :
             filteredReservations.map((reservation, i) => (
-              <tr key={i}>
+              <tr key={i} onClick={() => {navigate(`/admin/patientChart/${reservation.memNum}/${reservation.resDate}`)}}>
                 <td>{reservation.memNum}</td>
-                <td>{reservation.memberVO?.memName || ''}</td>
-                <td>{reservation.memberVO?.memTel || ''}</td>
+                <td>{reservation.memberVO.memName || ''}</td>
+                <td>{reservation.memberVO.memTel || ''}</td>
                 <td>{reservation.serviceType}</td>
                 <td>{reservation.resDate}</td>
                 <td>{reservation.resTime}</td>

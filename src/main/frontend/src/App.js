@@ -87,17 +87,17 @@ function App() {
 
   }, []);
 
-  //'admin'으로 로그인 했을때 상단에 '진료예약조회'메뉴 띄우는 함수 
+  //직원으로 로그인 했을때 상단에 '진료예약조회'메뉴 띄우는 함수 
   function upperMenu(){
     if(loginInfo.memRole == 'admin'){
       return(
-        <div onClick={() => {navigate('/reservationCheck')}}>진료예약조회</div>
+        <div>
+          <span onClick={() => {navigate('/admin/patientChart')}}>진료차트</span>
+          <span onClick={() => {navigate('/reservationCheck')}}>진료예약조회</span>
+        </div>
       )
     }
   }
-
-  console.log(loginInfo)
-
 
   return (
     <div className="App">
@@ -144,7 +144,7 @@ function App() {
 
       {/* 사이드 바 */}
 
-      {
+      {/* {
         show && ( 
           <div className={`sideBar-div ${show ? "show" : ""}`}>
             <div className='sideBar-div-tel'>
@@ -183,12 +183,12 @@ function App() {
                     <span>고객센터</span>
                   </div>
                 </li>
-                {/* <li>
+                <li>
                   <div onClick={()=>{navigate('/reservationCheck')}}>
                     <p><i className="bi bi-menu-button-wide-fill"></i></p>
                     <span>진료예약조회</span>
                   </div>
-                </li> */}
+                </li>
                 <li className='sideBar-div-menu-last'>
                   <div>
                     <a href="https://www.ussunflower.or.kr/" target='_blank'>
@@ -202,7 +202,7 @@ function App() {
               </ul>
             </div>
         </div>
-      )}
+      )} */}
       
 
 
@@ -283,7 +283,7 @@ function App() {
           <Route path='adminRegInfo/:memTel' element={< AdminRegInfo/>} />
 
           {/* 환자 차트 페이지 */}
-          <Route path='patientChart' element={<PatientChart/>}/>
+          <Route path='patientChart/:memNum/:resDate' element={<PatientChart/>}/>
         </Route> 
 
       </Routes>

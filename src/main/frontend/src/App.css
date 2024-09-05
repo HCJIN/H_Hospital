@@ -45,6 +45,7 @@
   font-size: 17px;
   font-weight: bold;
   /* border: 1px solid purple; */
+  position: relative;
 }
 
 .logo img{
@@ -53,6 +54,25 @@
 
 .logo div{
   cursor: pointer;
+  position: absolute;
+  right: -225px;
+}
+
+.logo div > span{
+  /* padding: 0 1px; */
+  
+}
+
+.logo div > span::after{
+  content: "|";
+  font-size: 15px;
+  padding: 0 20px;
+  vertical-align: top;
+}
+
+/* 마지막 "|" 안보이게  */
+.logo div > span:last-child::after{
+  content: "";
 }
 
 .login{
@@ -639,6 +659,3 @@ a{
   color: lightgreen;
   visibility: visible;
 }
-
-
-

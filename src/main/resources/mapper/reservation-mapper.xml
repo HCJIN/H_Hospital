@@ -3,8 +3,9 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="reservationMapper">
+   <!-- Collection이 아닌 단일 MemberVO를 가져오는 경우 -->
    <resultMap id="reservation" type="com.green.H_Hospital.reservation.vo.ReservationVO">
-      <id column="RES_NUM"              property="resNum"/>
+      <id column="RES_NUM"                property="resNum"/>
       <result column="RES_DATE"           property="resDate"/>
       <result column="RES_TIME"           property="resTime"/>
       <result column="SERVICE_TYPE"       property="serviceType"/>
@@ -12,8 +13,20 @@
       <result column="DISEASE"            property="disease"/>
       <result column="SURGERY"            property="surgery"/>
       <result column="MEM_NUM"            property="memNum"/>
-      <collection property="memberVO"     resultMap="memberMapper.member" />
-      <collection property="memberVOList"             resultMap="memberMapper.member" />
+      <association property="memberVO"    resultMap="memberMapper.member" />
+   </resultMap>
+
+   <!-- Collection으로 여러 MemberVO를 가져오는 경우 -->
+   <resultMap id="reservationWithMemberList" type="com.green.H_Hospital.reservation.vo.ReservationVO">
+      <id column="RES_NUM"                property="resNum"/>
+      <result column="RES_DATE"           property="resDate"/>
+      <result column="RES_TIME"           property="resTime"/>
+      <result column="SERVICE_TYPE"       property="serviceType"/>
+      <result column="STATUS"             property="status"/>
+      <result column="DISEASE"            property="disease"/>
+      <result column="SURGERY"            property="surgery"/>
+      <result column="MEM_NUM"            property="memNum"/>
+      <collection property="memberVOList" resultMap="memberMapper.member"/>
    </resultMap>
 
    <!-- 예약회원 정보 조회 -->
@@ -51,7 +64,22 @@
       ORDER BY RES_TIME ASC;
    </select>
 
-
+   <!--환자 차트에서 모든 환자 조회-->
+   <select id="getPatientInfoAll" resultMap="reservation">
+      SELECT RES_NUM
+         , MEM_NAME
+         , MEM_TEL
+         , GENDER
+         , TIMESTAMPDIFF(YEAR, BIRTHDAY, CURDATE()) AS BIRTHDAY
+         , M.MEM_NUM
+         , SERVICE_TYPE
+         , DISEASE
+         , SURGERY
+      FROM HOSPITAL_RESERVATION R, HOSPITAL_MEMBER M
+      WHERE R.MEM_NUM = M.MEM_NUM
+      AND R.MEM_NUM = #{memNum}
+      AND RES_DATE = #{resDate};
+   </select>
 
 </mapper>
 
