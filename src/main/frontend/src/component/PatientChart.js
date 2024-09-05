@@ -22,51 +22,53 @@ const PatientChart = () => {
     })
     .catch((error) => {console.log(error)})
   }, [memNum, resDate]); // memNum과 resDate가 변경될 때마다 useEffect가 실행됩니다.
-  
+
+  console.log(patientData)
+
   return (
     <div className='chart-div'>
       <div className='chart-content'>
+        <table>
+          <colgroup>
+            <col width='20%' />
+            <col width='30%' />
+            <col width='20%' />
+            <col width='*' />
+          </colgroup>
+          <thead>
+            <tr>
+              <td colSpan={4}>
+                <strong>환자 정보</strong>
+              </td>
+            </tr>
+            <tr>
+              <td>환자 식별 번호 : {patientData.memberVO?.memNum || '정보 없음'}</td>
+              <td>{patientData.memberVO?.birthday || '정보 없음'}</td>
+              <td>{patientData.memberVO?.memName || '정보 없음'}</td>
+              <td>{patientData.memberVO?.gender || '정보 없음'}</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>증상</strong></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td colSpan={4}>
+                <textarea></textarea>
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <div>
-          {/* 환자 번호, 환자 병명, 수술여부 , 증상*/}
-          <table>
-            <colgroup>
-              <col width='20%' />
-              <col width='30' />
-              <col width='10' />
-              <col width='*' />
-            </colgroup>
-            <thead>
-              <tr>
-                <td>
-                  <h2>증상</h2>
-                </td>
-              </tr>
-              <tr>
-                <td>환자 번호</td>
-                <td>상병 명칭</td>
-                <td>수술 여부</td>
-                <td>진료 항목</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td colSpan={4}>
-                  <textarea></textarea>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div>
-            <button type='button'>수정</button>
-          </div>
-          {/* 여기에 환자의 병원 이력을 출력하면 좋을 것 같음 */}
+          <button type='button'>수정</button>
         </div>
+        <div>여기에 환자의 병원 이력을 출력</div>
       </div>
     </div>
   )
