@@ -132,6 +132,9 @@ function App() {
               <img onClick={()=>{
                 navigate('/')
               }} src='http://localhost:8080/images/ulsan_logo.png'></img>
+              {
+                upperMenu()
+              }
             </div>
           </div>
         </div>
