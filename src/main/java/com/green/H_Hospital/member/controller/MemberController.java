@@ -106,7 +106,4 @@ public class MemberController {
         memberService.setNewPw(memberVO);
     }
 
-
 }
-
-
