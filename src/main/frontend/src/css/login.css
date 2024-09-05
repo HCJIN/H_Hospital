@@ -271,3 +271,94 @@
 }
 
 /* login-table-end */
+
+@media screen and (min-width: 1800px) and (max-width:1900px){
+
+  .login-id-pw{
+    width: 372px;
+  } 
+
+  /* .login-id-pw > button{
+    width: 100px;
+    
+  } */
+  
+}
+
+@media screen and (min-width: 1700px) and (max-width: 1800px){
+  
+  .login-id-pw{
+    width: 360px;
+    padding-right: 150px;
+    display: flex;
+    /* font-size: 15px; */
+
+  }
+}
+
+/* @media screen and (min-width: ) and (max-width: ) {
+  
+} */
+
+@media screen and (max-width: 1500px) {
+  
+  .login-content-right{
+    display: none;
+  }
+
+  .myChartBenefit{
+    display: none;
+  }
+
+  .login-id-pw{
+    margin-left: -150px;
+    width: 320px;
+    
+  }
+
+  .id-save{
+    margin-left: 80px;
+  }
+
+}
+
+@media screen and (max-width: 1000px) {
+  .login-form-div{
+    display: none;
+  }
+
+  .login-content-left > ul{
+    display: none;
+  }
+
+  .login-id-pw{
+    margin-left: -130px;
+    width: 320px;
+    
+  }
+
+  .login-btn{
+    margin-right: -120px;
+  }
+
+  .id-save{
+    margin-left: 30px;
+  }
+
+}
+
+@media screen and (max-width: 500px)  {
+  .main-login{
+    display: flex;
+  }
+
+  .login-id-pw{
+    
+  }
+
+  .id-save{
+    margin-left: -20px;
+  }
+}
+
+
