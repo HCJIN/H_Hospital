@@ -327,7 +327,6 @@ function App() {
                   <option>간암센터</option>
                   <option>=====어린이병원=====</option>
                   <option>소아감염과</option>
-                  <option>소아소화기영양과</option>
                   <option>=====심장병원=====</option>
                   <option>심장병원</option>
                 </select>
