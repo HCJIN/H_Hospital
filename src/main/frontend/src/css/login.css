@@ -275,32 +275,113 @@
 @media screen and (min-width: 1800px) and (max-width:1900px){
 
   .login-id-pw{
-    width: 372px;
+    margin-left: -35px;
   } 
-
-  /* .login-id-pw > button{
-    width: 100px;
-    
-  } */
   
 }
 
-@media screen and (min-width: 1700px) and (max-width: 1800px){
+@media screen and (min-width: 1600px) and (max-width: 1800px){
   
   .login-id-pw{
-    width: 360px;
-    padding-right: 150px;
-    display: flex;
-    /* font-size: 15px; */
+    margin-left: -40px;
+  }
 
+  .login-id-pw input[type='text'],
+  .login-id-pw input[type='password']{
+    width: 270px;
+  }
+
+  .login-btn{
+    margin-right: -20px;
+  }
+
+}
+
+@media screen and (min-width: 1500px) and (max-width: 1600px) {
+
+  .login-id-pw{
+    margin-left: -40px;
+  }
+
+  .login-id-pw input[type='text'],
+  .login-id-pw input[type='password']{
+    width: 235px;
+  }
+
+  .login-btn{
+    margin-right: -20px;
+    
   }
 }
 
-/* @media screen and (min-width: ) and (max-width: ) {
+@media screen and (min-width: 1367px) and (max-width: 1499px){
   
-} */
+  .login-id-pw{
+    margin-left: -50px;
+  }
 
-@media screen and (max-width: 1500px) {
+  .login-id-pw input[type='text'],
+  .login-id-pw input[type='password']{
+    width: 210px;
+  }
+
+  .login-btn{
+    margin-right: -20px;
+  }
+
+  .id-save{
+    margin-left: 110px;
+  }
+
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1367px) {
+  
+  .login-id-pw{
+    margin-left: -50px;
+  }
+
+  .login-id-pw input[type='text'],
+  .login-id-pw input[type='password']{
+    width: 160px;
+  }
+
+  .login-btn{
+    margin-right: -20px;
+  }
+
+  .id-save{
+    margin-left: 33px;
+  }
+
+  .myChartBenefit{
+    display: none;
+  }
+
+}
+
+@media screen and (min-width: 1128px) and (max-width: 1200px) {
+  
+  .login-id-pw{
+    margin-left: -40px;
+  }
+
+  .login-id-pw input[type='text'],
+  .login-id-pw input[type='password']{
+    width: 135px;
+  }
+
+  .login-btn{
+    margin-right: -25px;
+  }
+
+  .myChartBenefit{
+    display: none;
+  }
+
+}
+
+@media screen and (max-width: 1127px) {
   
   .login-content-right{
     display: none;
@@ -311,18 +392,52 @@
   }
 
   .login-id-pw{
-    margin-left: -150px;
-    width: 320px;
-    
+    margin-left: -140px;
+  }
+
+  .login-id-pw input[type='text'],
+  .login-id-pw input[type='password']{
+    width: 225px;
   }
 
   .id-save{
-    margin-left: 80px;
+    margin-left: 40px;
+  }
+
+  .login-btn{
+    margin-right: -120px;
+  }
+
+  .login-content-left > ul{
+    width: 300px;
+    margin-left: -50px;
   }
 
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (min-width: 600px) and (max-width: 800px) {
+
+  .login-id-pw{
+    margin-left: -110px;
+  }
+
+  .login-id-pw input[type='text'],
+  .login-id-pw input[type='password']{
+    width: 140px;
+  }
+
+  .login-btn{
+    margin-right: -100px;
+  }
+
+  .id-save{
+    margin-left: 10px;
+  }
+
+}
+
+@media screen and (max-width: 800px) {
+
   .login-form-div{
     display: none;
   }
@@ -331,33 +446,30 @@
     display: none;
   }
 
-  .login-id-pw{
-    margin-left: -130px;
-    width: 320px;
-    
-  }
-
-  .login-btn{
-    margin-right: -120px;
-  }
-
-  .id-save{
-    margin-left: 30px;
-  }
-
 }
 
-@media screen and (max-width: 500px)  {
+@media screen and (max-width: 600px)  {
   .main-login{
     display: flex;
   }
 
   .login-id-pw{
-    
+    margin-left: -100px;
+  }
+
+  .login-id-pw input[type='text'],
+  .login-id-pw input[type='password']{
+    width: 132px;
   }
 
   .id-save{
     margin-left: -20px;
+  }
+
+  .login-btn{
+    margin-right: -85px;
+    width: 70px;
+    line-height: 19px;
   }
 }
 
