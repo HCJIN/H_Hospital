@@ -217,3 +217,13 @@
   font-weight: 500;
   cursor: pointer;
 }
+
+@media screen and (max-width: 1330px) {
+  .regInfo-div > .regBar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1338px) {
+  
+}
