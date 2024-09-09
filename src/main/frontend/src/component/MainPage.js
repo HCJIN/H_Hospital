@@ -92,7 +92,7 @@ const MainPage = () => {
           <div className='main-icon-div'>
             <div className='main-icon-box'>
               <i className="bi bi-person-vcard"></i>
-              <div>
+              <div onClick={()=>{navigate('/findDoctor')}}>
                 <strong>의료진찾기</strong>
                 <p>
                   전문의료진을 빠르게<br></br>

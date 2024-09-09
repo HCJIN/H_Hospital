@@ -1,17 +1,82 @@
 .find-div {
+  margin: 50px auto;
+  width: 60%;
+  height: 580px;
+  justify-content: center; 
+  align-items: center; 
 }
 
-.doctor-list {
+.find-title-select{
+  padding-top: 20px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+.find-title-select h2{
+  font-size: 2rem;
+  padding-bottom: 30px;
+}
+.find-title-select select{
+  width: 500px;
+  height: 40px;
+  padding-left: 13px;
+  font-size: 16px;
+}
+.find-title-select select:focus{
+  border: 2px solid #0e787c;
+}
+.searchInfo{
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  margin-top: 30px;
+}
+.searchInfo i{
+  margin-right: 20px;
+  font-size: 42px;
+  color: #c7c6c6;
 }
 
-.doctor-item {
+.searchInfo span span{
+  color: #2cb1b6;
+  font-weight: bold;
+}
+
+.doctor-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.doctor-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #fff;
+  width: 280px;
+}
+
+.doctor-image-container{
+  width: 100%;
+  text-align: center;
 }
 
 .doctor-image {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.doctor-details{
+  text-align: center;
 }
 
 .doctor-name {
+  margin: 8px 0;
+  font-size: 1.2rem;
 }
 
 .doctor-intro {
+  margin: 0;
 }
