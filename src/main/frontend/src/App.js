@@ -26,6 +26,7 @@ import ServiceCenter from './component/ServiceCenter';
 import PatientChart from './component/PatientChart';
 import HospitalSheet from './component/HospitalSheet';
 import FindDoctor from './component/FindDoctor';
+import FindDepartment from './component/FindDepartment';
 
 function App() {
 
@@ -264,6 +265,9 @@ function App() {
 
         {/* 의료진 찾기 페이지 */}
         <Route path='/findDoctor' element={<FindDoctor/>}/>
+
+        {/* 진료과 찾기 페이지 */}
+        <Route path='/findDepartment' element={<FindDepartment/>}/>
 
         {/* 관리자용  */}
         <Route path='/admin'>
