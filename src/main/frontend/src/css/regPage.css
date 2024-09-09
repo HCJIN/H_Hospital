@@ -148,3 +148,32 @@ input[type="radio"]{
 
 /* regBtn-end */
 
+@media screen and (max-width: 1460px) {
+
+  .regPage-div > .regBar{
+    display: none;
+  }
+
+}
+
+@media screen and (min-width: 1728px) and (max-width: 1752px) {
+  .Tel > td > input{
+    width: 150px;
+  }
+}
+
+@media screen and (min-width: 1651px) and (max-width: 1728px) {
+  .Tel > td > input{
+    width: 140px;
+  }
+}
+
+@media screen and (min-width: 1572px) and (max-width: 1651px) {
+  .Tel > td > input{
+    width: 130px;
+  }
+}
+
+@media screen and (min-width: ) and (max-width: 1572px) {
+  
+}

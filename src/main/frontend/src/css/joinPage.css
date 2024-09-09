@@ -141,3 +141,9 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 1780px){
+  .agreePage > .regBar{
+    display: none;
+  }
+}
+
