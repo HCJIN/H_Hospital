@@ -174,6 +174,73 @@ input[type="radio"]{
   }
 }
 
-@media screen and (min-width: ) and (max-width: 1572px) {
+@media screen and (min-width: 1495px) and (max-width: 1572px) {
   
+  .Tel > td > input{
+    width: 120px;
+  }
+
 }
+
+@media screen and (min-width:1416px) and (max-width: 1495px) {
+  
+  .Tel > td > input{
+    width: 110px;
+  }
+
+}
+
+@media screen and (min-width: 1339px) and (max-width: 1416px) {
+  
+  .Tel > td > input{
+    width: 100px;
+  }
+
+}
+
+@media screen and (min-width:1261px) and (max-width: 1339px) {
+  
+  .Tel > td > input{
+    width: 90px;
+  }
+
+}
+
+@media screen and (min-width: 1183px) and (max-width: 1261px) {
+  
+  .Tel > td > input{
+    width: 80px;
+  }
+}
+
+@media screen and (min-width: 1105px) and (max-width: 1183px) {
+  
+  .Tel > td > input{
+    width: 70px;
+  }
+}
+
+@media screen and (min-width: 910px) and (max-width: 1105px) {
+  
+  .Tel > td > input{
+    width: 45px;
+  }
+
+}
+
+@media screen and (max-width: 1038px) {
+  
+  .birthday > td > select{
+    width: 40px;
+  }
+
+}
+
+@media screen and (max-width: 909px) {
+  
+  .id-ul-div > ul{
+    display: none;
+  }
+}
+
+
