@@ -102,7 +102,7 @@ const MainPage = () => {
             </div>
             <div className='main-icon-box'>
               <i className="bi bi-search-heart"></i>
-              <div>
+              <div onClick={()=>{navigate('/findDepartment')}}>
                 <strong>진료과찾기</strong>
                 <p>
                   진료 전 진료과를<br></br>
