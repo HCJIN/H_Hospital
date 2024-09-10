@@ -1,0 +1,54 @@
+.family-div{}
+.family-container{}
+.family-header{
+  height: 150px;
+  margin: 50px 0;
+  display: flex;
+  position: relative;
+}
+.family-header-main{
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+.family-header-main-btn{
+  display: flex;
+  gap: 10px;
+}
+.family-header-main-btn button:hover{
+  cursor: pointer;
+}
+.family-header-main-btn i{
+  font-size: 1.2rem;
+  margin-right: 4px;
+}
+.family-header-main-btn button:nth-child(1){
+  width: 170px;
+  height: 50px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  border: 2px solid #1c9397;
+  background-color: #1c9397;
+  color: #fff;
+  font-weight: bold;
+}
+.family-header-main-btn button:nth-child(2){
+  width: 170px;
+  height: 50px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  border: 2px solid #1c9397;
+  background-color: #fff;
+  color: #1c9397;
+  font-weight: bold;
+}
+.family-body{}
+.family-tab{}
+.family-tab button{
+  width: 450px;
+  height: 60px;
+  
+}
+
+
+
