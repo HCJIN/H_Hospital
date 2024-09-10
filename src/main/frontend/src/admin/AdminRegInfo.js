@@ -128,7 +128,7 @@ const AdminRegInfo = () => {
 
   return (
     <div className='regInfo-div'>
-      <RegBar step={3}/>
+      <div className='regBar'><RegBar step={3}/></div>
       <table className='regInfo-table'>
         <tbody>
           <tr>

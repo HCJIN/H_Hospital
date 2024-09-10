@@ -31,7 +31,7 @@ const AdminJoinPage = () => {
   
   return (
     <div className='agreePage'>
-      <RegBar step={1}/>
+      <div className='regBar'><RegBar step={1}/></div>
       <div className='agreeText'>
         <h3 className='agree-h3'>이용약관</h3>
         <div className='agreeTextBox'>

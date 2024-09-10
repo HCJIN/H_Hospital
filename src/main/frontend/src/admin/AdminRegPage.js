@@ -111,7 +111,7 @@ const AdminRegPage = () => {
 
   return (
     <div className='regPage-div'>
-      <RegBar step={2}/>
+      <div className='regBar'><RegBar step={2}/></div>
       <div className='regPage-title'>가입하기</div>
       <div className='id-ul-div'>
         <ul>
