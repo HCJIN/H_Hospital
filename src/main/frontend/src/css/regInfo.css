@@ -224,6 +224,23 @@
   }
 }
 
+@media screen and (max-width: 1640px){
+  
+  .regInfo-table > tbody > tr > td:nth-child(1){
+    padding-left: 20px;
+  }
+
+  .addMail > span{
+    margin-left: -30px;
+  }
+
+}
+
 @media screen and (max-width: 1338px) {
   
+  .regInfo-table > tbody > tr > td:nth-child(1){
+    padding: 10px;
+    font-size: 13px;
+  }
+
 }
