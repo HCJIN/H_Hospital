@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import '../../css/MyCalendar.css';
+// import '../../css/MyCalendar.css';
+import '../../css/MyCalendar2.css';
+import moment from 'moment';
 
 function MyCalendar({ onDateChange }) {
   const [value, setValue] = useState(new Date());
@@ -18,6 +20,7 @@ function MyCalendar({ onDateChange }) {
         <Calendar
           onChange={onChange}
           value={value}
+          formatDay={(locale, date) => moment(date).format("DD")}
         />
       </div>
     </div>
