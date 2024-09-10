@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import MyCalendar from './MyCalendar';
 import ReservationDetail from './ReservationDetail';
+import '../../css/reservationCheck.css';
 
 const ReservationCheck = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -11,7 +12,8 @@ const ReservationCheck = () => {
   };
 
   return (
-    <div>
+    <div className='check-container'>
+    
       <div className='reCheck-container'>
         <MyCalendar onDateChange={handleDateChange} />
       </div>

@@ -9,11 +9,11 @@ const handleDateChange = (date) => {
   setSelectedDate(date);
 };
 
-  return (
-    <div>
-      <MyCalendar onDateChange={handleDateChange} />
-      <ReservationDetail selectedDate={selectedDate} />
-    </div>
+  return (  
+      <div>
+        <MyCalendar onDateChange={handleDateChange} />
+        <ReservationDetail selectedDate={selectedDate} />
+      </div>
   );
 }
 
