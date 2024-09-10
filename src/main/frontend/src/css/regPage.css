@@ -241,6 +241,36 @@ input[type="radio"]{
   .id-ul-div > ul{
     display: none;
   }
+
+  .Tel > td:nth-child(1){
+    vertical-align: middle;
+  }
+
+}
+
+@media screen and (max-width: 833px) {
+  
+  .birthday > td:nth-child(1) {
+    font-size: 14px;
+  }
+
+  .Tel > td:nth-child(1){
+    font-size: 14px;
+    vertical-align: middle;
+  }
+
+}
+
+@media screen and (max-width: 815px) {
+  
+  .Tel > td > select{
+    width: 45px;
+  }
+
+  .Tel > td > input{
+    width: 29px;
+  }
+
 }
 
 
