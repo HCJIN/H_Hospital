@@ -1,7 +1,7 @@
 .findDepartment-container {
   margin: 30px auto;
   width: 60%;
-  height: 500px;
+  height: 490px;
   display: flex;
   flex-direction: column;
   align-items: center; 
@@ -9,7 +9,7 @@
 }
 
 .findDepartment-title {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   font-size: 25px;
   color: gray;
 }

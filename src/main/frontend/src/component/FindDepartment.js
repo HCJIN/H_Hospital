@@ -1,7 +1,9 @@
 import React from 'react'
 import '../css/FindDepartment.css';
+import { useNavigate } from 'react-router-dom';
 
 const FindDepartment = () => {
+  const navigate = useNavigate();
   return (
     <div className='findDepartment-container'>
       <div className='findDepartment-title'>
@@ -9,7 +11,7 @@ const FindDepartment = () => {
       </div>
       <div className='findDepartment-list'>
         <ul>
-          <li>
+          <li onClick={()=>{navigate('/familyMedicine')}}>
             <span>가정의학과</span>
           </li>
           <li>

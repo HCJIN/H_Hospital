@@ -27,6 +27,12 @@ import PatientChart from './component/PatientChart';
 import HospitalSheet from './component/HospitalSheet';
 import FindDoctor from './component/FindDoctor';
 import FindDepartment from './component/FindDepartment';
+import FamilyMedicine from './component/department/FamilyMedicine';
+import InfectiousDisease from './component/department/InfectiousDisease';
+import ColorectalCancer from './component/department/ColorectalCancer';
+import LiverCancer from './component/department/LiverCancer';
+import Pediatrics from './component/department/Pediatrics';
+import Heart from './component/department/Heart';
 
 function App() {
 
@@ -268,6 +274,19 @@ function App() {
 
         {/* 진료과 찾기 페이지 */}
         <Route path='/findDepartment' element={<FindDepartment/>}/>
+
+        {/* 가정의학과 */}
+        <Route path='/familyMedicine' element={<FamilyMedicine/>}/>
+        {/* 감염내과 */}
+        <Route path='/infectiousDisease' element={<InfectiousDisease/>}/>
+        {/* 대장암센터 */}
+        <Route path='/colorectalCancer' element={<ColorectalCancer/>}/>
+        {/* 간암센터 */}
+        <Route path='/liverCancer' element={<LiverCancer/>}/>
+        {/* 소아과 */}
+        <Route path='/pediatrics' element={<Pediatrics/>}/>
+        {/* 심장병원 */}
+        <Route path='/heart' element={<Heart/>}/>
 
         {/* 관리자용  */}
         <Route path='/admin'>
