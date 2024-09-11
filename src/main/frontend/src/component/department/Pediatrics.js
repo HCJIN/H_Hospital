@@ -40,9 +40,9 @@ const Pediatrics = () => {
             </div>
             <div className='pediatric-intro'>
               <br/>
-              <i class="bi bi-thermometer"></i>
-              <i class="bi bi-thermometer-half"></i>
-              <i class="bi bi-thermometer-high"></i>
+              <i className="bi bi-thermometer"></i>
+              <i className="bi bi-thermometer-half"></i>
+              <i className="bi bi-thermometer-high"></i>
               <br/>
               울산메디컬센터 소아과는 환아들에게 최상의 진료를 제공하고자 국내 최고의 전문 의료진이 첨단장비를 이용해<br/> 집중치료실 내에서 신속한 검사와 치료를 시행하고 있습니다. 소아관련 모든 진료과 의료진과 협의진료를 시행하며<br/> 세계적 수준의 진단과 치료, 상담을 시행하고 있습니다.
             </div>

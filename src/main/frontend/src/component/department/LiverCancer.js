@@ -40,9 +40,9 @@ const LiverCancer = () => {
             </div>
             <div className='cancer-intro'>
               <br/>
-              <i class="bi bi-eyedropper"></i>
-              <i class="bi bi-eyedropper"></i>
-              <i class="bi bi-eyedropper"></i>
+              <i className="bi bi-eyedropper"></i>
+              <i className="bi bi-eyedropper"></i>
+              <i className="bi bi-eyedropper"></i>
               <br/>
               울산메디컬센터의 간암센터는 최첨단 로봇수술과 복강경수술을 시행하며<br/>
               최소한의 오차로 수술 성골률을 높입니다. 가족을 치료하는 마음으로<br/>

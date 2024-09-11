@@ -48,15 +48,46 @@ function App() {
 
   //하단 메뉴 진료과 옵션 클릭
   const [selectedDepartment, setSelectedDepartment] = useState('');
+  
+  //top버튼
+  const [showBtn, setShowBtn] = useState(false);
+
   const handleDepartmentChange = (e)=>{
     setSelectedDepartment(e.target.value);
   }
   const handleNavigate = (path) =>{navigate(path);}
+  
+  //페이지 상단 이동
+  const scrollToTop = () => {
+    window.scrollTo({
+      top : 0,
+      behavior: 'smooth'
+    })
+  }
 
-  //옵션 선택 후 페이지 상단으로 이동
+  //옵션 선택 후 페이지 이동 시 상단 화면 나오게 하기
   useEffect(()=>{
     window.scrollTo(0,0);
   },[location])
+
+  
+  useEffect(()=>{
+    const handleShowBtn=()=>{
+    if(window.scrollY > 250) {
+      setShowBtn(true)
+    }
+     else{
+      setShowBtn(false)
+    }
+  }
+
+    window.addEventListener("scroll", handleShowBtn)
+    return()=>{
+      window.removeEventListener("scroll", handleShowBtn)
+    }
+  },[])
+  
+
 
   //로그인 성공 시 loginInfo에 로그인 정보를 저장하지만 
   //새로고침하면 App.js 다시 시작하면서 loginInfo 변수의 값이 초기화된다.
@@ -223,7 +254,16 @@ function App() {
             </div>
         </div>
       )}
-      
+
+      {/* top 버튼 */}
+      <div className='scroll-container'>
+        {showBtn &&(
+          <button id='top' onClick={scrollToTop} type='button'>
+            <i className="bi bi-caret-up-fill"></i>
+            <p>Top</p>
+            </button>
+        )}
+      </div>      
 
 
       <Routes>

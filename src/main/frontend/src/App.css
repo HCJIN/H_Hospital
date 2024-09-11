@@ -186,6 +186,36 @@ a{
 
 /* 사이드 바 end */
 
+
+.scroll-container{
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  z-index: 1;
+}
+#top{
+  font-weight: bold;
+  padding: 8px 19px;
+  padding-bottom: 15px;
+  outline: none;
+  cursor: pointer;
+  color: #7a7a7a;
+  border: 1px solid #d2d2d2;
+  border-radius: 50%;
+  font-size: 15px;
+  background-color: #fff;
+}
+#top:hover{
+  background-color: #a09f9f;
+  color: #fff;
+  border: none;
+}
+
+
+/* top btn end */
+
+
+
 .footerWrap{
   width: 100%;
   height: 250px;

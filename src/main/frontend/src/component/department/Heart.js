@@ -40,9 +40,9 @@ const Heart = () => {
             </div>
             <div className='heart-intro'>
               <br/>
-              <i class="bi bi-heart-pulse"></i>
-              <i class="bi bi-heart-pulse"></i>
-              <i class="bi bi-heart-pulse"></i>
+              <i className="bi bi-heart-pulse"></i>
+              <i className="bi bi-heart-pulse"></i>
+              <i className="bi bi-heart-pulse"></i>
               <br/>
               울산메디컬 대장암센터는 과학적인 근거 하에 최선의 치료 방법을 선택하고 <br/> 환자의 상태에 맞게 항암제를 투약 및 관리하여 암환자의 생존과 삶의 질 향상을 최우선의 목표로 하고 있습니다.<br/> 종양치료 전문의료진들이 곳곳에 위치하여 항암치료의 부작용과 대처법을 숙지하고 환자들을 돌보며 <br/> 환자와 보호자 교육에 힘쓰고 있으며 다학제 진료를 통해 최선의 치료 방법을 찾고 있습니다.
             </div>

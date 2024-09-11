@@ -1,4 +1,5 @@
 .family-div{
+  
 }
 .family-container{
   margin: 0 auto;
@@ -100,7 +101,7 @@
 }
 .family-intro i, .infection-intro i, 
 .cancer-intro i, .heart-intro i, .pediatric-intro i{
-  font-size: 19px;
+  font-size: 30px;
 }
 
 

@@ -1,3 +1,13 @@
+.findDepartment-div{
+  width: 100%;
+  margin: 0 auto;
+  background-image: url(../images/bg-main-pattern.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 50px;
+  margin-top: 30px;
+}
+
 .findDepartment-container {
   margin: 30px auto;
   width: 60%;
@@ -9,7 +19,7 @@
 }
 
 .findDepartment-title {
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   font-size: 25px;
   color: gray;
 }
@@ -19,6 +29,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
   justify-content: center; 
+  margin-bottom: 100px;
 }
 
 .findDepartment-list li {
@@ -30,8 +41,12 @@
   padding-top: 14px;
   color: #22959b;
   font-weight: bold;
+  cursor: pointer;
 }
-
+.findDepartment-list li:hover{
+  background-color: #22959b;
+  color: #fff;
+}
 .findDepartment-list li>span{
   vertical-align: middle;
   font-size: 1.2rem;
