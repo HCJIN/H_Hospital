@@ -98,6 +98,69 @@
 .contentA div:nth-child(2){
   margin-left: 50px;
 }
+.family-intro i, .infection-intro i, 
+.cancer-intro i, .heart-intro i, .pediatric-intro i{
+  font-size: 19px;
+}
+
+
+/* intro icon color */
+.family-intro i:nth-child(2){
+  color: skyblue;
+}
+.family-intro i:nth-child(3){
+  color: rgb(98, 169, 197);
+}
+.family-intro i:nth-child(4){
+  color: skyblue;
+}
+
+.infection-intro i:nth-child(2){
+  color: rgb(146, 146, 255);
+}
+.infection-intro i:nth-child(3){
+  color: rgb(247, 119, 119);
+}
+.infection-intro i:nth-child(4){
+  color: rgb(146, 146, 255);
+}
+
+.cancer-intro i:nth-child(2){
+  color: rgb(126, 126, 126);
+}
+.cancer-intro i:nth-child(3){
+  color: rgb(247, 119, 119);
+}
+.cancer-intro i:nth-child(4){
+  color: rgb(126, 126, 126);
+}
+
+.pediatric-intro i:nth-child(2){
+  color: rgb(255, 144, 162);
+}
+.pediatric-intro i:nth-child(3){
+  color: rgb(245, 95, 120);
+}
+.pediatric-intro i:nth-child(4){
+  color: rgb(255, 28, 66);
+}
+
+.heart-intro i:nth-child(2){
+  color: rgb(252, 144, 162);
+}
+.heart-intro i:nth-child(3){
+  color: skyblue;
+}
+.heart-intro i:nth-child(4){
+  color: rgb(252, 144, 162);
+}
+
+.family-content2{
+}
+.family-content2 table{
+  border: 1px solid black;
+}
+
 .family-doctor-container{
   display: flex;
   flex-wrap: wrap;

@@ -1,6 +1,6 @@
 import './App.css';
 import './reset.css';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Join from './component/join/Join';
 import JoinPage from './component/join/JoinPage';
 import Login from './component/loginpage/Login';
@@ -36,7 +36,8 @@ import Heart from './component/department/Heart';
 
 function App() {
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   //로그인 정보를 저장 할 수 있는 state 변수
   const [loginInfo, setLoginInfo] = useState({});
@@ -44,6 +45,18 @@ function App() {
   //사이드바 메뉴 상태 저장 state
   const [show, setShow] = useState(true);
   const [menuLabel, setMenuLabel] = useState("메뉴")
+
+  //하단 메뉴 진료과 옵션 클릭
+  const [selectedDepartment, setSelectedDepartment] = useState('');
+  const handleDepartmentChange = (e)=>{
+    setSelectedDepartment(e.target.value);
+  }
+  const handleNavigate = (path) =>{navigate(path);}
+
+  //옵션 선택 후 페이지 상단으로 이동
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  },[location])
 
   //로그인 성공 시 loginInfo에 로그인 정보를 저장하지만 
   //새로고침하면 App.js 다시 시작하면서 loginInfo 변수의 값이 초기화된다.
@@ -151,7 +164,7 @@ function App() {
 
       {/* 사이드 바 */}
 
-      {/* {
+      {
         show && ( 
           <div className={`sideBar-div ${show ? "show" : ""}`}>
             <div className='sideBar-div-tel'>
@@ -209,7 +222,7 @@ function App() {
               </ul>
             </div>
         </div>
-      )} */}
+      )}
       
 
 
@@ -340,20 +353,20 @@ function App() {
           <div className='footerMenuWrap'>
             <div className='footerMenu2'>
               <div className='footerMenu2-select'>
-                <select>
-                  <option>진료과</option>
-                  <option>=====진료과=====</option>
-                  <option>가정의학과</option>
-                  <option>감염내과</option>
-                  <option>=====암병원=====</option>
-                  <option>대장암센터</option>
-                  <option>간암센터</option>
-                  <option>=====어린이병원=====</option>
-                  <option>소아감염과</option>
-                  <option>=====심장병원=====</option>
-                  <option>심장병원</option>
+                <select onChange={handleDepartmentChange}>
+                  <option value="">진료과</option>
+                  <option value="">=====진료과=====</option>
+                  <option value="/familyMedicine">가정의학과</option>
+                  <option value="/infectiousDisease">감염내과</option>
+                  <option value="">=====암병원=====</option>
+                  <option value="/colorectalCancer">대장암센터</option>
+                  <option value="/liverCancer">간암센터</option>
+                  <option value="">=====어린이병원=====</option>
+                  <option value="/pediatrics">소아감염과</option>
+                  <option value="">=====심장병원=====</option>
+                  <option value="/heart">심장병원</option>
                 </select>
-                <button type='button' onClick={() => {}}>바로가기</button>
+                <button type='button' onClick={() =>handleNavigate(selectedDepartment)}>바로가기</button>
               </div>
               <div className='footerMenu2-select'>
                 <select>
@@ -381,12 +394,11 @@ function App() {
               </div>
               <div className='footerMenu3-select'>
                 <select>
-                  <option>센터/클리닉/연구원/기타</option>
-                  <option>간센터</option>
-                  <option>건강증진센터</option>
-                  <option>국제진료센터</option>
-                  <option>당뇨병진료센터</option>
-                  <option>로봇수술센터</option>
+                  <option>관련기관</option>
+                  <option>울산생명과학연구원</option>
+                  <option>의학도서관</option>
+                  <option>스마트아카데미</option>
+                  <option>울산의료원 연보</option>
                 </select>
                 <button type='button' onClick={() => {}}>바로가기</button>
               </div>

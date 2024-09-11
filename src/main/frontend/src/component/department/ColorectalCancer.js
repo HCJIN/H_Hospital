@@ -36,12 +36,17 @@ const ColorectalCancer = () => {
 
           {content === 'A' && <div id='contentA' className='contentA'>
             <div>
-              풍부한 경험을<br/>
-              바탕으로 한<br/>
-              <strong>치료 기술</strong>
+              악성종양의<br/>
+              항암약물치료와<br/>
+              <strong>신약임상연구</strong>
             </div>
-            <div>
-              울산메디컬센터는 국내외 의사들이 기술과 경험을 배우기 위해<br/> 대장암센터를 찾고 있을 정도로 높은 성과를 내왔습니다.<br/>앞으로도 울산메디컬센터 대장암센터는 모든 암환자들이 질병으로부터 자유로워지고<br/> 행복한 삶을 영위할 수 있도록 노력할 것입니다.
+            <div className='cancer-intro'>
+              <br/>
+              <i class="bi bi-eyedropper"></i>
+              <i class="bi bi-eyedropper"></i>
+              <i class="bi bi-eyedropper"></i>
+              <br/>
+              울산메디컬 대장암센터는 과학적인 근거 하에 최선의 치료 방법을 선택하고 환자의 상태에 맞게 항암제를 <br/> 투약 및 관리하여 암환자의 생존과 삶의 질 향상을 최우선의 목표로 하고 있습니다.<br/> 종양치료 전문의료진들이 곳곳에 위치하여 항암치료의 부작용과 대처법을 숙지하고 환자들을 돌보며<br/> 환자와 보호자 교육에 힘쓰고 있으며 다학제 진료를 통해 최선의 치료 방법을 찾고 있습니다.
             </div>
           </div>}
 

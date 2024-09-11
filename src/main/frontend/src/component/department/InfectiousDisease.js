@@ -39,7 +39,12 @@ const InfectiousDisease = () => {
               감염질환 관리로<br/>
               <strong>인류 보건에 기여</strong>
             </div>
-            <div>
+            <div className='infection-intro'>
+              <br/>
+              <i class="bi bi-capsule"></i>
+              <i class="bi bi-capsule"></i>
+              <i class="bi bi-capsule"></i>
+              <br/>
               covid-19 등 신종 감염병의 등장은 물론, 과거에 유행했던 감염병의 재출현으로 감염질환의 관리는<br/> 현대사회에서 더욱 중요해졌습니다. 울산메디컬센터 감염내과는 인체 여러 부위에 발생하는 감염질환의 진단과<br/> 치료뿐 아니라 다양한 발열질환의 원인을 규명해 예방 및 관리를 전담하고 있습니다.
             </div>
           </div>}

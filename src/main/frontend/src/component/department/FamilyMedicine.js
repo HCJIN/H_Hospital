@@ -36,14 +36,19 @@ const FamilyMedicine = () => {
           <button type='button' onClick={()=>setContent('B')} className={`button ${isActive('B') ? 'active' : ''}`}>의료진</button>
 
           {content === 'A' && <div id='contentA' className='contentA'>
-            <div>
-              건강 증진을 위한<br/>
-              지속적인<br/>
-              <strong>의료제공</strong>
-            </div>
-            <div>
-              가정의학과에서는 환자의 건강 증진과 유지를 목표로 <br/> 건강 상담, 질병의 치료와 예방법 등을 제공하며 환자의 전 생애를 책임지고<br/> 환자에게 지속적이고 포괄적인 의료를 제공합니다.
-            </div>
+              <div>
+                건강 증진을 위한<br/>
+                지속적인<br/>
+                <strong>의료제공</strong>
+              </div>
+              <div className='family-intro'>
+                <br/>
+                <i class="bi bi-house-heart"></i>
+                <i class="bi bi-house-heart"></i>
+                <i class="bi bi-house-heart"></i>
+                <br/>
+                가정의학과에서는 환자의 건강 증진과 유지를 목표로 <br/> 건강 상담, 질병의 치료와 예방법 등을 제공하며 환자의 전 생애를 책임지고<br/> 환자에게 지속적이고 포괄적인 의료를 제공합니다. <br/>
+              </div>
           </div>}
 
           {content === 'B' && <div id='contentB'>
