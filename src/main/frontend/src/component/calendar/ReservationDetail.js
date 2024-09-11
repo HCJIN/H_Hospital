@@ -27,7 +27,6 @@ const ReservationDetail = ({ selectedDate }) => {
 
   return (
     <div className='container3'>
-      <h2>진료예약 조회</h2>
       <table>
         <thead>
           <tr>
