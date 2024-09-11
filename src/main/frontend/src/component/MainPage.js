@@ -95,7 +95,7 @@ const MainPage = () => {
               <div>
                 <strong>의료진찾기</strong>
                 <p>
-                  전문의료진을 빠르게<br></br>
+                  전문의료진을 빠르게<br/>
                   찾을수있습니다.
                 </p>
               </div>
@@ -105,7 +105,7 @@ const MainPage = () => {
               <div>
                 <strong>진료과찾기</strong>
                 <p>
-                  진료 전 진료과를<br></br>
+                  진료 전 진료과를<br/>
                   안내해 드립니다.
                 </p>
               </div>
@@ -117,7 +117,7 @@ const MainPage = () => {
               <div>
                 <strong>진료예약</strong>
                 <p>
-                  회원/비회원 편리하게<br></br>
+                  회원/비회원 편리하게<br/>
                   예약할 수 있습니다.
                 </p>
               </div>
