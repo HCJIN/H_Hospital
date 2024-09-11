@@ -137,6 +137,9 @@ function App() {
     };
 
   }, []);
+  
+  //직원 로그인 시 사이드바 숨기기
+  const showSideBar = !(loginInfo.memRole === 'admin')
 
   //직원으로 로그인 했을때 상단에 '진료예약조회'메뉴 띄우는 함수 
   function upperMenu(){
@@ -196,7 +199,7 @@ function App() {
       {/* 사이드 바 */}
 
       {
-        show && ( 
+        showSideBar && ( 
           <div className={`sideBar-div ${show ? "show" : ""}`}>
             <div className='sideBar-div-tel'>
               <p><i className="bi bi-phone-vibrate"></i>대표번호</p>
@@ -411,11 +414,11 @@ function App() {
               <div className='footerMenu2-select'>
                 <select>
                   <option>재단 및 재단산하병원</option>
-                  <option>아산사회복지재단</option>
-                  <option>강릉아산병원</option>
-                  <option>영덕아산병원</option>
-                  <option>정읍아산병원</option>
-                  <option>홍천아산병원</option>
+                  <option>울산사회복지재단</option>
+                  <option>강릉메디컬병원</option>
+                  <option>영덕메디컬병원</option>
+                  <option>정읍메디컬병원</option>
+                  <option>홍천메디컬병원</option>
                 </select>
                 <button type='button' onClick={() => {}}>바로가기</button>
               </div>

@@ -90,9 +90,9 @@ const MainPage = () => {
         </div>
         <div className='main-section'>
           <div className='main-icon-div'>
-            <div className='main-icon-box'>
+            <div className='main-icon-box' onClick={()=>{navigate('/findDoctor')}}>
               <i className="bi bi-person-vcard"></i>
-              <div onClick={()=>{navigate('/findDoctor')}}>
+              <div>
                 <strong>의료진찾기</strong>
                 <p>
                   전문의료진을 빠르게<br></br>
@@ -100,9 +100,9 @@ const MainPage = () => {
                 </p>
               </div>
             </div>
-            <div className='main-icon-box'>
+            <div className='main-icon-box' onClick={()=>{navigate('/findDepartment')}}>
               <i className="bi bi-search-heart"></i>
-              <div onClick={()=>{navigate('/findDepartment')}}>
+              <div>
                 <strong>진료과찾기</strong>
                 <p>
                   진료 전 진료과를<br></br>
@@ -110,11 +110,11 @@ const MainPage = () => {
                 </p>
               </div>
             </div>
-            <div className='main-icon-box'>
-              <i className="bi bi-calendar-week"></i>
-              <div onClick={()=>{
+            <div className='main-icon-box' onClick={()=>{
                 navigate('/reservation')
               }}>
+              <i className="bi bi-calendar-week"></i>
+              <div>
                 <strong>진료예약</strong>
                 <p>
                   회원/비회원 편리하게<br></br>
@@ -127,7 +127,7 @@ const MainPage = () => {
               <div>
                 <strong>건강검진 안내</strong>
                 <p>
-                  헬스체크업에서<br></br>
+                  헬스체크업에서<br/>
                   건강검진을 안내해드립니다.
                 </p>
               </div>
