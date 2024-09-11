@@ -15,7 +15,6 @@ function MyCalendar({ onDateChange }) {
 
   return (
     <div>
-      <h1>예약자명단 조회</h1>
       <div className="calendar-container">
         <Calendar
           onChange={onChange}

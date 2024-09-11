@@ -28,45 +28,63 @@ const PatientChart = () => {
   return (
     <div className='chart-div'>
       <div className='chart-content'>
+        <h2>진료차트</h2>
         <table>
-          <colgroup>
-            <col width='20%' />
-            <col width='30%' />
-            <col width='20%' />
-            <col width='*' />
-          </colgroup>
           <thead>
             <tr>
-              <td colSpan={4}>
+              <td colSpan={2}>
                 <strong>환자 정보</strong>
               </td>
             </tr>
             <tr>
-              <td>환자 식별 번호 : {patientData.memberVO?.memNum || '정보 없음'}</td>
+              <td>{patientData.memberVO?.memNum || '정보 없음'}</td>
               <td>{patientData.memberVO?.birthday || '정보 없음'}</td>
+            </tr>
+            <tr>
               <td>{patientData.memberVO?.memName || '정보 없음'}</td>
               <td>{patientData.memberVO?.gender || '정보 없음'}</td>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>증상</strong></td>
+              <td colSpan={2}>
+                <strong>증상</strong></td>
             </tr>
             <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td colSpan={2}>
+                <textarea
+                type='text'
+                name='serviceType'
+                value={patientData.serviceType || ''}
+                onChange={(e) => setPatientData({...patientData, serviceType: e.target.value})}
+                />
+              </td>
             </tr>
             <tr>
-              <td colSpan={4}>
-                <textarea></textarea>
+              <td colSpan={2}>진료일정</td>
+            </tr>
+            <tr>
+              <td>진료날짜</td>
+              <td>
+                <input type='text' name='resDate'
+                value={patientData.resDate || ''}
+                onChange={(e) => setPatientData({...patientData, resDate: e.target.value})}/>
+              </td>
+            </tr>
+            <tr>
+              <td>진료시간</td>
+              <td>
+                <input type='text' name='resTime'
+                value={patientData.resTime || ''}
+                onChange={(e) => setPatientData ({...patientData, resTime: e.target.value})}/>
               </td>
             </tr>
           </tbody>
         </table>
-        <div>
+        <div className='button3'>
+        <button type='button'>확인</  button>
           <button type='button'>수정</button>
+          <button type='button'>삭제</button>
         </div>
         <div>여기에 환자의 병원 이력을 출력</div>
       </div>

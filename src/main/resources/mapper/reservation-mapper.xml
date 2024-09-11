@@ -75,6 +75,8 @@
          , SERVICE_TYPE
          , DISEASE
          , SURGERY
+         , RES_DATE
+         , RES_TIME
       FROM HOSPITAL_RESERVATION R, HOSPITAL_MEMBER M
       WHERE R.MEM_NUM = M.MEM_NUM
       AND R.MEM_NUM = #{memNum}

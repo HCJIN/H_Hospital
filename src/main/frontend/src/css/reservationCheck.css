@@ -1,4 +1,13 @@
 .check-container{
   display: flex;
-  margin-left: 200px;
+  margin-left: 350px;
 }
+
+.check-container > div > h2{
+  /* border: 1px solid black; */
+  margin-right: -1100px;
+  margin-left: 500px;
+  margin-top: 30px;
+  /* color: #0e787c; */
+}
+

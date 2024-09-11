@@ -1,20 +1,14 @@
 .container3{
   /* border: 1px solid red; */
-  width: 250%;
+  width: 150%;
   height: 500px;
   margin: 40px auto;
   padding-top: 70px;
 }
 
-.container3 > h2{
-  margin-top: 10px;
-  text-align: center;
-  color: #0e787c;
-}
-
 .container3 > table{
   border: 1px solid lightgray;
-  width: 80%;
+  width: 90%;
   margin: 30px auto;
   text-align: center;
 }
@@ -27,6 +21,10 @@
 
 .container3 > table > tbody > tr:nth-child(even){
   background-color: rgb(250, 248, 229);
+}
+
+.container3 > table > tbody > tr{
+  cursor: pointer;
 }
 
 
