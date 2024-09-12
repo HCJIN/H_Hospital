@@ -26,13 +26,13 @@
   color: var(--festie-gray-800, #3a3a3a);
 }
 .react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus{
-  background: var(--festie-gray-orange, #ff7a00);
+  background: var(--festie-gray-orange, #ff8818b6);
 }
 .react-calendar__tile--now{
   background: white;
   color: var(--festie-gray-800, #3a3a3a);
 }
 .react-calendar__tile--active{
-  background: var(--festie-primary-orange, #ff7a00);
+  background: var(--festie-primary-orange, #ff8818);
   color: white;
 }
