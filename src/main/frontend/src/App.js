@@ -237,12 +237,12 @@ function App() {
                     <span>고객센터</span>
                   </div>
                 </li>
-                <li>
+                {/* <li>
                   <div onClick={()=>{navigate('/reservationCheck')}}>
                     <p><i className="bi bi-menu-button-wide-fill"></i></p>
                     <span>진료예약조회</span>
                   </div>
-                </li>
+                </li> */}
                 <li className='sideBar-div-menu-last'>
                   <div>
                     <a href="https://www.ussunflower.or.kr/" target='_blank'>
