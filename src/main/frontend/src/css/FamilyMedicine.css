@@ -218,7 +218,7 @@
   text-align: center;
 }
 
-
+/* 의료진 */
 
 .family-doctor-container{
   display: flex;
@@ -226,3 +226,67 @@
   gap: 50px;
   margin-left: 200px;
 }
+
+
+/* 의료진 소개 */
+
+.doctor-card {
+  position: relative; 
+}
+
+.doctor-overlay {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.doctor-card {
+  position: relative;
+  z-index: 1; /* Ensure the card itself has a lower z-index */
+}
+
+.doctor-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 2; /* Ensure the overlay is above the card */
+}
+
+.doctor-card:hover .doctor-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.doctor-overlay button{
+  width: 100px;
+  height: 50px;
+  font-size: 16px;
+  border-radius: 5px;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: #eeeeee;
+}
+
+
+
+
+

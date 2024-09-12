@@ -13,6 +13,11 @@ const FamilyMedicine = () => {
   //버튼 상태 변경
   const isActive = (btnContent)=> content === btnContent;
 
+  //의료진 소개버튼 클릭시 이동
+  const handleDoctorClick = (doctorId) =>{
+    navigate(`/doctor/${doctorId}`)
+  }
+
   return (
     <div className='family-div'>
       <div className='family-container'>
@@ -90,13 +95,16 @@ const FamilyMedicine = () => {
           {content === 'B' && <div id='contentB'>
             <div className='family-doctor-container'>
               {familyMedicineDoctors.map((doctor) => (
-                    <div key={doctor.id} className='doctor-card'>
+                    <div key={doctor.id} className='doctor-card' onClick={()=>handleDoctorClick(doctor.id)}>
                       <div className='doctor-image-container'>
                         <img src={doctor.image} className='doctor-image' alt={`${doctor.name}'s image`} />
                       </div>
                       <div className='doctor-details'>
                         <h4 className='doctor-name'>{doctor.name}</h4>
                         <p className='doctor-intro'>{doctor.intro}</p>
+                      </div>
+                      <div className='doctor-overlay'>
+                        <button type='button' className='doctor-intro-btn'>의료진소개</button>
                       </div>
                     </div>
               ))} 

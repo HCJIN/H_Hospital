@@ -33,6 +33,7 @@ import Pediatrics from './component/department/Pediatrics';
 import Heart from './component/department/Heart';
 import Urology from './component/department/Urology';
 import Cancer from './component/department/Cancer';
+import DoctorPage from './component/department/DoctorPage';
 
 function App() {
 
@@ -340,6 +341,9 @@ function App() {
         <Route path='/pediatrics' element={<Pediatrics/>}/>
         {/* 심장병원 */}
         <Route path='/heart' element={<Heart/>}/>
+
+        {/* 의료진 개별 페이지 */}
+        <Route path='/familyMedicine/doctor/:id' element={<DoctorPage/>}/>
 
         {/* 관리자용  */}
         <Route path='/admin'>
