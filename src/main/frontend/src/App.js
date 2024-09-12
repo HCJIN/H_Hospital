@@ -147,7 +147,7 @@ function App() {
       return(
         <div>
           <span onClick={() => {navigate('/admin/patientChart')}}>진료차트</span>
-          <span onClick={() => {navigate('/reservationCheck')}}>진료예약조회</span>
+          <span onClick={() => {navigate('/admin/reservationCheck')}}>진료예약조회</span>
         </div>
       )
     }
@@ -316,9 +316,6 @@ function App() {
         {/* 예약 페이지 */}
         <Route path='/reservation' element={<Reservation />} />
 
-        {/* 진료예약조회 페이지 */}
-        <Route path='/reservationCheck' element={<ReservationCheck/>} />
-
         {/* 고객센터 페이지 */}
         <Route path='/serviceCenter' element={<ServiceCenter/>}/>
 
@@ -361,8 +358,12 @@ function App() {
           {/* 직원 등록 페이지 */}
           <Route path='adminRegInfo/:memTel' element={< AdminRegInfo/>} />
 
+          {/* 진료예약조회 페이지 */}
+          <Route path='reservationCheck' element={<ReservationCheck/>} />
+
           {/* 환자 차트 페이지 */}
           <Route path='patientChart/:memNum/:resDate' element={<PatientChart/>}/>
+
         </Route> 
 
       </Routes>

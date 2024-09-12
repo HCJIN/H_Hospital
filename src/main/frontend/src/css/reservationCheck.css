@@ -1,13 +1,104 @@
 .check-container{
   display: flex;
-  margin-left: 350px;
+  width: 100%;
+  margin-left: 370px;
 }
 
-.check-container > div > h2{
-  /* border: 1px solid black; */
-  margin-right: -1100px;
-  margin-left: 500px;
-  margin-top: 30px;
-  /* color: #0e787c; */
+@media screen and (max-width: 1920px) {
+  
+  .check-container{
+    width: 80%;
+  }
+
 }
+
+@media screen and (min-width: 1529px) and (max-width: 1711px){
+
+  .check-container{
+    margin-left: 200px;
+  }
+
+}
+
+@media screen and (min-width: 1430px) and (max-width: 1529px) {
+  
+  .check-container{
+    margin-left: 100px;
+  }
+}
+
+@media screen and (min-width: 1296px) and (max-width: 1430px) {
+  
+  .check-container{
+    margin-left: 0px;
+  }
+}
+
+@media screen and (min-width:1200px) and (max-width: 1296px) {
+  
+  .check-container{
+    margin-left: -10px;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1200px) {
+  
+  .check-container{
+    margin-left: 0px;
+  }
+
+  .recheck-detail{
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 952px) and (max-width: 1000px) {
+
+  .check-container{
+    margin-left: -30px;
+  }
+  
+  .recheck-detail{
+    font-size: 13.5px;
+  }
+
+}
+
+@media screen and (min-width: 877px) and (max-width: 952px) {
+
+  .check-container{
+    margin-left: -40px;
+  }
+
+  .recheck-detail{
+    width: 50%;
+    font-size: 13px;
+  }
+
+  .reCheck-container{
+    width: 50%;
+    font-size: 13px;
+  }
+
+}
+
+@media screen and (max-width: 877px) {
+  
+  .check-container{
+    margin-left: -40px;
+  }
+
+  .recheck-detail{
+    width: 50%;
+    font-size: 12px;
+  }
+
+  .reCheck-container{
+    width: 50%;
+    font-size: 13px;
+  }
+  
+}
+
+
 
