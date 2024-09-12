@@ -13,13 +13,10 @@ const ReservationCheck = () => {
 
   return (
     <div className='check-container'>
-      <div>
-        <h2>진료 예약자 조회</h2>
-      </div>
       <div className='reCheck-container'>
         <MyCalendar onDateChange={handleDateChange} />
       </div>
-      <div>
+      <div className='recheck-detail'>
         <ReservationDetail selectedDate={selectedDate} />
       </div>
     </div>

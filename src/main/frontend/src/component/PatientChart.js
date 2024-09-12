@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import '../css/patientChart.css'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
+import humanBodyImage from '../images/humanBody.jpg'
 
 const PatientChart = () => {
+
+  const navigate = useNavigate();
 
   // url 파라미터로 가져온 memNum, resDate
   const {memNum, resDate} = useParams();
@@ -31,48 +34,51 @@ const PatientChart = () => {
         <h2>진료차트</h2>
         <table>
           <thead>
-            <tr>
-              <td colSpan={2}>
+            <tr className='first-tr'>
+              <td colSpan={4}>
                 <strong>환자 정보</strong>
               </td>
             </tr>
-            <tr>
+            <tr className='second-tr'>
+              <td>NO.</td>
               <td>{patientData.memberVO?.memNum || '정보 없음'}</td>
+              <td>AGE</td>
               <td>{patientData.memberVO?.birthday || '정보 없음'}</td>
             </tr>
-            <tr>
+            <tr className='third-tr'>
+              <td>NAME</td>
               <td>{patientData.memberVO?.memName || '정보 없음'}</td>
+              <td>GENDER</td>
               <td>{patientData.memberVO?.gender || '정보 없음'}</td>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td colSpan={2}>
+            <tr className='fourth-tr'>
+              <td colSpan={4}>
                 <strong>증상</strong></td>
             </tr>
-            <tr>
-              <td colSpan={2}>
+            <tr className='textarea-size'>
+              <td colSpan={4}>
                 <textarea
                 type='text'
                 name='serviceType'
                 value={patientData.serviceType || ''}
                 onChange={(e) => setPatientData({...patientData, serviceType: e.target.value})}
                 />
+                <img src={humanBodyImage}/>
               </td>
             </tr>
-            <tr>
-              <td colSpan={2}>진료일정</td>
+            <tr className='fifth-tr'>
+              <td colSpan={4}>진료일정</td>
             </tr>
-            <tr>
+            <tr className='sixth-tr'>
               <td>진료날짜</td>
               <td>
                 <input type='text' name='resDate'
                 value={patientData.resDate || ''}
                 onChange={(e) => setPatientData({...patientData, resDate: e.target.value})}/>
               </td>
-            </tr>
-            <tr>
-              <td>진료시간</td>
+              <td >진료시간</td>
               <td>
                 <input type='text' name='resTime'
                 value={patientData.resTime || ''}
@@ -82,11 +88,12 @@ const PatientChart = () => {
           </tbody>
         </table>
         <div className='button3'>
-        <button type='button'>확인</  button>
+        <button type='button' 
+        onClick={() => {navigate('/admin/reservationCheck')}}
+        >확인</  button>
           <button type='button'>수정</button>
           <button type='button'>삭제</button>
         </div>
-        <div>여기에 환자의 병원 이력을 출력</div>
       </div>
     </div>
   )

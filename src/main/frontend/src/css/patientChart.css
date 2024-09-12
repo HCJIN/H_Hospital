@@ -11,8 +11,8 @@
 }
 
 .chart-content > table{
-  border: 1px solid black;
-  width: 30%;
+  border: 1px solid lightgray;
+  width: 50%;
   margin: auto;
 }
 
@@ -26,17 +26,103 @@
   justify-content: space-around;
   width: 15%;
   margin-left: 42.5%;
+  margin-bottom: 30px;
 }
 
 .button3 > button{
   margin-top: 40px;
   margin-bottom: 20px;
   width: 60px;
-  height: 30px;
+  height: 35px;
   font-size: 15px;
   border-radius: 20px;
   border: none;
   background-color: #5b9c9e;
   color: white;
   cursor: pointer;
+  font-weight: bold;
+}
+
+.first-tr > td{
+  font-size: 18px;
+  border-bottom: 1px solid lightgrey;
+  padding-left: 435px;
+  background-color: #5b9c9e34;
+}
+
+.second-tr > td{
+  border-right: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  text-align: center;
+  width: 25%;
+}
+
+.third-tr > td{
+  border-right: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  text-align: center;
+  width: 25%;
+}
+
+.second-tr > td:nth-child(odd){
+  background-color: rgba(168, 168, 168, 0.164);
+  font-weight: bold;
+}
+
+.third-tr > td:nth-child(odd){
+  background-color: rgba(168, 168, 168, 0.164);
+  font-weight: bold;
+}
+
+.fourth-tr > td{
+  border-bottom: 1px solid lightgray;
+  padding-left: 460px;
+  font-size: 18px;
+  background-color: #5b9c9e34;
+}
+
+.textarea-size > td > textarea{
+  width: 600px;
+  height: 400px;
+  border: 1px solid rgb(172, 170, 170);
+  font-size: 17px;
+} 
+
+.textarea-size > td{
+  border-bottom: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+
+}
+
+.fifth-tr > td{
+  border-bottom: 1px solid lightgray;
+  padding-left: 435px;
+  font-size: 18px;
+  background-color: #5b9c9e34;
+  font-weight: bold;
+}
+
+.sixth-tr > td{
+  text-align: center;
+  width: 25%;
+  border-right: 1px solid lightgray;
+}
+
+.sixth-tr > td:nth-child(odd){
+  background-color:  rgba(168, 168, 168, 0.164);
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.sixth-tr > td > input{
+  width: 200px;
+  height: 25px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.textarea-size > td > img{
+  width: 320px;
+  margin-left: 5px;
+  margin-bottom: 10px;
 }
