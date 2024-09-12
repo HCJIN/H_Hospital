@@ -29,10 +29,10 @@ import FindDoctor from './component/FindDoctor';
 import FindDepartment from './component/FindDepartment';
 import FamilyMedicine from './component/department/FamilyMedicine';
 import InfectiousDisease from './component/department/InfectiousDisease';
-import ColorectalCancer from './component/department/ColorectalCancer';
-import LiverCancer from './component/department/LiverCancer';
 import Pediatrics from './component/department/Pediatrics';
 import Heart from './component/department/Heart';
+import Urology from './component/department/Urology';
+import Cancer from './component/department/Cancer';
 
 function App() {
 
@@ -335,10 +335,10 @@ function App() {
         <Route path='/familyMedicine' element={<FamilyMedicine/>}/>
         {/* 감염내과 */}
         <Route path='/infectiousDisease' element={<InfectiousDisease/>}/>
-        {/* 대장암센터 */}
-        <Route path='/colorectalCancer' element={<ColorectalCancer/>}/>
-        {/* 간암센터 */}
-        <Route path='/liverCancer' element={<LiverCancer/>}/>
+        {/* 암센터 */}
+        <Route path='/cancer' element={<Cancer/>}/>
+        {/* 비뇨의학과 */}
+        <Route path='/urology' element={<Urology/>}/>
         {/* 소아과 */}
         <Route path='/pediatrics' element={<Pediatrics/>}/>
         {/* 심장병원 */}
@@ -402,8 +402,8 @@ function App() {
                   <option value="/familyMedicine">가정의학과</option>
                   <option value="/infectiousDisease">감염내과</option>
                   <option value="">=====암병원=====</option>
-                  <option value="/colorectalCancer">대장암센터</option>
-                  <option value="/liverCancer">간암센터</option>
+                  <option value="/cancer">암센터</option>
+                  <option value="/urology">비뇨의학과</option>
                   <option value="">=====어린이병원=====</option>
                   <option value="/pediatrics">소아감염과</option>
                   <option value="">=====심장병원=====</option>

@@ -1,23 +1,22 @@
 import React, { useState } from 'react'
+import doctors from './doctorsData'
 import { useNavigate } from 'react-router-dom'
-import doctors from './doctorsData';
 
-const InfectiousDisease = () => {
+const Cancer = () => {
   const navigate = useNavigate();
 
   const [content, setContent] = useState('B');
-  
-  const infectiousDiseaseDoctors = doctors["감염내과"]
+
+  const cancerDoctors = doctors['암센터']
 
   const isActive = (btnContent)=> content === btnContent;
 
-  
   return (
     <div className='family-div'>
       <div className='family-container'>
         <div className='family-header'>
           <div className='family-header-main'>
-            <h2>감염내과</h2>
+            <h2>암센터</h2>
             <div className='family-header-main-btn'>
               <button type='button' onClick={()=>{navigate('/reservation')}}>
               <i class="bi bi-clipboard-pulse"></i>
@@ -37,20 +36,21 @@ const InfectiousDisease = () => {
           {content === 'A' && <div id='contentA' className='contentA'>
             <div className='contentA-div'>
               <div className='contentA-slogan'>
-                감염질환 관리로<br/>
-                <strong>인류 보건에 기여</strong>
+                악성종양의<br/>
+                항암약물치료와<br/>
+                <strong>신약임상연구</strong>
               </div>
-            <div className='family-intro-div'>
-              <div className='infection-intro'>
-                <br/>
-                <i className="bi bi-capsule"></i>
-                <i className="bi bi-capsule"></i>
-                <i className="bi bi-capsule"></i>
-                <br/>
-                covid-19 등 신종 감염병의 등장은 물론, 과거에 유행했던 감염병의 재출현으로<br/> 감염질환의 관리는 현대사회에서 더욱 중요해졌습니다.<br/> 울산메디컬센터 감염내과는 인체 여러 부위에 발생하는 감염질환의 진단과<br/> 치료뿐 아니라 다양한 발열질환의 원인을 규명해 예방 및 관리를 전담하고 있습니다.
+              <div className='family-intro-div'>
+                <div className='cancer-intro'>
+                  <br/>
+                  <i className="bi bi-eyedropper"></i>
+                  <i className="bi bi-eyedropper"></i>
+                  <i className="bi bi-eyedropper"></i>
+                  <br/>
+                  울산메디컬 암센터는 과학적인 근거 하에 최선의 치료 방법을 선택하고 환자의 상태에 맞게 항암제를 투약 및 관리하여 암환자의 생존과 삶의 질 향상을 최우선의 목표로 하고 있습니다. 종양치료 전문의료진들이 곳곳에 위치하여 항암치료의 부작용과 대처법을 숙지하고 환자들을 돌보며 환자와 보호자 교육에 힘쓰고 있으며 다학제 진료를 통해 최선의 치료 방법을 찾고 있습니다.
+                </div>
               </div>
-            </div>
-            <div className='family-disease'>
+              <div className='family-disease'>
                   <h2>
                   <i class="bi bi-bookmarks"></i>
                     주요진료질환
@@ -65,35 +65,35 @@ const InfectiousDisease = () => {
                     </colgroup>                   
                     <tbody>
                       <tr>
-                        <td>감염질환</td>
-                        <td>결핵</td>
-                        <td>뎅기열</td>
-                        <td>림프절염</td>
-                        <td>말라리아</td>
+                        <td>간암</td>
+                        <td>난소암</td>
+                        <td>담도암</td>
+                        <td>대장암</td>
+                        <td>두경부암</td>
                       </tr>
                       <tr>
-                        <td>발열질환</td>
-                        <td>병원내 감염</td>
-                        <td>세균 감염</td>
-                        <td>에이즈</td>
-                        <td>여행자 감염</td>
+                        <td>복막암</td>
+                        <td>부인암</td>
+                        <td>방광암</td>
+                        <td>식도암</td>
+                        <td>신장암</td>
                       </tr>
                       <tr>
-                        <td>예방접종</td>
-                        <td>코로나바이러스감염증</td>
-                        <td>패혈증</td>
-                        <td>해외예방접종</td>
-                        <td>후천성면역결핍증후군</td>
+                        <td>위암</td>
+                        <td>유방암</td>
+                        <td>전립선암</td>
+                        <td>직장암</td>
+                        <td>자궁경부암</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-              </div>
+            </div>
           </div>}
 
           {content === 'B' && <div id='contentB'>
             <div className='family-doctor-container'>
-              {infectiousDiseaseDoctors.map((doctor) => (
+              {cancerDoctors.map((doctor) => (
                     <div key={doctor.id} className='doctor-card'>
                       <div className='doctor-image-container'>
                         <img src={doctor.image} className='doctor-image' alt={`${doctor.name}'s image`} />
@@ -113,4 +113,4 @@ const InfectiousDisease = () => {
   )
 }
 
-export default InfectiousDisease
+export default Cancer

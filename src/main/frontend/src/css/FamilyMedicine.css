@@ -3,7 +3,7 @@
 }
 .family-container{
   margin: 0 auto;
-  height: 900px;
+  height: 950px;
   width: 1300px;
 }
 .family-header{
@@ -60,10 +60,10 @@
   color: #1c9397;
   font-weight: bold;
 }
-.family-body{}
 
 .family-tab{
   text-align: center;
+  height: 630px;
 }
 .family-tab button{
   width: 450px;
@@ -87,20 +87,34 @@
   cursor: pointer;
 }
 .contentA{
-  display: flex;
   position: relative;
   width: 100%;
-  margin-left: 100px;
   text-align: left;
+  height: 500px;
 }
-.contentA div:nth-child(1){
+.contentA-div{
+  display: grid;
+  grid-template-columns: 400px 800px;
+}
+.contentA-slogan{
   font-size: 45px;
+  height: 200px;
+  margin-left: 100px;
+  width: 800px;
 }
+
 .contentA div:nth-child(2){
   margin-left: 50px;
 }
-.family-intro i, .infection-intro i, 
-.cancer-intro i, .heart-intro i, .pediatric-intro i{
+
+.family-intro, .infection-intro, .cancer-intro, .urology-intro, .pediatric-intro, .heart-intro {
+  margin-left: 50px;
+  margin-bottom: 20px; 
+  font-size: 17px;
+}
+
+.family-intro i, .infection-intro i, .cancer-intro i,
+.urology-intro i, .heart-intro i, .pediatric-intro i{
   font-size: 30px;
 }
 
@@ -136,6 +150,16 @@
   color: rgb(126, 126, 126);
 }
 
+.urology-intro i:nth-child(2){
+  color: rgb(107, 117, 111);
+}
+.urology-intro i:nth-child(3){
+  color: rgb(236, 220, 130);
+}
+.urology-intro i:nth-child(4){
+  color: rgb(107, 117, 111);
+}
+
 .pediatric-intro i:nth-child(2){
   color: rgb(255, 144, 162);
 }
@@ -156,11 +180,45 @@
   color: rgb(252, 144, 162);
 }
 
-.family-content2{
+/* 인트로 아이콘 끝 */
+
+.family-intro-div {
+  display: block;
 }
-.family-content2 table{
-  border: 1px solid black;
+
+.family-disease {
+  float: left;
+  margin-top: 70px;
+  margin-left: 30px; 
+  width: 1200px;
 }
+
+.family-disease h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #3a3a3a;
+}
+
+.family-disease i{
+  color: #1c9397;
+  margin-right: 5px;
+}
+
+.family-disease-table {
+  width: 1200px;
+  border-collapse: collapse;
+  border-top: 2px solid #8b8b8b;
+  font-weight: bold;
+  color: #3a3a3a;
+}
+
+.family-disease-table td {
+  border: 1px solid #ccc;
+  padding: 15px;
+  text-align: center;
+}
+
+
 
 .family-doctor-container{
   display: flex;
@@ -168,7 +226,3 @@
   gap: 50px;
   margin-left: 200px;
 }
-
-
-
-

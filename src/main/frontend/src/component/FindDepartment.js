@@ -18,11 +18,11 @@ const FindDepartment = () => {
             <li onClick={()=>{navigate('/infectiousDisease')}}>
               <span>감염내과</span>
             </li>
-            <li onClick={()=>{navigate('/colorectalCancer')}}>
-              <span>대장암센터</span>
+            <li onClick={()=>{navigate('/cancer')}}>
+              <span>암센터</span>
             </li>
-            <li onClick={()=>{navigate('/liverCancer')}}>
-              <span>간암센터</span>
+            <li onClick={()=>{navigate('/urology')}}>
+              <span>비뇨의학과</span>
             </li>
             <li onClick={()=>{navigate('/pediatrics')}}>
               <span>소아과</span>
