@@ -95,7 +95,7 @@ const FamilyMedicine = () => {
           {content === 'B' && <div id='contentB'>
             <div className='family-doctor-container'>
               {familyMedicineDoctors.map((doctor) => (
-                    <div key={doctor.id} className='doctor-card' onClick={()=>handleDoctorClick(doctor.id)}>
+                    <div key={doctor.id} className='doctor-card'>
                       <div className='doctor-image-container'>
                         <img src={doctor.image} className='doctor-image' alt={`${doctor.name}'s image`} />
                       </div>
@@ -104,7 +104,7 @@ const FamilyMedicine = () => {
                         <p className='doctor-intro'>{doctor.intro}</p>
                       </div>
                       <div className='doctor-overlay'>
-                        <button type='button' className='doctor-intro-btn'>의료진소개</button>
+                        <button type='button' className='doctor-intro-btn' onClick={()=>handleDoctorClick(doctor.id)}>의료진소개</button>
                       </div>
                     </div>
               ))} 

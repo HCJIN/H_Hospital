@@ -343,7 +343,7 @@ function App() {
         <Route path='/heart' element={<Heart/>}/>
 
         {/* 의료진 개별 페이지 */}
-        <Route path='/familyMedicine/doctor/:id' element={<DoctorPage/>}/>
+        <Route path='/doctor/:id' element={<DoctorPage/>}/>
 
         {/* 관리자용  */}
         <Route path='/admin'>

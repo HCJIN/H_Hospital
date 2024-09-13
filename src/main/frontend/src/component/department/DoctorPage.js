@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import doctors from './doctorsData';
+import '../../css/doctorPage.css'
 
 const DoctorPage = () => {
   const {id} = useParams();
@@ -13,9 +14,17 @@ const DoctorPage = () => {
 
   return (
     <div className='doctor-page'>
-      <h2>{doctor.name}</h2>
-      <img src={doctor.image} alt={`${doctor.name}'s image`} />
-      <p>{doctor.intro}</p>
+      <div className='doctor-container'>
+        <div className='doctorPage-img'>
+          <img src={doctor.image} alt={`${doctor.name}'s image`} />
+        </div>
+       
+          <div className='doctor-title'>
+            <h1>{doctor.name}</h1>
+            <p>{doctor.department}</p>
+            <p>{doctor.intro}</p>
+          </div>      
+      </div>
     </div>
   );
 };

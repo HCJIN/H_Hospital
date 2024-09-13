@@ -1,0 +1,10 @@
+.doctor-page{
+}
+.doctor-container{
+  margin: 50px;
+  display: grid;
+  grid-template-columns: 600px 800px;
+}
+.doctorPage-img{
+}
+.doctor-title{}
