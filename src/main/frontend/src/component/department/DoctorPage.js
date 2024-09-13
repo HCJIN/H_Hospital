@@ -14,15 +14,43 @@ const DoctorPage = () => {
 
   return (
     <div className='doctor-page'>
-      <div className='doctor-container'>
+      <div className='doctor-page-container'>
         <div className='doctorPage-img'>
           <img src={doctor.image} alt={`${doctor.name}'s image`} />
         </div>
        
-          <div className='doctor-title'>
-            <h1>{doctor.name}</h1>
-            <p>{doctor.department}</p>
-            <p>{doctor.intro}</p>
+          <div className='doctor-profile'>
+            <div className='doctor-profile-title'>
+              <h1>{doctor.name}</h1>
+              <p>{doctor.department}</p>
+            </div>
+
+            <br/>
+
+            <div className='doctor-profile-about'>
+              <span>진료분야</span>
+              <p>{doctor.intro}</p>
+            </div>
+
+            <br/>
+
+            <div className='doctor-profile-graduation'>
+              <span>학력</span>
+              <p>{doctor.graduation1}</p>
+              <p>{doctor.graduation2}</p>
+              <p>{doctor.graduation3}</p>
+            </div>
+
+            <br/>
+
+            <div className='doctor-profile-career'>
+              <span>경력</span>
+              <p>{doctor.career1}</p>
+              <p>{doctor.career2}</p>
+              <p>{doctor.career3}</p>
+              <p>{doctor.career4}</p>
+              <p>{doctor.career5}</p>
+            </div>
           </div>      
       </div>
     </div>

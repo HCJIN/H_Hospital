@@ -99,7 +99,7 @@
 .contentA-slogan{
   font-size: 45px;
   height: 200px;
-  margin-left: 100px;
+  margin-left: 80px;
   width: 800px;
 }
 
@@ -242,6 +242,7 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
