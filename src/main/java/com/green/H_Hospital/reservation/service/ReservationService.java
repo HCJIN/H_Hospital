@@ -19,4 +19,12 @@ public interface ReservationService {
 
     // 진료예약 조회에서 클릭했을 때 클릭한 사람의 모든 정보를 불러 오는 메서드
     ReservationVO getPatientInfoAll(String memNum, String resDate);
+
+    //진료예약삭제
+    void deleteReservation(int memNum);
+
+    //진료예약수정
+    void updateReservation(ReservationVO reservationVO);
+
+
 }

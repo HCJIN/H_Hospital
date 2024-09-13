@@ -83,6 +83,22 @@
       AND RES_DATE = #{resDate};
    </select>
 
+   <!--진료예약삭제-->
+   <delete id="deleteReservation">
+      DELETE FROM HOSPITAL_RESERVATION
+      WHERE MEM_NUM = #{memNum}
+   </delete>
+
+   <!--진료예약수정-->
+   <update id="updateReservation">
+      UPDATE HOSPITAL_RESERVATION
+      SET
+      SERVICE_TYPE = #{serviceType},
+      RES_DATE = #{resDate},
+      RES_TIME = #{resTime}
+      WHERE MEM_NUM = #{memNum}
+   </update>
+
 </mapper>
 
 

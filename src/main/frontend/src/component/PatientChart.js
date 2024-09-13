@@ -28,6 +28,33 @@ const PatientChart = () => {
 
   console.log(patientData)
 
+  //진료예약수정 쿼리 실행 시 빈 값을 채워줄 데이터
+  const[updateData, setUpdateData] = useState({
+    memNum : memNum,
+    serviceType : '',
+    resDate : '',
+    resTime : ''
+  });
+
+  function changeUpdateData(e){
+    setUpdateData({
+      ...updateData,
+      [e.target.name] : e.target.value
+    });
+  }
+
+  //진료예약삭제 함수
+  function deleteReservation(memNum){
+    axios.delete(`/reservation/delete/${memNum}`)
+    .then((res) => {
+      alert('진료예약이 삭제되었습니다.');
+      navigate('/admin/reservationCheck');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
   return (
     <div className='chart-div'>
       <div className='chart-content'>
@@ -91,8 +118,14 @@ const PatientChart = () => {
         <button type='button' 
         onClick={() => {navigate('/admin/reservationCheck')}}
         >확인</  button>
-          <button type='button'>수정</button>
-          <button type='button'>삭제</button>
+          <button type='button'
+          onClick={() => {}}
+          >수정</button>
+          <button type='button'
+          onClick={(e) => {
+            deleteReservation(patientData.memNum)
+            }}
+          >삭제</button>
         </div>
       </div>
     </div>
