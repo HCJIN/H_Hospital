@@ -48,4 +48,17 @@ public class ReservationServiceImpl implements ReservationService{
         return sqlSession.selectOne("reservationMapper.getPatientInfoAll", params);
     }
 
+    //진료예약삭제
+    @Override
+    public void deleteReservation(int memNum) {
+
+        sqlSession.delete("reservationMapper.deleteReservation", memNum);
+    }
+
+    //진료예약수정
+    @Override
+    public void updateReservation(ReservationVO reservationVO) {
+        sqlSession.update("reservationMapper.updateReservation", reservationVO);
+    }
+
 }

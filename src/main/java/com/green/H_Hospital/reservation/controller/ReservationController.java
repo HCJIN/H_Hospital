@@ -4,6 +4,7 @@ import com.green.H_Hospital.member.vo.MemberVO;
 import com.green.H_Hospital.reservation.service.ReservationService;
 import com.green.H_Hospital.reservation.vo.ReservationVO;
 import jakarta.annotation.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,5 +41,18 @@ public class ReservationController {
     ){
         return reservationService.getPatientInfoAll(memNum, resDate);
     }
+
+    //진료예약삭제
+    @DeleteMapping("/delete/{memNum}")
+    public void deleteReservation(@PathVariable("memNum") int memNum){
+        reservationService.deleteReservation(memNum);
+    }
+
+    //진료예약수정
+    @PutMapping("/update")
+    public void updateReservation(@RequestBody ReservationVO reservationVO){
+        reservationService.updateReservation(reservationVO);
+    }
+
 
 }
