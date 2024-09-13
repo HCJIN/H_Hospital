@@ -1,10 +1,69 @@
 .doctor-page{
 }
 .doctor-page-container{
-  margin: 50px;
+  margin: 50px 350px;
   display: grid;
   grid-template-columns: 600px 800px;
 }
 .doctorPage-img{
+  width: 1000px;
 }
-.doctor-profile{}
+.doctorPage-img img {
+  margin-left: 50px;
+  width: 100%; 
+  max-width: 470px; 
+  height: auto; 
+  border-radius: 8px;
+  object-fit: cover; 
+}
+
+.doctor-profile{
+  margin-top: 10px;
+}
+
+.doctor-profile-title {
+  display: flex; 
+  align-items: center; 
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+.doctor-profile-title h1 {
+  margin: 0; 
+}
+
+.doctor-profile-title p {
+  margin: 0; 
+  color: #7c7c7c;
+  padding-top: 14px;
+  font-size: 1.2rem;
+  font-weight: 600; 
+}
+
+.doctor-profile h3{
+  color: #313131;
+}
+
+
+.doctor-schedule{
+  margin-top: 30px;
+}
+.doctor-schedule-table td{
+}
+
+.doctor-schedule-btn{
+  width: 150px;
+  height: 40px;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #21b2b9;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 10px
+}
+
+.doctor-schedule-btn:hover{
+  background-color: #1a9ba1;
+  cursor: pointer;
+}

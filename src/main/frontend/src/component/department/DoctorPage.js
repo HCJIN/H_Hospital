@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import doctors from './doctorsData';
+import doctors from './doctorsData'
 import '../../css/doctorPage.css'
+import Modal from './CalendarModal'
 
 const DoctorPage = () => {
   const {id} = useParams();
   const allDoctors = Object.values(doctors).flat();
   const doctor = allDoctors.find(doc => doc.id === parseInt(id));
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   if (!doctor) {
     return <div>의료진 정보를 찾을 수 없습니다.</div>;
@@ -28,14 +34,14 @@ const DoctorPage = () => {
             <br/>
 
             <div className='doctor-profile-about'>
-              <span>진료분야</span>
+              <h3>진료과목</h3>
               <p>{doctor.intro}</p>
             </div>
 
             <br/>
 
             <div className='doctor-profile-graduation'>
-              <span>학력</span>
+              <h3>학력</h3>
               <p>{doctor.graduation1}</p>
               <p>{doctor.graduation2}</p>
               <p>{doctor.graduation3}</p>
@@ -44,14 +50,61 @@ const DoctorPage = () => {
             <br/>
 
             <div className='doctor-profile-career'>
-              <span>경력</span>
+              <h3>경력</h3>
               <p>{doctor.career1}</p>
               <p>{doctor.career2}</p>
               <p>{doctor.career3}</p>
               <p>{doctor.career4}</p>
               <p>{doctor.career5}</p>
             </div>
-          </div>      
+
+            <div className='doctor-schedule'>
+              <table className='doctor-schedule-table'>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td>월</td>
+                    <td>화</td>
+                    <td>수</td>
+                    <td>목</td>
+                    <td>금</td>
+                    <td>토</td>
+                    <td>일</td>
+                  </tr>
+                  <tr>
+                    <td>오전</td>
+                    <td></td>
+                    <td>O</td>
+                    <td></td>
+                    <td></td>
+                    <td>O</td>
+                    <td>O</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>오후</td>
+                    <td>O</td>
+                    <td></td>
+                    <td>O</td>
+                    <td></td>
+                    <td>O</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div>
+              <button type='button' className='doctor-schedule-btn' onClick={openModal}>
+                진료 일정 확인
+              </button>
+            </div>
+          </div>
+
+          <Modal isOpen={isModalOpen} onClose={closeModal}>
+            <h2>진료일정</h2>
+            <p>여기 달력 내용...?</p>
+          </Modal>      
       </div>
     </div>
   );
