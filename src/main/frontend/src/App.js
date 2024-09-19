@@ -34,6 +34,7 @@ import Heart from './component/department/Heart';
 import Urology from './component/department/Urology';
 import Cancer from './component/department/Cancer';
 import DoctorPage from './component/department/DoctorPage';
+import AdminRegSchedule from './admin/AdminRegSchedule';
 
 function App() {
 
@@ -148,7 +149,12 @@ function App() {
       return(
         <div>
           <span onClick={() => {navigate('/admin/reservationCheck')}}>진료예약조회</span>
+<<<<<<< HEAD
           <span onClick={() => {navigate('/admin/patientChart')}}>진료차트</span>
+=======
+          <span onClick={()=>{navigate('/admin/regSchedule')}}>진료일정등록</span>
+          <span onClick={()=>{navigate('/admin/')}}>입고요청</span>
+>>>>>>> jhb
         </div>
       )
     }
@@ -367,6 +373,9 @@ function App() {
 
           {/* 환자 차트 페이지 */}
           <Route path='patientChart/:memNum/:resDate' element={<PatientChart/>}/>
+
+          {/* 진료 스케줄 등록 페이지 */}
+          <Route path='regSchedule' element={<AdminRegSchedule/>}/>
 
         </Route> 
 

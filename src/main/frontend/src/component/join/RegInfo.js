@@ -110,6 +110,16 @@ const RegInfo = () => {
 
   //회원가입 버튼 클릭시 회원기초정보 업데이트 
   function goJoin(){
+
+    if(member.memPw != member.confirmPw || member.memPw == '' || member.confirmPw == ''){
+      alert('비밀번호를 확인해주세요.')
+      return
+    }
+    if(email3.current.value == ''){
+      alert('이메일을 선택해주세요')
+      return
+    }
+
     axios
     .post(`/member/updateMember`, member)
     .then((res)=>{
