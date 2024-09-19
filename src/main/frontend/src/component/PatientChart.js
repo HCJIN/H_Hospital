@@ -12,7 +12,7 @@ const PatientChart = () => {
   const {memNum, resDate} = useParams();
 
   // 환자 데이터를 저장 할 변수
-  const [patientData, setPatientData] = useState([]);
+  const [patientData, setPatientData] = useState({});
 
   // memNum과 resDate를 조건으로 클릭한 사람의 모든 정보를 받아온다.
   useEffect(() => {
@@ -37,9 +37,20 @@ const PatientChart = () => {
   });
 
   function changeUpdateData(e){
-    setUpdateData({
-      ...updateData,
+    setPatientData({
+      ...patientData,
       [e.target.name] : e.target.value
+    });
+  }
+
+  //진료예약수정 함수
+  function updateReservation(){
+    axios.put('/reservation/update', patientData)
+    .then((res) => {
+      alert('진료예약이 수정되었습니다.');
+    })
+    .catch((error) => {
+      console.log(error);
     });
   }
 
@@ -87,11 +98,10 @@ const PatientChart = () => {
             <tr className='textarea-size'>
               <td colSpan={4}>
                 <textarea
-                type='text'
                 name='serviceType'
                 value={patientData.serviceType || ''}
-                onChange={(e) => setPatientData({...patientData, serviceType: e.target.value})}
-                />
+                onChange={(e) => (changeUpdateData(e))}
+                ></textarea>
                 <img src={humanBodyImage}/>
               </td>
             </tr>
@@ -103,23 +113,25 @@ const PatientChart = () => {
               <td>
                 <input type='text' name='resDate'
                 value={patientData.resDate || ''}
-                onChange={(e) => setPatientData({...patientData, resDate: e.target.value})}/>
+                onChange={(e) => (changeUpdateData(e))}/>
               </td>
               <td >진료시간</td>
               <td>
                 <input type='text' name='resTime'
                 value={patientData.resTime || ''}
-                onChange={(e) => setPatientData ({...patientData, resTime: e.target.value})}/>
+                onChange={(e) => (changeUpdateData(e))}/>
               </td>
             </tr>
           </tbody>
         </table>
         <div className='button3'>
-        <button type='button' 
-        onClick={() => {navigate('/admin/reservationCheck')}}
-        >확인</  button>
+          <button type='button' 
+          onClick={() => {navigate('/admin/reservationCheck')}}
+          >확인</button>
           <button type='button'
-          onClick={() => {}}
+          onClick={() => {
+            updateReservation()
+          }}
           >수정</button>
           <button type='button'
           onClick={(e) => {

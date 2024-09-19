@@ -27,4 +27,26 @@
   cursor: pointer;
 }
 
+.container3 > h2{
+  margin-left: 370px;
+}
+
+@media screen and (max-width: 1300px) {
+  .container3 > h2{
+    margin-left: 330px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .container3 > h2{
+    margin-left: 300px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .container3 > h2{
+    margin-left: 230px;
+  }
+}
+
 
