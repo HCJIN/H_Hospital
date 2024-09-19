@@ -1,7 +1,11 @@
 import React from 'react'
 import '../css/serviceCenter.css';
+import { useNavigate } from 'react-router-dom';
 
 const ServiceCenter = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div className='serviceCenter-div'>
       <div className='title'>
@@ -57,7 +61,10 @@ const ServiceCenter = () => {
                 </div>
               </div>
               <div className='writing'>
-                <button type='button' className='joinBtn-writing'>글쓰기</button>
+                <button type='button' 
+                className='joinBtn-writing'
+                onClick={() => {navigate('/serviceWrite')}}
+                >글쓰기</button>
               </div>
             </div>
           </div>

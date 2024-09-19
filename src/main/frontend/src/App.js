@@ -34,7 +34,11 @@ import Heart from './component/department/Heart';
 import Urology from './component/department/Urology';
 import Cancer from './component/department/Cancer';
 import DoctorPage from './component/department/DoctorPage';
+<<<<<<< HEAD
 import AdminRegSchedule from './admin/AdminRegSchedule';
+=======
+import ServiceWrite from './component/ServiceWrite';
+>>>>>>> jbh
 
 function App() {
 
@@ -325,6 +329,9 @@ function App() {
 
         {/* 고객센터 페이지 */}
         <Route path='/serviceCenter' element={<ServiceCenter/>}/>
+
+        {/* 고객센터 글쓰기 페이지 */}
+        <Route path='/serviceWrite' element={<ServiceWrite/>}/>
 
         {/* 증명서 발급 페이지 */}
         <Route path='/hospitalSheet' element={<HospitalSheet />} />
