@@ -111,7 +111,7 @@ const Login = ({loginInfo, setLoginInfo}) => {
 
         //직원 OR 일반 사용자 구분 후 리디렉션
         if(res.data.memRole != 'USER'){
-          navigate('/admin/patientChart')  
+          navigate('/admin/reservationCheck')  
         } else{
           navigate('/')
         }

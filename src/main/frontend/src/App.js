@@ -77,7 +77,7 @@ function App() {
     if(window.scrollY > 250) {
       setShowBtn(true)
     }
-     else{
+    else{
       setShowBtn(false)
     }
   }
@@ -147,8 +147,8 @@ function App() {
     if(loginInfo.memRole == 'admin'){
       return(
         <div>
-          <span onClick={() => {navigate('/admin/patientChart')}}>진료차트</span>
           <span onClick={() => {navigate('/admin/reservationCheck')}}>진료예약조회</span>
+          <span onClick={() => {navigate('/admin/patientChart')}}>진료차트</span>
         </div>
       )
     }
