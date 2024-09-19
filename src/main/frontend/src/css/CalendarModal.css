@@ -20,10 +20,10 @@
 
 .calendarModal-content {
   background: white;
-  padding: 20px;
+  padding: 100px 120px;
   border-radius: 8px;
   position: relative;
-  width: 80%;
+  width: 100%;
   max-width: 600px;
   transform: translateY(-20px); 
   opacity: 0; 
@@ -37,10 +37,18 @@
 
 .calendarModal-close {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
+  top: 13px;
+  right: 20px;
   border: none;
+  background-color: #31adb6;
+  color: #eee;
+  border-radius: 50%;
+  padding: 4px 11px;
   font-size: 20px;
   cursor: pointer;
+}
+
+.calendarModal-close:hover{
+  background-color: #258e96;
+  color: #fff;
 }

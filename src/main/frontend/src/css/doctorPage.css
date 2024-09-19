@@ -4,14 +4,16 @@
   margin: 50px 350px;
   display: grid;
   grid-template-columns: 600px 800px;
+  height: 600px;
 }
 .doctorPage-img{
   width: 1000px;
 }
 .doctorPage-img img {
-  margin-left: 50px;
+  margin-top: 5px;
+  margin-left: 100px;
   width: 100%; 
-  max-width: 470px; 
+  max-width: 420px; 
   height: auto; 
   border-radius: 8px;
   object-fit: cover; 
@@ -21,11 +23,30 @@
   margin-top: 10px;
 }
 
+.doctor-profile h3{
+  color: #313131;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+  width: 200px;
+}
+
+.doctor-profile p{
+  color: #646464;
+  padding-top: 3px;
+}
+
+.doctor-profile i{
+  color: #1a9ba1;
+  font-size: 1.2rem;
+}
+
 .doctor-profile-title {
   display: flex; 
   align-items: center; 
   gap: 10px;
   padding-bottom: 10px;
+  border-bottom: 2px solid #1a9ba1;
+  width: 300px;
 }
 
 .doctor-profile-title h1 {
@@ -40,16 +61,16 @@
   font-weight: 600; 
 }
 
-.doctor-profile h3{
-  color: #313131;
-}
+/* .doctor-profile-about{
+  border-top: 2px solid #1a9ba1;
+  padding-top: 20px;
+} */
 
 
 .doctor-schedule{
   margin-top: 30px;
 }
-.doctor-schedule-table td{
-}
+
 
 .doctor-schedule-btn{
   width: 150px;
@@ -60,10 +81,16 @@
   background-color: #21b2b9;
   font-size: 15px;
   font-weight: 600;
-  margin-top: 10px
+  margin-top: 40px
 }
 
 .doctor-schedule-btn:hover{
   background-color: #1a9ba1;
   cursor: pointer;
+}
+
+
+.modal-schedule-title{
+  text-align: center;
+  margin-bottom: 30px;
 }
