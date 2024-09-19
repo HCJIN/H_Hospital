@@ -44,8 +44,8 @@ const PatientChart = () => {
   }
 
   //진료예약삭제 함수
-  function deleteReservation(memNum){
-    axios.delete(`/reservation/delete/${memNum}`)
+  function deleteReservation(){
+    axios.delete(`/reservation/delete/${patientData.resNum}`)
     .then((res) => {
       alert('진료예약이 삭제되었습니다.');
       navigate('/admin/reservationCheck');
