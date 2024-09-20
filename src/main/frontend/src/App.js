@@ -35,14 +35,10 @@ import Urology from './component/department/Urology';
 import Cancer from './component/department/Cancer';
 import DoctorPage from './component/department/DoctorPage';
 import AdminRegSchedule from './admin/AdminRegSchedule';
-<<<<<<< HEAD
-import ServiceWrite from './component/ServiceWrite';
 import Store from './component/store/Store';
-=======
 import JoinwritingForm from './component/serviceCenter/JoinwritingForm';
 import WritingDetail from './component/serviceCenter/WritingDetail';
-
->>>>>>> jbh
+import Supplier from './component/supplier/Supplier';
 
 function App() {
 
@@ -390,8 +386,10 @@ function App() {
 
           {/* 입고요청 페이지 */}
           <Route path='store' element={<Store />} />
-
         </Route> 
+
+        {/* 공급사용 */}
+        <Route path='/supplier' element={ <Supplier /> } />
 
       </Routes>
 
