@@ -40,7 +40,8 @@ const FamilyMedicine = () => {
           <button type='button' onClick={()=>setContent('A')} className={`button ${isActive('A') ? 'active' : ''}`}>소개</button>
           <button type='button' onClick={()=>setContent('B')} className={`button ${isActive('B') ? 'active' : ''}`}>의료진</button>
 
-          {content === 'A' && <div id='contentA' className='contentA'>
+          {content === 'A' && 
+          <div id='contentA' className='contentA'>
               <div className='contentA-div'>
                 <div className='contentA-slogan'>
                   건강 증진을 위한<br/>
