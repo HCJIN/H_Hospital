@@ -1,13 +1,45 @@
 import React from 'react'
 import '../css/serviceCenter.css';
 import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import '../../css/serviceCenter.css';
+import { useNavigate } from 'react-router-dom';
+import JoinwritingForm from './JoinwritingForm';
+import axios from 'axios';
 
 const ServiceCenter = () => {
 
   const navigate = useNavigate();
 
+  //글쓰기창 생성 여부
+  const [writing, setWriting] = useState(false);
+
+  //게시글리스트가 저장될 useState
+  const [contentList, setContentList] = useState([]);
+
+  const memberNumJSON = window.sessionStorage.getItem("loginInfo")
+  const memberNum = JSON.parse(memberNumJSON)
+  console.log(memberNum)
+
+
+  //게시글 데이터 조회
+  useEffect(()=>{
+    axios
+    .get('/service/getContentList')
+    .then((res)=>{
+      setContentList(res.data);
+    })
+    .catch()
+  },[])
+
   return (
     <div className='serviceCenter-div'>
+      {
+        writing ? 
+        <JoinwritingForm writing={writing} setWriting={setWriting}/>
+        :
+        <></>
+      }
       <div className='title'>
         <p>고객센터</p>
       </div>
@@ -56,6 +88,17 @@ const ServiceCenter = () => {
                         <span>[공지] 안드로이드 앱 팅김 오류 현상 관련 안내</span>
                         <span>2024-08-28</span>
                       </li>
+                      {
+                        contentList.map((content, i )=>{
+                          return(
+                            <li className='standard'>
+                              <span>{content.boardNum}</span>
+                              <span>{content.boardTitle}</span>
+                              <span>{content.createDate}</span>
+                            </li>
+                          )
+                        })
+                      }
                     </ul>
                   </div>
                 </div>

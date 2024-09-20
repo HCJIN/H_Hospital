@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="serviceMapper">
+    <resultMap id="service" type="com.green.H_Hospital.serviceCenter.vo.ServiceCenterVO">
+        <id column="BOARD_NUM" property="boardNum"/>
+        <result column="BOARD_TITLE" property="boardTitle"/>
+        <result column="BOARD_CONTENT" property="boardContent"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <collection property="memberVO"     resultMap="memberMapper.member" />
+    </resultMap>
+
+    <!-- 게시글 조회 -->
+    <select id="getContentList" resultMap="service">
+        SELECT BOARD_NUM,
+        BOARD_TITLE,
+        BOARD_CONTENT,
+        DATE_FORMAT(CREATE_DATE, '%Y-%m-%d') AS CREATE_DATE,
+        MEM_NUM
+        FROM SERVICE_BOARD;
+    </select>
+
+
+    <!-- 게시글 등록 -->
+    <insert id="insertContent">
+        INSERT INTO service_board(
+            BOARD_TITLE,
+            BOARD_CONTENT
+        )VALUES(
+            #{boardTitle},
+            #{boardContent}
+        )
+    </insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -155,6 +155,16 @@
   font-weight: 700;
 }
 
+.standard{
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+  display: flex;
+  font-size: .875rem;
+  justify-content: space-between;
+  padding: 14px 20px;
+  text-align: center;
+}
+
 /*  */
 
 .writing{

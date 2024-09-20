@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react'
 import '../css/patientChart.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
+<<<<<<< HEAD
 import humanBodyImage from '../images/humanBody.jpg'
+=======
+import ReservationCheck from './calendar/ReservationCheck';
+>>>>>>> hcj
 
 const PatientChart = () => {
 
@@ -139,6 +143,56 @@ const PatientChart = () => {
             }}
           >삭제</button>
         </div>
+<<<<<<< HEAD
+=======
+        {/* 환자 정보 이름, 휴대전화, 성별, 나이(나이는 년도를 기준으로 mapper에서 바꿀것) */}
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        <div>
+          {/* 환자 번호, 환자 병명, 수술여부 , 증상*/}
+          <table>
+            <colgroup>
+              <col width='20%' />
+              <col width='30' />
+              <col width='10' />
+              <col width='*' />
+            </colgroup>
+            <thead>
+              <tr>
+                <td><h2>증상</h2></td>
+              </tr>
+              <tr>
+                <td>환자 번호</td>
+                <td>상병 명칭</td>
+                <td>수술 여부</td>
+                <td>진료 항목</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colSpan={4}>
+                  <textarea></textarea>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <button type='button'>수정</button>
+          </div>
+        </div>
+        {/* 여기에 이름으로 검색한 환자의 모든 기록이 나오면 좋을 것 같음 */}
+      <ReservationCheck/>
+>>>>>>> hcj
       </div>
     </div>
   )
