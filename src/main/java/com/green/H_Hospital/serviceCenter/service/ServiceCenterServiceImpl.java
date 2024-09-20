@@ -24,4 +24,22 @@ public class ServiceCenterServiceImpl implements ServiceCenterService{
     public void insertContent(ServiceCenterVO serviceCenterVO) {
         sqlSession.insert("serviceMapper.insertContent",serviceCenterVO);
     }
+
+    //게시글 상세보기
+    @Override
+    public ServiceCenterVO getContentDetail(int boardNum) {
+        return sqlSession.selectOne("serviceMapper.getContentDetail", boardNum);
+    }
+
+    //게시글 삭제
+    @Override
+    public void deleteContent(int boardNum) {
+        sqlSession.delete("serviceMapper.deleteContent", boardNum);
+    }
+
+    //게시글 수정
+    @Override
+    public void updateContent(ServiceCenterVO serviceCenterVO) {
+        sqlSession.update("serviceMapper.updateContent", serviceCenterVO);
+    }
 }

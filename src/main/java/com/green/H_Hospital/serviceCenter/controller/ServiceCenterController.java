@@ -25,4 +25,23 @@ public class ServiceCenterController {
     private void insertContent(@RequestBody ServiceCenterVO serviceCenterVO){
         serviceCenterService.insertContent(serviceCenterVO);
     }
+
+    //게시글 상세보기
+    @GetMapping("/detail/{boardNum}")
+    public ServiceCenterVO getContentDetail(@PathVariable("boardNum") int boardNum){
+        return serviceCenterService.getContentDetail(boardNum);
+    }
+
+    //게시글 삭제
+    @DeleteMapping("/delete/{boardNum}")
+    public void deleteContent(@PathVariable("boardNum") int boardNum){
+        serviceCenterService.deleteContent(boardNum);
+    }
+
+    //게시글 수정
+    @PutMapping("/update")
+    public void updateContent(@RequestBody ServiceCenterVO serviceCenterVO){
+        serviceCenterService.updateContent(serviceCenterVO);
+    }
+
 }

@@ -8,6 +8,7 @@
         <result column="BOARD_TITLE" property="boardTitle"/>
         <result column="BOARD_CONTENT" property="boardContent"/>
         <result column="CREATE_DATE" property="createDate"/>
+        <result column="MEM_NUM" property="memNum"/>
         <collection property="memberVO"     resultMap="memberMapper.member" />
     </resultMap>
 
@@ -32,6 +33,31 @@
             #{boardContent}
         )
     </insert>
+
+    <!--게시글 상세보기-->
+    <select id="getContentDetail" resultMap="service">
+        SELECT BOARD_NUM
+            , BOARD_TITLE
+            , BOARD_CONTENT
+            , CREATE_DATE
+        FROM SERVICE_BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </select>
+
+    <!--게시글 삭제-->
+    <delete id="deleteContent">
+        DELETE FROM SERVICE_BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </delete>
+
+    <!--게시글 수정-->
+    <update id="updateContent">
+        UPDATE SERVICE_BOARD
+        SET
+        BOARD_TITLE = #{boardTitle},
+        BOARD_CONTENT = #{boardContent}
+        WHERE BOARD_NUM = #{boardNum}
+    </update>
 	
 </mapper>
 
