@@ -116,7 +116,7 @@ const RegInfo = () => {
       return
     }
     if(email3.current.value == ''){
-      alert('이메일을 선택해주세요')
+      alert('이메일을 선택해주세요.')
       return
     }
 
