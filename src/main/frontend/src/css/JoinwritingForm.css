@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box; /* 모든 요소에 box-sizing을 적용하여 패딩과 경계선을 크기에 포함 */
+}
+
+.joinwritingForm-div {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-box {
+  width: 560px;
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.content-table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse; 
+  table-layout: fixed; 
+}
+
+.writing-td > h1 {
+  width: 100%;
+  padding: 5px;
+  color: #333;
+  text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+.writer-tr{
+  width: 100%;
+}
+
+.writer-tr td div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.writer-tr > td > p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.bi-x-circle-fill{
+  cursor: pointer;
+}
+
+.content-box > table tr,
+.content-box > table td {
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #e5e5e5;
+}
+
+.content-table input, textarea {
+  width: 100%; 
+  padding: 10px; 
+  margin: 0; 
+  border: 1px solid #ccc; 
+  font-family: inherit; 
+  font-size: 16px; 
+  vertical-align: middle;
+  resize: none;
+}
+/* content-table-end */
+
+.writingFromBtn-div{
+  margin: 10px 0;
+  text-align: center;
+}

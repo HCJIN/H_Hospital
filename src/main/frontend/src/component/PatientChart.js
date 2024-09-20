@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../css/patientChart.css'
 import axios from 'axios';
+import ReservationCheck from './calendar/ReservationCheck';
 
 const PatientChart = () => {
 
@@ -97,6 +98,7 @@ const PatientChart = () => {
           </div>
         </div>
         {/* 여기에 이름으로 검색한 환자의 모든 기록이 나오면 좋을 것 같음 */}
+      <ReservationCheck/>
       </div>
     </div>
   )

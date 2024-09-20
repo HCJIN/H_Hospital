@@ -22,7 +22,7 @@ import AdminRegPage from './admin/AdminRegPage';
 import AdminJoinPage from './admin/AdminJoinPage';
 import SetNewPw from './component/SetNewPw';
 import ReservationCheck from './component/calendar/ReservationCheck';
-import ServiceCenter from './component/ServiceCenter';
+import ServiceCenter from './component/serviceCenter/ServiceCenter';
 import PatientChart from './component/PatientChart';
 import HospitalSheet from './component/HospitalSheet';
 
