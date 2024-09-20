@@ -42,10 +42,11 @@
   justify-content: space-between;
   align-items: center;
   height: 88px;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
   /* border: 1px solid purple; */
   position: relative;
+  color: rgba(0, 0, 0, .8);
 }
 
 .logo img{
@@ -269,7 +270,7 @@ a{
 }
 
 .footerMenu-ul ul li:nth-child(2) {
-  color: orange;
+  color: #fff;
   font-weight: bold;
 }
 

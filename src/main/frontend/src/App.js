@@ -36,6 +36,7 @@ import Cancer from './component/department/Cancer';
 import DoctorPage from './component/department/DoctorPage';
 import AdminRegSchedule from './admin/AdminRegSchedule';
 import ServiceWrite from './component/ServiceWrite';
+import Store from './component/store/Store';
 
 function App() {
 
@@ -152,7 +153,7 @@ function App() {
           <span onClick={() => {navigate('/admin/reservationCheck')}}>진료예약조회</span>
           <span onClick={() => {navigate('/admin/patientChart')}}>진료차트</span>
           <span onClick={()=>{navigate('/admin/regSchedule')}}>진료일정등록</span>
-          <span onClick={()=>{navigate('/admin/')}}>입고요청</span>
+          <span onClick={()=>{navigate('/admin/store')}}>입고요청</span>
         </div>
       )
     }
@@ -377,6 +378,9 @@ function App() {
 
           {/* 진료 스케줄 등록 페이지 */}
           <Route path='regSchedule' element={<AdminRegSchedule/>}/>
+
+          {/* 입고요청 페이지 */}
+          <Route path='store' element={<Store />} />
 
         </Route> 
 

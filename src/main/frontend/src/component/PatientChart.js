@@ -2,11 +2,8 @@ import React, { useEffect, useState } from 'react'
 import '../css/patientChart.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
-<<<<<<< HEAD
 import humanBodyImage from '../images/humanBody.jpg'
-=======
 import ReservationCheck from './calendar/ReservationCheck';
->>>>>>> hcj
 
 const PatientChart = () => {
 
@@ -143,8 +140,6 @@ const PatientChart = () => {
             }}
           >삭제</button>
         </div>
-<<<<<<< HEAD
-=======
         {/* 환자 정보 이름, 휴대전화, 성별, 나이(나이는 년도를 기준으로 mapper에서 바꿀것) */}
         <ul>
           <li></li>
@@ -192,7 +187,6 @@ const PatientChart = () => {
         </div>
         {/* 여기에 이름으로 검색한 환자의 모든 기록이 나오면 좋을 것 같음 */}
       <ReservationCheck/>
->>>>>>> hcj
       </div>
     </div>
   )

@@ -1,0 +1,91 @@
+.store-div{
+  width: 100%;
+}
+
+.store-bg{
+  width: 1300px;
+  margin: 0px auto;
+  margin-top: 30px;
+  position: relative;
+}
+
+.store-bg img{
+  width: 100%;
+}
+
+.text-div{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+
+.text-div p{
+  font-size: 48px;
+}
+
+.text-div span{
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* store-bg-end */
+
+.store-table-div{
+  width: 60%;
+  margin: 0 auto;
+}
+
+.store-table{
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.store-thead{
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-top: 2px solid #999;
+  border-bottom: 3px double #999;
+
+}
+
+.store-table > tbody tr, .store-table > tbody td{
+  padding: 20px;
+}
+
+.store-table input[type='number']{
+  width: 50px;
+}
+
+.store-icon-div{
+  width: 60%;
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  font-size: 30px;
+  padding: 10px 0;
+  padding-bottom: 13px;
+  border-top: 3px solid #e5e5e5;
+  border-bottom: 3px solid #e5e5e5;
+}
+
+.store-icon-div i{
+  vertical-align: middle;
+  margin-right: 5px;
+  color: lightskyblue;
+  cursor: pointer;
+}
+
+.store-icon-div span{
+  font-size: 20px;
+  font-weight: bold;
+  vertical-align: middle;
+  cursor: pointer;
+}
