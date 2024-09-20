@@ -37,6 +37,7 @@ import DoctorPage from './component/department/DoctorPage';
 import AdminRegSchedule from './admin/AdminRegSchedule';
 import ServiceWrite from './component/ServiceWrite';
 import Store from './component/store/Store';
+import Supplier from './component/supplier/Supplier';
 
 function App() {
 
@@ -381,8 +382,10 @@ function App() {
 
           {/* 입고요청 페이지 */}
           <Route path='store' element={<Store />} />
-
         </Route> 
+
+        {/* 공급사용 */}
+        <Route path='/supplier' element={ <Supplier /> } />
 
       </Routes>
 
