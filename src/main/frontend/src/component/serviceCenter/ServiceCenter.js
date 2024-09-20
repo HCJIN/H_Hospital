@@ -28,7 +28,7 @@ const ServiceCenter = () => {
       setContentList(res.data);
     })
     .catch()
-  },[])
+  },[writing])
 
   return (
     <div className='serviceCenter-div'>
@@ -89,9 +89,9 @@ const ServiceCenter = () => {
                       {
                         contentList.map((content, i )=>{
                           return(
-                            <li className='standard'>
+                            <li className='standard' key={i}>
                               <span>{content.boardNum}</span>
-                              <span>{content.boardTitle}</span>
+                              <span onClick={(e) => {navigate(`/writingDetail/${content.boardNum}`)}}>{content.boardTitle}</span>
                               <span>{content.createDate}</span>
                             </li>
                           )
@@ -104,7 +104,7 @@ const ServiceCenter = () => {
               <div className='writing'>
                 <button type='button' 
                 className='joinBtn-writing'
-                onClick={() => {navigate('/serviceWrite')}}
+                onClick={() => setWriting(true)}
                 >글쓰기</button>
               </div>
             </div>

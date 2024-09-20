@@ -35,8 +35,14 @@ import Urology from './component/department/Urology';
 import Cancer from './component/department/Cancer';
 import DoctorPage from './component/department/DoctorPage';
 import AdminRegSchedule from './admin/AdminRegSchedule';
+<<<<<<< HEAD
 import ServiceWrite from './component/ServiceWrite';
 import Store from './component/store/Store';
+=======
+import JoinwritingForm from './component/serviceCenter/JoinwritingForm';
+import WritingDetail from './component/serviceCenter/WritingDetail';
+
+>>>>>>> jbh
 
 function App() {
 
@@ -326,7 +332,10 @@ function App() {
         <Route path='/serviceCenter' element={<ServiceCenter/>}/>
 
         {/* 고객센터 글쓰기 페이지 */}
-        <Route path='/serviceWrite' element={<ServiceWrite/>}/>
+        <Route path='/joinWritingForm' element={<JoinwritingForm/>}/>
+
+        {/* 고객센터 글쓰기 상세보기 페이지 */}
+        <Route path='/writingDetail/:boardNum' element={<WritingDetail loginInfo={loginInfo}/>} />
 
         {/* 증명서 발급 페이지 */}
         <Route path='/hospitalSheet' element={<HospitalSheet />} />

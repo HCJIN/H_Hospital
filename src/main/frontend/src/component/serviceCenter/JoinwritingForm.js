@@ -14,6 +14,10 @@ const JoinwritingForm = ({writing, setWriting}) => {
   }
   console.log(post)
 
+  const [insertData, setInsertData] = useState({
+    
+  });
+
   function goContent(){
     axios
     .post('/service/insertContent', post)
