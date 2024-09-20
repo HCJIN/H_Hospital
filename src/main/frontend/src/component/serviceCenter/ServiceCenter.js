@@ -1,11 +1,9 @@
-import React from 'react'
-import '../css/serviceCenter.css';
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react'
 import '../../css/serviceCenter.css';
-import { useNavigate } from 'react-router-dom';
 import JoinwritingForm from './JoinwritingForm';
 import axios from 'axios';
+
 
 const ServiceCenter = () => {
 
