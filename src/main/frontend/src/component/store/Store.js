@@ -1,11 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../css/store.css';
+import axios from 'axios';
 
 const Store = () => {
   const [content, setContent] = useState('A')
 
   //카테고리 버튼 상태변경
   const isActive = (btnContent)=> content === btnContent;
+
+  //상품 목록을 저장할 변수
+  const [itemList, setItemList] = useState([]);
+
+  //품목 수량 저장 변수
+  const [itemCnt, setItemCnt] = useState(1);
+
+  //추가 버튼 클릭시 자바로 가져가는 데이터
+  const[insertPlusData, setInsertPlusData] = useState({
+    'itemCnt' : itemCnt, //뭐시라 요시라 저시라
+  })
+
+  // //상품 목록 조회
+  // useEffect(()=>{
+  //   axios.get()
+  //   .then((res)=>{})
+  //   .catch((error)=>{
+  //     console.log(error)
+  //   })
+  // })
 
   return (
     <div className='store-div'>
@@ -55,10 +76,14 @@ const Store = () => {
           </tbody>
         </table>
       </div>
+      <div className='search-item'>
+        <input type='text'></input>
+        <button type='button'>검색</button>
+      </div>
       <div className='store-icon-div'>
         <div>
           <i className="bi bi-bag-plus"></i>
-          <button type='button' onClick={()=>{setContent('A')}} className={`button ${isActive('A')? 'active':''}`}>전체</button>
+          <button type='button' onClick={() => {setContent('A')}} className={`button ${isActive('A') ? 'active' : ''}`}>전체</button>
         </div>
         <div>
           <i class="bi bi-capsule"></i>
@@ -79,18 +104,21 @@ const Store = () => {
       </div>
 
         {content === 'A' && 
-          <div id='contentA'>
-             <ul>
-              <li>
+          <div id='contentA' className='store-content'>
+             <ul className='goods-container'>
+              <li className='goods-list'>
                 <img src='http://localhost:8080/images/3rd/유한_리알트리스 나잘스프레이액.jpg'></img>
+                <h3>리알트리스 나잘스프레이액</h3>
+                <input type='number'></input>
+                <button type='button'>추가</button>
               </li>
-              <li>
-                <img src='http://localhost:8080/images/3rd/유한_알모그란.jpg'></img>
+              <li className='goods-list'>
+                <img src='http://localhost:8080/images/3rd/유한_에이론플러스.jpg'></img>
               </li>
             </ul>
             <ul>
               <li>
-                <img src='http://localhost:8080/images/3rd/유한_에이론플러스.jpg'></img>
+               <img src='http://localhost:8080/images/3rd/중외_뉴글리아.jpg'></img>
               </li>
               <li>
                 <img src='http://localhost:8080/images/3rd/중외_5%포도당가엔에이.케이주2.jpg'></img>
@@ -98,7 +126,7 @@ const Store = () => {
             </ul>
             <ul>
               <li>
-                <img src='http://localhost:8080/images/3rd/중외_뉴글리아.jpg'></img>
+                <img src='http://localhost:8080/images/3rd/유한_알모그란.jpg'></img>
               </li>
               <li>
                 <img src='http://localhost:8080/images/3rd/중외_라베그론.jpg'></img>
@@ -186,7 +214,7 @@ const Store = () => {
           </div>
         }
         {content ==='B' &&
-          <div id='contentB'>
+          <div id='contentB' className='store-content'>
             <ul>
               <li>
                 <img src='http://localhost:8080/images/3rd/유한_리알트리스 나잘스프레이액.jpg'></img>
@@ -216,7 +244,7 @@ const Store = () => {
                 <img src='http://localhost:8080/images/3rd/중외_아세타펜주.jpg'></img>
               </li>
               <li>
-                <img src='http://localhost:8080/images/3rd/중외_플라주오피주jpg'></img>
+                <img src='http://localhost:8080/images/3rd/중외_플라주오피주.jpg'></img>
               </li>
             </ul>
             <ul>
@@ -238,7 +266,7 @@ const Store = () => {
           </div>
         }
         {content ==='C' &&
-          <div id='contentC'>
+          <div id='contentC' className='store-content'>
             <ul>
               <li>
                 <img src='http://localhost:8080/images/3rd/중외_C-Flex™_Head_Positioning_System.jpg'></img>
@@ -262,7 +290,7 @@ const Store = () => {
           </div>
         }
         {content ==='D' &&
-          <div id='contentD'>
+          <div id='contentD' className='store-content'>
             <ul>
               <li>
                 <img src='http://localhost:8080/images/3rd/중외_JW-SS270_JW-SS360.jpg'></img>
@@ -286,7 +314,7 @@ const Store = () => {
           </div>
         }
         {content ==='E' &&
-          <div id='contentE'>
+          <div id='contentE' className='store-content'>
             <ul>
               <li>
                 <img src='http://localhost:8080/images/3rd/중외_CHESTMATE.jpg'></img>

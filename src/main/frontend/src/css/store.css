@@ -1,6 +1,7 @@
 .store-div{
   width: 100%;
-  height: 100vh;
+  
+  /* height: 100vh; */
 }
 
 .store-bg{
@@ -63,9 +64,23 @@
   width: 50px;
 }
 
+/* 장바구니? 끝 */
+
+.search-item{
+  text-align: right;
+  margin-top: 50px;
+  margin-right: 385px;
+}
+.search-item input{
+}
+.search-item button{
+}
+
+/* 검색 끝 */
+
 .store-icon-div{
   width: 60%;
-  margin: 30px auto;
+  margin: 20px auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -87,13 +102,47 @@
 .store-icon-div button{
   font-size: 19px;
   font-weight: bold;
-  vertical-align: middle;
-  cursor: pointer;
   border: none;
   background-color: #fff;
-  outline: none;
+  z-index: 10;
+  cursor: pointer;
 }
 
-.store-icon-div button:focus{
-  color: #555555;
+.store-icon-div button.active{
+  background-color: #fff;
+  font-size: 1.3rem;
+  color: #7a7a7a;
 }
+
+/* 메뉴 버튼 끝 */
+
+.store-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  grid-auto-rows: minmax(100px, auto); 
+  gap: 30px; 
+  justify-items: center; 
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.store-content ul {
+  list-style-type: none; 
+  padding: 0;
+  margin: 0;
+}
+
+.store-content li {
+  width: 500px;
+  height: 300px;
+  border: 1px solid pink;
+  margin-bottom: 30px;
+}
+
+.store-content img {
+  width: 70%; 
+  height: 295px; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
