@@ -9,6 +9,7 @@
         <result column="BOARD_CONTENT" property="boardContent"/>
         <result column="CREATE_DATE" property="createDate"/>
         <result column="MEM_NUM" property="memNum"/>
+
         <collection property="memberVO"     resultMap="memberMapper.member" />
     </resultMap>
 
@@ -30,7 +31,8 @@
             BOARD_CONTENT
         )VALUES(
             #{boardTitle},
-            #{boardContent}
+            #{boardContent},
+
         )
     </insert>
 
