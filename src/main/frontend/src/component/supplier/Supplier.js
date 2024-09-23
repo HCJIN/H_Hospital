@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../css/supplier.css';
+import QuantityInput from './QuantityInput';
 
 const Supplier = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const Supplier = () => {
   const [mainImg, setMainImg] = useState(null);
   const [subImg, setSubImg] = useState(null);
 
-  //상품목록을 저장할 state 변수
+  // 상품목록을 저장할 state 변수
   const [itemList, setItemList] = useState([]);
 
   // 카테고리 목록을 저장할 state 변수
@@ -21,7 +22,8 @@ const Supplier = () => {
     cateCode: 1, // 기본값 설정
     itemName: '',
     itemPrice: '',
-    itemIntro: ''
+    itemIntro: '',
+    itemStock: ''
   });
 
   // 자바에서 카테고리 목록 데이터 가져오기
@@ -36,18 +38,18 @@ const Supplier = () => {
       });
   }, []);
 
-  //자바에서 상품목록리스트 가져오기
-  useEffect(()=>{
+  // 자바에서 상품목록리스트 가져오기
+  useEffect(() => {
     axios
-    .get('/item/getItemList')
-    .then((res)=>{
-      console.log(res.data)
-      setItemList(res.data);
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
-  },[])
+      .get('/item/getItemList')
+      .then((res) => {
+        console.log(res.data);
+        setItemList(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   // input 태그에 새로 입력하는 값 객체에 저장
   function changeInsertItemData(e) {
@@ -67,6 +69,7 @@ const Supplier = () => {
       });
     }
   }
+
   console.log(insertItemData);
 
   // 상품등록 버튼 클릭!!
@@ -89,7 +92,7 @@ const Supplier = () => {
     axios
       .post(`/item/insertItem`, itemForm, fileConfig)
       .then((res) => {
-        alert('등록이 완료되었습니다.')
+        alert('등록이 완료되었습니다.');
       })
       .catch((error) => {
         console.log(error);
@@ -134,49 +137,43 @@ const Supplier = () => {
                   <tr><td className='title'>상품 카테고리</td></tr>
                   <tr>
                     <td>
-                      <select name='cateCode' onChange={(e) => { changeInsertItemData(e) }}>
-                        {categoryList.map((category, i) => {
-                          return (
-                            <option key={i} value={category.cateCode}>
-                              {category.cateName}
-                            </option>
-                          );
-                        })}
+                      <select name='cateCode' onChange={changeInsertItemData}>
+                        {categoryList.map((category, i) => (
+                          <option key={i} value={category.cateCode}>
+                            {category.cateName}
+                          </option>
+                        ))}
                       </select>
                     </td>
                   </tr>
                   <tr><td className='title'>상품명</td></tr>
                   <tr>
                     <td>
-                      <input type='text' name='itemName' className='form-control' onChange={(e) => { changeInsertItemData(e) }}></input>
+                      <input type='text' name='itemName' className='form-control' onChange={changeInsertItemData}></input>
                     </td>
                   </tr>
                   <tr><td className='title'>상품 가격</td></tr>
                   <tr>
                     <td>
-                      <input type='text' name='itemPrice' className='form-control' onChange={(e) => { changeInsertItemData(e) }}></input>
+                      <input type='text' name='itemPrice' className='form-control' onChange={changeInsertItemData}></input>
                     </td>
                   </tr>
                   <tr><td className='title'>상품 소개</td></tr>
                   <tr>
                     <td>
-                      <textarea name='itemIntro' className='form-control' rows={7} onChange={(e) => { changeInsertItemData(e) }}></textarea>
+                      <textarea name='itemIntro' className='form-control' rows={7} onChange={changeInsertItemData}></textarea>
                     </td>
                   </tr>
                 </tbody>
               </table>
               <div className='file-div'>
-                <input type='file' onChange={(e) => {
-                  setMainImg(e.target.files[0]);
-                }} />
+                <input type='file' onChange={(e) => setMainImg(e.target.files[0])} />
               </div>
               <div className='file-div'>
-                <input type='file' onChange={(e) => {
-                  setSubImg(e.target.files[0]);
-                }} />
+                <input type='file' onChange={(e) => setSubImg(e.target.files[0])} />
               </div>
               <div className='btn-div'>
-                <button type='button' className='btn btn-primary' onClick={() => { insertItem() }}>
+                <button type='button' className='btn btn-primary' onClick={insertItem}>
                   제품등록
                 </button>
               </div>
@@ -184,30 +181,36 @@ const Supplier = () => {
           </div>
         </div>
         <div className='storeMenu'>
-          
           <div className='title-bg'>
             <h2>상품리스트</h2>
           </div>
 
           <div className='item-div-box'>
-            {
-              itemList.map((item, i) => {
-                const money = item.itemPrice;
-                const price = money.toLocaleString('ko-KR', {
-                  style: 'currency',
-                  currency: 'KRW' // 한국 원화
-                });
-                return (
-                  <div className='item-div' key={i}>
-                    <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
-                    <div>
-                      <h4>{item.itemName}</h4>
-                      <p>{price}</p>
+            {itemList.map((item, i) => {
+              const money = item.itemPrice;
+              const price = money.toLocaleString('ko-KR', {
+                style: 'currency',
+                currency: 'KRW' // 한국 원화
+              });
+              return (
+                <div className='item-div' key={i}>
+                  <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
+                  <div>
+                    <h4>{item.itemName}</h4>
+                    <p>{price}</p>
+                    <div> {/* <p> 태그 대신 <div>로 변경 */}
+                      재고수량
+                      <QuantityInput 
+                        stock={item.itemStock}
+                        setItemList={setItemList}
+                        itemIndex={i}
+                        itemList={itemList}
+                      />
                     </div>
                   </div>
-                );
-              })
-            }
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

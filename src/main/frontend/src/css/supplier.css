@@ -116,7 +116,7 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box; /* 보더와 패딩을 너비에 포함 */
-  border: 1px solid #444;
+  border: 1px solid #e5e5e5;
   margin: 3px;
   padding: 10px;
 }
@@ -133,3 +133,74 @@
   width: 100%; /* 부모 요소의 너비를 가득 채우기 */
   text-align: center; /* 텍스트 중앙 정렬 */
 }
+
+.item-div p{
+  text-align: center;
+  margin: 7px;
+}
+
+.item-div > div > p:last-child{
+  padding: 5px 0;
+}
+
+.stock{
+  width: 30%;
+  text-align: right;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield; /* Firefox */
+  width: 50px; /* 원하는 크기로 설정 */
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.numberBtn{
+  display: inline-block;
+  border: 1px solid rgb(209, 209, 209);
+  background-color: rgba(229, 229, 229, 0.898);
+  color: #000;
+  font-size: 13px;
+  /* color: #fff; */
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#mina{
+  font-size: 18px;
+}
+
+.numberBtn-div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.updateNumberBtn{
+  display: inline-block;
+  border: 1px solid rgb(209, 209, 209);
+  background-color: rgba(229, 229, 229, 0.898);
+  color: #000;
+  font-size: 13px;
+  /* color: #fff; */
+  width: 50px;
+  height: 20px;
+  line-height: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+
