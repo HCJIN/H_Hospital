@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="itemMapper">
+    <resultMap id="category" type="com.green.H_Hospital.item.vo.CategoryVO">
+        <result column="CATE_CODE" property="cateCode"/>
+        <result column="CATE_NAME" property="cateName"/>
+    </resultMap>
+
+    <resultMap id="img" type="com.green.H_Hospital.item.vo.ImgVO">
+        <id column="IMG_CODE" property="imgCode"/>
+        <result column="ORIGIN_FILE_NAME" property="originFileName"/>
+        <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
+        <result column="IS_MAIN" property="isMain"/>
+        <result column="ITEM_CODE" property="itemCode"/>
+    </resultMap>
+
+    <resultMap id="item" type="com.green.H_Hospital.item.vo.ItemVO">
+        <id column="ITEM_CODE" property="itemCode"/>
+        <result column="ITEM_NAME" property="itemName"/>
+        <result column="ITEM_PRICE" property="itemPrice"/>
+        <result column="ITEM_INTRO" property="itemIntro"/>
+        <result column="ITEM_STOCK" property="itemStock"/>
+        <result column="ITEM_STATUS" property="itemStatus"/>
+        <result column="CATE_CODE" property="cateCode"/>
+        <collection property="imgList" ofType="com.green.H_Hospital.item.vo.ImgVO" resultMap="img" />
+    </resultMap>
+
+    <!-- 카테고리 목록 조회 -->
+    <select id="getCategoryList" resultMap="category">
+        SELECT CATE_CODE,
+        CATE_NAME
+        FROM ITEM_CATEGORY
+        ORDER BY CATE_CODE ASC;
+    </select>
+
+    <!-- 상품 목록 조회 -->
+    <select id="getItemList" resultMap="item">
+        SELECT item.ITEM_CODE
+        ,   item.ITEM_NAME
+        ,   item.ITEM_PRICE
+        ,   img.IMG_CODE
+        ,   img.ORIGIN_FILE_NAME
+        ,   img.ATTACHED_FILE_NAME
+        ,   img.IS_MAIN
+        FROM SHOP_ITEM item, ITEM_IMG img
+        WHERE item.ITEM_CODE = img.ITEM_CODE
+        AND IS_MAIN = 'Y'
+        ORDER BY item.ITEM_CODE DESC;
+    </select>
+
+    <!-- 상품 등록 -->
+    <insert id="insertItem">
+        INSERT INTO SHOP_ITEM(
+            ITEM_CODE,
+            ITEM_NAME,
+            ITEM_PRICE,
+            ITEM_INTRO,
+            CATE_CODE
+        ) VALUES (
+            #{itemCode}
+            ,   #{itemName}
+            ,   #{itemPrice}
+            ,   #{itemIntro}
+            ,   #{cateCode}
+        );
+    </insert>
+
+    <!-- 상품 이미지 등록 -->
+    <insert id="insertImgs">
+        INSERT INTO ITEM_IMG(
+        ORIGIN_FILE_NAME
+        , ATTACHED_FILE_NAME
+        , IS_MAIN
+        , ITEM_CODE
+        )VALUES
+        <foreach collection="imgList" item="img" separator=",">
+            (
+            #{img.originFileName}
+            , #{img.attachedFileName}
+            , #{img.isMain}
+            , #{itemCode}
+            )
+        </foreach>
+    </insert>
+
+    <!-- 다음에 들어갈 item_code 조회 -->
+    <select id="getNextItemCode" resultType="int">
+        SELECT IFNULL(MAX(ITEM_CODE),0) + 1
+        FROM SHOP_ITEM
+    </select>
+
+    <!-- 상품 상세 조회 -->
+    <select id="getItem" resultMap="item">
+        SELECT item.ITEM_CODE
+        ,   item.ITEM_NAME
+        ,   item.ITEM_PRICE
+        ,   item.ITEM_INTRO
+        ,   img.IMG_CODE
+        ,   img.ATTACHED_FILE_NAME
+        ,   img.IS_MAIN
+        FROM SHOP_ITEM item, ITEM_IMG img
+        WHERE item.ITEM_CODE = #{itemCode}
+        AND item.ITEM_CODE = img.ITEM_CODE;
+    </select>
+
+
+
+</mapper>
+
+
+
+
+
