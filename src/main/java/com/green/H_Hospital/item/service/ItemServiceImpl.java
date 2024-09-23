@@ -50,4 +50,10 @@ public class ItemServiceImpl implements ItemService{
         return sqlSession.selectOne("itemMapper.getItem", itemCode);
     }
 
+    //재고수량 업데이트
+    @Override
+    public void updateStock(ItemVO itemVO) {
+        sqlSession.update("itemMapper.updateStock", itemVO);
+    }
+
 }

@@ -106,6 +106,14 @@
         AND item.ITEM_CODE = img.ITEM_CODE;
     </select>
 
+    <!-- 수량 업데이트 -->
+    <select id="updateStock" resultMap="item">
+        UPDATE SHOP_ITEM
+        SET
+            ITEM_STOCK = #{itemStock}
+        WHERE ITEM_CODE = #{itemCode}
+    </select>
+
 
 
 </mapper>

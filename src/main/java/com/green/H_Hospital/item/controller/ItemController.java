@@ -78,4 +78,10 @@ public class ItemController {
         itemService.insertImgs(itemVO);
     }
 
+    //재고수량 업데이트
+    @PostMapping("/updateStock")
+    private void updateStock(@RequestBody ItemVO itemVO){
+        itemService.updateStock(itemVO);
+    }
+
 }
