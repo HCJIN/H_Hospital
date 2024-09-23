@@ -12,4 +12,5 @@ public class ServiceCenterVO {
     private String createDate;
     private MemberVO memberVO;
     private int memNum;
+    private String memId;
 }

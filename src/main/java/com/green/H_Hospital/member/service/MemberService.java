@@ -9,6 +9,8 @@ public interface MemberService {
     //멤버 리스트 조회
     List<MemberVO> memberList();
 
+
+
     // 회원 가입을 위한 기본적인 정보 입력
     void insertMember(MemberVO memberVO);
 

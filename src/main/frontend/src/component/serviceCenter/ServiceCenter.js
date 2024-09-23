@@ -90,7 +90,8 @@ const ServiceCenter = () => {
                         contentList.map((content, i )=>{
                           return(
                             <li className='standard' key={i}>
-                              <span>{content.boardNum}</span>
+                              <span>{contentList.length - i}</span>
+                              {/* <span>{content.boardNum}</span> */}
                               <span onClick={(e) => {navigate(`/writingDetail/${content.boardNum}`)}}>{content.boardTitle}</span>
                               <span>{content.createDate}</span>
                             </li>
