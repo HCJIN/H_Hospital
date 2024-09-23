@@ -14,19 +14,21 @@ const Store = () => {
   //품목 수량 저장 변수
   const [itemCnt, setItemCnt] = useState(1);
 
-  //추가 버튼 클릭시 자바로 가져가는 데이터
-  const[insertPlusData, setInsertPlusData] = useState({
-    'itemCnt' : itemCnt, //뭐시라 요시라 저시라
-  })
-
-  // //상품 목록 조회
-  // useEffect(()=>{
-  //   axios.get()
-  //   .then((res)=>{})
-  //   .catch((error)=>{
-  //     console.log(error)
-  //   })
+  // //추가 버튼 클릭시 자바로 가져가는 데이터
+  // const[insertPlusData, setInsertPlusData] = useState({
+  //   'itemCnt' : itemCnt, //뭐시라 요시라 저시라
   // })
+
+  //상품 목록 조회
+  useEffect(()=>{
+    axios.get('/item/getItemList')
+    .then((res)=>{
+      setItemList(res.data)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  },[])
 
   return (
     <div className='store-div'>
@@ -104,163 +106,22 @@ const Store = () => {
       </div>
 
         {content === 'A' && 
-          <div id='contentA' className='store-content'>
-             <ul className='goods-container'>
-              <li className='goods-list'>
-                <img src='http://localhost:8080/images/3rd/유한_리알트리스 나잘스프레이액.jpg'></img>
-                <h3>리알트리스 나잘스프레이액</h3>
-                <input type='number'></input>
-                <button type='button'>추가</button>
-              </li>
-              <li className='goods-list'>
-                <img src='http://localhost:8080/images/3rd/유한_에이론플러스.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-               <img src='http://localhost:8080/images/3rd/중외_뉴글리아.jpg'></img>
-              </li>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_5%포도당가엔에이.케이주2.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/유한_알모그란.jpg'></img>
-              </li>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_라베그론.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_아세타펜주.jpg'></img>
-              </li>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_플라주오피주jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/한미_구구탐스.jpg'></img>
-              </li>
-              <li>
-                <img src='http://localhost:8080/images/3rd/한미_낙소졸.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/한미_레브로콜.jpg'></img>
-              </li>
-              <li>
-                <img src='http://localhost:8080/images/3rd/한미_아모잘탄.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_C-Flex™_Head_Positioning_System.jpg'></img>
-              </li>
-            </ul>            
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_Honeylux_LED_RK.jpg'></img>
-              </li>
-            </ul>            
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_TS3000.jpg'></img>
-              </li>
-            </ul>            
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_Ultrafins Stirrups.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_JW-SS270_JW-SS360.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_EO_가스멸균기.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_고압증기멸균기.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_멸균기_CHS-ST045__ST065.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_CHESTMATE.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_HI-801.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_멸균기_CHS-ST045__ST065.jpg'></img>
-              </li>
-            </ul>        
-          </div>
+          itemList.map((item,i)=>{
+            return(
+              <div>
+                <img src={`http://localhost:8000/images/upload/${item.imgList[0].attachedFileName}`}/>
+                <h4>{item.itemName}</h4>
+                <p>{item.itemIntro}</p>
+                <p>{item.itemPrice}</p>
+              </div>
+            )
+          })
         }
         {content ==='B' &&
           <div id='contentB' className='store-content'>
             <ul>
               <li>
                 <img src='http://localhost:8080/images/3rd/유한_리알트리스 나잘스프레이액.jpg'></img>
-              </li>
-              <li>
-                <img src='http://localhost:8080/images/3rd/유한_알모그란.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/유한_에이론플러스.jpg'></img>
-              </li>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_5%포도당가엔에이.케이주2.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_뉴글리아.jpg'></img>
-              </li>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_라베그론.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_아세타펜주.jpg'></img>
-              </li>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_플라주오피주.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/한미_구구탐스.jpg'></img>
-              </li>
-              <li>
-                <img src='http://localhost:8080/images/3rd/한미_낙소졸.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/한미_레브로콜.jpg'></img>
-              </li>
-              <li>
-                <img src='http://localhost:8080/images/3rd/한미_아모잘탄.jpg'></img>
               </li>
             </ul>
           </div>
@@ -271,22 +132,7 @@ const Store = () => {
               <li>
                 <img src='http://localhost:8080/images/3rd/중외_C-Flex™_Head_Positioning_System.jpg'></img>
               </li>
-            </ul>            
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_Honeylux_LED_RK.jpg'></img>
-              </li>
-            </ul>            
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_TS3000.jpg'></img>
-              </li>
-            </ul>            
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_Ultrafins Stirrups.jpg'></img>
-              </li>
-            </ul>            
+            </ul>                   
           </div>
         }
         {content ==='D' &&
@@ -296,21 +142,6 @@ const Store = () => {
                 <img src='http://localhost:8080/images/3rd/중외_JW-SS270_JW-SS360.jpg'></img>
               </li>
             </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_EO_가스멸균기.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_고압증기멸균기.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_멸균기_CHS-ST045__ST065.jpg'></img>
-              </li>
-            </ul>
           </div>
         }
         {content ==='E' &&
@@ -318,16 +149,6 @@ const Store = () => {
             <ul>
               <li>
                 <img src='http://localhost:8080/images/3rd/중외_CHESTMATE.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_HI-801.jpg'></img>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_멸균기_CHS-ST045__ST065.jpg'></img>
               </li>
             </ul>
           </div>
