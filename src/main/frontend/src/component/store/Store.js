@@ -112,91 +112,93 @@ const Store = () => {
         </div>
       </div>
 
-        {content === 'A' && 
-          filteredItems.map((item,i)=>{
-            const money = item.itemPrice;
-            const price = money.toLocaleString('ko-KR',{
-              style : 'currency',
-              currency: 'KRW'
+        <div className='item-list-box'>
+          {content === 'A' && 
+            filteredItems.map((item,i)=>{
+              const money = item.itemPrice;
+              const price = money.toLocaleString('ko-KR',{
+                style : 'currency',
+                currency: 'KRW'
+              })
+              return(
+                <div key={i} className='item-list'>
+                  <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
+                  <h4>{item.itemName}</h4>
+                  <p>{item.itemIntro}</p>
+                  <p>{price}</p>
+                </div>
+              )
             })
-            return(
-              <div key={i} className='store-content'>
-                <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
-                <h4>{item.itemName}</h4>
-                <p>{item.itemIntro}</p>
-                <p>{price}</p>
-              </div>
-            )
-          })
-        }
-        {content ==='B' &&
-          filteredItems.map((item,i)=>{
-            const money = item.itemPrice;
-            const price = money.toLocaleString('ko-KR',{
-              style : 'currency',
-              currency: 'KRW'
+          }
+          {content ==='B' &&
+            filteredItems.map((item,i)=>{
+              const money = item.itemPrice;
+              const price = money.toLocaleString('ko-KR',{
+                style : 'currency',
+                currency: 'KRW'
+              })
+              return(
+                <div key={i} className='item-list'>
+                  <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
+                  <h4>{item.itemName}</h4>
+                  <p>{item.itemIntro}</p>
+                  <p>{price}</p>
+                </div>
+              )
             })
-            return(
-              <div key={i} className='store-content'>
-                <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
-                <h4>{item.itemName}</h4>
-                <p>{item.itemIntro}</p>
-                <p>{price}</p>
-              </div>
-            )
-          })
-        }
-        {content ==='C' &&
-          filteredItems.map((item,i)=>{
-            const money = item.itemPrice;
-            const price = money.toLocaleString('ko-KR',{
-              style : 'currency',
-              currency: 'KRW'
+          }
+          {content ==='C' &&
+            filteredItems.map((item,i)=>{
+              const money = item.itemPrice;
+              const price = money.toLocaleString('ko-KR',{
+                style : 'currency',
+                currency: 'KRW'
+              })
+              return(
+                <div key={i} className='item-list'>
+                  <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
+                  <h4>{item.itemName}</h4>
+                  <p>{item.itemIntro}</p>
+                  <p>{price}</p>
+                </div>
+              )
             })
-            return(
-              <div key={i} className='store-content'>
-                <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
-                <h4>{item.itemName}</h4>
-                <p>{item.itemIntro}</p>
-                <p>{price}</p>
-              </div>
-            )
-          })
-        }
-        {content ==='D' &&
-          itemList.map((item,i)=>{
-            const money = item.itemPrice;
-            const price = money.toLocaleString('ko-KR',{
-              style : 'currency',
-              currency: 'KRW'
+          }
+          {content ==='D' &&
+            itemList.map((item,i)=>{
+              const money = item.itemPrice;
+              const price = money.toLocaleString('ko-KR',{
+                style : 'currency',
+                currency: 'KRW'
+              })
+              return(
+                <div key={i} className='item-list'>
+                  <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
+                  <h4>{item.itemName}</h4>
+                  <p>{item.itemIntro}</p>
+                  <p>{price}</p>
+                </div>
+              )
             })
-            return(
-              <div key={i} className='store-content'>
-                <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
-                <h4>{item.itemName}</h4>
-                <p>{item.itemIntro}</p>
-                <p>{price}</p>
-              </div>
-            )
-          })
-        }
-        {content ==='E' &&
-          itemList.map((item,i)=>{
-            const money = item.itemPrice;
-            const price = money.toLocaleString('ko-KR',{
-              style : 'currency',
-              currency: 'KRW'
+          }
+          {content ==='E' &&
+            itemList.map((item,i)=>{
+              const money = item.itemPrice;
+              const price = money.toLocaleString('ko-KR',{
+                style : 'currency',
+                currency: 'KRW'
+              })
+              return(
+                <div key={i} className='item-list'>
+                  <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
+                  <h4>{item.itemName}</h4>
+                  <p>{item.itemIntro}</p>
+                  <p>{price}</p>
+                </div>
+              )
             })
-            return(
-              <div key={i} className='store-content'>
-                <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
-                <h4>{item.itemName}</h4>
-                <p>{item.itemIntro}</p>
-                <p>{price}</p>
-              </div>
-            )
-          })
-        }
+          }
+        </div>
 
     </div>
   )
