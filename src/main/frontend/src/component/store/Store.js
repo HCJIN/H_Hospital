@@ -11,13 +11,14 @@ const Store = () => {
   //상품 목록을 저장할 변수
   const [itemList, setItemList] = useState([]);
 
-  //품목 수량 저장 변수
-  const [itemCnt, setItemCnt] = useState(1);
+  // //품목 수량 저장 변수
+  // const [itemCnt, setItemCnt] = useState(1);
 
   // //추가 버튼 클릭시 자바로 가져가는 데이터
   // const[insertPlusData, setInsertPlusData] = useState({
   //   'itemCnt' : itemCnt, //뭐시라 요시라 저시라
   // })
+
 
   //상품 목록 조회
   useEffect(()=>{
@@ -29,6 +30,12 @@ const Store = () => {
       console.log(error)
     })
   },[])
+
+  //카테고리별 목록 조회
+  const filteredItems = itemList.filter(item =>{
+    if(content === 'A') return true;
+    return item.category === content;
+  })
 
   return (
     <div className='store-div'>
@@ -106,52 +113,89 @@ const Store = () => {
       </div>
 
         {content === 'A' && 
-          itemList.map((item,i)=>{
+          filteredItems.map((item,i)=>{
+            const money = item.itemPrice;
+            const price = money.toLocaleString('ko-KR',{
+              style : 'currency',
+              currency: 'KRW'
+            })
             return(
-              <div>
-                <img src={`http://localhost:8000/images/upload/${item.imgList[0].attachedFileName}`}/>
+              <div key={i} className='store-content'>
+                <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
                 <h4>{item.itemName}</h4>
                 <p>{item.itemIntro}</p>
-                <p>{item.itemPrice}</p>
+                <p>{price}</p>
               </div>
             )
           })
         }
         {content ==='B' &&
-          <div id='contentB' className='store-content'>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/유한_리알트리스 나잘스프레이액.jpg'></img>
-              </li>
-            </ul>
-          </div>
+          filteredItems.map((item,i)=>{
+            const money = item.itemPrice;
+            const price = money.toLocaleString('ko-KR',{
+              style : 'currency',
+              currency: 'KRW'
+            })
+            return(
+              <div key={i} className='store-content'>
+                <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
+                <h4>{item.itemName}</h4>
+                <p>{item.itemIntro}</p>
+                <p>{price}</p>
+              </div>
+            )
+          })
         }
         {content ==='C' &&
-          <div id='contentC' className='store-content'>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_C-Flex™_Head_Positioning_System.jpg'></img>
-              </li>
-            </ul>                   
-          </div>
+          filteredItems.map((item,i)=>{
+            const money = item.itemPrice;
+            const price = money.toLocaleString('ko-KR',{
+              style : 'currency',
+              currency: 'KRW'
+            })
+            return(
+              <div key={i} className='store-content'>
+                <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
+                <h4>{item.itemName}</h4>
+                <p>{item.itemIntro}</p>
+                <p>{price}</p>
+              </div>
+            )
+          })
         }
         {content ==='D' &&
-          <div id='contentD' className='store-content'>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_JW-SS270_JW-SS360.jpg'></img>
-              </li>
-            </ul>
-          </div>
+          itemList.map((item,i)=>{
+            const money = item.itemPrice;
+            const price = money.toLocaleString('ko-KR',{
+              style : 'currency',
+              currency: 'KRW'
+            })
+            return(
+              <div key={i} className='store-content'>
+                <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
+                <h4>{item.itemName}</h4>
+                <p>{item.itemIntro}</p>
+                <p>{price}</p>
+              </div>
+            )
+          })
         }
         {content ==='E' &&
-          <div id='contentE' className='store-content'>
-            <ul>
-              <li>
-                <img src='http://localhost:8080/images/3rd/중외_CHESTMATE.jpg'></img>
-              </li>
-            </ul>
-          </div>
+          itemList.map((item,i)=>{
+            const money = item.itemPrice;
+            const price = money.toLocaleString('ko-KR',{
+              style : 'currency',
+              currency: 'KRW'
+            })
+            return(
+              <div key={i} className='store-content'>
+                <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
+                <h4>{item.itemName}</h4>
+                <p>{item.itemIntro}</p>
+                <p>{price}</p>
+              </div>
+            )
+          })
         }
 
     </div>
