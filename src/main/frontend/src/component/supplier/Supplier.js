@@ -10,6 +10,9 @@ const Supplier = () => {
   const [mainImg, setMainImg] = useState(null);
   const [subImg, setSubImg] = useState(null);
 
+  //상품목록을 저장할 state 변수
+  const [itemList, setItemList] = useState([]);
+
   // 카테고리 목록을 저장할 state 변수
   const [categoryList, setCategoryList] = useState([]);
 
@@ -33,6 +36,19 @@ const Supplier = () => {
       });
   }, []);
 
+  //자바에서 상품목록리스트 가져오기
+  useEffect(()=>{
+    axios
+    .get('/item/getItemList')
+    .then((res)=>{
+      console.log(res.data)
+      setItemList(res.data);
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  },[])
+
   // input 태그에 새로 입력하는 값 객체에 저장
   function changeInsertItemData(e) {
     const { name, value } = e.target;
@@ -51,7 +67,6 @@ const Supplier = () => {
       });
     }
   }
-
   console.log(insertItemData);
 
   // 상품등록 버튼 클릭!!
@@ -102,12 +117,12 @@ const Supplier = () => {
                 <td>인공눈물</td>
                 <td>
                   <input type='number'></input>
-                  <button type='button'>확인</button>
+                  <button type='button' className='btn btn-Subprimary'>확인</button>
                 </td>
                 <td><p>2024-09-20</p></td>
                 <td>
-                  <p>제품출하</p>
-                  <button type='button'>출하</button>
+                  <span>제품출하</span>
+                  <button type='button' className='btn btn-Subprimary'>출하</button>
                 </td>
               </tr>
             </tbody>
@@ -116,7 +131,7 @@ const Supplier = () => {
             <div className='regItem-div'>
               <table className='regItem-table'>
                 <tbody>
-                  <tr><td>상품 카테고리</td></tr>
+                  <tr><td className='title'>상품 카테고리</td></tr>
                   <tr>
                     <td>
                       <select name='cateCode' onChange={(e) => { changeInsertItemData(e) }}>
@@ -130,19 +145,19 @@ const Supplier = () => {
                       </select>
                     </td>
                   </tr>
-                  <tr><td>상품명</td></tr>
+                  <tr><td className='title'>상품명</td></tr>
                   <tr>
                     <td>
                       <input type='text' name='itemName' className='form-control' onChange={(e) => { changeInsertItemData(e) }}></input>
                     </td>
                   </tr>
-                  <tr><td>상품 가격</td></tr>
+                  <tr><td className='title'>상품 가격</td></tr>
                   <tr>
                     <td>
                       <input type='text' name='itemPrice' className='form-control' onChange={(e) => { changeInsertItemData(e) }}></input>
                     </td>
                   </tr>
-                  <tr><td>상품 소개</td></tr>
+                  <tr><td className='title'>상품 소개</td></tr>
                   <tr>
                     <td>
                       <textarea name='itemIntro' className='form-control' rows={7} onChange={(e) => { changeInsertItemData(e) }}></textarea>
@@ -166,6 +181,33 @@ const Supplier = () => {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+        <div className='storeMenu'>
+          
+          <div className='title-bg'>
+            <h2>상품리스트</h2>
+          </div>
+
+          <div className='item-div-box'>
+            {
+              itemList.map((item, i) => {
+                const money = item.itemPrice;
+                const price = money.toLocaleString('ko-KR', {
+                  style: 'currency',
+                  currency: 'KRW' // 한국 원화
+                });
+                return (
+                  <div className='item-div' key={i}>
+                    <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
+                    <div>
+                      <h4>{item.itemName}</h4>
+                      <p>{price}</p>
+                    </div>
+                  </div>
+                );
+              })
+            }
           </div>
         </div>
       </div>
