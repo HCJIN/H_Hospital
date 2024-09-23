@@ -205,6 +205,7 @@ const Supplier = () => {
                         setItemList={setItemList}
                         itemIndex={i}
                         itemList={itemList}
+                        itemCode={item.itemCode}
                       />
                     </div>
                   </div>

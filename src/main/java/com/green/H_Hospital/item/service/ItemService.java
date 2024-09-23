@@ -24,4 +24,7 @@ public interface ItemService {
 
     //아이템 상세정보 조회
     ItemVO getItem(int itemCode);
+
+    //재고수량 업데이트
+    void updateStock(ItemVO itemVO);
 }

@@ -139,8 +139,8 @@
   margin: 7px;
 }
 
-.item-div > div > p:last-child{
-  padding: 5px 0;
+.item-div > div > div{
+  text-align: center;
 }
 
 .stock{

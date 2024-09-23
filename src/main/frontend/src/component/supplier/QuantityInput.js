@@ -1,6 +1,7 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 
-const QuantityInput = ({ stock, itemIndex, setItemList, itemList }) => {
+const QuantityInput = ({ stock, itemIndex, setItemList, itemCode }) => {
 
   // 재고 수량을 상태로 관리
   const [quantity, setQuantity] = useState(stock);
@@ -43,6 +44,19 @@ const QuantityInput = ({ stock, itemIndex, setItemList, itemList }) => {
     updateStock(newQuantity); // 새로운 수량으로 재고 업데이트
   };
 
+  //수정버튼 클릭시 업데이트 
+  function goUpdate(){
+    const itemStock = quantity
+    axios
+    .post(`/item/updateStock`, {itemCode, itemStock})
+    .then((res)=>{
+      alert('재고 수량이 업데이트 되었습니다.');
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'center' }} className='numberBtn-div'>
@@ -58,7 +72,9 @@ const QuantityInput = ({ stock, itemIndex, setItemList, itemList }) => {
         />
         <button onClick={increment} className='numberBtn'>+</button>
       </div>
-      <button type='button' className='updateNumberBtn'>수정</button>
+      <button type='button' className='updateNumberBtn' onClick={()=>{
+        goUpdate()
+      }}>수정</button>
     </div>
   );
 };
