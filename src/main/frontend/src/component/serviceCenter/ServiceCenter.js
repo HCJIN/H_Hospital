@@ -25,11 +25,17 @@ const ServiceCenter = () => {
     axios
     .get('/service/getContentList')
     .then((res)=>{
-      setContentList(res.data);
-      console.log(res.data)
+      //boardNum을 기준으로 내림차순 정렬
+      const sortedData = res.data.sort((a, b) => {
+        return b.boardNum - a.boardNum;// 내림차순
+      });
+      setContentList(sortedData);
+      console.log(sortedData);
     })
-    .catch()
-  },[writing])
+    .catch((error) => {
+      console.log(error);
+    });
+  },[writing]);
 
   return (
     <div className='serviceCenter-div'>
@@ -88,15 +94,15 @@ const ServiceCenter = () => {
                         <span>2024-08-28</span>
                       </li>
                       {
-                        contentList.map((content, i )=>{
+                        contentList.map((content, i)=>{
                           return(
-                            <li className='standard' key={i}>
+                            <li className='standard' key={content.boardNum}>
                               <span>{contentList.length - i}</span>
                               {/* <span>{content.boardNum}</span> */}
                               <span onClick={(e) => {navigate(`/writingDetail/${content.boardNum}`)}}>{content.boardTitle}</span>
                               <span>{content.createDate}</span>
                             </li>
-                          )
+                          );
                         })
                       }
                     </ul>

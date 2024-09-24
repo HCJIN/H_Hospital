@@ -109,6 +109,8 @@ const WritingDetail = ({loginInfo}) => {
     });
   }
 
+  console.log(loginInfo.memId);
+
   return (
     <div className='contentContainer'>
       {
