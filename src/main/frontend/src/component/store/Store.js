@@ -72,8 +72,6 @@ const Store = () => {
     }
   }
 
-
-
   //카테고리별 목록 조회
   const filteredItems = itemList.filter(item =>{
     if(content === 'A') return true;
