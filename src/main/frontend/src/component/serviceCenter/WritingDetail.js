@@ -136,17 +136,14 @@ const WritingDetail = ({loginInfo}) => {
         <button type='button' onClick={() => {navigate('/serviceCenter')}}>목록가기</button>
 
         {
-          loginInfo.memRole == 'ADMIN' || loginInfo.memId == contentDetail.memId
-          ?
+          loginInfo && (loginInfo.memRole === 'admin' || loginInfo.memId === contentDetail.memId) && (
         <>
           <button type='button' onClick={() => {
             setUpdateWriting(true)
           }}>수정</button>
           <button type='button' onClick={(e) => {deleteContent(contentDetail.boardNum)}}>삭제</button>
         </>
-          :
-          null
-        }
+        )}
       </div>
 
       {

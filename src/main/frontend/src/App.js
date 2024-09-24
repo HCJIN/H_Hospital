@@ -158,6 +158,9 @@ function App() {
           <span onClick={() => {navigate('/admin/patientChart')}}>진료차트</span>
           <span onClick={()=>{navigate('/admin/regSchedule')}}>진료일정등록</span>
           <span onClick={()=>{navigate('/admin/store')}}>입고요청</span>
+          <span onClick={() => {
+            navigate('/serviceCenter')
+          }}>고객센터</span>
         </div>
       )
     }
