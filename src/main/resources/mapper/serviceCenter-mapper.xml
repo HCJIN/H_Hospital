@@ -31,8 +31,7 @@
             BOARD_CONTENT
         )VALUES(
             #{boardTitle},
-            #{boardContent},
-
+            #{boardContent}
         )
     </insert>
 

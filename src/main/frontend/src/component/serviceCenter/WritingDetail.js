@@ -47,14 +47,19 @@ const WritingDetail = ({loginInfo}) => {
   }, []);
 
   //db에서 데이터 조회 여러개 동시에 실행하기
-  // useEffect(() => {
-  //   axios.all(`/service/detail/${boardNum}`, `/reply/list/${boardNum}`)
-  //   .then(axios.spread((res1, res2) => {
-  //     setContentDetail(res1.data);
-  //     setReplyList(res2.data);
-  //   }))
-  //   .catch();
-  // }, [replyData, deleteState]);
+  useEffect(() => {
+    axios.all([
+      axios.get(`/service/detail/${boardNum}`),
+      axios.get(`/reply/list/${boardNum}`)
+    ])
+    .then(axios.spread((contentResponse, replyResponse) => {
+      setContentDetail(contentResponse.data);
+      setReplyList(replyResponse.data);
+    }))
+    .catch((error) => {
+      console.log(error);
+    });
+  }, [replyData, deleteState]);
 
   //게시글 삭제 함수
   function deleteContent(boardNum){

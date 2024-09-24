@@ -17,6 +17,8 @@
         SELECT REPLY_NUM
             , REPLY_CONTENT
             , REPLY_DATE
+            , BOARD_NUM
+            , MEM_NUM
         FROM BOARD_REPLY
         WHERE BOARD_NUM = #{boardNum}
     </select>
@@ -26,9 +28,11 @@
         INSERT INTO BOARD_REPLY (
             REPLY_CONTENT
             , BOARD_NUM
+            , MEM_NUM
         ) VALUES (
             #{replyContent}
             , #{boardNum}
+            , #{memNum}
         )
     </insert>
 
