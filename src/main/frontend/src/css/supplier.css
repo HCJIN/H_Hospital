@@ -170,8 +170,8 @@
   width: 50px; /* 원하는 크기로 설정 */
 }
 
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
+.item-div input[type='number']::-webkit-inner-spin-button,
+.item-div input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
