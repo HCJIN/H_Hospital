@@ -2,8 +2,13 @@ import axios from 'axios';
 import React, { Children, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import '../../css/writingDetail.css';
+import JoinUpdateForm from './JoinUpdateForm';
 
 const WritingDetail = ({loginInfo}) => {
+
+  //글쓰기창 생성 여부
+  const [updateWriting, setUpdateWriting] = useState(false);
+
   //댓글 삭제 후 재랜더링을 위한 변수
   const[deleteState, setDeleteState] = useState({});
 
@@ -33,13 +38,14 @@ const WritingDetail = ({loginInfo}) => {
     .catch((error) => {
       console.log(error)
     });
-  }, []);
+  }, [updateWriting]);
 
   //댓글 상세 정보 조회
   useEffect(() => {
     axios.get(`/reply/list/${boardNum}`)
     .then((res) => {
       setReplyList(res.data);
+      console.log(res.data)
     })
     .catch((error) => {
       console.log(error);
@@ -47,19 +53,19 @@ const WritingDetail = ({loginInfo}) => {
   }, []);
 
   //db에서 데이터 조회 여러개 동시에 실행하기
-  useEffect(() => {
-    axios.all([
-      axios.get(`/service/detail/${boardNum}`),
-      axios.get(`/reply/list/${boardNum}`)
-    ])
-    .then(axios.spread((contentResponse, replyResponse) => {
-      setContentDetail(contentResponse.data);
-      setReplyList(replyResponse.data);
-    }))
-    .catch((error) => {
-      console.log(error);
-    });
-  }, [replyData, deleteState]);
+  // useEffect(() => {
+  //   axios.all([
+  //     axios.get(`/service/detail/${boardNum}`),
+  //     axios.get(`/reply/list/${boardNum}`)
+  //   ])
+  //   .then(axios.spread((contentResponse, replyResponse) => {
+  //     setContentDetail(contentResponse.data);
+  //     setReplyList(replyResponse.data);
+  //   }))
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+  // }, [replyData, deleteState]);
 
   //게시글 삭제 함수
   function deleteContent(boardNum){
@@ -105,12 +111,18 @@ const WritingDetail = ({loginInfo}) => {
 
   return (
     <div className='contentContainer'>
+      {
+        updateWriting ?
+        <JoinUpdateForm updateWriting={updateWriting} setUpdateWriting={setUpdateWriting}/>
+        :
+        <></>
+      }
       <div className='contentShow'>
         <h2>공지사항</h2>
         <div className='contentHeader'>
           <div>
-            NO.{contentDetail.boardNum}
-            {contentDetail.boardTitle}
+            NO.{contentDetail.boardNum} 
+              {contentDetail.boardTitle}
           </div>
           <div>
             작성일: {contentDetail.createDate}
@@ -127,7 +139,9 @@ const WritingDetail = ({loginInfo}) => {
           loginInfo.memRole == 'ADMIN' || loginInfo.memId == contentDetail.memId
           ?
         <>
-          <button type='button' onClick={() => {}}>수정</button>
+          <button type='button' onClick={() => {
+            setUpdateWriting(true)
+          }}>수정</button>
           <button type='button' onClick={(e) => {deleteContent(contentDetail.boardNum)}}>삭제</button>
         </>
           :

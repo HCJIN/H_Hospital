@@ -26,6 +26,7 @@ const ServiceCenter = () => {
     .get('/service/getContentList')
     .then((res)=>{
       setContentList(res.data);
+      console.log(res.data)
     })
     .catch()
   },[writing])
