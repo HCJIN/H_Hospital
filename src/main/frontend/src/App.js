@@ -145,7 +145,8 @@ function App() {
   }, []);
   
   //직원 로그인 시 사이드바 숨기기
-  const showSideBar = !(loginInfo.memRole === 'admin')
+  //ID에 test가 포함된 경우 사이드바 숨김
+  const showSideBar = !(loginInfo.memRole === 'admin' || (loginInfo.email?.split('@')[0].includes('test')));
 
   //직원으로 로그인 했을때 상단에 '진료예약조회'메뉴 띄우는 함수 
   function upperMenu(){
