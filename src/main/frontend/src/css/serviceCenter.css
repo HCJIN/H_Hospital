@@ -190,3 +190,7 @@
   cursor: pointer;
   position: relative;
 }
+
+.standard > span:nth-child(2){
+  cursor: pointer;
+} 
