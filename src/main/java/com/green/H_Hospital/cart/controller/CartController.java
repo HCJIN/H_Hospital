@@ -24,4 +24,11 @@ public class CartController {
     public List<CartVO> getCartList(@PathVariable("memNum")int memNum){
         return cartService.getCartList(memNum);
     }
+
+    //수량 업데이트
+    @PostMapping("/updateCart")
+    public void updateCart(@RequestBody CartVO cartVO){
+        cartService.updateCart(cartVO);
+    }
+
 }

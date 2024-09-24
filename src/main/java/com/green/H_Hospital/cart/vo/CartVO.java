@@ -11,6 +11,7 @@ public class CartVO {
     private int itemCode;
     private int cartCnt;
     private int memNum;
+    private String cartStatus;
     private String cartDate;
     private ItemVO itemVO;
 }

@@ -18,7 +18,7 @@ public class CartServiceImpl implements CartService{
     public void insertCart(CartVO cartVO) {
 
         //발주목록에 제품 존재 여부 확인
-        CartVO vo = sqlSession.selectOne("cartMapper.CheckCart", cartVO);
+        CartVO vo = sqlSession.selectOne("cartMapper.checkCart", cartVO);
 
         //없으면 insert
         if(vo == null){
@@ -36,5 +36,11 @@ public class CartServiceImpl implements CartService{
     @Override
     public List<CartVO> getCartList(int memNum) {
         return sqlSession.selectList("cartMapper.getCartList", memNum);
+    }
+
+    //수량 업데이트
+    @Override
+    public void updateCart(CartVO cartVO) {
+        sqlSession.update("cartMapper.updateCart", cartVO);
     }
 }
