@@ -38,9 +38,27 @@ public class CartServiceImpl implements CartService{
         return sqlSession.selectList("cartMapper.getCartList", memNum);
     }
 
+    //전체 발주 목록 조회
+    @Override
+    public List<CartVO> getCartListAll() {
+        return sqlSession.selectList("cartMapper.getCartListAll");
+    }
+
     //수량 업데이트
     @Override
     public void updateCart(CartVO cartVO) {
         sqlSession.update("cartMapper.updateCart", cartVO);
+    }
+
+    //목록 삭제
+    @Override
+    public void goDelete(int cartCode) {
+        sqlSession.delete("cartMapper.goDelete", cartCode);
+    }
+
+    //상태 업데이트
+    @Override
+    public void statusUpdate(int cartCode) {
+        sqlSession.update("cartMapper.statusUpdate", cartCode);
     }
 }

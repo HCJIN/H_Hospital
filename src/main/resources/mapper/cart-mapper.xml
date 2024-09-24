@@ -48,6 +48,24 @@
             AND IMG.IS_MAIN = 'Y';
     </select>
 
+    <!--전체 발주 목록 조회-->
+    <select id="getCartListAll" resultMap="cart">
+        SELECT
+            CART.CART_CODE,
+            ITEM.ITEM_NAME,
+            ITEM.ITEM_PRICE,
+            CART.CART_CNT,
+            CART.CART_DATE,
+            IMG.ATTACHED_FILE_NAME,
+            CART_STATUS
+        FROM
+            shop_cart CART
+        JOIN
+            shop_item ITEM ON CART.ITEM_CODE = ITEM.ITEM_CODE
+        JOIN
+            item_img IMG ON CART.ITEM_CODE = IMG.ITEM_CODE
+    </select>
+
     <!--발주 제품 추가 전 등록여부 확인-->
     <select id="checkCart" resultMap="cart">
         SELECT CART_CODE
@@ -75,6 +93,19 @@
         WHERE CART_CODE = #{cartCode}
     </update>
 
+    <!-- 장바구니 목록 삭제 -->
+    <delete id="goDelete">
+        DELETE FROM SHOP_CART
+        WHERE CART_CODE = #{cartCode}
+    </delete>
+
+    <!-- 제품 상태 업데이트 -->
+    <update id="statusUpdate">
+        UPDATE shop_cart
+        SET
+        CART_STATUS = '발주요청'
+        WHERE CART_CODE = #{cartCode}
+    </update>
 
 </mapper>
 
