@@ -114,6 +114,13 @@
   color: #7a7a7a;
 }
 
+.product-name{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /* 텍스트가 여러 줄로 나뉘지 않고 한 줄로 이어지도록 함 */
+  max-width: 190px; 
+}
+
 /* 메뉴 버튼 끝 */
 
 .item-list-box {

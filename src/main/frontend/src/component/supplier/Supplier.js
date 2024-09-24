@@ -49,7 +49,7 @@ const Supplier = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [insertItem]);
 
   // input 태그에 새로 입력하는 값 객체에 저장
   function changeInsertItemData(e) {
@@ -98,6 +98,8 @@ const Supplier = () => {
         console.log(error);
       });
   }
+
+
 
   return (
     <div className='supplier-div'>
@@ -200,7 +202,7 @@ const Supplier = () => {
                 <div className='item-div' key={i}>
                   <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} />
                   <div>
-                    <h4>{item.itemName}</h4>
+                    <h4 className='product-name'>{item.itemName}</h4>
                     <p>{price}</p>
                     <div> {/* <p> 태그 대신 <div>로 변경 */}
                       재고수량
