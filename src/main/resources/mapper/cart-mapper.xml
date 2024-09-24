@@ -6,10 +6,59 @@
 
     <resultMap id="cart" type="com.green.H_Hospital.cart.vo.CartVO">
         <id column="CART_CODE" property="cartCode"/>
+        <result column="ITEM_CODE" property="itemCode"/>
         <result column="CART_CNT" property="cartCnt"/>
         <result column="MEM_NUM" property="memNum"/>
         <result column="CART_DATE" property="cartDate"/>
+        <association property="itemVO" resultMap="itemMapper.item"/>
     </resultMap>
+
+    <!--상품 등록-->
+    <insert id="insertCart">
+        INSERT INTO SHOP_CART (
+            ITEM_CODE
+            ,CART_CNT
+            ,MEM_NUM
+        ) VALUES (
+            #{itemCode}
+            ,#{cartCnt}
+            ,#{memId}
+        )
+    </insert>
+
+    <!--발주 목록 조회-->
+    <select id="getCartList" resultMap="cart">
+        SELECT CART_CODE
+            ,ITEM_NAME
+            ,ITEM_PRICE
+            ,CART_CNT
+            ,CART_DATE
+            ,ATTACHED_FILE_NAME
+        FROM shop_cart CART, shop_item ITEM, item_img IMG
+        WHERE CART.ITEM_CODE = ITEM.ITEM_CODE
+        AND CART.ITEM_CODE = IMG.ITEM_CODE
+        AND MEM_NUM = #{memNum}
+        AND IS_MAIN = 'Y';
+    </select>
+
+    <!--발주 제품 추가 전 등록여부 확인-->
+    <select id="checkCart" resultMap="cart">
+        SELECT CART_CODE
+        FROM SHOP_CART
+        WHERE ITEM_CODE = #{itemCode}
+        AND MEM_NUM = #{memNum}
+    </select>
+
+    <!--발주 제품 추가 시 수량 업데이트-->
+    <update id="updateItemCnt">
+        UPDATE shop_cart
+        SET
+            CART_CNT = cart_cnt + #{cartCnt},
+            CART_DATE = NOW()
+        WHERE ITEM_CODE = #{itemCode}
+        AND MEM_NUM = #{memNum }
+    </update>
+
 
 </mapper>
 

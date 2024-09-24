@@ -1,7 +1,27 @@
 package com.green.H_Hospital.cart.controller;
 
-import org.springframework.web.bind.annotation.RestController;
+import com.green.H_Hospital.cart.service.CartService;
+import com.green.H_Hospital.cart.vo.CartVO;
+import jakarta.annotation.Resource;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/cart")
 public class CartController {
+    @Resource(name = "cartService")
+    private CartService cartService;
+
+    //발주목록에 제품 등록
+    @PostMapping("/insert")
+    public void insertCart(@RequestBody CartVO cartVO){
+        cartService.insertCart(cartVO);
+    }
+
+    //발주목록 조회
+    @GetMapping("/getCartList/{memNum}")
+    public List<CartVO> getCartList(@PathVariable("memNum")int memNum){
+        return cartService.getCartList(memNum);
+    }
 }
