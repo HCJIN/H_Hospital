@@ -64,6 +64,26 @@
   width: 50px;
 }
 
+.suplierBtn-div{
+  width: 100%;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.supliierBtn{
+  display: inline-block;
+  border: 1px solid lightskyblue;
+  background-color: lightskyblue;
+  font-size: 14px;
+  line-height: 1;
+  color: #fff;
+  font-weight: 400;
+  padding: 5px 4px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-left: 6px;
+}
+
 /* 장바구니? 끝 */
 
 .search-item{
@@ -131,6 +151,7 @@
   flex-wrap: wrap; 
   gap: 22px;
   margin: 0 auto;
+  margin-bottom: 70px;
 }
 
 .item-list {
