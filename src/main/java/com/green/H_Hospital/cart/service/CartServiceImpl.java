@@ -1,7 +1,40 @@
 package com.green.H_Hospital.cart.service;
 
+import com.green.H_Hospital.cart.vo.CartVO;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("cartService")
-public class CartServiceImpl {
+
+public class CartServiceImpl implements CartService{
+    @Autowired
+    private SqlSessionTemplate sqlSession;
+
+    //제품 추가
+    @Override
+    public void insertCart(CartVO cartVO) {
+
+        //발주목록에 제품 존재 여부 확인
+        CartVO vo = sqlSession.selectOne("cartMapper.CheckCart", cartVO);
+
+        //없으면 insert
+        if(vo == null){
+            sqlSession.insert("cartMapper.insertCart", cartVO);
+        }
+
+        //있으면 update
+        else {
+            sqlSession.update("cartMapper.updateItemCnt", cartVO);
+        }
+
+    }
+
+    //발주 목록 조회
+    @Override
+    public List<CartVO> getCartList(int memNum) {
+        return sqlSession.selectList("cartMapper.getCartList", memNum);
+    }
 }

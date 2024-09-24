@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../../css/store.css';
 import axios from 'axios';
+import { el } from 'date-fns/locale';
 
 const Store = () => {
   const [content, setContent] = useState('A')
@@ -11,13 +12,36 @@ const Store = () => {
   //상품 목록을 저장할 변수
   const [itemList, setItemList] = useState([]);
 
-  // //품목 수량 저장 변수
-  // const [itemCnt, setItemCnt] = useState(1);
+  //품목 수량 저장 변수
+  const [itemCnt, setItemCnt] = useState(1);
 
-  // //추가 버튼 클릭시 자바로 가져가는 데이터
-  // const[insertPlusData, setInsertPlusData] = useState({
-  //   'itemCnt' : itemCnt, //뭐시라 요시라 저시라
-  // })
+  const [itemCode, setItemCode] = useState('');
+  const [cartCnt, setCartCnt] = useState(1);
+
+  //추가 버튼 클릭시 자바로 가져가는 데이터
+  const[insertCartData, setInsertCartData] = useState({
+    'itemCode' : itemCode,
+    'cartCnt' : cartCnt,
+    'memNum' : JSON.parse(window.sessionStorage.getItem('loginInfo')).memNum
+  })
+
+  //조회된 발주 목록을 저장할 변수
+  const [cartList, setCartList] = useState([]);
+
+  //발주목록 조회
+  useEffect(()=>{
+    const loginInfo = JSON.parse(window.sessionStorage.getItem('loginInfo'));
+    
+    axios.get(`/cart/getCartList/${loginInfo.memNum}`)
+    .then((res)=>{
+      console.log(res.data)
+      setCartList(res.data)
+    })
+    .catch((error)=>{
+      alert('발주목록 조회 오류🤢🛒')
+      console.log(error)
+    })
+  },[])
 
 
   //상품 목록 조회
@@ -30,6 +54,25 @@ const Store = () => {
       console.log(error)
     })
   },[])
+
+  function changeItemCnt(e){
+    const cnt = Number(e.target.value);
+
+    if(cnt<1){
+      setItemCnt(1);
+      
+      //발주 등록 때 필요시 수량 데이터 변경
+      setInsertCartData({...insertCartData, 'cartCnt':1})
+    }
+    else{
+      setItemCnt(e.target.value);
+
+      //발주 등록 때 필요시 수량 데이터 변경
+      setInsertCartData({...insertCartData, 'cartCnt':e.target.value});
+    }
+  }
+
+
 
   //카테고리별 목록 조회
   const filteredItems = itemList.filter(item =>{
@@ -126,6 +169,7 @@ const Store = () => {
                   <h4>{item.itemName}</h4>
                   <p>{item.itemIntro}</p>
                   <p>{price}</p>
+                  <button type='button'>추가</button>
                 </div>
               )
             })

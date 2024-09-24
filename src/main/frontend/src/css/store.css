@@ -133,7 +133,7 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box; 
-  border: 1px solid #444;
+  border: 1px solid #e5e5e5;
   margin: 3px;
   padding: 10px;
 }
@@ -149,5 +149,8 @@
   text-overflow: ellipsis;
   width: 100%; 
   text-align: center; 
+}
+
+.item-list button{
 }
 
