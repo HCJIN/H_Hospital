@@ -25,10 +25,28 @@ public class CartController {
         return cartService.getCartList(memNum);
     }
 
+    //전체 발주목록 조회
+    @GetMapping("/getCartListAll")
+    public List<CartVO> getCartListAll(){
+        return cartService.getCartListAll();
+    }
+
     //수량 업데이트
     @PostMapping("/updateCart")
     public void updateCart(@RequestBody CartVO cartVO){
         cartService.updateCart(cartVO);
+    }
+
+    //목록삭제
+    @DeleteMapping("/cartDelete/{cartCode}")
+    public void goDelete(@PathVariable("cartCode") int cartCode){
+        cartService.goDelete(cartCode);
+    }
+
+    //상태 업데이트
+    @PostMapping("/statusUpdate/{cartCode}")
+    public void statusUpdate(@PathVariable("cartCode") int cartCode){
+        cartService.statusUpdate(cartCode);
     }
 
 }

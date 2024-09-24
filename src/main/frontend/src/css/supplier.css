@@ -22,6 +22,16 @@
 
 .ordering-table > thead > tr{
   border-bottom: 4px double rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.ordering-table > tbody > tr{
+  text-align: center;
+}
+
+.ordering-table > tbody > tr > td:first-child{
+  text-align: left;
+  padding-left: 30px;
 }
 
 .supplier-div{
@@ -177,6 +187,10 @@
 }
 
 .upDownBtn{
+  width: 50px;
+}
+
+#cntBtn{
   width: 50px;
 }
 

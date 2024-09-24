@@ -12,6 +12,15 @@ public interface CartService {
     //발주 목록 조회
     List<CartVO> getCartList(int memNum);
 
+    //전체 발주 목록 조회
+    List<CartVO> getCartListAll();
+
     //수량 업데이트
     void updateCart(CartVO cartVO);
+
+    //목록삭제
+    void goDelete(int cartCode);
+
+    //상태 업데이트
+    void statusUpdate(int cartCode);
 }

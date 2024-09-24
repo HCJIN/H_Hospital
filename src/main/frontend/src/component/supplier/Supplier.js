@@ -7,6 +7,8 @@ import QuantityInput from './QuantityInput';
 const Supplier = () => {
   const navigate = useNavigate();
 
+  const [cartList, setCartList] = useState([]);
+
   // 이미지 첨부파일을 저장할 state 변수
   const [mainImg, setMainImg] = useState(null);
   const [subImg, setSubImg] = useState(null);
@@ -25,6 +27,24 @@ const Supplier = () => {
     itemIntro: '',
     itemStock: ''
   });
+
+  //발주요청으로 보내온 데이터 가져오기
+  useEffect(()=>{
+    axios
+    .get('/cart/getCartListAll')
+    .then((res)=>{
+      console.log(res.data)
+      const result = res.data;
+      result.forEach((e, i)=>{
+        if(e.cartStatus == '발주요청' || e.cartStatus == '제품출하'){
+          setCartList(res.data);
+        }
+      })
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  },[])
 
   // 자바에서 카테고리 목록 데이터 가져오기
   useEffect(() => {
@@ -49,7 +69,7 @@ const Supplier = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [insertItem]);
+  }, []);
 
   // input 태그에 새로 입력하는 값 객체에 저장
   function changeInsertItemData(e) {
@@ -99,6 +119,15 @@ const Supplier = () => {
       });
   }
 
+  //날짜 년월일만 출력
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 월을 2자리로 포맷
+    const day = String(date.getDate()).padStart(2, '0'); // 일을 2자리로 포맷
+    return `${year}-${month}-${day}`;
+  };
+
 
 
   return (
@@ -111,7 +140,6 @@ const Supplier = () => {
               <table className='ordering-table'>
                 <thead className='ordering-thead'>
                   <tr>
-                    <td><p>번호</p></td>
                     <td><p>제품</p></td>
                     <td><p>수량</p></td>
                     <td><p>주문일시</p></td>
@@ -119,19 +147,28 @@ const Supplier = () => {
                   </tr>
                 </thead>
                 <tbody className='ordering-tbody'>
-                  <tr>
-                    <td>1</td>
-                    <td>인공눈물</td>
-                    <td>
-                      <input type='text' className='upDownBtn'></input>
-                      <button type='button' className='btn btn-Subprimary'>확인</button>
-                    </td>
-                    <td><p>2024-09-20</p></td>
-                    <td>
-                      <span>제품출하</span>
-                      <button type='button' className='btn btn-Subprimary'>출하</button>
-                    </td>
-                  </tr>
+                  {
+                    cartList.map((cart, i)=>{
+                      return(
+                        <tr key={i}>
+                          <td>
+                            {cart.itemVO.itemName}
+                          </td>
+                          <td>
+                            <input type='number' id='cntBtn'></input>
+                            <button type='button' className='btn btn-Subprimary'>확인</button>
+                          </td>
+                          <td>
+                            {formatDate(cart.cartDate)}
+                          </td>
+                          <td>
+                            {cart.cartStatus}
+                            <button type='button' className='btn btn-Subprimary'>출하</button>
+                          </td>
+                        </tr>
+                      )
+                    })
+                  }
                 </tbody>
               </table>
             </div>

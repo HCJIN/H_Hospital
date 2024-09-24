@@ -21,13 +21,39 @@ const Store = () => {
 
   // 선택 삭제
   function selectDelete() {
-    checkItems.forEach((isChecked, index) => {
-      if (isChecked && cartList[index]) {
-        const cartCode = cartList[index].cartCode;
-        selectedCartCodes.push(cartCode);
-      }
+    const selectedCartCodes = checkItems.map((isChecked, index)=>
+      isChecked ? cartList[index].cartCode : null
+    ).filter(cartCode => cartCode !== null); //null이 아닌 것만 필터링
+
+    if(selectedCartCodes.length === 0){
+      alert('삭제할 항목을 선택해 주세요.');
+      return;
+    }
+
+    //모든 선택된 cartCode에 대해 goDelete 호출
+    const deletePromises = selectedCartCodes.map(cartCode => goDelete(cartCode));
+
+    Promise.all(deletePromises)
+        .then(() => {
+            alert('선택된 항목이 삭제되었습니다.'); // 삭제 완료 알림
+            fatchCartList(); // 목록 새로 고침
+        })
+        .catch((error) => {
+            console.error('삭제 중 오류 발생:', error);
+        });
+  }
+
+  //삭제버튼 클릭시 delete
+  function goDelete(cateCode){
+    axios
+    .delete(`/cart/cartDelete/${cateCode}`)
+    .then(() => {
+        console.log(`삭제 완료: ${cateCode}`); // 삭제 완료 메시지 (필요 시)
+        fatchCartList();
+    })
+    .catch((error) => {
+        console.error('삭제 중 오류 발생:', error);
     });
-    console.log(selectedCartCodes);
   }
 
   // 카테고리별 목록 조회
@@ -139,6 +165,44 @@ const Store = () => {
     return `${year}-${month}-${day}`;
   };
 
+  // 선택 발주
+  function selectUpdate() {
+    const selectedCartCodes = checkItems.map((isChecked, index)=>
+      isChecked ? cartList[index].cartCode : null
+    ).filter(cartCode => cartCode !== null); //null이 아닌 것만 필터링
+
+    if(selectedCartCodes.length === 0){
+      alert('발주할 항목을 선택해 주세요.');
+      return;
+    }
+
+    //모든 선택된 cartCode에 대해 goSupplier 호출
+    const deletePromises = selectedCartCodes.map(cartCode => goSupplier(cartCode));
+
+    Promise.all(deletePromises)
+        .then(() => {
+            alert('선택된 항목이 발주되었습니다.'); // 발주 완료 알림
+            fatchCartList(); // 목록 새로 고침
+        })
+        .catch((error) => {
+            console.error('삭제 중 오류 발생:', error);
+        });
+  }
+
+
+  function goSupplier(cartCode){
+    axios
+    .post(`/cart/statusUpdate/${cartCode}`)
+    .then((res)=>{
+      console.log('발주요청이 완료되었습니다.')
+      fatchCartList();
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+
+
   return (
     <div className='store-div'>
       <div className='store-bg'>
@@ -152,9 +216,6 @@ const Store = () => {
         <table className='store-table'>
           <thead className='store-thead'>
             <tr>
-              <td>
-                <p>번호</p>
-              </td>
               <td>
                 <input
                   type='checkbox'
@@ -183,9 +244,6 @@ const Store = () => {
                 return (
                   <tr key={i}>
                     <td>
-                      <p>{cart.cartCode}</p>
-                    </td>
-                    <td>
                       <input 
                         type='checkbox' 
                         onChange={()=>{
@@ -205,7 +263,7 @@ const Store = () => {
                         onChange={(e) => handleItemCntChange(i, Number(e.target.value))}
                         min='1'
                       ></input>
-                      <button type='button' onClick={() => {
+                      <button type='button' className='supliierBtn' onClick={() => {
                         cntUpdate(cart.cartCode, cart.cartCnt);
                       }}>확인</button>
                     </td>
@@ -214,7 +272,20 @@ const Store = () => {
                     </td>
                     <td>
                       <span>{cart.cartStatus}</span>
-                      <button type='button' className='supliierBtn'>삭제</button>
+                      <button 
+                        type='button' 
+                        className='supliierBtn'
+                        onClick={()=>{
+                          goSupplier(cart.cartCode)
+                        }}
+                      >발주</button>
+                      <button 
+                        type='button' 
+                        className='supliierBtn'
+                        onClick={()=>{
+                          goDelete(cart.cartCode)
+                        }}
+                      >삭제</button>
                     </td>
                   </tr>
                 )
@@ -223,8 +294,12 @@ const Store = () => {
           </tbody>
         </table>
         <div className='suplierBtn-div'>
-          <button type='button' className='supliierBtn'>발주요청</button>
-          <button type='button' className='supliierBtn' onClick={selectDelete}>선택삭제</button>
+          <button type='button' className='supliierBtn' onClick={()=>{
+            selectUpdate();
+          }}>발주요청</button>
+          <button type='button' className='supliierBtn' onClick={()=>{
+            selectDelete();
+          }}>선택삭제</button>
         </div>
       </div>
       <div className='store-icon-div'>
@@ -263,7 +338,7 @@ const Store = () => {
               <h4>{item.itemName}</h4>
               <p>{item.itemIntro}</p>
               <p>{price}</p>
-              <button type='button' onClick={() => handleAddToCart(item)}>장바구니 추가</button>
+              <button type='button' className='supliierBtn' onClick={() => handleAddToCart(item)}>추가</button>
             </div>
           );
         })}
