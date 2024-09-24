@@ -2,10 +2,26 @@
   width: 100%;
 }
 
+.main-box{
+  margin-top: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.store-list{
+  width: 70%;
+}
+
 .ordering-table{
   width: 100%;
-  margin: 0 auto;
+  margin: 30px auto;
   margin-bottom: 70px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.ordering-table > thead > tr{
+  border-bottom: 4px double rgba(0, 0, 0, 0.2);
 }
 
 .supplier-div{
@@ -19,8 +35,9 @@
 
 .regItem-div{
   width: 100%;
-  background-color: #e5e5e5;
-  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  /* box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3); */
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   margin: 10px;
   padding: 15px;
@@ -148,7 +165,7 @@
   text-align: right;
 }
 
-input[type='number'] {
+.item-div > input[type='number'] {
   -moz-appearance: textfield; /* Firefox */
   width: 50px; /* 원하는 크기로 설정 */
 }
@@ -157,6 +174,10 @@ input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.upDownBtn{
+  width: 50px;
 }
 
 .numberBtn{
