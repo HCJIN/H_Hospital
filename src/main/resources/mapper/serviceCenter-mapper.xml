@@ -27,10 +27,12 @@
     <insert id="insertContent">
         INSERT INTO service_board(
             BOARD_TITLE,
-            BOARD_CONTENT
+            BOARD_CONTENT,
+            MEM_NUM
         )VALUES(
             #{boardTitle},
-            #{boardContent}
+            #{boardContent},
+            #{memNum}
         )
     </insert>
 
@@ -40,6 +42,7 @@
             , BOARD_TITLE
             , BOARD_CONTENT
             , CREATE_DATE
+            , MEM_NUM
         FROM SERVICE_BOARD
         WHERE BOARD_NUM = #{boardNum}
     </select>

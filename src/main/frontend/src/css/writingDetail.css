@@ -78,3 +78,66 @@
   border-radius: 18px;
   cursor: pointer;
 }
+
+.replyReg{
+  border: 1px solid black;
+  width: 40%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.replyReg > input{
+  width: 500px;
+  height: 30px;
+  font-size: 15px;
+}
+
+.replyDetail{
+  border: 1px solid palevioletred;
+  width: 40%;
+  margin: 10px auto;
+}
+
+.replyInfo{
+  display: flex;
+  gap: 5px;
+}
+
+.replyIcon{
+  /* border: 1px solid black; */
+  padding-left: 3px;
+  width: 35px;
+  text-align: center;
+  font-size: 30px;
+  color: rgb(61, 103, 180);
+}
+
+.replyUpper{
+  display: flex;
+  gap: 580px;
+}
+
+.replyUpper > div:nth-child(2){
+  /* border: 1px solid black; */
+  font-size: 17px;
+  color: rgb(83, 82, 82);
+  cursor: pointer;
+}
+
+.replyUpper > div > div:nth-child(1){
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 2px;
+}
+
+.replyUpper > div > div:nth-child(2){
+  font-size: 12px;
+  color: rgb(102, 101, 101);
+  font-weight: bold;
+}
+
+.replyFont{
+  font-size: 18px;
+  margin-left: 7px;
+}
+
