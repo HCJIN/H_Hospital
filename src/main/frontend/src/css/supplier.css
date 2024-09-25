@@ -1,178 +1,267 @@
-.supplier-div{
+.supplier-div {
   width: 100%;
+  height: 100%;
+  padding: 20px;
 }
 
-.main-box{
-  margin-top: 100px;
+.supplier-box{
+  width: 70%;
+  margin: 0 auto;
+}
+
+.main-box {
+  margin-top: 50px;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  gap: 30px;
 }
 
-.store-list{
+.store-list {
   width: 70%;
 }
 
-.ordering-table{
+.ordering-table {
   width: 100%;
-  margin: 30px auto;
-  margin-bottom: 70px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
 }
 
-.ordering-table > thead > tr{
-  border-bottom: 4px double rgba(0, 0, 0, 0.2);
+.ordering-table thead {
+  background-color: #0e787c;
+  color: white;
+}
+
+.ordering-table th, .ordering-table td {
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   text-align: center;
+  font-size: 1rem;
 }
 
-.ordering-table > tbody > tr{
+.ordering-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.ordering-table td input {
+  width: 60px;
+  padding: 5px;
   text-align: center;
-}
-
-.ordering-table > tbody > tr > td:first-child{
-  text-align: left;
-  padding-left: 30px;
-}
-
-.supplier-div{
-  width: 60%;
-  margin: 50px auto;
-}
-
-.list-div{
-  width: 30%;
-}
-
-.regItem-div{
-  width: 100%;
-  background-color: #fff;
-  /* box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3); */
   border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.btn {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #0e787c;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #095e62;
+}
+
+.btn-Subprimary {
+  background-color: #06767a;
+  color: white;
+  border: none;
+  margin-left: 10px;
+}
+
+.btn-Subprimary:hover {
+  background-color: #055e62;
+}
+
+.list-div {
+  width: 28%;
+}
+
+.regItem-div {
+  background-color: white;
+  /* border: 1px solid rgba(0, 0, 0, 0.2); */
   border-radius: 10px;
-  margin: 10px;
-  padding: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.regItem-table > .title{
-  font-size: 1.3rem;
+.regItem-div h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
 }
 
-.regItem-table input{
-  padding: 3px;
+.regItem-table {
   width: 100%;
 }
 
-.file-div input{
-  border: 1px solid #fff;
-  width: 90%;
-  margin: 13px;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  padding: 10px;
+.regItem-table td {
+  padding: 8px 5px;
+  font-size: 1rem;
 }
 
-.btn-div{
-  margin-top: 10px;
+.regItem-table input, .regItem-table select, .regItem-table textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.file-div{
+  width: 100%;
+  padding: 8px;
+}
+
+.file-div input {
+  border: 1px solid #ccc;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.btn-div {
+  margin-top: 20px;
   text-align: center;
 }
 
-.btn-primary{
-  display: inline-block;
-  border: 1px solid #06767a;
-  background-color: #0e787c;
-  font-size: 18px;
-  line-height: 1;
-  color: #fff;
-  font-weight: 600;
-  padding: 13px 12px;
-  cursor: pointer;
-  border-radius: 8px;
-}
-
-.btn-Subprimary{
-  display: inline-block;
-  border: 1px solid #06767a;
-  background-color: #0e787c;
-  font-size: 14px;
-  line-height: 1;
-  color: #fff;
-  font-weight: 400;
-  padding: 5px 4px;
-  cursor: pointer;
-  border-radius: 8px;
-  margin-left: 6px;
-}
-
-/* list-div-end */
-
-.storeMenu{
+.storeMenu {
   width: 100%;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
-.title-bg{
+.title-bg {
   width: 100%;
-  background-image: url(../images/shutterstock_335680307_core_2_2_1.jpg);
-  padding: 70px;
+  background-image: url('../images/shutterstock_335680307_core_2_2_1.jpg');
+  padding: 50px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
 }
 
-.title-bg h2{
-  color: #fff;
+.title-bg h2 {
+  color: white;
   font-size: 2rem;
   text-align: center;
   font-weight: bold;
 }
 
 .item-div-box {
-  margin-top: 30px;
-  width: 100%;
+  margin-top: 20px;
   display: flex;
-  align-items: center;
-  flex-wrap: wrap; /* 아이템이 넘칠 때 다음 줄로 감 */
-  gap: 22px;
-  padding: 5px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .item-div {
   width: 23%;
   display: flex;
-  flex-direction: column; /* 텍스트와 이미지 세로 정렬 */
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  box-sizing: border-box; /* 보더와 패딩을 너비에 포함 */
-  border: 1px solid #e5e5e5;
-  margin: 3px;
-  padding: 10px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.item-div:hover {
+  transform: translateY(-5px);
 }
 
 .item-div img {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .item-div h4 {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%; /* 부모 요소의 너비를 가득 채우기 */
-  text-align: center; /* 텍스트 중앙 정렬 */
-}
-
-.item-div p{
-  text-align: center;
-  margin: 7px;
-}
-
-.item-div > div > div{
+  margin-top: 10px;
+  font-size: 1.2rem;
   text-align: center;
 }
 
-.stock{
-  width: 30%;
+.item-div p {
+  margin-top: 5px;
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+}
+
+.stock {
+  width: 50%;
   text-align: right;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.numberBtn {
+  display: inline-block;
+  border: 1px solid rgb(209, 209, 209);
+  background-color: rgba(229, 229, 229, 0.898);
+  color: #000;
+  font-size: 13px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+}
+
+.numberBtn:hover {
+  background-color: #ccc;
+}
+
+.updateNumberBtn {
+  display: inline-block;
+  border: 1px solid rgb(209, 209, 209);
+  background-color: rgba(229, 229, 229, 0.898);
+  color: #000;
+  font-size: 13px;
+  width: 50px;
+  height: 20px;
+  line-height: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+
+.updateNumberBtn:hover {
+  background-color: #ddd;
+}
+
+#mina {
+  font-size: 18px;
+}
+
+.numberBtn-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cntBtn {
+  width: 50px;
+  text-align: center;
 }
 
 .item-div > input[type='number'] {
@@ -193,49 +282,3 @@
 #cntBtn{
   width: 50px;
 }
-
-.numberBtn{
-  display: inline-block;
-  border: 1px solid rgb(209, 209, 209);
-  background-color: rgba(229, 229, 229, 0.898);
-  color: #000;
-  font-size: 13px;
-  /* color: #fff; */
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#mina{
-  font-size: 18px;
-}
-
-.numberBtn-div{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.updateNumberBtn{
-  display: inline-block;
-  border: 1px solid rgb(209, 209, 209);
-  background-color: rgba(229, 229, 229, 0.898);
-  color: #000;
-  font-size: 13px;
-  /* color: #fff; */
-  width: 50px;
-  height: 20px;
-  line-height: 20px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  margin-top: 5px;
-}
-

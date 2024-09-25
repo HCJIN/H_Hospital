@@ -23,4 +23,7 @@ public interface CartService {
 
     //상태 업데이트
     void statusUpdate(int cartCode);
+
+    //제품 출하
+    void goShipment(CartVO cartVO);
 }

@@ -49,4 +49,10 @@ public class CartController {
         cartService.statusUpdate(cartCode);
     }
 
+    //제품 출하
+    @PostMapping("/goShipment")
+    public void goShipment(@RequestBody CartVO cartVO){
+        cartService.goShipment(cartVO);
+    }
+
 }

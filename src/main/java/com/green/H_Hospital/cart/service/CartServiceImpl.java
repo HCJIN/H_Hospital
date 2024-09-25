@@ -61,4 +61,14 @@ public class CartServiceImpl implements CartService{
     public void statusUpdate(int cartCode) {
         sqlSession.update("cartMapper.statusUpdate", cartCode);
     }
+
+    //제품 출하
+    @Override
+    public void goShipment(CartVO cartVO) {
+        // 제품 재고 업데이트
+        sqlSession.update("cartMapper.updateStockQuantity", cartVO);
+
+        // 장바구니 상태 업데이트
+        sqlSession.update("cartMapper.goShipment", cartVO);
+    }
 }

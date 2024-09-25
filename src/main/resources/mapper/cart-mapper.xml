@@ -57,13 +57,15 @@
             CART.CART_CNT,
             CART.CART_DATE,
             IMG.ATTACHED_FILE_NAME,
-            CART_STATUS
+            CART_STATUS,
+            ITEM.ITEM_CODE
         FROM
             shop_cart CART
         JOIN
             shop_item ITEM ON CART.ITEM_CODE = ITEM.ITEM_CODE
         JOIN
             item_img IMG ON CART.ITEM_CODE = IMG.ITEM_CODE
+        WHERE CART_STATUS != '주문등록';
     </select>
 
     <!--발주 제품 추가 전 등록여부 확인-->
@@ -105,6 +107,19 @@
         SET
         CART_STATUS = '발주요청'
         WHERE CART_CODE = #{cartCode}
+    </update>
+
+    <!-- 제품 출하 -->
+    <update id="updateStockQuantity">
+        UPDATE shop_item
+        SET ITEM_STOCK = ITEM_STOCK - (SELECT CART_CNT FROM shop_cart WHERE CART_CODE = #{cartCode})
+        WHERE ITEM_CODE = (SELECT ITEM_CODE FROM shop_cart WHERE CART_CODE = #{cartCode});
+    </update>
+
+    <update id="goShipment">
+        UPDATE shop_cart
+        SET CART_STATUS = '제품출하'
+        WHERE CART_CODE = #{cartCode};
     </update>
 
 </mapper>

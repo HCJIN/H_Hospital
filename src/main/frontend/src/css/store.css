@@ -1,21 +1,19 @@
-.store-div{
+.store-div {
   width: 100%;
-  
-  /* height: 100vh; */
 }
 
-.store-bg{
+.store-bg {
   width: 1300px;
   margin: 0px auto;
   margin-top: 30px;
   position: relative;
 }
 
-.store-bg img{
+.store-bg img {
   width: 100%;
 }
 
-.text-div{
+.text-div {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -25,52 +23,53 @@
   text-align: center;
 }
 
-.text-div p{
+.text-div p {
   font-size: 48px;
 }
 
-.text-div span{
+.text-div span {
   font-size: 18px;
   font-weight: 400;
 }
 
-/* store-bg-end */
-
-.store-table-div{
+/* Store table styles */
+.store-table-div {
   width: 60%;
   margin: 0 auto;
 }
 
-.store-table{
+.store-table {
   width: 80%;
   margin: 0 auto;
   margin-top: 30px;
   text-align: center;
 }
 
-.store-thead{
+.store-thead {
   font-size: 1.3rem;
   font-weight: bold;
   border-top: 2px solid #999;
   border-bottom: 3px double #999;
-
 }
 
-.store-table > tbody tr, .store-table > tbody td{
+.store-table > tbody tr,
+.store-table > tbody td {
   padding: 20px;
+  text-align: center; /* Center align the table cells */
 }
 
-.store-table input[type='number']{
+.store-table input[type='number'] {
   width: 50px;
+  text-align: center; /* Center align the input value */
 }
 
-.suplierBtn-div{
+.suplierBtn-div {
   width: 100%;
   margin: 30px auto;
   text-align: center;
 }
 
-.supliierBtn{
+.supliierBtn {
   display: inline-block;
   border: 1px solid lightskyblue;
   background-color: lightskyblue;
@@ -84,21 +83,15 @@
   margin-left: 6px;
 }
 
-/* 장바구니? 끝 */
-
-.search-item{
+/* Search styles */
+.search-item {
   text-align: right;
   margin-top: 50px;
   margin-right: 385px;
 }
-.search-item input{
-}
-.search-item button{
-}
 
-/* 검색 끝 */
-
-.store-icon-div{
+/* Store icon styles */
+.store-icon-div {
   width: 60%;
   margin: 20px auto;
   display: flex;
@@ -112,14 +105,14 @@
   border-bottom: 3px solid #e5e5e5;
 }
 
-.store-icon-div i{
+.store-icon-div i {
   vertical-align: middle;
   margin-right: 5px;
   color: lightskyblue;
   cursor: pointer;
 }
 
-.store-icon-div button{
+.store-icon-div button {
   font-size: 19px;
   font-weight: bold;
   border: none;
@@ -128,27 +121,18 @@
   cursor: pointer;
 }
 
-.store-icon-div button.active{
+.store-icon-div button.active {
   background-color: #fff;
   font-size: 1.3rem;
   color: #7a7a7a;
 }
-
-.product-name{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap; /* 텍스트가 여러 줄로 나뉘지 않고 한 줄로 이어지도록 함 */
-  max-width: 190px; 
-}
-
-/* 메뉴 버튼 끝 */
 
 .item-list-box {
   margin-top: 30px;
   width: 60%;
   display: flex;
   align-items: center;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   gap: 22px;
   margin: 0 auto;
   margin-bottom: 70px;
@@ -157,13 +141,18 @@
 .item-list {
   width: 23%;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   border: 1px solid #e5e5e5;
   margin: 3px;
   padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.item-list:hover{
+  transform: translateY(-5px);
 }
 
 .item-list img {
@@ -175,10 +164,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 100%; 
-  text-align: center; 
+  width: 100%;
+  text-align: center;
 }
-
-.item-list button{
-}
-

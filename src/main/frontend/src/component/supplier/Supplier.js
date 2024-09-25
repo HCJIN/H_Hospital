@@ -7,6 +7,7 @@ import QuantityInput from './QuantityInput';
 const Supplier = () => {
   const navigate = useNavigate();
 
+  //발주요청 리스트
   const [cartList, setCartList] = useState([]);
 
   // 이미지 첨부파일을 저장할 state 변수
@@ -28,22 +29,25 @@ const Supplier = () => {
     itemStock: ''
   });
 
+  const fetchCartList = () => {
+    Promise.all([
+      axios.get('/cart/getCartListAll'),
+      axios.get('/item/getItemList')
+    ])
+      .then(([cartResponse, itemResponse]) => {
+        console.log(cartResponse.data);
+        console.log(itemResponse.data);
+        setCartList(cartResponse.data);
+        setItemList(itemResponse.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   //발주요청으로 보내온 데이터 가져오기
   useEffect(()=>{
-    axios
-    .get('/cart/getCartListAll')
-    .then((res)=>{
-      console.log(res.data)
-      const result = res.data;
-      result.forEach((e, i)=>{
-        if(e.cartStatus == '발주요청' || e.cartStatus == '제품출하'){
-          setCartList(res.data);
-        }
-      })
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
+    fetchCartList();
   },[])
 
   // 자바에서 카테고리 목록 데이터 가져오기
@@ -60,16 +64,52 @@ const Supplier = () => {
 
   // 자바에서 상품목록리스트 가져오기
   useEffect(() => {
-    axios
-      .get('/item/getItemList')
-      .then((res) => {
-        console.log(res.data);
-        setItemList(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    fetchCartList();
   }, []);
+
+  //수량 수정
+  function cntChange(e, index){
+    const updateCartList = [...cartList]; //cartList 배열을 복사
+    const updateItemList = [...itemList]; //itemList 배열을 복사
+
+    //변경할 수량 값
+    const newCartCnt = parseInt(e.target.value, 10);
+
+    //cartList의 itemCode와 일치하는 itemList의 항목을 찾아 재고 확인
+    const matchedItem = updateItemList.find(item => {
+      console.log('Checking item codes:', item.itemCode, cartList[index].itemVO.itemCode);
+      return item.itemCode === cartList[index].itemVO.itemCode;
+    });
+
+    //재고 수량 확인
+    if(matchedItem && newCartCnt > matchedItem.itemStock){
+      alert('재고수량이 부족합니다.');
+      return
+    }
+
+    updateCartList[index] = {
+      ...updateCartList[index], //해당 인덱스의 항목을 복사
+      cartCnt : newCartCnt  //새로운 수량으로 업데이트
+    };
+    setCartList(updateCartList);
+  }
+
+  //수량 업데이트
+  function cntUpdate(cartCode, cartCnt) {
+    console.log(cartCode, cartCnt)
+
+    const updateData = {
+      cartCode: cartCode,
+      cartCnt: cartCnt
+    };
+    axios.post(`/cart/updateCart`, updateData)
+    .then((res)=>{
+      alert('수량이 수정되었습니다.');
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
 
   // input 태그에 새로 입력하는 값 객체에 저장
   function changeInsertItemData(e) {
@@ -113,6 +153,7 @@ const Supplier = () => {
       .post(`/item/insertItem`, itemForm, fileConfig)
       .then((res) => {
         alert('등록이 완료되었습니다.');
+        fetchCartList();
       })
       .catch((error) => {
         console.log(error);
@@ -128,6 +169,34 @@ const Supplier = () => {
     return `${year}-${month}-${day}`;
   };
 
+  //제품 출하버튼 클릭시
+  function goShipment(cart){
+
+    const shipmentData = {
+      cartCode : cart.cartCode,
+      cartCnt : cart.cartCnt
+    }
+
+    axios
+    .post('/cart/goShipment', shipmentData)
+    .then((res)=>{
+      alert('제품 출하가 완료되었습니다.');
+
+      // itemList에서 해당 제품의 재고 수량 업데이트
+      setItemList((prevItemList) => 
+        prevItemList.map((item) => 
+          item.itemCode === cart.itemVO.itemCode 
+            ? { ...item, itemStock: item.itemStock - cart.cartCnt } 
+            : item
+        )
+      );
+
+      navigate('/supplier')
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
 
 
   return (
@@ -155,15 +224,24 @@ const Supplier = () => {
                             {cart.itemVO.itemName}
                           </td>
                           <td>
-                            <input type='number' id='cntBtn'></input>
-                            <button type='button' className='btn btn-Subprimary'>확인</button>
+                            <input type='number' id='cntBtn' min='1' value={cart.cartCnt} onChange={(e)=>{cntChange(e,i)}}></input>
+                            <button type='button' className='btn btn-Subprimary' onClick={()=>{
+                              cntUpdate(cart.cartCode, cart.cartCnt)
+                            }}>확인</button>
                           </td>
                           <td>
                             {formatDate(cart.cartDate)}
                           </td>
                           <td>
                             {cart.cartStatus}
-                            <button type='button' className='btn btn-Subprimary'>출하</button>
+                            {
+                              cart.cartStatus != '발주요청' ? 
+                              <></>
+                              :
+                              <button type='button' className='btn btn-Subprimary' onClick={()=>{
+                                goShipment(cart);
+                              }}>출하</button>
+                            }
                           </td>
                         </tr>
                       )
@@ -241,7 +319,7 @@ const Supplier = () => {
                   <div>
                     <h4 className='product-name'>{item.itemName}</h4>
                     <p>{price}</p>
-                    <div> {/* <p> 태그 대신 <div>로 변경 */}
+                    <div style={{textAlign: 'center'}}> {/* <p> 태그 대신 <div>로 변경 */}
                       재고수량
                       <QuantityInput 
                         stock={item.itemStock}
