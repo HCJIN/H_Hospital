@@ -79,23 +79,47 @@
   cursor: pointer;
 }
 
-.replyReg{
-  border: 1px solid black;
+.replyHead > h3{
+  border-top: 1px solid lightgray;
   width: 40%;
-  margin: 20px auto;
+  margin: 10px auto;
+  padding-top: 10px;
+  color: rgb(97, 97, 97);
+}
+
+.replyReg{
+  border-bottom: 1px solid lightgray;
+  width: 40%;
+  margin: 3px auto;
+  padding-bottom: 15px;
   text-align: center;
 }
 
 .replyReg > input{
-  width: 500px;
+  width: 550px;
   height: 30px;
   font-size: 15px;
 }
 
+.replyReg > button{
+  font-size: 15px;
+  font-weight: bold;
+  height: 30px;
+  background-color: rgb(131, 131, 131);
+  color: white;
+  border: 1px solid rgba(109, 109, 109, 0.932);
+  cursor: pointer;
+}
+
+.replyReg > button:hover{
+  background-color: rgb(158, 157, 157);
+}
+
 .replyDetail{
-  border: 1px solid palevioletred;
+  border-bottom: 1px solid lightgray;
   width: 40%;
-  margin: 10px auto;
+  margin: 3px auto;
+  padding-bottom: 5px;
 }
 
 .replyInfo{

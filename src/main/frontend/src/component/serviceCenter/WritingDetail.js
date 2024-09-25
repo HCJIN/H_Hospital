@@ -154,24 +154,28 @@ const WritingDetail = ({loginInfo}) => {
         )}
       </div>
 
-      {
-        loginInfo.memNum != null
-        ?
-        <div className='replyReg'>
-          <input type='text' onChange={(e) => {
-            setReplyData({
-              ...replyData,
-              replyContent : e.target.value,
-              memNum : JSON.parse(sessionStorage.getItem('loginInfo')).memNum
-            });
-          }}/>
-          <button type='button' onClick={(e) => {
-            regReply()
-          }}>댓글등록</button>
-        </div>
-        :
-        <div></div>
-      }
+      <div className='replyHead'>
+        <h3>{replyList.length}개의 댓글</h3>
+        {
+          loginInfo.memNum != null
+          ?
+          <div className='replyReg'>
+            
+            <input type='text' onChange={(e) => {
+              setReplyData({
+                ...replyData,
+                replyContent : e.target.value,
+                memNum : JSON.parse(sessionStorage.getItem('loginInfo')).memNum
+              });
+            }}/>
+            <button type='button' onClick={(e) => {
+              regReply()
+            }}>등록</button>
+          </div>
+          :
+          <div></div>
+        }
+      </div>
 
       <div>
         {
