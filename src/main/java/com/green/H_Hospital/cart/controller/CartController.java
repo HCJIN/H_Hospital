@@ -2,13 +2,18 @@ package com.green.H_Hospital.cart.controller;
 
 import com.green.H_Hospital.cart.service.CartService;
 import com.green.H_Hospital.cart.vo.CartVO;
+import com.green.H_Hospital.search.vo.SearchVO;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/cart")
+@Slf4j
 public class CartController {
     @Resource(name = "cartService")
     private CartService cartService;
@@ -23,6 +28,13 @@ public class CartController {
     @GetMapping("/getCartList/{memNum}")
     public List<CartVO> getCartList(@PathVariable("memNum")int memNum){
         return cartService.getCartList(memNum);
+    }
+
+    // 발주목록 조회 (검색 기능 추가)
+    @PostMapping("/searchCartList")
+    public List<CartVO> searchCartList(@RequestBody SearchVO searchVO) {
+        log.info("검색 조건: {}", searchVO);
+        return cartService.searchCartList(searchVO);
     }
 
     //전체 발주목록 조회

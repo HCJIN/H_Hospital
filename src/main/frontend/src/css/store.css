@@ -38,10 +38,20 @@
   margin: 0 auto;
 }
 
+.search-div button{
+  background-color: lightskyblue;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 4px;
+  color: #fff;
+  -webkit-text-stroke: none;
+  cursor: pointer;
+}
+
 .store-table {
   width: 80%;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -84,10 +94,10 @@
 }
 
 /* Search styles */
-.search-item {
+.search-div {
+  width: 90%;
   text-align: right;
-  margin-top: 50px;
-  margin-right: 385px;
+  margin-top: 30px;
 }
 
 /* Store icon styles */
