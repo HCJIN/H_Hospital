@@ -6,6 +6,12 @@ const Store = () => {
   const [content, setContent] = useState('A'); // 카테고리 상태
   const [itemList, setItemList] = useState([]); // 상품 목록 상태
   const [itemCnt, setItemCnt] = useState(1); // 품목 수량 상태
+  //검색 조건을 저장할 변수
+  const [searchData, setSearchData] = useState({
+    searchType : 'ITEM_NAME',
+    searchValue : ''
+  })
+  console.log(searchData)
   const memNum = JSON.parse(window.sessionStorage.getItem('loginInfo')).memNum; // 로그인한 회원 정보
 
   // 발주 목록을 저장할 변수
@@ -56,6 +62,39 @@ const Store = () => {
     });
   }
 
+  //서치데이터가 변경될때 
+  function changeSearchData(e){
+    setSearchData({
+      ...searchData,
+      [e.target.name] : e.target.value
+    })
+  }
+
+  const fatchCartList = () => {
+    axios.get(`/cart/getCartList/${memNum}`)
+      .then((res) => {
+        console.log(res.data);
+        setCartList(res.data);
+      })
+      .catch((error) => {
+        alert('발주목록 조회 오류🤢🛒');
+        console.log(error);
+      });
+  };
+
+  //서치 실행
+  function search(){
+    axios
+    .post('/cart/searchCartList', {...searchData, memNum : memNum})
+    .then((res)=>{
+      console.log(res.data)
+      setCartList(res.data)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+
   // 카테고리별 목록 조회
   const filteredItems = itemList.filter(item => {
     if (content === 'A') return true;
@@ -79,18 +118,6 @@ const Store = () => {
     const allCheckedState = checkItems.every((item) => item);
     setAllChecked(allCheckedState);
   }, [checkItems]);
-
-  const fatchCartList = () => {
-    axios.get(`/cart/getCartList/${memNum}`)
-      .then((res) => {
-        console.log(res.data);
-        setCartList(res.data);
-      })
-      .catch((error) => {
-        alert('발주목록 조회 오류🤢🛒');
-        console.log(error);
-      });
-  };
 
   // 발주목록 조회
   useEffect(() => {
@@ -213,6 +240,16 @@ const Store = () => {
         </div>
       </div>
       <div className='store-table-div'>
+        <div className='search-div'>
+          <select name='searchType' value={searchData.searchType} onChange={(e)=>{changeSearchData(e)}}>
+            <option value={'ITEM_NAME'}>제품명</option>
+            <option value={'CART_STATUS'}>상태</option>
+          </select>
+          <input type='text' name='searchValue' value={searchData.searchValue} onChange={(e)=>{changeSearchData(e)}}></input>
+          <button type='button' onClick={(e)=>{
+            search()
+          }}>검색</button>
+        </div>
         <table className='store-table'>
           <thead className='store-thead'>
             <tr>
@@ -272,20 +309,27 @@ const Store = () => {
                     </td>
                     <td>
                       <span>{cart.cartStatus}</span>
-                      <button 
-                        type='button' 
-                        className='supliierBtn'
-                        onClick={()=>{
-                          goSupplier(cart.cartCode)
-                        }}
-                      >발주</button>
-                      <button 
-                        type='button' 
-                        className='supliierBtn'
-                        onClick={()=>{
-                          goDelete(cart.cartCode)
-                        }}
-                      >삭제</button>
+                      {
+                        cart.cartStatus != '주문등록' ?
+                        <></>
+                        :
+                        <>
+                          <button 
+                            type='button' 
+                            className='supliierBtn'
+                            onClick={()=>{
+                              goSupplier(cart.cartCode)
+                            }}
+                          >발주</button>
+                          <button 
+                            type='button' 
+                            className='supliierBtn'
+                            onClick={()=>{
+                              goDelete(cart.cartCode)
+                            }}
+                          >삭제</button>
+                        </>
+                      }
                     </td>
                   </tr>
                 )

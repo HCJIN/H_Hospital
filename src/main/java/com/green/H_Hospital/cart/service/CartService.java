@@ -1,8 +1,11 @@
 package com.green.H_Hospital.cart.service;
 
 import com.green.H_Hospital.cart.vo.CartVO;
+import com.green.H_Hospital.search.vo.SearchVO;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public interface CartService {
 
@@ -11,6 +14,9 @@ public interface CartService {
 
     //발주 목록 조회
     List<CartVO> getCartList(int memNum);
+
+    //발주 목록 조회 검색
+    List<CartVO> searchCartList(SearchVO searchVO);
 
     //전체 발주 목록 조회
     List<CartVO> getCartListAll();
@@ -26,4 +32,5 @@ public interface CartService {
 
     //제품 출하
     void goShipment(CartVO cartVO);
+
 }
