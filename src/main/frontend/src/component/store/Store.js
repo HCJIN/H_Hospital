@@ -3,7 +3,7 @@ import '../../css/store.css';
 import axios from 'axios';
 
 const Store = () => {
-  const [content, setContent] = useState('A'); // 카테고리 상태
+  const [category, setCategory] = useState('A'); // 카테고리 상태
   const [itemList, setItemList] = useState([]); // 상품 목록 상태
   const [itemCnt, setItemCnt] = useState(1); // 품목 수량 상태
   const memNum = JSON.parse(window.sessionStorage.getItem('loginInfo')).memNum; // 로그인한 회원 정보
@@ -56,12 +56,6 @@ const Store = () => {
     });
   }
 
-  // 카테고리별 목록 조회
-  const filteredItems = itemList.filter(item => {
-    if (content === 'A') return true;
-    return item.category === content;
-  });
-
   // 제목줄의 체크박스 변경 시 실행되는 함수
   function changeChkAll() {
     setAllChecked(!allChecked);
@@ -102,6 +96,7 @@ const Store = () => {
     axios.get('/item/getItemList')
       .then((res) => {
         setItemList(res.data);
+        console.log('Item list:', res.data)
       })
       .catch((error) => {
         console.log(error);
@@ -201,6 +196,12 @@ const Store = () => {
       console.log(error)
     })
   }
+
+    // 카테고리별 목록 조회
+    const filteredItems = itemList.filter(item => {
+      if (category === 'A') return true;
+      return item.category === category;
+    });
 
 
   return (
@@ -305,23 +306,23 @@ const Store = () => {
       <div className='store-icon-div'>
         <div>
           <i className="bi bi-bag-plus"></i>
-          <button type='button' onClick={() => setContent('A')} className={`button ${content === 'A' ? 'active' : ''}`}>전체</button>
+          <button type='button' onClick={() => setCategory('A')} className={`button ${category === 'A' ? 'active' : ''}`}>전체</button>
         </div>
         <div>
           <i className="bi bi-capsule"></i>
-          <button type='button' onClick={() => setContent('B')} className={`button ${content === 'B' ? 'active' : ''}`}>전문의약품</button>
+          <button type='button' onClick={() => setCategory('B')} className={`button ${category === 'B' ? 'active' : ''}`}>전문의약품</button>
         </div>
         <div>
           <i className="bi bi-scissors"></i>
-          <button type='button' onClick={() => setContent('C')} className={`button ${content === 'C' ? 'active' : ''}`}>수술관련기기</button>
+          <button type='button' onClick={() => setCategory('C')} className={`button ${category === 'C' ? 'active' : ''}`}>수술관련기기</button>
         </div>
         <div>
           <i className="bi bi-virus"></i>
-          <button type='button' onClick={() => setContent('D')} className={`button ${content === 'D' ? 'active' : ''}`}>멸균기</button>
+          <button type='button' onClick={() => setCategory('D')} className={`button ${category === 'D' ? 'active' : ''}`}>멸균기</button>
         </div>
         <div>
           <i className="bi bi-heart-pulse-fill"></i>
-          <button type='button' onClick={() => setContent('E')} className={`button ${content === 'E' ? 'active' : ''}`}>폐활량계,심전계</button>
+          <button type='button' onClick={() => setCategory('E')} className={`button ${category === 'E' ? 'active' : ''}`}>폐활량계,심전계</button>
         </div>
       </div>
 

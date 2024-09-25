@@ -41,6 +41,7 @@
         ,   item.ITEM_NAME
         ,   item.ITEM_PRICE
         ,   item.ITEM_STOCK
+        ,   item.CATE_CODE
         ,   img.IMG_CODE
         ,   img.ORIGIN_FILE_NAME
         ,   img.ATTACHED_FILE_NAME
