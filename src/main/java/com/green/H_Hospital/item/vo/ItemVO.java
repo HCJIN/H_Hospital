@@ -12,6 +12,7 @@ public class ItemVO {
     private String itemIntro;
     private int itemStock;
     private String itemStatus;
+    private String itemBrand;
     private int cateCode;
     private List<ImgVO> imgList;
 }

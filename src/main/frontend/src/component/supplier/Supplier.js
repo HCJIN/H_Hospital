@@ -3,12 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../css/supplier.css';
 import QuantityInput from './QuantityInput';
+import ItemDetail from './ItemDetail';
 
 const Supplier = () => {
   const navigate = useNavigate();
 
   //발주요청 리스트
   const [cartList, setCartList] = useState([]);
+
+  //선택된 아이템
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  //상세보기 페이지
+  const [show, setShow] = useState(false);
 
   // 이미지 첨부파일을 저장할 state 변수
   const [mainImg, setMainImg] = useState(null);
@@ -105,6 +112,7 @@ const Supplier = () => {
     axios.post(`/cart/updateCart`, updateData)
     .then((res)=>{
       alert('수량이 수정되었습니다.');
+      fetchCartList();
     })
     .catch((error)=>{
       console.log(error)
@@ -154,6 +162,17 @@ const Supplier = () => {
       .then((res) => {
         alert('등록이 완료되었습니다.');
         fetchCartList();
+
+        //입력 값을 초기 상태로 리셋
+        setInsertItemData({
+          cateCode: 1, // 기본값 설정
+          itemName: '',
+          itemPrice: '',
+          itemIntro: '',
+          itemStock: ''
+        });
+        setMainImg(null); // 이미지 초기화
+        setSubImg(null); // 이미지 초기화
       })
       .catch((error) => {
         console.log(error);
@@ -191,16 +210,21 @@ const Supplier = () => {
         )
       );
 
-      navigate('/supplier')
+      fetchCartList();
     })
     .catch((error)=>{
       console.log(error)
     })
   }
 
-
   return (
     <div className='supplier-div'>
+      {
+        show ? 
+        <ItemDetail show={show} setShow={setShow} item={selectedItem}/>
+        :
+        <></>
+      }
       <div className='supplier-box'>
         <div className='main-box'>
           <div className='store-list'>
@@ -267,6 +291,12 @@ const Supplier = () => {
                       </select>
                     </td>
                   </tr>
+                  <tr><td className='title'>제조사명</td></tr>
+                  <tr>
+                    <td>
+                      <input type='text' name='itemBrand' className='form-control' onChange={changeInsertItemData}></input>
+                    </td>
+                  </tr>
                   <tr><td className='title'>상품명</td></tr>
                   <tr>
                     <td>
@@ -282,15 +312,22 @@ const Supplier = () => {
                   <tr><td className='title'>상품 소개</td></tr>
                   <tr>
                     <td>
-                      <textarea name='itemIntro' className='form-control' rows={7} onChange={changeInsertItemData}></textarea>
+                      <textarea 
+                      name='itemIntro' 
+                      className='form-control' 
+                      rows={7} 
+                      onChange={changeInsertItemData}
+                      ></textarea>
                     </td>
                   </tr>
                 </tbody>
               </table>
               <div className='file-div'>
+                <p>메인 이미지</p>
                 <input type='file' onChange={(e) => setMainImg(e.target.files[0])} />
               </div>
               <div className='file-div'>
+                <p>상세 이미지</p>
                 <input type='file' onChange={(e) => setSubImg(e.target.files[0])} />
               </div>
               <div className='btn-div'>
@@ -319,6 +356,11 @@ const Supplier = () => {
                   <div>
                     <h4 className='product-name'>{item.itemName}</h4>
                     <p>{price}</p>
+                    <p className='itemDetail' onClick={()=>{
+                      setSelectedItem(item);
+                      setShow(true);
+                    }}
+                    >상세보기</p>
                     <div style={{textAlign: 'center'}}> {/* <p> 태그 대신 <div>로 변경 */}
                       재고수량
                       <QuantityInput 
