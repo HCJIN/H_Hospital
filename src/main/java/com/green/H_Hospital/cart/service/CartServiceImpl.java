@@ -1,11 +1,13 @@
 package com.green.H_Hospital.cart.service;
 
 import com.green.H_Hospital.cart.vo.CartVO;
+import com.green.H_Hospital.search.vo.SearchVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service("cartService")
 
@@ -23,8 +25,10 @@ public class CartServiceImpl implements CartService{
         //없으면 insert
         if(vo == null){
             sqlSession.insert("cartMapper.insertCart", cartVO);
+        } else if (!"주문등록".equals(vo.getCartStatus())) {
+            //새로운 항목으로 추가
+            sqlSession.insert("cartMapper.insertCart", cartVO);
         }
-
         //있으면 update
         else {
             sqlSession.update("cartMapper.updateItemCnt", cartVO);
@@ -36,6 +40,12 @@ public class CartServiceImpl implements CartService{
     @Override
     public List<CartVO> getCartList(int memNum) {
         return sqlSession.selectList("cartMapper.getCartList", memNum);
+    }
+
+    //발주 목록 조회 검색
+    @Override
+    public List<CartVO> searchCartList(SearchVO searchVO) {
+        return sqlSession.selectList("cartMapper.getCartList", searchVO);
     }
 
     //전체 발주 목록 조회

@@ -6,6 +6,12 @@ const Store = () => {
   const [category, setCategory] = useState('A'); // 카테고리 상태
   const [itemList, setItemList] = useState([]); // 상품 목록 상태
   const [itemCnt, setItemCnt] = useState(1); // 품목 수량 상태
+  //검색 조건을 저장할 변수
+  const [searchData, setSearchData] = useState({
+    searchType : 'ITEM_NAME',
+    searchValue : ''
+  })
+  console.log(searchData)
   const memNum = JSON.parse(window.sessionStorage.getItem('loginInfo')).memNum; // 로그인한 회원 정보
 
   // 발주 목록을 저장할 변수
@@ -56,6 +62,48 @@ const Store = () => {
     });
   }
 
+<<<<<<< HEAD
+=======
+  //서치데이터가 변경될때 
+  function changeSearchData(e){
+    setSearchData({
+      ...searchData,
+      [e.target.name] : e.target.value
+    })
+  }
+
+  const fatchCartList = () => {
+    axios.get(`/cart/getCartList/${memNum}`)
+      .then((res) => {
+        console.log(res.data);
+        setCartList(res.data);
+      })
+      .catch((error) => {
+        alert('발주목록 조회 오류🤢🛒');
+        console.log(error);
+      });
+  };
+
+  //서치 실행
+  function search(){
+    axios
+    .post('/cart/searchCartList', {...searchData, memNum : memNum})
+    .then((res)=>{
+      console.log(res.data)
+      setCartList(res.data)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+
+  // 카테고리별 목록 조회
+  const filteredItems = itemList.filter(item => {
+    if (content === 'A') return true;
+    return item.category === content;
+  });
+
+>>>>>>> d0a98d2da21a66b0a3ffebeedd8fab4d77760dbf
   // 제목줄의 체크박스 변경 시 실행되는 함수
   function changeChkAll() {
     setAllChecked(!allChecked);
@@ -74,18 +122,6 @@ const Store = () => {
     setAllChecked(allCheckedState);
   }, [checkItems]);
 
-  const fatchCartList = () => {
-    axios.get(`/cart/getCartList/${memNum}`)
-      .then((res) => {
-        console.log(res.data);
-        setCartList(res.data);
-      })
-      .catch((error) => {
-        alert('발주목록 조회 오류🤢🛒');
-        console.log(error);
-      });
-  };
-
   // 발주목록 조회
   useEffect(() => {
     fatchCartList();
@@ -95,6 +131,7 @@ const Store = () => {
   useEffect(() => {
     axios.get('/item/getItemList')
       .then((res) => {
+        console.log(res.data)
         setItemList(res.data);
         console.log('Item list:', res.data)
       })
@@ -105,6 +142,19 @@ const Store = () => {
 
   // 수량 변경 시 처리
   const handleItemCntChange = (index, newCnt) => {
+
+    const selectedItem = cartList[index];
+    console.log(cartList[index])
+
+    //상품 재고를 초과하는지 확인
+    const matchedItem = itemList.find(item => item.itemCode === selectedItem.itemVO.itemCode);
+
+    if(newCnt > matchedItem.itemStock){
+      alert('재고 수량이 부족합니다.')
+      return;
+    }
+
+    //수량 업데이트
     setCartList(prevCartList =>
       prevCartList.map((cart, i) =>
         i === index ? { ...cart, cartCnt: newCnt } : cart
@@ -214,6 +264,17 @@ const Store = () => {
         </div>
       </div>
       <div className='store-table-div'>
+        <div className='search-div'>
+          <select name='searchType' value={searchData.searchType} onChange={(e)=>{changeSearchData(e)}}>
+            <option value={'ITEM_NAME'}>제품명</option>
+            <option value={'ITEM_BRAND'}>제조사명</option>
+            <option value={'CART_STATUS'}>상태</option>
+          </select>
+          <input type='text' name='searchValue' value={searchData.searchValue} onChange={(e)=>{changeSearchData(e)}}></input>
+          <button type='button' onClick={(e)=>{
+            search()
+          }}>검색</button>
+        </div>
         <table className='store-table'>
           <thead className='store-thead'>
             <tr>
@@ -273,20 +334,27 @@ const Store = () => {
                     </td>
                     <td>
                       <span>{cart.cartStatus}</span>
-                      <button 
-                        type='button' 
-                        className='supliierBtn'
-                        onClick={()=>{
-                          goSupplier(cart.cartCode)
-                        }}
-                      >발주</button>
-                      <button 
-                        type='button' 
-                        className='supliierBtn'
-                        onClick={()=>{
-                          goDelete(cart.cartCode)
-                        }}
-                      >삭제</button>
+                      {
+                        cart.cartStatus != '주문등록' ?
+                        <></>
+                        :
+                        <>
+                          <button 
+                            type='button' 
+                            className='supliierBtn'
+                            onClick={()=>{
+                              goSupplier(cart.cartCode)
+                            }}
+                          >발주</button>
+                          <button 
+                            type='button' 
+                            className='supliierBtn'
+                            onClick={()=>{
+                              goDelete(cart.cartCode)
+                            }}
+                          >삭제</button>
+                        </>
+                      }
                     </td>
                   </tr>
                 )
@@ -339,6 +407,7 @@ const Store = () => {
               <h4>{item.itemName}</h4>
               <p>{item.itemIntro}</p>
               <p>{price}</p>
+              <p>재고수량 : {item.itemStock}</p>
               <button type='button' className='supliierBtn' onClick={() => handleAddToCart(item)}>추가</button>
             </div>
           );

@@ -17,55 +17,67 @@ const WritingDetail = ({loginInfo}) => {
   const {boardNum} = useParams();
 
   //게시글 상세 정보를 저장할 변수
-  const [contentDetail, setContentDetail] = useState({});
+  const [contentDetail, setContentDetail] = useState({
+    boardNum : '',
+    boardTitle : '',
+    boardContent : '',
+    createDate : '',
+    memName : '',
+    memNum : 0
+  });
+  console.log(contentDetail)
 
   //댓글 목록을 저장할 변수
   const [replyList, setReplyList] = useState([]);
 
+  
+
   //댓글 등록 시 가져가야 하는 데이터를 저장할 변수
   const[replyData, setReplyData] = useState({
     replyContent : '',
-    memId : loginInfo.memId,
-    boardNum : boardNum
+    boardNum : boardNum,
+    memNum : 0
   });
 
   //게시글 상세 정보 조회
-  useEffect(() => {
-    axios.get(`/service/detail/${boardNum}`)
-    .then((res) => {
-      setContentDetail(res.data);
-    })
-    .catch((error) => {
-      console.log(error)
-    });
-  }, [updateWriting]);
-
-  //댓글 상세 정보 조회
-  useEffect(() => {
-    axios.get(`/reply/list/${boardNum}`)
-    .then((res) => {
-      setReplyList(res.data);
-      console.log(res.data)
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }, []);
-
-  //db에서 데이터 조회 여러개 동시에 실행하기
   // useEffect(() => {
-  //   axios.all([
-  //     axios.get(`/service/detail/${boardNum}`),
-  //     axios.get(`/reply/list/${boardNum}`)
-  //   ])
-  //   .then(axios.spread((contentResponse, replyResponse) => {
-  //     setContentDetail(contentResponse.data);
-  //     setReplyList(replyResponse.data);
-  //   }))
+  //   axios.get(`/service/detail/${boardNum}`)
+  //   .then((res) => {
+  //     setContentDetail(res.data);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error)
+  //   });
+  // }, [updateWriting]);
+
+  // //댓글 상세 정보 조회
+  // useEffect(() => {
+  //   axios.get(`/reply/list/${boardNum}`)
+  //   .then((res) => {
+  //     setReplyList(res.data);
+  //     console.log(res.data)
+  //   })
   //   .catch((error) => {
   //     console.log(error);
   //   });
-  // }, [replyData, deleteState]);
+  // }, []);
+
+  //db에서 데이터 조회 여러개 동시에 실행하기
+  useEffect(() => {
+    axios.all([
+      axios.get(`/service/detail/${boardNum}`),
+      axios.get(`/reply/list/${boardNum}`)
+    ])
+    .then(axios.spread((contentResponse, replyResponse) => {
+      setContentDetail(contentResponse.data);
+      //댓글을 내림차순으로 정렬
+      const sortedReplies = replyResponse.data.sort((a,b) => b.replyNum - a.replyNum);
+      setReplyList(sortedReplies);
+    }))
+    .catch((error) => {
+      console.log(error);
+    });
+  }, [replyData, deleteState]);
 
   //게시글 삭제 함수
   function deleteContent(boardNum){
@@ -84,13 +96,13 @@ const WritingDetail = ({loginInfo}) => {
     axios
     .post('/reply/insert', replyData)
     .then((res) => {
-      alert('댓글 등록');
+      alert('댓글 등록 완료');
 
       //추가된 댓글이 화면에 바로 보이게 코드 작성
-      setReplyData({
-        ...replyData,
+      setReplyData((prevData) => ({
+        ...prevData,
         replyContent : ''
-      });
+      }));
 
     })
     .catch((error) => {
@@ -102,6 +114,7 @@ const WritingDetail = ({loginInfo}) => {
   function deleteReply(replyNum){
     axios.delete(`/reply/delete/${replyNum}`)
     .then((res) => {
+      alert('댓글 삭제 완료')
       setReplyData({});
     })
     .catch((error) => {
@@ -109,78 +122,116 @@ const WritingDetail = ({loginInfo}) => {
     });
   }
 
-  console.log(loginInfo.memId);
+  console.log(loginInfo);
 
   return (
     <div className='contentContainer'>
-      {
-        updateWriting ?
-        <JoinUpdateForm updateWriting={updateWriting} setUpdateWriting={setUpdateWriting}/>
-        :
-        <></>
-      }
-      <div className='contentShow'>
-        <h2>공지사항</h2>
-        <div className='contentHeader'>
+        <div className='contentUpper'>
           <div>
-            NO.{contentDetail.boardNum} 
-              {contentDetail.boardTitle}
+            <h1>공지사항</h1>
           </div>
-          <div>
-            작성일: {contentDetail.createDate}
+          <div onClick={() => {window.print()}}>
+            <i class="bi bi-printer"></i>
           </div>
         </div>
-        <div className='contentBody'>
-          {contentDetail.boardContent}
-        </div>
-      </div>
-      <div className='contentButton'>
-        <button type='button' onClick={() => {navigate('/serviceCenter')}}>목록가기</button>
-
         {
-          loginInfo && (loginInfo.memRole === 'admin' || loginInfo.memId === contentDetail.memId) && (
-        <>
-          <button type='button' onClick={() => {
-            setUpdateWriting(true)
-          }}>수정</button>
-          <button type='button' onClick={(e) => {deleteContent(contentDetail.boardNum)}}>삭제</button>
-        </>
-        )}
-      </div>
-
-      {
-        loginInfo.memId != null
-        ?
-        <div>
-          <input type='text' onChange={(e) => {
-            setReplyData({
-              ...replyData,
-              replyContent : e.target.value
-            });
-          }}/>
-          <button type='button' onClick={(e) => {
-            regReply()
-          }}>댓글등록</button>
-        </div>
-        :
-        null
-      }
-
-      <div>
-        {
-          replyList.map((reply, i) => {
-            return(
-              <div>
-                <div>{reply.replyData}</div>
-                <div>{reply.memId}</div>
-                <div>{reply.replyContent}</div>
-                <div>
-                  <button type='button' onClick={(e) => {deleteReply(reply.replyNum)}}>삭제</button>
-                </div>
-              </div>
-            );
-          })
+          updateWriting ?
+          <JoinUpdateForm updateWriting={updateWriting} setUpdateWriting={setUpdateWriting}/>
+          :
+          <></>
         }
+        <div className='contentShow'>
+          <div className='contentHeader'>
+            <div>
+              NO.{contentDetail.boardNum} 
+                {contentDetail.boardTitle}
+            </div>
+            <div>
+              작성일: {contentDetail.createDate}
+            </div>
+            <div>
+              작성자: 
+            </div>
+          </div>
+          <div className='contentBody'>
+            {contentDetail.boardContent}
+          </div>
+        </div>
+        <div className='contentButton'>
+          <button type='button' onClick={() => {navigate('/serviceCenter')}}>목록</button>
+  
+          {
+            loginInfo && (loginInfo.memRole === 'admin' || loginInfo.memNum === contentDetail.memNum) && (
+          <>
+            <button type='button' onClick={() => {
+              setUpdateWriting(true)
+            }}>수정</button>
+            <button type='button' onClick={(e) => {deleteContent(contentDetail.boardNum)}}>삭제</button>
+          </>
+          )}
+        </div>
+      
+
+      <div className='reply'>
+        <div className='replyHead'>
+          <h3>{replyList.length}개의 댓글</h3>
+          {
+            loginInfo.memNum != null
+            ?
+            <div className='replyReg'>
+              
+              <input type='text'
+              value={replyData.replyContent}
+              onChange={(e) => {
+                setReplyData({
+                  ...replyData,
+                  replyContent : e.target.value,
+                  memNum : JSON.parse(sessionStorage.getItem('loginInfo')).memNum
+                });
+              }}/>
+              <button type='button' onClick={(e) => {
+                regReply()
+              }}>등록</button>
+            </div>
+            :
+            <div></div>
+          }
+        </div>
+  
+        <div>
+          {
+            replyList.map((reply, i) => {
+              return(
+                <div className='replyDetail'>
+                  <div className='replyInfo'>
+                    <div className='replyIcon'>
+                      <span><i class="bi bi-person-circle"></i>
+                      </span>
+                    </div>
+                    <div className='replyUpper'>
+                      <div>
+                        <div>{loginInfo.email}</div>
+                        <div>{reply.replyDate}</div>
+                      </div>
+  
+                      {
+                        loginInfo.memNum != null
+                        ?
+                      <div>
+                        <span onClick={(e) => {deleteReply(reply.replyNum)}}><i class="bi bi-trash3-fill"></i></span>
+                      </div>
+                      :
+                      <div></div>
+                      }
+  
+                    </div>
+                  </div>
+                  <div className='replyFont'>{reply.replyContent}</div>
+                </div>
+              );
+            })
+          }
+        </div>
       </div>
 
     </div>

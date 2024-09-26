@@ -27,4 +27,7 @@ public interface ItemService {
 
     //재고수량 업데이트
     void updateStock(ItemVO itemVO);
+
+    //아이템 삭제
+    void deleteItem(int itemCode);
 }

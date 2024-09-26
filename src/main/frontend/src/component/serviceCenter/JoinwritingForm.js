@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import '../../css/JoinwritingForm.css';
 import axios from 'axios';
 
-const JoinwritingForm = ({writing, setWriting}) => {
+const JoinwritingForm = ({writing, setWriting, loginInfo}) => {
 
-  const [post, setPost] = useState({})
+  const [post, setPost] = useState({
+    boardTitle : '',
+    boardContent : '',
+    memNum : JSON.parse(sessionStorage.getItem('loginInfo')).memNum
+  })
 
   function onChange(e){
     setPost({
@@ -13,10 +17,6 @@ const JoinwritingForm = ({writing, setWriting}) => {
     })
   }
   console.log(post)
-
-  const [insertData, setInsertData] = useState({
-    
-  });
 
   function goContent(){
     axios
