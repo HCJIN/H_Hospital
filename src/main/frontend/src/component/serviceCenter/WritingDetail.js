@@ -20,6 +20,8 @@ const WritingDetail = ({loginInfo}) => {
   const [contentDetail, setContentDetail] = useState({
     boardNum : '',
     boardTitle : '',
+    boardContent : '',
+    createDate : '',
     memName : '',
     memNum : 0
   });
@@ -97,10 +99,10 @@ const WritingDetail = ({loginInfo}) => {
       alert('댓글 등록 완료');
 
       //추가된 댓글이 화면에 바로 보이게 코드 작성
-      setReplyData({
-        ...replyData,
+      setReplyData((prevData) => ({
+        ...prevData,
         replyContent : ''
-      });
+      }));
 
     })
     .catch((error) => {
@@ -148,7 +150,7 @@ const WritingDetail = ({loginInfo}) => {
               작성일: {contentDetail.createDate}
             </div>
             <div>
-              작성자: {contentDetail.memName}
+              작성자: 
             </div>
           </div>
           <div className='contentBody'>
@@ -170,7 +172,7 @@ const WritingDetail = ({loginInfo}) => {
         </div>
       
 
-      <div>
+      <div className='reply'>
         <div className='replyHead'>
           <h3>{replyList.length}개의 댓글</h3>
           {
@@ -178,7 +180,9 @@ const WritingDetail = ({loginInfo}) => {
             ?
             <div className='replyReg'>
               
-              <input type='text' onChange={(e) => {
+              <input type='text'
+              value={replyData.replyContent}
+              onChange={(e) => {
                 setReplyData({
                   ...replyData,
                   replyContent : e.target.value,

@@ -169,12 +169,11 @@
 /*  */
 
 .writing{
-  text-align: center;
-  margin-bottom: 30px;
-  width: 150px;
-  margin-left: 480px;
-  margin-top: 280px;
+  /* border: 1px solid black; */
+  width: 10%;
   bottom: 50px;
+  margin: auto;
+  padding-left: 18px;
 }
 
 .joinBtn-writing{
@@ -187,7 +186,6 @@
   color: #fff;
   font-weight: 500;
   cursor: pointer;
-  position: relative;
 }
 
 .standard > span:nth-child(2){

@@ -24,7 +24,7 @@
 }
 
 .contentHeader{
-  border-bottom: 1px solid lightgray;
+  border-bottom: 2px solid rgb(177, 175, 175);
   padding: 10px;
 }
 
@@ -54,6 +54,7 @@
 
 .contentShow{
   border-top: 3px solid rgb(177, 175, 175);
+  border-bottom: 2px solid rgb(177, 175, 175);
   background-color: white;
   margin: auto;
   width: 53%;
@@ -67,7 +68,7 @@
   display: flex;
   justify-content: space-evenly;
   margin-top: 30px;
-  margin-bottom: 100px;
+  margin-bottom: 90px;
 }
 
 .contentButton > button:nth-child(1){
@@ -99,17 +100,23 @@
   cursor: pointer;
 }
 
+.reply{
+  /* border: 1px solid black; */
+  padding-bottom: 50px;
+}
+
 .replyHead > h3{
-  border-top: 1px solid lightgray;
-  width: 40%;
-  margin: 10px auto;
+  border-top: 2px solid lightgray;
+  width: 53%;
+  margin: auto;
+  padding-left: 7px;
   padding-top: 10px;
   color: rgb(97, 97, 97);
 }
 
 .replyReg{
-  border-bottom: 1px solid lightgray;
-  width: 40%;
+  border-bottom: 2px solid lightgray;
+  width: 53%;
   margin: 3px auto;
   padding-bottom: 15px;
   text-align: center;
@@ -137,7 +144,7 @@
 
 .replyDetail{
   border-bottom: 1px solid lightgray;
-  width: 40%;
+  width: 53%;
   margin: 3px auto;
   padding-bottom: 5px;
 }
@@ -158,7 +165,7 @@
 
 .replyUpper{
   display: flex;
-  gap: 580px;
+  gap: 820px;
 }
 
 .replyUpper > div:nth-child(2){
@@ -181,7 +188,8 @@
 }
 
 .replyFont{
-  font-size: 18px;
+  margin-top: 5px;
+  font-size: 15px;
   margin-left: 7px;
 }
 
