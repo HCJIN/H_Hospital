@@ -17,7 +17,12 @@ const WritingDetail = ({loginInfo}) => {
   const {boardNum} = useParams();
 
   //게시글 상세 정보를 저장할 변수
-  const [contentDetail, setContentDetail] = useState({});
+  const [contentDetail, setContentDetail] = useState({
+    boardNum : '',
+    boardTitle : '',
+    memName : '',
+    memNum : 0
+  });
   console.log(contentDetail)
 
   //댓글 목록을 저장할 변수
@@ -119,97 +124,110 @@ const WritingDetail = ({loginInfo}) => {
 
   return (
     <div className='contentContainer'>
-      {
-        updateWriting ?
-        <JoinUpdateForm updateWriting={updateWriting} setUpdateWriting={setUpdateWriting}/>
-        :
-        <></>
-      }
-      <div className='contentShow'>
-        <h2>공지사항</h2>
-        <div className='contentHeader'>
+        <div className='contentUpper'>
           <div>
-            NO.{contentDetail.boardNum} 
-              {contentDetail.boardTitle}
+            <h1>공지사항</h1>
           </div>
-          <div>
-            작성일: {contentDetail.createDate}
+          <div onClick={() => {window.print()}}>
+            <i class="bi bi-printer"></i>
           </div>
         </div>
-        <div className='contentBody'>
-          {contentDetail.boardContent}
-        </div>
-      </div>
-      <div className='contentButton'>
-        <button type='button' onClick={() => {navigate('/serviceCenter')}}>목록가기</button>
-
         {
-          loginInfo && (loginInfo.memRole === 'admin' || loginInfo.memNum === contentDetail.memNum) && (
-        <>
-          <button type='button' onClick={() => {
-            setUpdateWriting(true)
-          }}>수정</button>
-          <button type='button' onClick={(e) => {deleteContent(contentDetail.boardNum)}}>삭제</button>
-        </>
-        )}
-      </div>
-
-      <div className='replyHead'>
-        <h3>{replyList.length}개의 댓글</h3>
-        {
-          loginInfo.memNum != null
-          ?
-          <div className='replyReg'>
-            
-            <input type='text' onChange={(e) => {
-              setReplyData({
-                ...replyData,
-                replyContent : e.target.value,
-                memNum : JSON.parse(sessionStorage.getItem('loginInfo')).memNum
-              });
-            }}/>
-            <button type='button' onClick={(e) => {
-              regReply()
-            }}>등록</button>
-          </div>
+          updateWriting ?
+          <JoinUpdateForm updateWriting={updateWriting} setUpdateWriting={setUpdateWriting}/>
           :
-          <div></div>
+          <></>
         }
-      </div>
+        <div className='contentShow'>
+          <div className='contentHeader'>
+            <div>
+              NO.{contentDetail.boardNum} 
+                {contentDetail.boardTitle}
+            </div>
+            <div>
+              작성일: {contentDetail.createDate}
+            </div>
+            <div>
+              작성자: {contentDetail.memName}
+            </div>
+          </div>
+          <div className='contentBody'>
+            {contentDetail.boardContent}
+          </div>
+        </div>
+        <div className='contentButton'>
+          <button type='button' onClick={() => {navigate('/serviceCenter')}}>목록</button>
+  
+          {
+            loginInfo && (loginInfo.memRole === 'admin' || loginInfo.memNum === contentDetail.memNum) && (
+          <>
+            <button type='button' onClick={() => {
+              setUpdateWriting(true)
+            }}>수정</button>
+            <button type='button' onClick={(e) => {deleteContent(contentDetail.boardNum)}}>삭제</button>
+          </>
+          )}
+        </div>
+      
 
       <div>
-        {
-          replyList.map((reply, i) => {
-            return(
-              <div className='replyDetail'>
-                <div className='replyInfo'>
-                  <div className='replyIcon'>
-                    <span><i class="bi bi-person-circle"></i>
-                    </span>
-                  </div>
-                  <div className='replyUpper'>
-                    <div>
-                      <div>{loginInfo.email}</div>
-                      <div>{reply.replyDate}</div>
+        <div className='replyHead'>
+          <h3>{replyList.length}개의 댓글</h3>
+          {
+            loginInfo.memNum != null
+            ?
+            <div className='replyReg'>
+              
+              <input type='text' onChange={(e) => {
+                setReplyData({
+                  ...replyData,
+                  replyContent : e.target.value,
+                  memNum : JSON.parse(sessionStorage.getItem('loginInfo')).memNum
+                });
+              }}/>
+              <button type='button' onClick={(e) => {
+                regReply()
+              }}>등록</button>
+            </div>
+            :
+            <div></div>
+          }
+        </div>
+  
+        <div>
+          {
+            replyList.map((reply, i) => {
+              return(
+                <div className='replyDetail'>
+                  <div className='replyInfo'>
+                    <div className='replyIcon'>
+                      <span><i class="bi bi-person-circle"></i>
+                      </span>
                     </div>
-
-                    {
-                      loginInfo.memNum != null
-                      ?
-                    <div>
-                      <span onClick={(e) => {deleteReply(reply.replyNum)}}><i class="bi bi-trash3-fill"></i></span>
+                    <div className='replyUpper'>
+                      <div>
+                        <div>{loginInfo.email}</div>
+                        <div>{reply.replyDate}</div>
+                      </div>
+  
+                      {
+                        loginInfo.memNum != null
+                        ?
+                      <div>
+                        <span onClick={(e) => {deleteReply(reply.replyNum)}}><i class="bi bi-trash3-fill"></i></span>
+                      </div>
+                      :
+                      <div></div>
+                      }
+  
                     </div>
-                    :
-                    <div></div>
-                    }
-
                   </div>
+                  <div className='replyFont'>{reply.replyContent}</div>
                 </div>
-                <div className='replyFont'>{reply.replyContent}</div>
-              </div>
-            );
-          })
-        }
+              );
+            })
+          }
+        </div>
       </div>
 
     </div>

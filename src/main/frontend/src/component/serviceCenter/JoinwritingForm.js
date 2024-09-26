@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import '../../css/JoinwritingForm.css';
 import axios from 'axios';
 
-const JoinwritingForm = ({writing, setWriting}) => {
+const JoinwritingForm = ({writing, setWriting, loginInfo}) => {
 
   const [post, setPost] = useState({
     boardTitle : '',

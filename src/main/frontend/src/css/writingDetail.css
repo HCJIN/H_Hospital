@@ -1,14 +1,26 @@
 .contentContainer{
-  border: 1px solid red;
+  border: 1px solid rgb(248, 246, 246);
   background-color: rgb(248, 246, 246);
   width: 100%;
   height: 100%;
 }
 
-.contentShow > h2{
-  border-bottom: 1px solid lightgray;
-  padding: 10px;
-  color: rgb(75, 75, 75);
+.contentUpper{
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: space-between;
+  width: 53%;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 15px;
+}
+
+.contentUpper > div:nth-child(2){
+  /* border: 1px solid black; */
+  font-size: 22px;
+  color: rgb(90, 90, 90);
+  padding-top: 20px;
+  cursor: pointer;
 }
 
 .contentHeader{
@@ -17,13 +29,21 @@
 }
 
 .contentHeader > div:nth-child(1){
-  font-size: 18px;
+  font-size: 20px;
   color: rgb(56, 56, 56);
   font-weight: 550;
 }
 
 .contentHeader > div:nth-child(2){
   font-size: 13px;
+  font-weight: bold;
+  color: rgb(90, 89, 89);
+  padding-top: 5px;
+}
+
+.contentHeader > div:nth-child(3){
+  font-size: 13px;
+  font-weight: bold;
   color: rgb(90, 89, 89);
   padding-top: 5px;
 }
@@ -33,31 +53,31 @@
 }
 
 .contentShow{
-  border: 1px solid blue;
+  border-top: 3px solid rgb(177, 175, 175);
   background-color: white;
-  margin-left: 450px;
-  margin-top: 70px;
+  margin: auto;
   width: 53%;
-  height: 800px;
+  height: 900px;
 }
 
 .contentButton{
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 15%;
-  margin-left: 850px;
+  margin: auto;
   display: flex;
   justify-content: space-evenly;
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 100px;
 }
 
 .contentButton > button:nth-child(1){
   background-color: white;
   border: 1px solid lightgray;
   color: rgb(1, 83, 1);
-  width: 120px;
+  width: 70px;
   height: 40px;
   font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
 }
 
@@ -66,7 +86,7 @@
   color: white;
   border: none;
   width: 50px;
-  border-radius: 18px;
+  border-radius: 20px;
   cursor: pointer;
 }
 
@@ -75,7 +95,7 @@
   color: white;
   border: none;
   width: 50px;
-  border-radius: 18px;
+  border-radius: 20px;
   cursor: pointer;
 }
 
@@ -163,5 +183,32 @@
 .replyFont{
   font-size: 18px;
   margin-left: 7px;
+}
+
+@media print {
+
+  body{
+    margin: 0;
+    padding: 0;
+    height: auto;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .contentShow, .contentShow * {
+    visibility: visible;
+  }
+
+  .contentShow{
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    height: auto;
+    overflow: visible;
+  }
 }
 
