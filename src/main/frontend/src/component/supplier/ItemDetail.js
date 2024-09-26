@@ -22,7 +22,7 @@ const ItemDetail = ({show, setShow, item}) => {
                 <div className='itemBrand'>
                   <p>
                     <span>제조사 : </span>
-                    <span>제조사명</span>
+                    <span>{item.itemBrand}</span>
                   </p>
                   <i className="bi bi-x-circle-fill" onClick={()=>{
                     setShow(false)
