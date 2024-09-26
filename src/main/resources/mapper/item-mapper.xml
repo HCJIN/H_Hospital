@@ -61,13 +61,15 @@
             ITEM_NAME,
             ITEM_PRICE,
             ITEM_INTRO,
-            CATE_CODE
+            CATE_CODE,
+            ITEM_BRAND
         ) VALUES (
             #{itemCode}
             ,   #{itemName}
             ,   #{itemPrice}
             ,   #{itemIntro}
             ,   #{cateCode}
+            ,   #{itemBrand}
         );
     </insert>
 
@@ -101,6 +103,7 @@
         ,   item.ITEM_NAME
         ,   item.ITEM_PRICE
         ,   item.ITEM_INTRO
+        ,   item.ITEM_BRAND
         ,   img.IMG_CODE
         ,   img.ATTACHED_FILE_NAME
         ,   img.IS_MAIN

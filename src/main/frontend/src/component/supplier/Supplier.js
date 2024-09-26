@@ -33,7 +33,8 @@ const Supplier = () => {
     itemName: '',
     itemPrice: '',
     itemIntro: '',
-    itemStock: ''
+    itemStock: '',
+    itemBrand: ''
   });
 
   const fetchCartList = () => {
@@ -153,30 +154,20 @@ const Supplier = () => {
     itemForm.append('itemPrice', insertItemData.itemPrice || 0);  // 기본값 설정
     itemForm.append('itemIntro', insertItemData.itemIntro || '');
     itemForm.append('cateCode', insertItemData.cateCode || 1);  // 기본값 설정
+    itemForm.append('itemBrand', insertItemData.itemBrand || '');  // 기본값 설정
     itemForm.append('mainImg', mainImg);
     itemForm.append('subImg', subImg);
 
     // 데이터를 가진 form 객체를 axios 통신으로 자바로 전달
     axios
-      .post(`/item/insertItem`, itemForm, fileConfig)
-      .then((res) => {
-        alert('등록이 완료되었습니다.');
-        fetchCartList();
-
-        //입력 값을 초기 상태로 리셋
-        setInsertItemData({
-          cateCode: 1, // 기본값 설정
-          itemName: '',
-          itemPrice: '',
-          itemIntro: '',
-          itemStock: ''
-        });
-        setMainImg(null); // 이미지 초기화
-        setSubImg(null); // 이미지 초기화
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    .post(`/item/insertItem`, itemForm, fileConfig)
+    .then((res) => {
+      alert('등록이 완료되었습니다.');
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
   //날짜 년월일만 출력
@@ -294,30 +285,48 @@ const Supplier = () => {
                   <tr><td className='title'>제조사명</td></tr>
                   <tr>
                     <td>
-                      <input type='text' name='itemBrand' className='form-control' onChange={changeInsertItemData}></input>
+                      <input 
+                        type='text' 
+                        name='itemBrand'
+                        className='form-control' 
+                        value={insertItemData.itemBrand}
+                        onChange={changeInsertItemData}></input>
                     </td>
                   </tr>
                   <tr><td className='title'>상품명</td></tr>
                   <tr>
                     <td>
-                      <input type='text' name='itemName' className='form-control' onChange={changeInsertItemData}></input>
+                      <input
+                        type='text'
+                        name='itemName'
+                        className='form-control'
+                        value={insertItemData.itemName} // 상태와 연동
+                        onChange={changeInsertItemData}
+                      />
                     </td>
                   </tr>
                   <tr><td className='title'>상품 가격</td></tr>
                   <tr>
                     <td>
-                      <input type='text' name='itemPrice' className='form-control' onChange={changeInsertItemData}></input>
+                      <input
+                        type='text'
+                        name='itemPrice'
+                        className='form-control'
+                        value={insertItemData.itemPrice} // 상태와 연동
+                        onChange={changeInsertItemData}
+                      />
                     </td>
                   </tr>
                   <tr><td className='title'>상품 소개</td></tr>
                   <tr>
                     <td>
-                      <textarea 
-                      name='itemIntro' 
-                      className='form-control' 
-                      rows={7} 
-                      onChange={changeInsertItemData}
-                      ></textarea>
+                      <textarea
+                        name='itemIntro'
+                        className='form-control'
+                        rows={7}
+                        value={insertItemData.itemIntro} // 상태와 연동
+                        onChange={changeInsertItemData}
+                      />
                     </td>
                   </tr>
                 </tbody>
