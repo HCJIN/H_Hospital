@@ -51,6 +51,21 @@ const QuantityInput = ({ stock, itemIndex, setItemList, itemCode }) => {
     .post(`/item/updateStock`, {itemCode, itemStock})
     .then((res)=>{
       alert('재고 수량이 업데이트 되었습니다.');
+      updateStock(itemStock);
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+
+  function goDelete(){
+    axios
+    .delete(`/item/deleteItem/${itemCode}`)
+    .then((res)=>{
+      alert('삭제가 완료되었습니다.')
+      setItemList((currentItems) => {
+        return currentItems.filter((item, index) => index !== itemIndex); // 삭제된 아이템 제외
+      });
     })
     .catch((error)=>{
       console.log(error)
@@ -72,9 +87,14 @@ const QuantityInput = ({ stock, itemIndex, setItemList, itemCode }) => {
         />
         <button onClick={increment} className='numberBtn'>+</button>
       </div>
-      <button type='button' className='updateNumberBtn' onClick={()=>{
-        goUpdate()
-      }}>수정</button>
+      <div className='upDelteBtn-div'>
+        <button type='button' className='updateNumberBtn' onClick={()=>{
+          goUpdate()
+        }}>수정</button>
+        <button type='button' className='updateNumberBtn' onClick={()=>{
+          goDelete()
+        }}>삭제</button>
+      </div>
     </div>
   );
 };

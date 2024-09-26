@@ -128,6 +128,7 @@ const Store = () => {
   useEffect(() => {
     axios.get('/item/getItemList')
       .then((res) => {
+        console.log(res.data)
         setItemList(res.data);
       })
       .catch((error) => {
@@ -137,6 +138,19 @@ const Store = () => {
 
   // 수량 변경 시 처리
   const handleItemCntChange = (index, newCnt) => {
+
+    const selectedItem = cartList[index];
+    console.log(cartList[index])
+
+    //상품 재고를 초과하는지 확인
+    const matchedItem = itemList.find(item => item.itemCode === selectedItem.itemVO.itemCode);
+
+    if(newCnt > matchedItem.itemStock){
+      alert('재고 수량이 부족합니다.')
+      return;
+    }
+
+    //수량 업데이트
     setCartList(prevCartList =>
       prevCartList.map((cart, i) =>
         i === index ? { ...cart, cartCnt: newCnt } : cart
@@ -243,6 +257,7 @@ const Store = () => {
         <div className='search-div'>
           <select name='searchType' value={searchData.searchType} onChange={(e)=>{changeSearchData(e)}}>
             <option value={'ITEM_NAME'}>제품명</option>
+            <option value={'ITEM_BRAND'}>제조사명</option>
             <option value={'CART_STATUS'}>상태</option>
           </select>
           <input type='text' name='searchValue' value={searchData.searchValue} onChange={(e)=>{changeSearchData(e)}}></input>
@@ -382,6 +397,7 @@ const Store = () => {
               <h4>{item.itemName}</h4>
               <p>{item.itemIntro}</p>
               <p>{price}</p>
+              <p>재고수량 : {item.itemStock}</p>
               <button type='button' className='supliierBtn' onClick={() => handleAddToCart(item)}>추가</button>
             </div>
           );

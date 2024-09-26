@@ -22,6 +22,7 @@
         <result column="ITEM_PRICE" property="itemPrice"/>
         <result column="ITEM_INTRO" property="itemIntro"/>
         <result column="ITEM_STOCK" property="itemStock"/>
+        <result column="ITEM_BRAND" property="itemBrand"/>
         <result column="ITEM_STATUS" property="itemStatus"/>
         <result column="CATE_CODE" property="cateCode"/>
         <collection property="imgList" ofType="com.green.H_Hospital.item.vo.ImgVO" resultMap="img" />
@@ -45,6 +46,8 @@
         ,   img.ORIGIN_FILE_NAME
         ,   img.ATTACHED_FILE_NAME
         ,   img.IS_MAIN
+        ,   item.ITEM_INTRO
+        ,   item.ITEM_BRAND
         FROM SHOP_ITEM item, ITEM_IMG img
         WHERE item.ITEM_CODE = img.ITEM_CODE
         AND IS_MAIN = 'Y'
@@ -107,12 +110,19 @@
     </select>
 
     <!-- 수량 업데이트 -->
-    <select id="updateStock" resultMap="item">
+    <update id="updateStock">
         UPDATE SHOP_ITEM
         SET
             ITEM_STOCK = #{itemStock}
         WHERE ITEM_CODE = #{itemCode}
-    </select>
+    </update>
+
+    <!-- 아이템 삭제 -->
+    <delete id="deleteItem">
+        DELETE
+        FROM SHOP_ITEM
+        WHERE ITEM_CODE = #{itemCode}
+    </delete>
 
 
 

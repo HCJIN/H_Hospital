@@ -84,4 +84,10 @@ public class ItemController {
         itemService.updateStock(itemVO);
     }
 
+    //아이템 삭제
+    @DeleteMapping("/deleteItem/{itemCode}")
+    private void deleteItem(@PathVariable("itemCode") int itemCode){
+        itemService.deleteItem(itemCode);
+    }
+
 }
