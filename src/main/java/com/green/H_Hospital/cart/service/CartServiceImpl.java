@@ -1,7 +1,11 @@
 package com.green.H_Hospital.cart.service;
 
 import com.green.H_Hospital.cart.vo.CartVO;
+<<<<<<< HEAD
 import com.green.H_Hospital.search.vo.SearchVO;
+=======
+import com.green.H_Hospital.item.vo.ItemVO;
+>>>>>>> jhb
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,4 +85,5 @@ public class CartServiceImpl implements CartService{
         // 장바구니 상태 업데이트
         sqlSession.update("cartMapper.goShipment", cartVO);
     }
+
 }

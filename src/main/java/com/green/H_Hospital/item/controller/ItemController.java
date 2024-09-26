@@ -6,6 +6,7 @@ import com.green.H_Hospital.item.vo.ImgVO;
 import com.green.H_Hospital.item.vo.ItemVO;
 import com.green.H_Hospital.util.FileUploadUtil;
 import jakarta.annotation.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,6 +33,12 @@ public class ItemController {
     @GetMapping("/getCateList")
     public List<CategoryVO> getCateList(){
         return itemService.getCateList();
+    }
+
+    //특정 카테고리의 아이템 조회
+    @GetMapping("/getItemsByCategory/{cateCode}")
+    public List<ItemVO> getItemBtyCategory(@PathVariable int cateCode){
+        return itemService.getItemsByCategory(cateCode);
     }
 
     //상품 등록

@@ -3,7 +3,7 @@ import '../../css/store.css';
 import axios from 'axios';
 
 const Store = () => {
-  const [category, setCategory] = useState('A'); // 카테고리 상태
+  const [category, setCategory] = useState(1); // 카테고리 상태
   const [itemList, setItemList] = useState([]); // 상품 목록 상태
   const [itemCnt, setItemCnt] = useState(1); // 품목 수량 상태
   //검색 조건을 저장할 변수
@@ -127,8 +127,9 @@ const Store = () => {
     fatchCartList();
   }, [memNum]);
 
-  // 상품 목록 조회
+  // 카테고리별 상품 목록 조회
   useEffect(() => {
+<<<<<<< HEAD
     axios.get('/item/getItemList')
       .then((res) => {
         console.log(res.data)
@@ -139,6 +140,43 @@ const Store = () => {
         console.log(error);
       });
   }, []);
+=======
+    const fetchItemsByCategory = () => {
+      axios.get(`/item/getItemsByCategory/${category}`)
+        .then((res) => {
+          setItemList(res.data);
+          console.log('Item list:', res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+  
+    fetchItemsByCategory();
+  }, [category]);
+
+  const fetchAllItems =()=>{
+    axios.get('item/getAllItems') //이 부분 나중에 수정하기
+    .then((res)=>{
+      setItemList(res.data);
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
+  
+
+  // 카테고리 버튼 클릭 시 호출되는 함수
+  const handleCategoryChange = (code) => {
+    setCategory(code); 
+    if (code === 1){
+      fetchAllItems();
+    }else{
+      fetchItemsByCategory(code);
+    }
+};
+
+>>>>>>> jhb
 
   // 수량 변경 시 처리
   const handleItemCntChange = (index, newCnt) => {
@@ -247,11 +285,11 @@ const Store = () => {
     })
   }
 
-    // 카테고리별 목록 조회
-    const filteredItems = itemList.filter(item => {
-      if (category === 'A') return true;
-      return item.category === category;
-    });
+    // // 카테고리별 목록 조회
+    // const filteredItems = itemList.filter(item => {
+    //   if (category === 1) return true;
+    //   return item.category === category;
+    // });
 
 
   return (
@@ -374,28 +412,28 @@ const Store = () => {
       <div className='store-icon-div'>
         <div>
           <i className="bi bi-bag-plus"></i>
-          <button type='button' onClick={() => setCategory('A')} className={`button ${category === 'A' ? 'active' : ''}`}>전체</button>
+          <button type='button' onClick={()=>{handleCategoryChange(1)}}>전체</button>
         </div>
         <div>
           <i className="bi bi-capsule"></i>
-          <button type='button' onClick={() => setCategory('B')} className={`button ${category === 'B' ? 'active' : ''}`}>전문의약품</button>
+          <button type='button'onClick={()=>{handleCategoryChange(2)}}>전문의약품</button>
         </div>
         <div>
           <i className="bi bi-scissors"></i>
-          <button type='button' onClick={() => setCategory('C')} className={`button ${category === 'C' ? 'active' : ''}`}>수술관련기기</button>
+          <button type='button' onClick={()=>{handleCategoryChange(3)}}>수술관련기기</button>
         </div>
         <div>
           <i className="bi bi-virus"></i>
-          <button type='button' onClick={() => setCategory('D')} className={`button ${category === 'D' ? 'active' : ''}`}>멸균기</button>
+          <button type='button' onClick={()=>{handleCategoryChange(4)}}>멸균기</button>
         </div>
         <div>
           <i className="bi bi-heart-pulse-fill"></i>
-          <button type='button' onClick={() => setCategory('E')} className={`button ${category === 'E' ? 'active' : ''}`}>폐활량계,심전계</button>
+          <button type='button' onClick={()=>{handleCategoryChange(5)}}>폐활량계,심전계</button>
         </div>
       </div>
 
       <div className='item-list-box'>
-        {filteredItems.map((item, i) => {
+        {itemList.map((item, i) => {
           const price = item.itemPrice.toLocaleString('ko-KR', {
             style: 'currency',
             currency: 'KRW'
