@@ -1,6 +1,7 @@
 package com.green.H_Hospital.cart.service;
 
 import com.green.H_Hospital.cart.vo.CartVO;
+import com.green.H_Hospital.item.vo.ItemVO;
 
 import java.util.List;
 
@@ -26,4 +27,5 @@ public interface CartService {
 
     //제품 출하
     void goShipment(CartVO cartVO);
+
 }

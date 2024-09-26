@@ -35,6 +35,20 @@
         ORDER BY CATE_CODE ASC;
     </select>
 
+    <!-- 카테고리별 제품 조회-->
+    <select id="getItemsByCategory" resultType="com.green.H_Hospital.item.vo.ItemVO">
+        SELECT CATE_CODE
+        ,CATE_NAME
+        ,ITEM_PRICE
+        ,ITEM_INTRO
+        ,ITEM_STOCK
+        ,ITEM_CODE
+        FROM ITEM
+        WHERE CATE_CODE = #{cateCode}
+        ORDER BY ITEM_CODE ASC;
+    </select>
+
+
     <!-- 상품 목록 조회 -->
     <select id="getItemList" resultMap="item">
         SELECT item.ITEM_CODE

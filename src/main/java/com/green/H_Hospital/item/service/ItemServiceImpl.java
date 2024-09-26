@@ -2,6 +2,7 @@ package com.green.H_Hospital.item.service;
 
 import com.green.H_Hospital.item.vo.CategoryVO;
 import com.green.H_Hospital.item.vo.ItemVO;
+import jakarta.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,13 @@ public class ItemServiceImpl implements ItemService{
     public List<CategoryVO> getCateList() {
         return sqlSession.selectList("itemMapper.getCategoryList");
     }
+
+    //카테고리별 제품 상세조회
+    @Override
+    public List<ItemVO> getItemsByCategory(int cateCode) {
+        return sqlSession.selectList("itemMapper.getItemsByCategory",cateCode);
+    }
+
 
     //아이템 등록
     @Override
