@@ -394,6 +394,9 @@ function App() {
 
           {/* 입고요청 페이지 */}
           <Route path='store' element={<Store />} />
+
+          {/* 제품 카테고리 */}
+          <Route path='/admin/store/medicine/:category' element={<Store/>} />
         </Route> 
 
         {/* 공급사용 */}
