@@ -135,8 +135,9 @@ const WritingDetail = ({loginInfo}) => {
           </div>
         </div>
         {
-          updateWriting ?
-          <JoinUpdateForm updateWriting={updateWriting} setUpdateWriting={setUpdateWriting}/>
+          updateWriting ? 
+          <JoinUpdateForm
+          updateWriting={updateWriting} setUpdateWriting={setUpdateWriting}/>
           :
           <></>
         }

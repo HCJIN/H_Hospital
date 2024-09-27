@@ -100,7 +100,10 @@ const Store = () => {
   //   if (content === 'A') return true;
   //   return item.category === content;
   // });
+<<<<<<< HEAD
 
+=======
+>>>>>>> jbh
 
   // 제목줄의 체크박스 변경 시 실행되는 함수
   function changeChkAll() {
@@ -127,7 +130,10 @@ const Store = () => {
 
   // 카테고리별 상품 목록 조회
   useEffect(() => {
+<<<<<<< HEAD
 
+=======
+>>>>>>> jbh
     axios.get('/item/getItemList')
       .then((res) => {
         console.log(res.data)
@@ -139,6 +145,7 @@ const Store = () => {
       });
   }, []);
 
+<<<<<<< HEAD
     // const fetchItemsByCategory = () => {
     //   axios.get(`/item/getItemsByCategory/${category}`)
     //     .then((res) => {
@@ -149,6 +156,21 @@ const Store = () => {
     //       console.log(error);
     //     });
     // };
+=======
+    const fetchItemsByCategory = () => {
+      axios.get(`/item/getItemsByCategory/${category}`)
+        .then((res) => {
+          setItemList(res.data);
+          console.log('Item list:', res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+  
+    fetchItemsByCategory();
+  // }, [category];
+>>>>>>> jbh
 
   const fetchAllItems =()=>{
     axios.get('item/getAllItems') //이 부분 나중에 수정하기
@@ -171,6 +193,10 @@ const Store = () => {
     }
 };
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> jbh
   // 수량 변경 시 처리
   const handleItemCntChange = (index, newCnt) => {
 
