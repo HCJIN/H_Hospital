@@ -1,12 +1,8 @@
 package com.green.H_Hospital.cart.service;
-
 import com.green.H_Hospital.cart.vo.CartVO;
-
 import com.green.H_Hospital.search.vo.SearchVO;
-
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+
 
 public interface CartService {
 
