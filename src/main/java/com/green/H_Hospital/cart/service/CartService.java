@@ -1,11 +1,8 @@
 package com.green.H_Hospital.cart.service;
 
 import com.green.H_Hospital.cart.vo.CartVO;
-<<<<<<< HEAD
 import com.green.H_Hospital.search.vo.SearchVO;
-=======
 import com.green.H_Hospital.item.vo.ItemVO;
->>>>>>> jhb
 
 import java.util.List;
 import java.util.Map;

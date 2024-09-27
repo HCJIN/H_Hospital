@@ -62,8 +62,6 @@ const Store = () => {
     });
   }
 
-<<<<<<< HEAD
-=======
   //서치데이터가 변경될때 
   function changeSearchData(e){
     setSearchData({
@@ -98,12 +96,12 @@ const Store = () => {
   }
 
   // 카테고리별 목록 조회
-  const filteredItems = itemList.filter(item => {
-    if (content === 'A') return true;
-    return item.category === content;
-  });
+  // const filteredItems = itemList.filter(item => {
+  //   if (content === 'A') return true;
+  //   return item.category === content;
+  // });
 
->>>>>>> d0a98d2da21a66b0a3ffebeedd8fab4d77760dbf
+
   // 제목줄의 체크박스 변경 시 실행되는 함수
   function changeChkAll() {
     setAllChecked(!allChecked);
@@ -129,7 +127,7 @@ const Store = () => {
 
   // 카테고리별 상품 목록 조회
   useEffect(() => {
-<<<<<<< HEAD
+
     axios.get('/item/getItemList')
       .then((res) => {
         console.log(res.data)
@@ -140,20 +138,17 @@ const Store = () => {
         console.log(error);
       });
   }, []);
-=======
-    const fetchItemsByCategory = () => {
-      axios.get(`/item/getItemsByCategory/${category}`)
-        .then((res) => {
-          setItemList(res.data);
-          console.log('Item list:', res.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-  
-    fetchItemsByCategory();
-  }, [category]);
+
+    // const fetchItemsByCategory = () => {
+    //   axios.get(`/item/getItemsByCategory/${category}`)
+    //     .then((res) => {
+    //       setItemList(res.data);
+    //       console.log('Item list:', res.data);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // };
 
   const fetchAllItems =()=>{
     axios.get('item/getAllItems') //이 부분 나중에 수정하기
@@ -172,11 +167,9 @@ const Store = () => {
     if (code === 1){
       fetchAllItems();
     }else{
-      fetchItemsByCategory(code);
+      // fetchItemsByCategory(code);
     }
 };
-
->>>>>>> jhb
 
   // 수량 변경 시 처리
   const handleItemCntChange = (index, newCnt) => {
@@ -443,7 +436,6 @@ const Store = () => {
             <div key={i} className='item-list'>
               <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} alt={item.itemName} />
               <h4>{item.itemName}</h4>
-              <p>{item.itemIntro}</p>
               <p>{price}</p>
               <p>재고수량 : {item.itemStock}</p>
               <button type='button' className='supliierBtn' onClick={() => handleAddToCart(item)}>추가</button>
