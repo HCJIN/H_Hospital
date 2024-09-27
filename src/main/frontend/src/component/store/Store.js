@@ -62,8 +62,6 @@ const Store = () => {
     });
   }
 
-<<<<<<< HEAD
-=======
   //서치데이터가 변경될때 
   function changeSearchData(e){
     setSearchData({
@@ -98,12 +96,11 @@ const Store = () => {
   }
 
   // 카테고리별 목록 조회
-  const filteredItems = itemList.filter(item => {
-    if (content === 'A') return true;
-    return item.category === content;
-  });
+  // const filteredItems = itemList.filter(item => {
+  //   if (content === 'A') return true;
+  //   return item.category === content;
+  // });
 
->>>>>>> d0a98d2da21a66b0a3ffebeedd8fab4d77760dbf
   // 제목줄의 체크박스 변경 시 실행되는 함수
   function changeChkAll() {
     setAllChecked(!allChecked);
@@ -129,7 +126,6 @@ const Store = () => {
 
   // 카테고리별 상품 목록 조회
   useEffect(() => {
-<<<<<<< HEAD
     axios.get('/item/getItemList')
       .then((res) => {
         console.log(res.data)
@@ -140,7 +136,7 @@ const Store = () => {
         console.log(error);
       });
   }, []);
-=======
+
     const fetchItemsByCategory = () => {
       axios.get(`/item/getItemsByCategory/${category}`)
         .then((res) => {
@@ -153,7 +149,7 @@ const Store = () => {
     };
   
     fetchItemsByCategory();
-  }, [category]);
+  // }, [category];
 
   const fetchAllItems =()=>{
     axios.get('item/getAllItems') //이 부분 나중에 수정하기
@@ -176,7 +172,6 @@ const Store = () => {
     }
 };
 
->>>>>>> jhb
 
   // 수량 변경 시 처리
   const handleItemCntChange = (index, newCnt) => {

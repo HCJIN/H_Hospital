@@ -40,6 +40,7 @@ import JoinwritingForm from './component/serviceCenter/JoinwritingForm';
 import WritingDetail from './component/serviceCenter/WritingDetail';
 import Supplier from './component/supplier/Supplier';
 import JoinUpdateForm from './component/serviceCenter/JoinUpdateForm';
+import Questions from './component/serviceCenter/Questions';
 
 function App() {
 
@@ -329,7 +330,7 @@ function App() {
         {/* 예약 페이지 */}
         <Route path='/reservation' element={<Reservation />} />
 
-        {/* 고객센터 페이지 */}
+        {/* 고객센터 페이지*/}
         <Route path='/serviceCenter' element={<ServiceCenter/>}/>
 
         {/* 고객센터 글쓰기 페이지 */}
@@ -340,6 +341,9 @@ function App() {
 
         {/* 고객센터 글쓰기 수정 페이지 */}
         <Route path='/joinUpdateForm' element={<JoinUpdateForm/>}/>
+
+        {/* 자주묻는질문 페이지 */}
+        <Route path='/questions' element={<Questions/>}/>
 
         {/* 증명서 발급 페이지 */}
         <Route path='/hospitalSheet' element={<HospitalSheet />} />

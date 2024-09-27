@@ -37,6 +37,12 @@ const ServiceCenter = () => {
     });
   },[writing]);
 
+  //사이드메뉴를 화면에 그리는 함수
+  function drawSideMenu(){
+    //사이드메뉴에서 자주묻는질문 클릭 시
+  
+  }
+
   return (
     <div className='serviceCenter-div'>
       {
@@ -53,11 +59,11 @@ const ServiceCenter = () => {
           <div className='section-container-left'>
             <div className='left-side'>
               <ul className='side-menu-ul'>
-                <li>
+                <li onClick={() => {navigate('//serviceCenter')}}>
                   <h3>공지사항</h3>
                 </li>
-                <li>
-                  <h3>자주하는 질문</h3>
+                <li onClick={() => {navigate('/questions')}}>
+                  <h3>자주묻는 질문</h3>
                 </li>
                 <li>
                   <h3>1:1 문의</h3>
