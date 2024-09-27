@@ -212,26 +212,48 @@ const Store = () => {
 
   // 추가 버튼 클릭 시, 선택된 상품 데이터를 서버로 전송
   function handleAddToCart(item) {
-    const insertCartData = {
-      itemCode: item.itemCode,
-      cartCnt: 1, // 선택한 수량
-      memNum: memNum, // 로그인된 회원번호
-      itemName: item.itemName,
-      itemPrice: item.itemPrice,
-      itemImage: item.imgList[0]?.attachedFileName // 첫 번째 이미지
-    };
-
-    // 서버로 POST 요청 보내기
-    axios.post('/cart/insert', insertCartData)
-      .then((res) => {
-        alert('상품이 장바구니에 추가되었습니다.');
-        fatchCartList();
-      })
-      .catch((error) => {
-        console.log(error);
-        alert('장바구니 추가 중 오류 발생');
-      });
+    const existingCartItemIndex = cartList.findIndex(cart => cart.itemVO.itemCode === item.itemCode && cart.cartStatus === '주문등록');
+  
+    if (existingCartItemIndex !== -1) {
+      // 장바구니에 이미 존재하는 경우 수량 업데이트
+      const updatedCartItem = {
+        ...cartList[existingCartItemIndex],
+        cartCnt: cartList[existingCartItemIndex].cartCnt + 1, // 수량 증가
+      };
+  
+      // 장바구니 업데이트
+      setCartList(prevCartList => 
+        prevCartList.map((cart, index) => 
+          index === existingCartItemIndex ? updatedCartItem : cart
+        )
+      );
+  
+      // 수량 변경 후 서버에 업데이트 요청
+      cntUpdate(updatedCartItem.cartCode, updatedCartItem.cartCnt);
+    } else {
+      // 장바구니에 존재하지 않는 경우 새로운 항목 추가
+      const insertCartData = {
+        itemCode: item.itemCode,
+        cartCnt: 1, // 기본 수량
+        memNum: memNum, // 로그인된 회원번호
+        itemName: item.itemName,
+        itemPrice: item.itemPrice,
+        itemImage: item.imgList[0]?.attachedFileName // 첫 번째 이미지
+      };
+  
+      // 서버로 POST 요청 보내기
+      axios.post('/cart/insert', insertCartData)
+        .then((res) => {
+          alert('상품이 장바구니에 추가되었습니다.');
+          fatchCartList();
+        })
+        .catch((error) => {
+          console.log(error);
+          alert('장바구니 추가 중 오류 발생');
+        });
+    }
   }
+  
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
