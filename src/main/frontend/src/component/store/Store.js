@@ -4,87 +4,39 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 
 const Store = () => {
-  //선택된 카테고리 상태
   const [selectedCategory, setSelectedCategory] = useState('all');
-
-  //카테고리 필터링 함수
-  const filterItemsByCategory = (category) => {
-    setSelectedCategory(category);
-  }
-
-  //카테고리별 아이템 필터링
-
-  const [itemList, setItemList] = useState([]); // 상품 목록 상태
-  const [itemCnt, setItemCnt] = useState(1); // 품목 수량 상태
-  //검색 조건을 저장할 변수
+  const [itemList, setItemList] = useState([]);
+  const [filteredItemList, setFilteredItemList] = useState([]);
+  const [itemCnt, setItemCnt] = useState(1);
   const [searchData, setSearchData] = useState({
-    searchType : 'ITEM_NAME',
-    searchValue : ''
-  })
-  console.log(searchData)
-  const memNum = JSON.parse(window.sessionStorage.getItem('loginInfo')).memNum; // 로그인한 회원 정보
-
-  // 발주 목록을 저장할 변수
+    searchType: 'ITEM_NAME',
+    searchValue: ''
+  });
+  const memNum = JSON.parse(window.sessionStorage.getItem('loginInfo')).memNum;
   const [cartList, setCartList] = useState([]);
-
-  // 체크된 아이템을 담을 배열
   const [checkItems, setCheckItems] = useState([]);
-  console.log(checkItems)
-  // 제목줄 체크박스의 체크여부를 저장하고 있는 state 변수
   const [allChecked, setAllChecked] = useState(true);
 
-  // 선택삭제에 들어갈 cartCode를 담을 배열
-  const selectedCartCodes = [];
-
-  // 선택 삭제
-  function selectDelete() {
-    const selectedCartCodes = checkItems.map((isChecked, index)=>
-      isChecked ? cartList[index].cartCode : null
-    ).filter(cartCode => cartCode !== null); //null이 아닌 것만 필터링
-
-    if(selectedCartCodes.length === 0){
-      alert('삭제할 항목을 선택해 주세요.');
-      return;
+  const filterItemsByCategory = (category) => {
+    setSelectedCategory(category);
+    if (category === 'all') {
+      setFilteredItemList(itemList);
+    } else {
+      const filtered = itemList.filter(item => item.itemCategory === category);
+      setFilteredItemList(filtered);
     }
+  };
 
-    //모든 선택된 cartCode에 대해 goDelete 호출
-    const deletePromises = selectedCartCodes.map(cartCode => goDelete(cartCode));
-
-    Promise.all(deletePromises)
-        .then(() => {
-            alert('선택된 항목이 삭제되었습니다.'); // 삭제 완료 알림
-            fatchCartList(); // 목록 새로 고침
-        })
-        .catch((error) => {
-            console.error('삭제 중 오류 발생:', error);
-        });
-  }
-
-  //삭제버튼 클릭시 delete
-  function goDelete(cateCode){
-    axios
-    .delete(`/cart/cartDelete/${cateCode}`)
-    .then(() => {
-        console.log(`삭제 완료: ${cateCode}`); // 삭제 완료 메시지 (필요 시)
-        fatchCartList();
-    })
-    .catch((error) => {
-        console.error('삭제 중 오류 발생:', error);
-    });
-  }
-
-  //서치데이터가 변경될때 
-  function changeSearchData(e){
+  const changeSearchData = (e) => {
     setSearchData({
       ...searchData,
-      [e.target.name] : e.target.value
-    })
-  }
+      [e.target.name]: e.target.value
+    });
+  };
 
   const fatchCartList = () => {
     axios.get(`/cart/getCartList/${memNum}`)
       .then((res) => {
-        console.log(res.data);
         setCartList(res.data);
       })
       .catch((error) => {
@@ -93,29 +45,24 @@ const Store = () => {
       });
   };
 
-  //서치 실행
-  function search(){
+  const search = () => {
     axios
-    .post('/cart/searchCartList', {...searchData, memNum : memNum})
-    .then((res)=>{
-      console.log(res.data)
-      setCartList(res.data)
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
-  }
+      .post('/cart/searchCartList', { ...searchData, memNum: memNum })
+      .then((res) => {
+        setCartList(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-
-  // 제목줄의 체크박스 변경 시 실행되는 함수
-  function changeChkAll() {
+  const changeChkAll = () => {
     setAllChecked(!allChecked);
     const newCheckItems = Array(cartList.length).fill(!allChecked);
     setCheckItems(newCheckItems);
-  }
+  };
 
   useEffect(() => {
-    // cartList가 업데이트되면 checkItems를 초기화
     setCheckItems(Array(cartList.length).fill(false));
     setAllChecked(false);
   }, [cartList]);
@@ -125,37 +72,31 @@ const Store = () => {
     setAllChecked(allCheckedState);
   }, [checkItems]);
 
-  // 발주목록 조회
   useEffect(() => {
     fatchCartList();
   }, [memNum]);
 
-  useEffect(()=>{
+  useEffect(() => {
     axios
-    .get('/item/getItemList')
-    .then((res)=>{
-      setItemList(res.data)
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
-  },[])
+      .get('/item/getItemList')
+      .then((res) => {
+        setItemList(res.data);
+        setFilteredItemList(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
-  // 수량 변경 시 처리
   const handleItemCntChange = (index, newCnt) => {
-
     const selectedItem = cartList[index];
-    console.log(cartList[index])
-
-    //상품 재고를 초과하는지 확인
     const matchedItem = itemList.find(item => item.itemCode === selectedItem.itemVO.itemCode);
 
-    if(newCnt > matchedItem.itemStock){
-      alert('재고 수량이 부족합니다.')
+    if (newCnt > matchedItem.itemStock) {
+      alert('재고 수량이 부족합니다.');
       return;
     }
 
-    //수량 업데이트
     setCartList(prevCartList =>
       prevCartList.map((cart, i) =>
         i === index ? { ...cart, cartCnt: newCnt } : cart
@@ -163,9 +104,7 @@ const Store = () => {
     );
   };
 
-  console.log(cartList);
-
-  function cntUpdate(cartCode, cartCnt) {
+  const cntUpdate = (cartCode, cartCnt) => {
     const updateData = {
       cartCode: cartCode,
       cartCnt: cartCnt
@@ -178,40 +117,34 @@ const Store = () => {
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
-  // 추가 버튼 클릭 시, 선택된 상품 데이터를 서버로 전송
-  function handleAddToCart(item) {
+  const handleAddToCart = (item) => {
     const existingCartItemIndex = cartList.findIndex(cart => cart.itemVO.itemCode === item.itemCode && cart.cartStatus === '주문등록');
-  
+
     if (existingCartItemIndex !== -1) {
-      // 장바구니에 이미 존재하는 경우 수량 업데이트
       const updatedCartItem = {
         ...cartList[existingCartItemIndex],
-        cartCnt: cartList[existingCartItemIndex].cartCnt + 1, // 수량 증가
+        cartCnt: cartList[existingCartItemIndex].cartCnt + 1,
       };
-  
-      // 장바구니 업데이트
-      setCartList(prevCartList => 
-        prevCartList.map((cart, index) => 
+
+      setCartList(prevCartList =>
+        prevCartList.map((cart, index) =>
           index === existingCartItemIndex ? updatedCartItem : cart
         )
       );
-  
-      // 수량 변경 후 서버에 업데이트 요청
+
       cntUpdate(updatedCartItem.cartCode, updatedCartItem.cartCnt);
     } else {
-      // 장바구니에 존재하지 않는 경우 새로운 항목 추가
       const insertCartData = {
         itemCode: item.itemCode,
-        cartCnt: 1, // 기본 수량
-        memNum: memNum, // 로그인된 회원번호
+        cartCnt: 1,
+        memNum: memNum,
         itemName: item.itemName,
         itemPrice: item.itemPrice,
-        itemImage: item.imgList[0]?.attachedFileName // 첫 번째 이미지
+        itemImage: item.imgList[0]?.attachedFileName
       };
-  
-      // 서버로 POST 요청 보내기
+
       axios.post('/cart/insert', insertCartData)
         .then((res) => {
           alert('상품이 장바구니에 추가되었습니다.');
@@ -222,54 +155,81 @@ const Store = () => {
           alert('장바구니 추가 중 오류 발생');
         });
     }
-  }
-  
+  };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // 월을 2자리로 포맷
-    const day = String(date.getDate()).padStart(2, '0'); // 일을 2자리로 포맷
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   };
 
-  // 선택 발주
-  function selectUpdate() {
-    const selectedCartCodes = checkItems.map((isChecked, index)=>
-      isChecked ? cartList[index].cartCode : null
-    ).filter(cartCode => cartCode !== null); //null이 아닌 것만 필터링
+  const selectUpdate = () => {
+    const selectedCartCodes = checkItems
+      .map((isChecked, index) => isChecked ? cartList[index].cartCode : null)
+      .filter(cartCode => cartCode !== null);
 
-    if(selectedCartCodes.length === 0){
+    if (selectedCartCodes.length === 0) {
       alert('발주할 항목을 선택해 주세요.');
       return;
     }
 
-    //모든 선택된 cartCode에 대해 goSupplier 호출
-    const deletePromises = selectedCartCodes.map(cartCode => goSupplier(cartCode));
+    const updatePromises = selectedCartCodes.map(cartCode => goSupplier(cartCode));
+
+    Promise.all(updatePromises)
+      .then(() => {
+        alert('선택된 항목이 발주되었습니다.');
+        fatchCartList();
+      })
+      .catch((error) => {
+        console.error('발주 중 오류 발생:', error);
+      });
+  };
+
+  const selectDelete = () => {
+    const selectedCartCodes = checkItems
+      .map((isChecked, index) => isChecked ? cartList[index].cartCode : null)
+      .filter(cartCode => cartCode !== null);
+
+    if (selectedCartCodes.length === 0) {
+      alert('삭제할 항목을 선택해 주세요.');
+      return;
+    }
+
+    const deletePromises = selectedCartCodes.map(cartCode => goDelete(cartCode));
 
     Promise.all(deletePromises)
-        .then(() => {
-            alert('선택된 항목이 발주되었습니다.'); // 발주 완료 알림
-            fatchCartList(); // 목록 새로 고침
-        })
-        .catch((error) => {
-            console.error('삭제 중 오류 발생:', error);
-        });
-  }
+      .then(() => {
+        alert('선택된 항목이 삭제되었습니다.');
+        fatchCartList();
+      })
+      .catch((error) => {
+        console.error('삭제 중 오류 발생:', error);
+      });
+  };
 
+  const goSupplier = (cartCode) => {
+    return axios
+      .post(`/cart/statusUpdate/${cartCode}`)
+      .then((res) => {
+        console.log('발주요청이 완료되었습니다.');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-  function goSupplier(cartCode){
-    axios
-    .post(`/cart/statusUpdate/${cartCode}`)
-    .then((res)=>{
-      console.log('발주요청이 완료되었습니다.')
-      fatchCartList();
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
-  }
-
+  const goDelete = (cartCode) => {
+    return axios
+      .delete(`/cart/cartDelete/${cartCode}`)
+      .then(() => {
+        console.log(`삭제 완료: ${cartCode}`);
+      })
+      .catch((error) => {
+        console.error('삭제 중 오류 발생:', error);
+      });
+  };
 
   return (
     <div className='store-div'>
@@ -282,15 +242,16 @@ const Store = () => {
       </div>
       <div className='store-table-div'>
         <div className='search-div'>
-          <select name='searchType' value={searchData.searchType} onChange={(e)=>{changeSearchData(e)}}>
+          <div>
+          <button type='button' className='capture-btn' onClick={() => {}}>발주내역 캡처</button>
+          <select name='searchType' value={searchData.searchType} onChange={changeSearchData}>
             <option value={'ITEM_NAME'}>제품명</option>
             <option value={'ITEM_BRAND'}>제조사명</option>
             <option value={'CART_STATUS'}>상태</option>
           </select>
-          <input type='text' name='searchValue' value={searchData.searchValue} onChange={(e)=>{changeSearchData(e)}}></input>
-          <button type='button' onClick={(e)=>{
-            search()
-          }}>검색</button>
+          <input type='text' name='searchValue' value={searchData.searchValue} onChange={changeSearchData}></input>
+          <button type='button' onClick={search}>검색</button>
+          </div>
         </div>
         <table className='store-table'>
           <thead className='store-thead'>
@@ -299,7 +260,7 @@ const Store = () => {
                 <input
                   type='checkbox'
                   className='checkboxAll'
-                  onChange={() => {changeChkAll()}}
+                  onChange={changeChkAll}
                   checked={allChecked}
                 ></input>
               </td>
@@ -318,106 +279,88 @@ const Store = () => {
             </tr>
           </thead>
           <tbody>
-            {
-              cartList.map((cart, i) => {
-                return (
-                  <tr key={i}>
-                    <td>
-                      <input 
-                        type='checkbox' 
-                        onChange={()=>{
-                          const copyChks = [...checkItems]
-                          copyChks[i] = !copyChks[i];
-                          setCheckItems(copyChks)
-                        }}
-                        checked={checkItems[i] || false} // 개별 선택 상태를 반영
-                      ></input>
-                    </td>
-                    <td>
-                      <p>{cart.itemVO.itemName}</p>
-                    </td>
-                    <td>
-                      <input type='number'
-                        value={cart.cartCnt || 1}
-                        onChange={(e) => handleItemCntChange(i, Number(e.target.value))}
-                        min='1'
-                      ></input>
-                      <button type='button' className='supliierBtn' onClick={() => {
-                        cntUpdate(cart.cartCode, cart.cartCnt);
-                      }}>확인</button>
-                    </td>
-                    <td>
-                      <p>{formatDate(cart.cartDate)}</p>
-                    </td>
-                    <td>
-                      <span>{cart.cartStatus}</span>
-                      {
-                        cart.cartStatus != '주문등록' ?
-                        <></>
-                        :
-                        <>
-                          <button 
-                            type='button' 
-                            className='supliierBtn'
-                            onClick={()=>{
-                              goSupplier(cart.cartCode)
-                            }}
-                          >발주</button>
-                          <button 
-                            type='button' 
-                            className='supliierBtn'
-                            onClick={()=>{
-                              goDelete(cart.cartCode)
-                            }}
-                          >삭제</button>
-                        </>
-                      }
-                    </td>
-                  </tr>
-                )
-              })
-            }
+            {cartList.map((cart, i) => (
+              <tr key={i}>
+                <td>
+                  <input 
+                    type='checkbox' 
+                    onChange={() => {
+                      const copyChks = [...checkItems];
+                      copyChks[i] = !copyChks[i];
+                      setCheckItems(copyChks);
+                    }}
+                    checked={checkItems[i] || false}
+                  ></input>
+                </td>
+                <td>
+                  <p>{cart.itemVO.itemName}</p>
+                </td>
+                <td>
+                  <input type='number'
+                    value={cart.cartCnt || 1}
+                    onChange={(e) => handleItemCntChange(i, Number(e.target.value))}
+                    min='1'
+                  ></input>
+                  <button type='button' className='supliierBtn' onClick={() => cntUpdate(cart.cartCode, cart.cartCnt)}>확인</button>
+                </td>
+                <td>
+                  <p>{formatDate(cart.cartDate)}</p>
+                </td>
+                <td>
+                  <span>{cart.cartStatus}</span>
+                  {cart.cartStatus !== '주문등록' ? (
+                    <></>
+                  ) : (
+                    <>
+                      <button 
+                        type='button' 
+                        className='supliierBtn'
+                        onClick={() => goSupplier(cart.cartCode)}
+                      >발주</button>
+                      <button 
+                        type='button' 
+                        className='supliierBtn'
+                        onClick={() => goDelete(cart.cartCode)}
+                      >삭제</button>
+                    </>
+                  )}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
         <div className='suplierBtn-div'>
-          <button type='button' className='supliierBtn' onClick={()=>{
-            selectUpdate();
-          }}>발주요청</button>
-          <button type='button' className='supliierBtn' onClick={()=>{
-            selectDelete();
-          }}>선택삭제</button>
+          <button type='button' className='supliierBtn' onClick={selectUpdate}>발주요청</button>
+          <button type='button' className='supliierBtn' onClick={selectDelete}>선택삭제</button>
         </div>
       </div>
-
-
-
 
       <div className='store-icon-div'>
         <div>
           <i className="bi bi-bag-plus"></i>
-          <button type='button' onClick={()=>{}}>전체</button>
+          <button type='button' onClick={() => filterItemsByCategory('all')}>전체</button>
         </div>
         <div>
           <i className="bi bi-capsule"></i>
-          <button type='button'onClick={()=>{}}>전문의약품</button>
+          <button type='button' onClick={() => filterItemsByCategory('전문의약품')}>전문의약품</button>
         </div>
         <div>
           <i className="bi bi-scissors"></i>
-          <button type='button' onClick={()=>{}}>수술관련기기</button>
+          <button type='button' onClick={() => filterItemsByCategory('수술관련기기')}>수술관련기기</button>
         </div>
         <div>
           <i className="bi bi-virus"></i>
-          <button type='button' onClick={()=>{}}>멸균기</button>
+          <button type='button' onClick={() => filterItemsByCategory('멸균기')}>멸균기</button>
         </div>
         <div>
           <i className="bi bi-heart-pulse-fill"></i>
-          <button type='button' onClick={()=>{}}>폐활량계,심전계</button>
+          <button type='button' onClick={() => filterItemsByCategory('폐활량계,심전계')}>폐활량계,심전계</button>
         </div>
       </div>
 
       <div className='item-list-box'>
-        {itemList.length > 0 ? (
-          itemList.map((item, i) => (
+        {filteredItemList.length > 0 ? (
+          filteredItemList.map((item, i) => (
             <div key={i} className='item-list'>
               <img 
                 src={item.imgList && item.imgList.length > 0 
@@ -438,7 +381,7 @@ const Store = () => {
         ) : (
           <p>상품이 없습니다.</p>
         )}
-  </div>
+      </div>
     </div>
   );
 };

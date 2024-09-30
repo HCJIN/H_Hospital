@@ -127,6 +127,12 @@
         WHERE CART_CODE = #{cartCode};
     </update>
 
+    <update id="cancelItem">
+        UPDATE SHOP_CART
+        SET CART_STATUS = '출하취소'
+        WHERE CART_CODE = #{cartCode};
+    </update>
+
 </mapper>
 
 
