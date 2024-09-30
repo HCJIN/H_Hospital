@@ -8,7 +8,7 @@ import java.util.List;
 public interface ItemService {
 
     //카테고리 목록 조회
-    List<CategoryVO> getCateList();
+    List<CategoryVO> getAllItems();
 
     //카테고리 목록 상세 조회
     List<ItemVO> getItemsByCategory(int cateCode);

@@ -30,14 +30,14 @@ public class ItemController {
     //보류
 
     //카테고리 목록 조회
-    @GetMapping("/getCateList")
-    public List<CategoryVO> getCateList(){
-        return itemService.getCateList();
+    @GetMapping("/getAllItems")
+    public List<CategoryVO> getAllItems(){
+        return itemService.getAllItems();
     }
 
     //특정 카테고리의 아이템 조회
     @GetMapping("/getItemsByCategory/{cateCode}")
-    public List<ItemVO> getItemBtyCategory(@PathVariable int cateCode){
+    public List<ItemVO> getItemsByCategory(@PathVariable("cateCode") int cateCode) {
         return itemService.getItemsByCategory(cateCode);
     }
 
