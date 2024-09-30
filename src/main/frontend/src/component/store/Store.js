@@ -14,6 +14,7 @@ const Store = () => {
   });
   const memNum = JSON.parse(window.sessionStorage.getItem('loginInfo')).memNum;
   const [cartList, setCartList] = useState([]);
+  console.log(cartList)
   const [checkItems, setCheckItems] = useState([]);
   const [allChecked, setAllChecked] = useState(true);
 
@@ -293,7 +294,7 @@ const Store = () => {
       <div className='store-table-div'>
         <div className='search-div'>
           <div>
-            <button type='button' onClick={() => {}}>캡처</button>
+            <button type='button' onClick={() => {}}>발주 내역 리스트</button>
           </div>
           <div>
             <select name='searchType' value={searchData.searchType} onChange={changeSearchData}>
