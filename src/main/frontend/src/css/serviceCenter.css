@@ -191,3 +191,24 @@
 .standard > span:nth-child(2){
   cursor: pointer;
 } 
+
+.faq-list{
+  width: 100%;
+}
+
+.faq{
+  border: 1px solid black;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background-color: #e5e5e5;
+  padding: 1rem;
+}
+
+.faq-detail{
+  display: none;
+}
+
+.faq-detail.show{
+  display: block;
+  background-color: aliceblue;
+}
