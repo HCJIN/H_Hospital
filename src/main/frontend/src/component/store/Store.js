@@ -20,6 +20,7 @@ const Store = () => {
 
   // 체크된 아이템을 담을 배열
   const [checkItems, setCheckItems] = useState([]);
+  console.log(checkItems)
   // 제목줄 체크박스의 체크여부를 저장하고 있는 state 변수
   const [allChecked, setAllChecked] = useState(true);
 
