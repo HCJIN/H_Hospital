@@ -96,22 +96,12 @@ const Store = () => {
     })
   }
 
-<<<<<<< HEAD
   // 카테고리별 목록 조회
-=======
   // // 카테고리별 목록 조회
->>>>>>> jhb
   // const filteredItems = itemList.filter(item => {
   //   if (content === 'A') return true;
   //   return item.category === content;
   // });
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> jbh
-=======
->>>>>>> jhb
 
   // 제목줄의 체크박스 변경 시 실행되는 함수
   function changeChkAll() {
@@ -136,13 +126,8 @@ const Store = () => {
     fatchCartList();
   }, [memNum]);
 
-<<<<<<< HEAD
   // 카테고리별 상품 목록 조회
   useEffect(() => {
-<<<<<<< HEAD
-
-=======
->>>>>>> jbh
     axios.get('/item/getItemList')
       .then((res) => {
         console.log(res.data)
@@ -154,7 +139,6 @@ const Store = () => {
       });
   }, []);
 
-<<<<<<< HEAD
     // const fetchItemsByCategory = () => {
     //   axios.get(`/item/getItemsByCategory/${category}`)
     //     .then((res) => {
@@ -165,7 +149,7 @@ const Store = () => {
     //       console.log(error);
     //     });
     // };
-=======
+
     const fetchItemsByCategory = () => {
       axios.get(`/item/getItemsByCategory/${category}`)
         .then((res) => {
@@ -179,9 +163,6 @@ const Store = () => {
   
     fetchItemsByCategory();
   // }, [category];
->>>>>>> jbh
-=======
->>>>>>> jhb
 
   // // 카테고리별 상품 목록 조회
   // useEffect(() => {
@@ -210,7 +191,6 @@ const Store = () => {
   // }
   
 
-<<<<<<< HEAD
   // 카테고리 버튼 클릭 시 호출되는 함수
   const handleCategoryChange = (code) => {
     setCategory(code); 
@@ -219,11 +199,8 @@ const Store = () => {
     }else{
       // fetchItemsByCategory(code);
     }
-};
+  };
 
-<<<<<<< HEAD
-=======
-=======
 //   // 카테고리 버튼 클릭 시 호출되는 함수
 //   const handleCategoryChange = (code) => {
 //     setCategory(code); 
@@ -233,9 +210,8 @@ const Store = () => {
 //       // fetchItemsByCategory(code);
 //     }
 // };
->>>>>>> jhb
 
->>>>>>> jbh
+
   // 수량 변경 시 처리
   const handleItemCntChange = (index, newCnt) => {
 
