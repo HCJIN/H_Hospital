@@ -275,13 +275,18 @@ const Store = () => {
       </div>
       <div className='store-table-div'>
         <div className='search-div'>
-          <select name='searchType' value={searchData.searchType} onChange={changeSearchData}>
-            <option value={'ITEM_NAME'}>제품명</option>
-            <option value={'ITEM_BRAND'}>제조사명</option>
-            <option value={'CART_STATUS'}>상태</option>
-          </select>
-          <input type='text' name='searchValue' value={searchData.searchValue} onChange={changeSearchData}></input>
-          <button type='button' onClick={search}>검색</button>
+          <div>
+            <button type='button' onClick={() => {}}>캡처</button>
+          </div>
+          <div>
+            <select name='searchType' value={searchData.searchType} onChange={changeSearchData}>
+              <option value={'ITEM_NAME'}>제품명</option>
+              <option value={'ITEM_BRAND'}>제조사명</option>
+              <option value={'CART_STATUS'}>상태</option>
+            </select>
+            <input type='text' name='searchValue' value={searchData.searchValue} onChange={changeSearchData}></input>
+            <button type='button' onClick={search}>검색</button>
+          </div>
         </div>
         <table className='store-table'>
           <thead className='store-thead'>
@@ -409,7 +414,7 @@ const Store = () => {
                   : '가격 정보 없음'}
               </p>
               <p>재고수량 : {item.itemStock}</p>
-              <button type='button' onClick={() => handleAddToCart(item)}>추가</button>
+              <button type='button' className='supliierBtn' onClick={() => handleAddToCart(item)}>추가</button>
             </div>
           ))
         ) : (

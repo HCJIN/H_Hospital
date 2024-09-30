@@ -58,17 +58,17 @@ const Supplier = () => {
     fetchCartList();
   },[])
 
-  // 자바에서 카테고리 목록 데이터 가져오기
-  // useEffect(() => {
-  //   axios
-  //     .get('/item/getCateList')
-  //     .then((res) => {
-  //       setCategoryList(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
+  //자바에서 카테고리 목록 데이터 가져오기
+  useEffect(() => {
+    axios
+      .get('/item/getAllItems')
+      .then((res) => {
+        setCategoryList(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   // 자바에서 상품목록리스트 가져오기
   useEffect(() => {
