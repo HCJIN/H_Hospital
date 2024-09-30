@@ -213,7 +213,7 @@ const Store = () => {
     return axios
       .post(`/cart/statusUpdate/${cartCode}`)
       .then((res) => {
-        console.log('발주요청이 완료되었습니다.');
+        alert('발주요청이 완료되었습니다.');
       })
       .catch((error) => {
         console.log(error);
