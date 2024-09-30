@@ -96,8 +96,6 @@ const Store = () => {
     })
   }
 
-  // 카테고리별 목록 조회
-  // // 카테고리별 목록 조회
   // const filteredItems = itemList.filter(item => {
   //   if (content === 'A') return true;
   //   return item.category === content;
@@ -150,47 +148,57 @@ const Store = () => {
     //     });
     // };
 
-    const fetchItemsByCategory = () => {
-      axios.get(`/item/getItemsByCategory/${category}`)
-        .then((res) => {
-          setItemList(res.data);
-          console.log('Item list:', res.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
+    // const fetchItemsByCategory = () => {
+    //   axios.get(`/item/getItemsByCategory/${category}`)
+    //     .then((res) => {
+    //       setItemList(res.data);
+    //       console.log('Item list:', res.data);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // };
   
-    fetchItemsByCategory();
+    // fetchItemsByCategory();
   // }, [category];
 
-  // // 카테고리별 상품 목록 조회
-  // useEffect(() => {
-  //   const fetchItemsByCategory = () => {
-  //     axios.get(`/item/getItemsByCategory/${category}`)
-  //       .then((res) => {
-  //         setItemList(res.data);
-  //         console.log('Item list:', res.data);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   };
-  
-  //   fetchItemsByCategory();
-  // }, [category]);
+  useEffect(()=>{
+    setCategory(1);
+  })
 
-  // const fetchAllItems =()=>{
-  //   axios.get('item/getAllItems') //이 부분 나중에 수정하기
-  //   .then((res)=>{
-  //     setItemList(res.data);
-  //   })
-  //   .catch((error)=>{
-  //     console.log(error)
-  //   })
-  // }
-  
 
+  useEffect(() => {
+    // 카테고리에 따라 다른 함수 호출
+    category === 1 ? fetchAllItems() : fetchItemsByCategory();
+    }, [category]);
+
+    const fetchAllItems = () => {
+        axios.get('/item/getAllItems')
+            .then((res) => {
+                setItemList(res.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    const fetchItemsByCategory = () => {
+        axios.get(`/item/getItemsByCategory/${category}`)
+            .then((res) => {
+                setItemList(res.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    // // 카테고리 버튼 클릭 핸들러
+    // const handleCategoryChange = (code) => {
+    //     setCategory(code);
+    // };
+
+
+    //여기 와서 수정
   // 카테고리 버튼 클릭 시 호출되는 함수
   const handleCategoryChange = (code) => {
     setCategory(code); 
@@ -341,12 +349,6 @@ const Store = () => {
     })
   }
 
-    // // 카테고리별 목록 조회
-    // const filteredItems = itemList.filter(item => {
-    //   if (category === 1) return true;
-    //   return item.category === category;
-    // });
-
 
   return (
     <div className='store-div'>
@@ -466,7 +468,19 @@ const Store = () => {
         </div>
       </div>
 
-      <div className='medicineTab'>
+
+      <div>
+        <ul className='ulcheck'>
+          {['전체', '전문의약품', '수술관련기기', '멸균기', '폐활량계,심전계'].map((cate, index) => (
+            <li key={index} onClick={() => handleCategoryChange(index + 1)} className={category === index + 1 ? 'medicineLinkOn' : 'medicineLink'}>
+            <Link to={`/admin/store/medicine`} style={{ color: 'black' }}>{cate}</Link>
+          </li>
+          
+          ))}
+        </ul>
+      </div>
+
+      {/* <div className='medicineTab'>
         <ul className='medicineTab'>
           {['전체','전문의약품','수술관련기기','멸균기','폐활량계,심전계'].map(cate=>{
             return(
@@ -476,8 +490,8 @@ const Store = () => {
             );
           })}
         </ul>
-      </div>
-      {/* <div className='store-icon-div'>
+      </div> */}
+      <div className='store-icon-div'>
         <div>
           <i className="bi bi-bag-plus"></i>
           <button type='button' onClick={()=>{handleCategoryChange(1)}}>전체</button>
@@ -499,8 +513,9 @@ const Store = () => {
           <button type='button' onClick={()=>{handleCategoryChange(5)}}>폐활량계,심전계</button>
         </div>
       </div>
+     
 
-      <div className='item-list-box'>
+      {/* <div className='item-list-box'>
         {itemList.map((item, i) => {
           const price = item.itemPrice.toLocaleString('ko-KR', {
             style: 'currency',
@@ -517,7 +532,7 @@ const Store = () => {
             </div>
           );
         })}
-      </div> */}
+      </div>  */}
     </div>
   );
 };
