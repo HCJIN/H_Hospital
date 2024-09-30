@@ -242,15 +242,15 @@ const Store = () => {
       </div>
       <div className='store-table-div'>
         <div className='search-div'>
-          <div>
           <button type='button' className='capture-btn' onClick={() => {}}>발주내역 캡처</button>
-          <select name='searchType' value={searchData.searchType} onChange={changeSearchData}>
-            <option value={'ITEM_NAME'}>제품명</option>
-            <option value={'ITEM_BRAND'}>제조사명</option>
-            <option value={'CART_STATUS'}>상태</option>
-          </select>
-          <input type='text' name='searchValue' value={searchData.searchValue} onChange={changeSearchData}></input>
-          <button type='button' onClick={search}>검색</button>
+          <div>
+            <select name='searchType' value={searchData.searchType} onChange={changeSearchData}>
+              <option value={'ITEM_NAME'}>제품명</option>
+              <option value={'ITEM_BRAND'}>제조사명</option>
+              <option value={'CART_STATUS'}>상태</option>
+            </select>
+            <input type='text' name='searchValue' value={searchData.searchValue} onChange={changeSearchData}></input>
+            <button type='button' onClick={search}>검색</button>
           </div>
         </div>
         <table className='store-table'>
