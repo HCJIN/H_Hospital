@@ -59,16 +59,16 @@ const Supplier = () => {
   },[])
 
   // 자바에서 카테고리 목록 데이터 가져오기
-  useEffect(() => {
-    axios
-      .get('/item/getCateList')
-      .then((res) => {
-        setCategoryList(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get('/item/getCateList')
+  //     .then((res) => {
+  //       setCategoryList(res.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   // 자바에서 상품목록리스트 가져오기
   useEffect(() => {
@@ -225,6 +225,45 @@ const Supplier = () => {
     .catch((error) => {console.log(error)})
   }
 
+  // 체크 박스
+  const [checkItems, setCheckItems] = useState([]);
+  const [allChecked, setAllChecked] = useState(false);
+
+  // 전체 선택 체크박스 핸들러
+  function checkAll(e){
+    const checked = e.target.checked;
+    setAllChecked(checked);
+    if(checked){
+      // 모든 항목의 cartCode를 checkItems에 추가
+      const allCartCodes = cartList.map(item => item.cartCode);
+      setCheckItems(allCartCodes);
+    } else {
+      // checkItems 비우기
+      setCheckItems([]);
+    }
+    }
+
+  // 개별 체크박스 핸들러
+  function handleSingleCheck(checked, cartCode) {
+    if (checked) {
+      // 체크된 항목 추가
+      setCheckItems(prev => [...prev, cartCode]);
+    } else {
+      // 체크 해제된 항목 제거
+      setCheckItems(prev => prev.filter(item => item !== cartCode));
+    }
+  }
+
+  // 전체 선택 상태 관리
+  useEffect(() => {
+    if (cartList.length === checkItems.length) {
+      setAllChecked(true);
+    } else {
+      setAllChecked(false);
+    }
+  }, [checkItems, cartList]);
+
+
   return (
     <div className='supplier-div'>
       {
@@ -241,7 +280,7 @@ const Supplier = () => {
               <table className='ordering-table'>
                 <thead className='ordering-thead'>
                   <tr>
-                    <td><input type='checkbox'/></td>
+                    <td><input type='checkbox' checked={allChecked} onChange={(e) => {checkAll(e)}}/></td>
                     <td><p>제품</p></td>
                     <td><p>수량</p></td>
                     <td><p>주문일시</p></td>
@@ -253,7 +292,7 @@ const Supplier = () => {
                     cartList.map((cart, i)=>{
                       return(
                         <tr key={i}>
-                          <td><input type='checkbox'/></td>
+                          <td><input type='checkbox' checked={checkItems.includes(cart.cartCode)} onClick={(e) => {handleSingleCheck(e.target.checked, cart.cartCode)}} /></td>
                           <td>
                             {cart.itemVO.itemName}
                           </td>
