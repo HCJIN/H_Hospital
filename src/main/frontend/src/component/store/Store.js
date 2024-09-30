@@ -133,31 +133,6 @@ const Store = () => {
             });
     };
 
-    const fetchItemsByCategory = () => {
-    axios.get(`/item/getItemsByCategory/${category}`)
-        .then((res) => {
-            setItemList(res.data);
-        })
-        .catch((error) => {
-          console.log(error)
-        });
-};
-
-
-
-    // 카테고리 버튼 클릭 시 호출되는 함수
-    const handleCategoryChange = (code) => {
-      setCategory(code); 
-      if (code === 1){
-        fetchAllItems();
-      }else{
-         fetchItemsByCategory(code);
-      }
-    };
-
-    // const handleCategoryChange = (code) =>{
-    //   setCategory(code);
-    // }
 
 
 
@@ -422,7 +397,8 @@ const Store = () => {
         </div>
         <div>
           <i className="bi bi-scissors"></i>
-          <button type='button' onClick={() => handleCategoryClick(2)}>수술관련기기</button>
+          <button type='button'
+          onClick={() => handleCategoryClick(2)}>수술관련기기</button>
         </div>
         <div>
           <i className="bi bi-virus"></i>
