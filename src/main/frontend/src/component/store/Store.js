@@ -4,7 +4,16 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 
 const Store = () => {
-  const [category, setCategory] = useState(1); // 카테고리 상태
+  //선택된 카테고리 상태
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  //카테고리 필터링 함수
+  const filterItemsByCategory = (category) => {
+    setSelectedCategory(category);
+  }
+
+  //카테고리별 아이템 필터링
+
   const [itemList, setItemList] = useState([]); // 상품 목록 상태
   const [itemCnt, setItemCnt] = useState(1); // 품목 수량 상태
   //검색 조건을 저장할 변수
@@ -120,71 +129,16 @@ const Store = () => {
     fatchCartList();
   }, [memNum]);
 
-  // 카테고리별 상품 목록 조회
-  // useEffect(() => {
-  //   axios.get('/item/getItemList')
-  //     .then((res) => {
-  //       console.log(res.data)
-  //       setItemList(res.data);
-  //       console.log('Item list:', res.data)
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
-
-
-  // useEffect(()=>{
-  //   setCategory(1);
-  // })
-
-
-  useEffect(() => {
-    // 카테고리에 따라 다른 함수 호출
-    category === 1 ? fetchAllItems() : fetchItemsByCategory();
-    }, [category]);
-
-    const fetchAllItems = () => {
-        axios.get('/item/getAllItems')
-            .then((res) => {
-                console.log('All Items:', res.data);
-                setItemList(res.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
-
-    const fetchItemsByCategory = () => {
-    console.log(`Fetching items for category: ${category}`); // Debug log
-    axios.get(`/item/getItemsByCategory/${category}`)
-        .then((res) => {
-            console.log('Items fetched:', res.data); // Log the response
-            setItemList(res.data);
-        })
-        .catch((error) => {
-            console.log('Error fetching items:', error); // Log any errors
-        });
-};
-
-
-
-    // 카테고리 버튼 클릭 시 호출되는 함수
-    const handleCategoryChange = (code) => {
-      setCategory(code); 
-      if (code === 1){
-        fetchAllItems();
-      }else{
-         fetchItemsByCategory(code);
-      }
-    };
-
-    // const handleCategoryChange = (code) =>{
-    //   setCategory(code);
-    // }
-
-
-
+  useEffect(()=>{
+    axios
+    .get('/item/getItemList')
+    .then((res)=>{
+      setItemList(res.data)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  },[])
 
   // 수량 변경 시 처리
   const handleItemCntChange = (index, newCnt) => {
@@ -440,23 +394,23 @@ const Store = () => {
       <div className='store-icon-div'>
         <div>
           <i className="bi bi-bag-plus"></i>
-          <button type='button' onClick={()=>{handleCategoryChange(1)}}>전체</button>
+          <button type='button' onClick={()=>{}}>전체</button>
         </div>
         <div>
           <i className="bi bi-capsule"></i>
-          <button type='button'onClick={()=>{handleCategoryChange(2)}}>전문의약품</button>
+          <button type='button'onClick={()=>{}}>전문의약품</button>
         </div>
         <div>
           <i className="bi bi-scissors"></i>
-          <button type='button' onClick={()=>{handleCategoryChange(3)}}>수술관련기기</button>
+          <button type='button' onClick={()=>{}}>수술관련기기</button>
         </div>
         <div>
           <i className="bi bi-virus"></i>
-          <button type='button' onClick={()=>{handleCategoryChange(4)}}>멸균기</button>
+          <button type='button' onClick={()=>{}}>멸균기</button>
         </div>
         <div>
           <i className="bi bi-heart-pulse-fill"></i>
-          <button type='button' onClick={()=>{handleCategoryChange(5)}}>폐활량계,심전계</button>
+          <button type='button' onClick={()=>{}}>폐활량계,심전계</button>
         </div>
       </div>
 
@@ -484,27 +438,6 @@ const Store = () => {
           <p>상품이 없습니다.</p>
         )}
   </div>
-
-     
-
-      {/* <div className='item-list-box'>
-        {itemList.map((item, i) => {
-          const price = item.itemPrice.toLocaleString('ko-KR', {
-            style: 'currency',
-            currency: 'KRW'
-          });
-
-          return (
-            <div key={i} className='item-list'>
-              <img src={`http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}`} alt={item.itemName} />
-              <h4>{item.itemName}</h4>
-              <p>{price}</p>
-              <p>재고수량 : {item.itemStock}</p>
-              <button type='button' className='supliierBtn' onClick={() => handleAddToCart(item)}>추가</button>
-            </div>
-          );
-        })}
-      </div>  */}
     </div>
   );
 };
