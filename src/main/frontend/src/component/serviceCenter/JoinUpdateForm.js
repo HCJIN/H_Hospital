@@ -47,11 +47,12 @@ function updateBoard(){
   axios.put('/service/update', updateData)
   .then((res) => {
     alert('수정 완료');
-    setContentDetail({
-      ...contentDetail,
+    setContentDetail((prev) => ({
+      ...prev,
       boardTitle : updateData.boardTitle,
       boardContent : updateData.boardContent
-    });
+    }));
+
     setUpdateWriting(false);
   })
   .catch((error) => {console.log(error)});
