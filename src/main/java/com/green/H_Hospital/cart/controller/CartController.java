@@ -33,7 +33,6 @@ public class CartController {
     // 발주목록 조회 (검색 기능 추가)
     @PostMapping("/searchCartList")
     public List<CartVO> searchCartList(@RequestBody SearchVO searchVO) {
-        log.info("검색 조건: {}", searchVO);
         return cartService.searchCartList(searchVO);
     }
 
