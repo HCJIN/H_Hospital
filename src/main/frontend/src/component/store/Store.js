@@ -95,6 +95,7 @@ const Store = () => {
     fatchCartList();
   }, [memNum]);
 
+
   function all(){
     axios
       .get('/item/getItemList')
@@ -121,6 +122,22 @@ const Store = () => {
       });
   }, []);
 
+    const fetchAllItems = () => {
+        axios.get('/item/getAllItems')
+            .then((res) => {
+                console.log('All Items:', res.data);
+                setItemList(res.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+
+
+
+
+  // 수량 변경 시 처리
   const handleItemCntChange = (index, newCnt) => {
     const selectedItem = cartList[index];
     const matchedItem = itemList.find(item => item.itemCode === selectedItem.itemVO.itemCode);
@@ -385,7 +402,8 @@ const Store = () => {
         </div>
         <div>
           <i className="bi bi-scissors"></i>
-          <button type='button' onClick={() => handleCategoryClick(2)}>수술관련기기</button>
+          <button type='button'
+          onClick={() => handleCategoryClick(2)}>수술관련기기</button>
         </div>
         <div>
           <i className="bi bi-virus"></i>
