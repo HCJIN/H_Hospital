@@ -120,23 +120,6 @@ const Store = () => {
     fatchCartList();
   }, [memNum]);
 
-  // 카테고리별 상품 목록 조회
-  // useEffect(() => {
-  //   axios.get('/item/getItemList')
-  //     .then((res) => {
-  //       console.log(res.data)
-  //       setItemList(res.data);
-  //       console.log('Item list:', res.data)
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
-
-
-  // useEffect(()=>{
-  //   setCategory(1);
-  // })
 
 
   useEffect(() => {
@@ -156,14 +139,12 @@ const Store = () => {
     };
 
     const fetchItemsByCategory = () => {
-    console.log(`Fetching items for category: ${category}`); // Debug log
     axios.get(`/item/getItemsByCategory/${category}`)
         .then((res) => {
-            console.log('Items fetched:', res.data); // Log the response
             setItemList(res.data);
         })
         .catch((error) => {
-            console.log('Error fetching items:', error); // Log any errors
+          console.log(error)
         });
 };
 
