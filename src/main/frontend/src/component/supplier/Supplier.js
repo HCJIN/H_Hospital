@@ -241,6 +241,7 @@ const Supplier = () => {
               <table className='ordering-table'>
                 <thead className='ordering-thead'>
                   <tr>
+                    <td><input type='checkbox'/></td>
                     <td><p>제품</p></td>
                     <td><p>수량</p></td>
                     <td><p>주문일시</p></td>
@@ -252,6 +253,7 @@ const Supplier = () => {
                     cartList.map((cart, i)=>{
                       return(
                         <tr key={i}>
+                          <td><input type='checkbox'/></td>
                           <td>
                             {cart.itemVO.itemName}
                           </td>
