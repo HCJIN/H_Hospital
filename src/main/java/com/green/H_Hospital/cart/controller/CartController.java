@@ -66,4 +66,10 @@ public class CartController {
         cartService.goShipment(cartVO);
     }
 
+    //출하 취소
+    @PutMapping("/cancelItem")
+    public void cancelItem(@RequestBody CartVO cartVO){
+        cartService.cancelItem(cartVO);
+    }
+
 }

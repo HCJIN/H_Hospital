@@ -208,6 +208,23 @@ const Supplier = () => {
     })
   }
 
+  // 취소 버튼 클릭 시
+  function cancelItem(cart){
+    const shipmentData = {
+      cartCode : cart.cartCode,
+      cartCnt : cart.cartCnt
+    }
+
+    axios.put('/cart/cancelItem', shipmentData)
+    .then((res) => {
+      alert('발주요청이 취소되었습니다.')
+
+      fetchCartList();
+
+    })
+    .catch((error) => {console.log(error)})
+  }
+
   return (
     <div className='supplier-div'>
       {
@@ -253,9 +270,14 @@ const Supplier = () => {
                               cart.cartStatus != '발주요청' ? 
                               <></>
                               :
+                              <>
                               <button type='button' className='btn btn-Subprimary' onClick={()=>{
                                 goShipment(cart);
                               }}>출하</button>
+                              <button type='button' className='btn btn-Subprimary' onClick={() => {
+                                cancelItem(cart);
+                              }}>취소</button>
+                              </>
                             }
                           </td>
                         </tr>

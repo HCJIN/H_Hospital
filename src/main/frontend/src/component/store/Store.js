@@ -149,20 +149,7 @@ const Store = () => {
     //     });
     // };
 
-    // const fetchItemsByCategory = () => {
-    //   axios.get(`/item/getItemsByCategory/${category}`)
-    //     .then((res) => {
-    //       setItemList(res.data);
-    //       console.log('Item list:', res.data);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // };
   
-    // fetchItemsByCategory();
-  // }, [category];
-
   useEffect(()=>{
     setCategory(1);
   })
@@ -175,12 +162,12 @@ const Store = () => {
 
     const fetchAllItems = () => {
         axios.get('/item/getAllItems')
-            .then((res) => {
-                setItemList(res.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+          .then((res) => {
+              setItemList(res.data);
+          })
+          .catch((error) => {
+              console.log(error);
+          });
     };
 
     const fetchItemsByCategory = () => {
@@ -362,15 +349,18 @@ const Store = () => {
       </div>
       <div className='store-table-div'>
         <div className='search-div'>
-          <select name='searchType' value={searchData.searchType} onChange={(e)=>{changeSearchData(e)}}>
-            <option value={'ITEM_NAME'}>제품명</option>
-            <option value={'ITEM_BRAND'}>제조사명</option>
-            <option value={'CART_STATUS'}>상태</option>
-          </select>
-          <input type='text' name='searchValue' value={searchData.searchValue} onChange={(e)=>{changeSearchData(e)}}></input>
-          <button type='button' onClick={(e)=>{
-            search()
-          }}>검색</button>
+          <button type='button' className='capture-btn' onClick={() => {}}>발주내역 캡처</button>
+          <div>
+            <select name='searchType' value={searchData.searchType} onChange={(e)=>{changeSearchData(e)}}>
+              <option value={'ITEM_NAME'}>제품명</option>
+              <option value={'ITEM_BRAND'}>제조사명</option>
+              <option value={'CART_STATUS'}>상태</option>
+            </select>
+            <input type='text' name='searchValue' value={searchData.searchValue} onChange={(e)=>{changeSearchData(e)}}></input>
+            <button type='button' onClick={(e)=>{
+              search()
+            }}>검색</button>
+          </div>
         </div>
         <table className='store-table'>
           <thead className='store-thead'>

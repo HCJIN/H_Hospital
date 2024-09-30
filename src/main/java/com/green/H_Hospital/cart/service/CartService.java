@@ -30,4 +30,7 @@ public interface CartService {
     //제품 출하
     void goShipment(CartVO cartVO);
 
+    //출하 취소
+    void cancelItem(CartVO cartVO);
+
 }

@@ -84,4 +84,9 @@ public class CartServiceImpl implements CartService{
         sqlSession.update("cartMapper.goShipment", cartVO);
     }
 
+    @Override
+    public void cancelItem(CartVO cartVO) {
+        sqlSession.update("cartMapper.cancelItem", cartVO);
+    }
+
 }
