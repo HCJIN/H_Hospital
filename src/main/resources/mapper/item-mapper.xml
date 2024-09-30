@@ -37,15 +37,24 @@
     </select>
 
     <!-- 카테고리별 제품 조회-->
-    <select id="getItemsByCategory" resultType="com.green.H_Hospital.item.vo.ItemVO">
-        SELECT CATE_CODE
-        ,CATE_NAME
-        ,ITEM_PRICE
-        ,ITEM_STOCK
-        ,ITEM_CODE
-        FROM ITEM_CATEGORY
-        WHERE CATE_CODE = #{cateCode}
-        ORDER BY ITEM_CODE ASC;
+    <select id="getItemsByCategory" resultMap="item">
+        SELECT
+            item.ITEM_CODE,
+            item.ITEM_NAME,
+            item.ITEM_PRICE,
+            item.ITEM_STOCK,
+            item.ITEM_BRAND,
+            item.ITEM_INTRO,
+            img.IMG_CODE,
+            img.ORIGIN_FILE_NAME,
+            img.ATTACHED_FILE_NAME,
+            img.IS_MAIN,
+            cate.CATE_NAME
+        FROM SHOP_ITEM item
+        JOIN ITEM_CATEGORY cate ON item.CATE_CODE = cate.CATE_CODE
+        LEFT JOIN ITEM_IMG img ON item.ITEM_CODE = img.ITEM_CODE AND img.IS_MAIN = 'Y'
+        WHERE cate.CATE_CODE = #{cateCode}
+        ORDER BY item.ITEM_CODE DESC;
     </select>
 
 
