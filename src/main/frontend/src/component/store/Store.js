@@ -26,8 +26,6 @@ const Store = () => {
       setFilteredItemList(filtered);
     }
   };
-
-
   console.log(selectedCategory)
 
   const onCategory = (category) => {
@@ -48,7 +46,6 @@ const Store = () => {
     onCategory(category);
   }
 
->>>>>>> hcj
   const changeSearchData = (e) => {
     setSearchData({
       ...searchData,
@@ -98,12 +95,6 @@ const Store = () => {
     fatchCartList();
   }, [memNum]);
 
-<<<<<<< HEAD
-  useEffect(() => {
-    axios
-      .get('/item/getItemList')
-      .then((res) => {
-=======
   function all(){
     axios
       .get('/item/getItemList')
@@ -122,7 +113,6 @@ const Store = () => {
       .get('/item/getItemList')
       .then((res) => {
         console.log(res.data)
->>>>>>> hcj
         setItemList(res.data);
         setFilteredItemList(res.data);
       })
@@ -285,18 +275,6 @@ const Store = () => {
       </div>
       <div className='store-table-div'>
         <div className='search-div'>
-<<<<<<< HEAD
-          <button type='button' className='capture-btn' onClick={() => {}}>발주내역 캡처</button>
-          <div>
-            <select name='searchType' value={searchData.searchType} onChange={changeSearchData}>
-              <option value={'ITEM_NAME'}>제품명</option>
-              <option value={'ITEM_BRAND'}>제조사명</option>
-              <option value={'CART_STATUS'}>상태</option>
-            </select>
-            <input type='text' name='searchValue' value={searchData.searchValue} onChange={changeSearchData}></input>
-            <button type='button' onClick={search}>검색</button>
-          </div>
-=======
           <select name='searchType' value={searchData.searchType} onChange={changeSearchData}>
             <option value={'ITEM_NAME'}>제품명</option>
             <option value={'ITEM_BRAND'}>제조사명</option>
@@ -304,7 +282,6 @@ const Store = () => {
           </select>
           <input type='text' name='searchValue' value={searchData.searchValue} onChange={changeSearchData}></input>
           <button type='button' onClick={search}>검색</button>
->>>>>>> hcj
         </div>
         <table className='store-table'>
           <thead className='store-thead'>
@@ -391,25 +368,6 @@ const Store = () => {
       <div className='store-icon-div'>
         <div>
           <i className="bi bi-bag-plus"></i>
-<<<<<<< HEAD
-          <button type='button' onClick={() => filterItemsByCategory('all')}>전체</button>
-        </div>
-        <div>
-          <i className="bi bi-capsule"></i>
-          <button type='button' onClick={() => filterItemsByCategory('전문의약품')}>전문의약품</button>
-        </div>
-        <div>
-          <i className="bi bi-scissors"></i>
-          <button type='button' onClick={() => filterItemsByCategory('수술관련기기')}>수술관련기기</button>
-        </div>
-        <div>
-          <i className="bi bi-virus"></i>
-          <button type='button' onClick={() => filterItemsByCategory('멸균기')}>멸균기</button>
-        </div>
-        <div>
-          <i className="bi bi-heart-pulse-fill"></i>
-          <button type='button' onClick={() => filterItemsByCategory('폐활량계,심전계')}>폐활량계,심전계</button>
-=======
           <button type='button' onClick={() => {all()}}>전체</button>
         </div>
         <div>
@@ -431,7 +389,6 @@ const Store = () => {
         <div>
           <i className="bi bi-heart-pulse-fill"></i>
           <button type='button' onClick={() => handleCategoryClick(4)}>폐활량계,심전계</button>
->>>>>>> hcj
         </div>
       </div>
 
