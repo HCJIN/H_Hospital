@@ -29,9 +29,9 @@
     </resultMap>
 
     <!-- 카테고리 목록 조회 -->
-    <select id="getCategoryList" resultMap="category">
-        SELECT CATE_CODE,
-        CATE_NAME
+    <select id="getAllItems" resultMap="category">
+        SELECT CATE_CODE
+        ,CATE_NAME
         FROM ITEM_CATEGORY
         ORDER BY CATE_CODE ASC;
     </select>
@@ -41,10 +41,9 @@
         SELECT CATE_CODE
         ,CATE_NAME
         ,ITEM_PRICE
-        ,ITEM_INTRO
         ,ITEM_STOCK
         ,ITEM_CODE
-        FROM ITEM
+        FROM ITEM_CATEGORY
         WHERE CATE_CODE = #{cateCode}
         ORDER BY ITEM_CODE ASC;
     </select>

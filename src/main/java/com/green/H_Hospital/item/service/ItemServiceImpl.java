@@ -17,8 +17,8 @@ public class ItemServiceImpl implements ItemService{
 
     //카테고리 조회
     @Override
-    public List<CategoryVO> getCateList() {
-        return sqlSession.selectList("itemMapper.getCategoryList");
+    public List<CategoryVO> getAllItems() {
+        return sqlSession.selectList("itemMapper.getAllItems");
     }
 
     //카테고리별 제품 상세조회

@@ -96,10 +96,6 @@ const Store = () => {
     })
   }
 
-  // const filteredItems = itemList.filter(item => {
-  //   if (content === 'A') return true;
-  //   return item.category === content;
-  // });
 
   // 제목줄의 체크박스 변경 시 실행되는 함수
   function changeChkAll() {
@@ -125,46 +121,22 @@ const Store = () => {
   }, [memNum]);
 
   // 카테고리별 상품 목록 조회
-  useEffect(() => {
-    axios.get('/item/getItemList')
-      .then((res) => {
-        console.log(res.data)
-        setItemList(res.data);
-        console.log('Item list:', res.data)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios.get('/item/getItemList')
+  //     .then((res) => {
+  //       console.log(res.data)
+  //       setItemList(res.data);
+  //       console.log('Item list:', res.data)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
 
-    // const fetchItemsByCategory = () => {
-    //   axios.get(`/item/getItemsByCategory/${category}`)
-    //     .then((res) => {
-    //       setItemList(res.data);
-    //       console.log('Item list:', res.data);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // };
 
-    // const fetchItemsByCategory = () => {
-    //   axios.get(`/item/getItemsByCategory/${category}`)
-    //     .then((res) => {
-    //       setItemList(res.data);
-    //       console.log('Item list:', res.data);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // };
-  
-    // fetchItemsByCategory();
-  // }, [category];
-
-  useEffect(()=>{
-    setCategory(1);
-  })
+  // useEffect(()=>{
+  //   setCategory(1);
+  // })
 
 
   useEffect(() => {
@@ -175,6 +147,7 @@ const Store = () => {
     const fetchAllItems = () => {
         axios.get('/item/getAllItems')
             .then((res) => {
+                console.log('All Items:', res.data);
                 setItemList(res.data);
             })
             .catch((error) => {
@@ -183,41 +156,34 @@ const Store = () => {
     };
 
     const fetchItemsByCategory = () => {
-        axios.get(`/item/getItemsByCategory/${category}`)
-            .then((res) => {
-                setItemList(res.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+    console.log(`Fetching items for category: ${category}`); // Debug log
+    axios.get(`/item/getItemsByCategory/${category}`)
+        .then((res) => {
+            console.log('Items fetched:', res.data); // Log the response
+            setItemList(res.data);
+        })
+        .catch((error) => {
+            console.log('Error fetching items:', error); // Log any errors
+        });
+};
+
+
+
+    // 카테고리 버튼 클릭 시 호출되는 함수
+    const handleCategoryChange = (code) => {
+      setCategory(code); 
+      if (code === 1){
+        fetchAllItems();
+      }else{
+         fetchItemsByCategory(code);
+      }
     };
 
-    // // 카테고리 버튼 클릭 핸들러
-    // const handleCategoryChange = (code) => {
-    //     setCategory(code);
-    // };
+    // const handleCategoryChange = (code) =>{
+    //   setCategory(code);
+    // }
 
 
-    //여기 와서 수정
-  // 카테고리 버튼 클릭 시 호출되는 함수
-  const handleCategoryChange = (code) => {
-    setCategory(code); 
-    if (code === 1){
-      fetchAllItems();
-    }else{
-      // fetchItemsByCategory(code);
-    }
-  };
-
-//   // 카테고리 버튼 클릭 시 호출되는 함수
-//   const handleCategoryChange = (code) => {
-//     setCategory(code); 
-//     if (code === 1){
-//       fetchAllItems();
-//     }else{
-//       // fetchItemsByCategory(code);
-//     }
-// };
 
 
   // 수량 변경 시 처리
@@ -469,28 +435,8 @@ const Store = () => {
       </div>
 
 
-      <div>
-        <ul className='ulcheck'>
-          {['전체', '전문의약품', '수술관련기기', '멸균기', '폐활량계,심전계'].map((cate, index) => (
-            <li key={index} onClick={() => handleCategoryChange(index + 1)} className={category === index + 1 ? 'medicineLinkOn' : 'medicineLink'}>
-            <Link to={`/admin/store/medicine`} style={{ color: 'black' }}>{cate}</Link>
-          </li>
-          
-          ))}
-        </ul>
-      </div>
 
-      {/* <div className='medicineTab'>
-        <ul className='medicineTab'>
-          {['전체','전문의약품','수술관련기기','멸균기','폐활량계,심전계'].map(cate=>{
-            return(
-              <li key={cate}n className={category === cate ? 'medicineLinkOn' : 'medicineLink'}>
-                <Link to={`/admin/store/medicine`}>{cate}</Link>
-              </li>
-            );
-          })}
-        </ul>
-      </div> */}
+
       <div className='store-icon-div'>
         <div>
           <i className="bi bi-bag-plus"></i>
@@ -513,6 +459,32 @@ const Store = () => {
           <button type='button' onClick={()=>{handleCategoryChange(5)}}>폐활량계,심전계</button>
         </div>
       </div>
+
+      <div className='item-list-box'>
+        {itemList.length > 0 ? (
+          itemList.map((item, i) => (
+            <div key={i} className='item-list'>
+              <img 
+                src={item.imgList && item.imgList.length > 0 
+                  ? `http://localhost:8080/images/upload/${item.imgList[0].attachedFileName}` 
+                  : 'default_image_url'} 
+                alt={item.itemName} 
+              />
+              <h4>{item.itemName}</h4>
+              <p>
+                {item.itemPrice 
+                  ? item.itemPrice.toLocaleString('ko-KR', { style: 'currency', currency: 'KRW' }) 
+                  : '가격 정보 없음'}
+              </p>
+              <p>재고수량 : {item.itemStock}</p>
+              <button type='button' onClick={() => handleAddToCart(item)}>추가</button>
+            </div>
+          ))
+        ) : (
+          <p>상품이 없습니다.</p>
+        )}
+  </div>
+
      
 
       {/* <div className='item-list-box'>
