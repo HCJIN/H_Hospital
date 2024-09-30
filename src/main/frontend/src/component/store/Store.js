@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 
 const Store = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState();
   const [itemList, setItemList] = useState([]);
   const [filteredItemList, setFilteredItemList] = useState([]);
   const [itemCnt, setItemCnt] = useState(1);
@@ -27,6 +27,28 @@ const Store = () => {
     }
   };
 
+
+  console.log(selectedCategory)
+
+  const onCategory = (category) => {
+    axios
+      .get(`/item/getCategoryItem/${category}`)
+      .then((res) => {
+        setItemList(res.data);
+        setFilteredItemList(res.data); // 불러온 데이터를 필터링된 리스트로 설정
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleCategoryClick = (category) => {
+    filterItemsByCategory(category);
+    console.log(filteredItemList)
+    onCategory(category);
+  }
+
+>>>>>>> hcj
   const changeSearchData = (e) => {
     setSearchData({
       ...searchData,
@@ -76,10 +98,31 @@ const Store = () => {
     fatchCartList();
   }, [memNum]);
 
+<<<<<<< HEAD
   useEffect(() => {
     axios
       .get('/item/getItemList')
       .then((res) => {
+=======
+  function all(){
+    axios
+      .get('/item/getItemList')
+      .then((res) => {
+        console.log(res.data)
+        setItemList(res.data);
+        setFilteredItemList(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  useEffect(() => {
+    axios
+      .get('/item/getItemList')
+      .then((res) => {
+        console.log(res.data)
+>>>>>>> hcj
         setItemList(res.data);
         setFilteredItemList(res.data);
       })
@@ -242,6 +285,7 @@ const Store = () => {
       </div>
       <div className='store-table-div'>
         <div className='search-div'>
+<<<<<<< HEAD
           <button type='button' className='capture-btn' onClick={() => {}}>발주내역 캡처</button>
           <div>
             <select name='searchType' value={searchData.searchType} onChange={changeSearchData}>
@@ -252,6 +296,15 @@ const Store = () => {
             <input type='text' name='searchValue' value={searchData.searchValue} onChange={changeSearchData}></input>
             <button type='button' onClick={search}>검색</button>
           </div>
+=======
+          <select name='searchType' value={searchData.searchType} onChange={changeSearchData}>
+            <option value={'ITEM_NAME'}>제품명</option>
+            <option value={'ITEM_BRAND'}>제조사명</option>
+            <option value={'CART_STATUS'}>상태</option>
+          </select>
+          <input type='text' name='searchValue' value={searchData.searchValue} onChange={changeSearchData}></input>
+          <button type='button' onClick={search}>검색</button>
+>>>>>>> hcj
         </div>
         <table className='store-table'>
           <thead className='store-thead'>
@@ -338,6 +391,7 @@ const Store = () => {
       <div className='store-icon-div'>
         <div>
           <i className="bi bi-bag-plus"></i>
+<<<<<<< HEAD
           <button type='button' onClick={() => filterItemsByCategory('all')}>전체</button>
         </div>
         <div>
@@ -355,6 +409,29 @@ const Store = () => {
         <div>
           <i className="bi bi-heart-pulse-fill"></i>
           <button type='button' onClick={() => filterItemsByCategory('폐활량계,심전계')}>폐활량계,심전계</button>
+=======
+          <button type='button' onClick={() => {all()}}>전체</button>
+        </div>
+        <div>
+          <i className="bi bi-capsule"></i>
+          <button 
+          type='button' 
+          onClick={() => handleCategoryClick(1)
+            
+          }>전문의약품</button>
+        </div>
+        <div>
+          <i className="bi bi-scissors"></i>
+          <button type='button' onClick={() => handleCategoryClick(2)}>수술관련기기</button>
+        </div>
+        <div>
+          <i className="bi bi-virus"></i>
+          <button type='button' onClick={() => handleCategoryClick(3)}>멸균기</button>
+        </div>
+        <div>
+          <i className="bi bi-heart-pulse-fill"></i>
+          <button type='button' onClick={() => handleCategoryClick(4)}>폐활량계,심전계</button>
+>>>>>>> hcj
         </div>
       </div>
 

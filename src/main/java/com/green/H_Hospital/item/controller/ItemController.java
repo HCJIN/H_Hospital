@@ -35,10 +35,10 @@ public class ItemController {
         return itemService.getAllItems();
     }
 
-    //특정 카테고리의 아이템 조회
-    @GetMapping("/getItemsByCategory/{cateCode}")
-    public List<ItemVO> getItemsByCategory(@PathVariable("cateCode") int cateCode) {
-        return itemService.getItemsByCategory(cateCode);
+    //카테고리 선택 아이템 조회
+    @GetMapping("/getCategoryItem/{cateName}")
+    public List<ItemVO> getCategoryItem(@PathVariable("cateName")int cateName){
+        return itemService.getItemsByCategory(cateName);
     }
 
     //상품 등록
