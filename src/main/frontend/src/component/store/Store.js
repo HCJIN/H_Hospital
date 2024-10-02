@@ -4,7 +4,6 @@ import axios from 'axios';
 import ItemDetail from '../supplier/ItemDetail';
 
 const Store = () => {
-<<<<<<< HEAD
 
   //선택된 제품
   const [selectedItem, setSelectedItem] = useState(null);
@@ -12,9 +11,7 @@ const Store = () => {
   //제품 상세보기
   const [show, setShow] = useState(false);
 
-=======
   //선택된 카테고리 useState
->>>>>>> cbf2eef9fb3b58226f6acc0693217163fd3afb92
   const [selectedCategory, setSelectedCategory] = useState();
   //아이템 리스트 useState
   const [itemList, setItemList] = useState([]);
