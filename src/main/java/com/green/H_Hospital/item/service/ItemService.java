@@ -2,6 +2,7 @@ package com.green.H_Hospital.item.service;
 
 import com.green.H_Hospital.item.vo.CategoryVO;
 import com.green.H_Hospital.item.vo.ItemVO;
+import com.green.H_Hospital.item.vo.PageVO;
 
 import java.util.List;
 
@@ -33,4 +34,10 @@ public interface ItemService {
 
     //아이템 삭제
     void deleteItem(int itemCode);
+
+    //전체 아이템 갯수 조회
+    int getItemCnt();
+
+    //아이템 리스트 조회 (페이징 처리)
+    List<ItemVO> getItemList(PageVO pageVO);
 }

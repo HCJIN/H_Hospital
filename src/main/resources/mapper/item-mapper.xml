@@ -59,7 +59,7 @@
 
 
     <!-- 상품 목록 조회 -->
-    <select id="getItemList" resultMap="item">
+    <select id="getItemListWithPaging" resultMap="item">
         SELECT item.ITEM_CODE
         ,   item.ITEM_NAME
         ,   item.ITEM_PRICE
@@ -71,10 +71,11 @@
         ,   img.IS_MAIN
         ,   item.ITEM_INTRO
         ,   item.ITEM_BRAND
-        FROM SHOP_ITEM item, ITEM_IMG img
-        WHERE item.ITEM_CODE = img.ITEM_CODE
-        AND IS_MAIN = 'Y'
-        ORDER BY item.ITEM_CODE DESC;
+        FROM SHOP_ITEM item
+        LEFT JOIN ITEM_IMG img ON item.ITEM_CODE = img.ITEM_CODE
+        WHERE img.IS_MAIN = 'Y'
+        ORDER BY item.ITEM_CODE DESC
+        LIMIT #{displayDataCnt} OFFSET #{offset}
     </select>
 
     <!-- 상품 등록 -->
@@ -150,7 +151,10 @@
         WHERE ITEM_CODE = #{itemCode}
     </delete>
 
-
+    <!-- 전체 아이템 수 조회 -->
+    <select id="getItemCnt" resultType="int">
+        SELECT COUNT(ITEM_CODE) FROM SHOP_ITEM
+    </select>
 
 </mapper>
 

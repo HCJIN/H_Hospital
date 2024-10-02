@@ -2,12 +2,14 @@ package com.green.H_Hospital.item.service;
 
 import com.green.H_Hospital.item.vo.CategoryVO;
 import com.green.H_Hospital.item.vo.ItemVO;
+import com.green.H_Hospital.item.vo.PageVO;
 import jakarta.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service("itemService")
 public class ItemServiceImpl implements ItemService{
@@ -68,6 +70,22 @@ public class ItemServiceImpl implements ItemService{
     @Override
     public void deleteItem(int itemCode) {
         sqlSession.delete("itemMapper.deleteItem", itemCode);
+    }
+
+    //전체 아이템 갯수 조회
+    @Override
+    public int getItemCnt() {
+        return sqlSession.selectOne("itemMapper.getItemCnt");
+    }
+
+    //아이템 리스트 조회 (페이징 처리)
+    @Override
+    public List<ItemVO> getItemList(PageVO pageVO) {
+        // 페이지 정보를 설정
+        pageVO.setPageInfo();
+
+        // 페이징 처리를 위한 매개변수를 전달하여 조회
+        return sqlSession.selectList("itemMapper.getItemListWithPaging", pageVO);
     }
 
 }
