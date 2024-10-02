@@ -10,14 +10,9 @@ const Store = () => {
 
   //선택된 제품
   const [selectedItem, setSelectedItem] = useState(null);
-
   //제품 상세보기
   const [show, setShow] = useState(false);
-
-<<<<<<< HEAD
   //선택된 카테고리 useState
-=======
->>>>>>> jhb
   const [selectedCategory, setSelectedCategory] = useState();
   //아이템 리스트 useState
   const [itemList, setItemList] = useState([]);
@@ -25,6 +20,8 @@ const Store = () => {
   const [filteredItemList, setFilteredItemList] = useState([]);
   //총 금액 계산 state
   const [totalPrice, setTotalPrice] = useState(0);
+  //자바에서 가져온 페이지 정보를 담을 변수
+  const [pageInfo, setPageInfo] = useState({});
   //검색데이터 useState
   const [searchData, setSearchData] = useState({
     searchType: 'ITEM_NAME',
@@ -151,7 +148,7 @@ const Store = () => {
   //모든 아이템을 가져오는 함수
   function all(){
     axios
-      .get('/item/getItemList')
+      .post('/item/getItemList')
       .then((res) => {
         console.log(res.data)
         setItemList(res.data);
@@ -165,7 +162,7 @@ const Store = () => {
   //마운트 시 모든 아이템 가져오기
   useEffect(() => {
     axios
-      .get('/item/getItemList')
+      .post('/item/getItemList')
       .then((res) => {
         console.log(res.data)
         setItemList(res.data);
@@ -393,6 +390,55 @@ const Store = () => {
     });
   };
 
+  // 페이징 그리기 함수 수정
+function drawPagination(){
+  const arr = [];
+
+  if(pageInfo.prev){
+    arr.push(
+      <span key="prev" className='page-span' onClick={() => getList(pageInfo.beginPage - 1)}>
+        이전
+      </span>
+    )
+  }
+
+  for(let i = pageInfo.beginPage; i <= pageInfo.endPage; i++){
+    arr.push(
+      <span 
+        className={`page-span ${pageInfo.currentPage === i ? 'current-page' : ''}`}
+        key={i} 
+        onClick={() => getList(i)}
+      >
+        {i}
+      </span>
+    )
+  }
+
+  if(pageInfo.next){
+    arr.push(
+      <span key="next" className='page-span' onClick={() => getList(pageInfo.endPage + 1)}>
+        다음
+      </span>
+    )
+  }
+
+  return arr;
+}
+
+// 페이징 처리한 곳에서 숫자(페이지번호)를 클릭하면 다시 게시글을 조회
+function getList(pageNo){
+  axios
+  .post(`/item/getItemList/${pageNo}`)
+  .then((res)=>{
+    setItemList(res.data.itemList);
+    setPageInfo(res.data.pageInfo);
+    // 페이지 상단으로 스크롤
+    window.scrollTo(0, 0);
+  })
+  .catch((error)=>{
+    console.log(error)
+  })
+}
 
   return (
     <div className='store-div'>
@@ -581,6 +627,12 @@ const Store = () => {
         ) : (
           <p>상품이 없습니다.</p>
         )}
+      </div>
+      {/* 페이징 정보가 나오는 div */}
+      <div>
+        {
+          drawPagination()
+        }
       </div>
     </div>
   );

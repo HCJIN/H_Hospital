@@ -4,14 +4,15 @@ import com.green.H_Hospital.item.service.ItemService;
 import com.green.H_Hospital.item.vo.CategoryVO;
 import com.green.H_Hospital.item.vo.ImgVO;
 import com.green.H_Hospital.item.vo.ItemVO;
+import com.green.H_Hospital.item.vo.PageVO;
+import com.green.H_Hospital.search.vo.SearchVO;
 import com.green.H_Hospital.util.FileUploadUtil;
 import jakarta.annotation.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/item")
@@ -21,10 +22,29 @@ public class ItemController {
     private ItemService itemService;
 
     //아이템 리스트 조회
-    @GetMapping("/getItemList")
-    public List<ItemVO> getItemList(){
-        return itemService.getItemList();
+    @PostMapping("/getItemList")
+    public Map<String, Object> getItemList() {
+        // 전체 게시글 수
+        int totalDataCnt = itemService.getItemCnt();
+
+        // 페이지 정보를 담을 수 있는 PageVO 객체 생성
+        PageVO pageInfo = new PageVO(totalDataCnt);
+        pageInfo.setPageInfo(); // 페이지 정보 설정
+
+        // 게시글 목록 데이터 (페이징 처리)
+        List<ItemVO> itemList = itemService.getItemList(pageInfo);
+
+        // 리액트로 가져갈 모든 데이터를 담을 변수
+        Map<String, Object> mapData = new HashMap<>();
+        // 페이징 정보가 담긴 데이터
+        mapData.put("pageInfo", pageInfo);
+        mapData.put("itemList", itemList);
+
+        System.out.println("=====" + mapData);
+
+        return mapData;
     }
+
 
     //아이템 상세정보 조회
     //보류
