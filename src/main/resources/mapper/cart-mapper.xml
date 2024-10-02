@@ -37,7 +37,8 @@
             IMG.ATTACHED_FILE_NAME,
             CART.CART_STATUS,
             ITEM.ITEM_STOCK,
-            ITEM.ITEM_CODE
+            ITEM.ITEM_CODE,
+            ITEM.ITEM_PRICE
         FROM
             SHOP_CART CART
         JOIN

@@ -4,20 +4,30 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 
 const Store = () => {
+  //선택된 카테고리 useState
   const [selectedCategory, setSelectedCategory] = useState();
+  //아이템 리스트 useState
   const [itemList, setItemList] = useState([]);
+  //필터링된 아이템 목록 useState
   const [filteredItemList, setFilteredItemList] = useState([]);
-  const [itemCnt, setItemCnt] = useState(1);
+  //총 금액 계산 state
+  const [totalPrice, setTotalPrice] = useState(0);
+  //검색데이터 useState
   const [searchData, setSearchData] = useState({
     searchType: 'ITEM_NAME',
     searchValue: ''
   });
+  //세션 스토리지에서 회원번호 가져오기
   const memNum = JSON.parse(window.sessionStorage.getItem('loginInfo')).memNum;
+  //장바구니리스트 useState
   const [cartList, setCartList] = useState([]);
   console.log(cartList)
+  //체크된 아이템 useState
   const [checkItems, setCheckItems] = useState([]);
+  //전체선택 체크상태 useState
   const [allChecked, setAllChecked] = useState(true);
 
+  //카테고리로 아이템 필터링
   const filterItemsByCategory = (category) => {
     setSelectedCategory(category);
     if (category === 'all') {
@@ -29,6 +39,7 @@ const Store = () => {
   };
   console.log(selectedCategory)
 
+  //선택된 카테고리의 아이템을 가져옴
   const onCategory = (category) => {
     axios
       .get(`/item/getCategoryItem/${category}`)
@@ -41,12 +52,14 @@ const Store = () => {
       });
   };
 
+  //카테고리 클릭 시 처리
   const handleCategoryClick = (category) => {
     filterItemsByCategory(category);
     console.log(filteredItemList)
     onCategory(category);
   }
 
+  //검색 데이터 변경 처리
   const changeSearchData = (e) => {
     setSearchData({
       ...searchData,
@@ -54,10 +67,12 @@ const Store = () => {
     });
   };
 
+  //장바구니 목록을 가져오는 함수
   const fatchCartList = () => {
     axios.get(`/cart/getCartList/${memNum}`)
       .then((res) => {
         setCartList(res.data);
+        calculateTotalPrice();
       })
       .catch((error) => {
         alert('발주목록 조회 오류🤢🛒');
@@ -65,6 +80,26 @@ const Store = () => {
       });
   };
 
+  //체크된 아이템이 변경될 때마다 총 가격을 업데이트
+  useEffect(()=>{
+    calculateTotalPrice();
+  },[checkItems])
+
+  //총 가격 계산
+  const calculateTotalPrice = () => {
+    let total = 0;
+
+    checkItems.forEach((isChecked, index)=>{
+      if(isChecked && cartList[index]) {
+        const cart = cartList[index];
+        total += cart.cartCnt * cart.itemVO.itemPrice
+      }
+    });
+    setTotalPrice(total);
+  }
+  console.log(checkItems)
+
+  //장바구니 검색 기능
   const search = () => {
     axios
       .post('/cart/searchCartList', { ...searchData, memNum: memNum })
@@ -76,27 +111,31 @@ const Store = () => {
       });
   };
 
+  //전체선택 체크/해제 처리
   const changeChkAll = () => {
     setAllChecked(!allChecked);
     const newCheckItems = Array(cartList.length).fill(!allChecked);
     setCheckItems(newCheckItems);
   };
 
+  //장바구니가 변경될 때 체크 상태 초기화
   useEffect(() => {
     setCheckItems(Array(cartList.length).fill(false));
     setAllChecked(false);
   }, [cartList]);
 
+  //체크된 아이템의 모든 체크 상태 업데이트
   useEffect(() => {
     const allCheckedState = checkItems.every((item) => item);
     setAllChecked(allCheckedState);
   }, [checkItems]);
 
+
   useEffect(() => {
     fatchCartList();
   }, [memNum]);
 
-
+  //모든 아이템을 가져오는 함수
   function all(){
     axios
       .get('/item/getItemList')
@@ -110,6 +149,7 @@ const Store = () => {
       });
   }
 
+  //마운트 시 모든 아이템 가져오기
   useEffect(() => {
     axios
       .get('/item/getItemList')
@@ -122,21 +162,6 @@ const Store = () => {
         console.log(error);
       });
   }, []);
-
-    const fetchAllItems = () => {
-        axios.get('/item/getAllItems')
-            .then((res) => {
-                console.log('All Items:', res.data);
-                setItemList(res.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
-
-
-
-
 
   // 수량 변경 시 처리
   const handleItemCntChange = (index, newCnt) => {
@@ -155,6 +180,7 @@ const Store = () => {
     );
   };
 
+  //장바구니 수량 업데이트 요청
   const cntUpdate = (cartCode, cartCnt) => {
     const updateData = {
       cartCode: cartCode,
@@ -170,6 +196,7 @@ const Store = () => {
       });
   };
 
+  //장바구니에 아이템 추가하는 함수
   const handleAddToCart = (item) => {
     const existingCartItemIndex = cartList.findIndex(cart => cart.itemVO.itemCode === item.itemCode && cart.cartStatus === '주문등록');
 
@@ -208,6 +235,7 @@ const Store = () => {
     }
   };
 
+  //날짜 표시형식 변경
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
@@ -216,6 +244,7 @@ const Store = () => {
     return `${year}-${month}-${day}`;
   };
 
+  //선택발주 기능
   const selectUpdate = () => {
     const selectedCartCodes = checkItems
       .map((isChecked, index) => isChecked ? cartList[index].cartCode : null)
@@ -238,6 +267,7 @@ const Store = () => {
       });
   };
 
+  //선택 삭제 기능
   const selectDelete = () => {
     const selectedCartCodes = checkItems
       .map((isChecked, index) => isChecked ? cartList[index].cartCode : null)
@@ -260,6 +290,7 @@ const Store = () => {
       });
   };
 
+  //발주요청시 처리
   const goSupplier = (cartCode) => {
     return axios
       .post(`/cart/statusUpdate/${cartCode}`)
@@ -271,6 +302,7 @@ const Store = () => {
       });
   };
 
+  //삭제버튼 클릭시 실행
   const goDelete = (cartCode) => {
     return axios
       .delete(`/cart/cartDelete/${cartCode}`)
@@ -324,6 +356,9 @@ const Store = () => {
                 <p>수량</p>
               </td>
               <td>
+                <p>가격</p>
+              </td>
+              <td>
                 <p>주문일시</p>
               </td>
               <td>
@@ -357,6 +392,13 @@ const Store = () => {
                   <button type='button' className='supliierBtn' onClick={() => cntUpdate(cart.cartCode, cart.cartCnt)}>확인</button>
                 </td>
                 <td>
+                  <p>
+                    {
+                      cart.itemVO.itemPrice * cart.cartCnt
+                    }
+                  </p>
+                </td>
+                <td>
                   <p>{formatDate(cart.cartDate)}</p>
                 </td>
                 <td>
@@ -382,6 +424,16 @@ const Store = () => {
             ))}
           </tbody>
         </table>
+        <div className='total-div'>
+          <p>
+            총 구매금액 {totalPrice.toLocaleString(
+              'ko-KR', {
+                style: 'currency',
+                currency: 'KRW',
+              }
+            )}
+          </p>
+        </div>
         <div className='suplierBtn-div'>
           <button type='button' className='supliierBtn' onClick={selectUpdate}>발주요청</button>
           <button type='button' className='supliierBtn' onClick={selectDelete}>선택삭제</button>
