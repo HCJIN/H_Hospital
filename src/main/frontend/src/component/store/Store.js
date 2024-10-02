@@ -432,6 +432,7 @@ const Store = () => {
                   ? item.itemPrice.toLocaleString('ko-KR', { style: 'currency', currency: 'KRW' }) 
                   : '가격 정보 없음'}
               </p>
+              <p>상세보기</p>
               <p>재고수량 : {item.itemStock}</p>
               <button type='button' className='supliierBtn' onClick={() => handleAddToCart(item)}>추가</button>
             </div>
