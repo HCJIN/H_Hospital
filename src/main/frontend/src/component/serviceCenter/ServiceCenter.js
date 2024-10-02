@@ -76,14 +76,18 @@ const ServiceCenter = () => {
               faqList.map((faq, i) => {
                 return (
                   <div className='faq' key={i}>
-                    <div className='faq-title' onClick={(e) => {
-                      //isDetailShow = [false, false, false]
-                      const copyIsDetailShow = [...isDetailShow];
-                      copyIsDetailShow[i] = !copyIsDetailShow[i] // [true, false, false]
-                      //스테이트 변경함수는 원래 가지고 있는 값이 변경 될때만 실행
-                      setIsDetailShow(copyIsDetailShow)
-                    }}>{faq.title}</div>
+                    <div className='title-div'>
+                      <div className='faq-index'>{faqList.length - i}</div>
+                      <div className='faq-title' onClick={(e) => {
+                        const copyIsDetailShow = [...isDetailShow];
+                        copyIsDetailShow[i] = !copyIsDetailShow[i] // [true, false, false]
+                        setIsDetailShow(copyIsDetailShow)//스테이트 변경함수는 원래 가지고 있는 값이 변경 될때만 실행
+                      }}>
+                        {faq.title}
+                      </div>
+                    </div>
                     <div className={isDetailShow[i] ? 'faq-detail show' : 'faq-detail'}>{faq.content}</div>
+                    
                   </div>
                 );
               })
