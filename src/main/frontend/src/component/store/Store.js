@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import '../../css/store.css';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import ItemDetail from '../supplier/ItemDetail';
 
 const Store = () => {
+
+  //선택된 제품
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  //제품 상세보기
+  const [show, setShow] = useState(false);
+
   const [selectedCategory, setSelectedCategory] = useState();
   const [itemList, setItemList] = useState([]);
   const [filteredItemList, setFilteredItemList] = useState([]);
@@ -284,6 +291,12 @@ const Store = () => {
 
   return (
     <div className='store-div'>
+      {
+        show ?
+        <ItemDetail show={show} setShow={setShow} item={selectedItem}/>
+        :
+        <></>
+      }
       <div className='store-bg'>
         <img src='http://localhost:8080/images/sub_visual_product.jpg' alt="store background" />
         <div className='text-div'>
@@ -432,7 +445,10 @@ const Store = () => {
                   ? item.itemPrice.toLocaleString('ko-KR', { style: 'currency', currency: 'KRW' }) 
                   : '가격 정보 없음'}
               </p>
-              <p>상세보기</p>
+              <p className='itemDetail' onClick={()=>{
+                setSelectedItem(item);
+                setShow(true)
+              }}>상세보기</p>
               <p>재고수량 : {item.itemStock}</p>
               <button type='button' className='supliierBtn' onClick={() => handleAddToCart(item)}>추가</button>
             </div>
