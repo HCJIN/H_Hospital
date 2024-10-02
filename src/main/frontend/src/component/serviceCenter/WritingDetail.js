@@ -122,7 +122,7 @@ const WritingDetail = ({loginInfo}) => {
     });
   }
 
-  console.log(loginInfo);
+  console.log(replyList);
 
   return (
     <div className='contentContainer'>
@@ -203,7 +203,7 @@ const WritingDetail = ({loginInfo}) => {
           {
             replyList.map((reply, i) => {
               return(
-                <div className='replyDetail'>
+                <div key={i} className='replyDetail'>
                   <div className='replyInfo'>
                     <div className='replyIcon'>
                       <span><i class="bi bi-person-circle"></i>
@@ -211,7 +211,7 @@ const WritingDetail = ({loginInfo}) => {
                     </div>
                     <div className='replyUpper'>
                       <div>
-                        <div>{loginInfo.email}</div>
+                        <div>{reply.memberVO.email}</div>
                         <div>{reply.replyDate}</div>
                       </div>
   

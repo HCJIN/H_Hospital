@@ -10,6 +10,7 @@
         <result column="REPLY_DATE"             property="replyDate"/>
         <result column="BOARD_NUM"              property="boardNum"/>
         <result column="MEM_NUM"                property="memNum"/>
+        <association property="memberVO" resultMap="memberMapper.member" />
     </resultMap>
 
     <!--댓글 목록 조회-->
@@ -18,9 +19,11 @@
             , REPLY_CONTENT
             , REPLY_DATE
             , BOARD_NUM
-            , MEM_NUM
-        FROM BOARD_REPLY
-        WHERE BOARD_NUM = #{boardNum}
+            , M.MEM_NUM
+            , EMAIL
+        FROM BOARD_REPLY R, HOSPITAL_MEMBER M
+        WHERE R.MEM_NUM = M.MEM_NUM
+        AND BOARD_NUM = #{boardNum}
     </select>
 
     <!--댓글 등록-->

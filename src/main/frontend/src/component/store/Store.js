@@ -364,7 +364,7 @@ const Store = () => {
               ...tableData,
               // 총 가격을 표시할 새로운 행 추가
               // 총 가격 천 단위에 , 표시
-              [{ text: `총 가격 : ${totalPrice.toLocaleString()}원`, colSpan: 5, alignment: 'right' }, {}, {}, {}, {}]
+              [{ text: `총 가격 : ₩${totalPrice.toLocaleString()}원`, colSpan: 5, alignment: 'right' }, {}, {}, {}, {}]
             ]
           }
         }
