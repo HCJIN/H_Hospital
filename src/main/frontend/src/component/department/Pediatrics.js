@@ -11,6 +11,10 @@ const Pediatrics = () => {
 
   const isActive = (btnContent) => content === btnContent;
 
+  const handleDoctorClick =(doctorId)=>{
+    navigate(`/doctor/${doctorId}`)
+  }
+
   return (
     <div className='family-div'>
       <div className='family-container'>
@@ -91,6 +95,9 @@ const Pediatrics = () => {
                       <div className='doctor-details'>
                         <h4 className='doctor-name'>{doctor.name}</h4>
                         <p className='doctor-intro'>{doctor.intro}</p>
+                      </div>
+                      <div className='doctor-overlay'>
+                        <button type='button' className='doctor-intro-btn' onClick={()=>{handleDoctorClick(doctor.id)}}>의료진소개</button>
                       </div>
                     </div>
               ))} 

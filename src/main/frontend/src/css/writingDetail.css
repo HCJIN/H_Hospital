@@ -1,0 +1,222 @@
+.contentContainer{
+  border: 1px solid rgb(248, 246, 246);
+  background-color: rgb(248, 246, 246);
+  width: 100%;
+  height: 100%;
+}
+
+.contentUpper{
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: space-between;
+  width: 53%;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 15px;
+}
+
+.contentUpper > div:nth-child(2){
+  /* border: 1px solid black; */
+  font-size: 22px;
+  color: rgb(90, 90, 90);
+  padding-top: 20px;
+  cursor: pointer;
+}
+
+.contentHeader{
+  border-bottom: 2px solid rgb(177, 175, 175);
+  padding: 10px;
+}
+
+.contentHeader > div:nth-child(1){
+  font-size: 20px;
+  color: rgb(56, 56, 56);
+  font-weight: 550;
+}
+
+.contentHeader > div:nth-child(2){
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(90, 89, 89);
+  padding-top: 5px;
+}
+
+.contentHeader > div:nth-child(3){
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(90, 89, 89);
+  padding-top: 5px;
+}
+
+.contentBody{
+  padding: 10px;
+}
+
+.contentShow{
+  border-top: 3px solid rgb(177, 175, 175);
+  border-bottom: 2px solid rgb(177, 175, 175);
+  background-color: white;
+  margin: auto;
+  width: 53%;
+  height: 900px;
+}
+
+.contentButton{
+  /* border: 1px solid black; */
+  width: 15%;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 30px;
+  margin-bottom: 90px;
+}
+
+.contentButton > button:nth-child(1){
+  background-color: white;
+  border: 1px solid lightgray;
+  color: rgb(1, 83, 1);
+  width: 70px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.contentButton > button:nth-child(2){
+  background-color: #0e787c;
+  color: white;
+  border: none;
+  width: 50px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.contentButton > button:nth-child(3){
+  background-color: #0e787c;
+  color: white;
+  border: none;
+  width: 50px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.reply{
+  /* border: 1px solid black; */
+  padding-bottom: 50px;
+}
+
+.replyHead > h3{
+  border-top: 2px solid lightgray;
+  width: 53%;
+  margin: auto;
+  padding-left: 7px;
+  padding-top: 10px;
+  color: rgb(97, 97, 97);
+}
+
+.replyReg{
+  border-bottom: 2px solid lightgray;
+  width: 53%;
+  margin: 3px auto;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.replyReg > input{
+  width: 550px;
+  height: 30px;
+  font-size: 15px;
+}
+
+.replyReg > button{
+  font-size: 15px;
+  font-weight: bold;
+  height: 30px;
+  background-color: rgb(131, 131, 131);
+  color: white;
+  border: 1px solid rgba(109, 109, 109, 0.932);
+  cursor: pointer;
+}
+
+.replyReg > button:hover{
+  background-color: rgb(158, 157, 157);
+}
+
+.replyDetail{
+  border-bottom: 1px solid lightgray;
+  width: 53%;
+  margin: 3px auto;
+  padding-bottom: 5px;
+}
+
+.replyInfo{
+  display: flex;
+  gap: 5px;
+}
+
+.replyIcon{
+  /* border: 1px solid black; */
+  padding-left: 3px;
+  width: 35px;
+  text-align: center;
+  font-size: 30px;
+  color: rgb(61, 103, 180);
+}
+
+.replyUpper{
+  display: flex;
+  gap: 820px;
+}
+
+.replyUpper > div:nth-child(2){
+  /* border: 1px solid black; */
+  font-size: 17px;
+  color: rgb(83, 82, 82);
+  cursor: pointer;
+}
+
+.replyUpper > div > div:nth-child(1){
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 2px;
+}
+
+.replyUpper > div > div:nth-child(2){
+  font-size: 12px;
+  color: rgb(102, 101, 101);
+  font-weight: bold;
+}
+
+.replyFont{
+  margin-top: 5px;
+  font-size: 15px;
+  margin-left: 7px;
+}
+
+@media print {
+
+  body{
+    margin: 0;
+    padding: 0;
+    height: auto;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .contentShow, .contentShow * {
+    visibility: visible;
+  }
+
+  .contentShow{
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    height: auto;
+    overflow: visible;
+  }
+}
+

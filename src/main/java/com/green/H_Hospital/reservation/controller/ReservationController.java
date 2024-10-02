@@ -43,9 +43,9 @@ public class ReservationController {
     }
 
     //진료예약삭제
-    @DeleteMapping("/delete/{memNum}")
-    public void deleteReservation(@PathVariable("memNum") int memNum){
-        reservationService.deleteReservation(memNum);
+    @DeleteMapping("/delete/{resNum}")
+    public void deleteReservation(@PathVariable("resNum") int resNum){
+        reservationService.deleteReservation(resNum);
     }
 
     //진료예약수정

@@ -108,6 +108,7 @@
 
 .mycont{
   border: 1px solid #e5e5e5;
+  height: 610px;
 }
 
 .right-top-div{
@@ -155,13 +156,24 @@
   font-weight: 700;
 }
 
+.standard{
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+  display: flex;
+  font-size: .875rem;
+  justify-content: space-between;
+  padding: 14px 20px;
+  text-align: center;
+}
+
 /*  */
 
 .writing{
-  padding-top: 40px;
-  text-align: center;
-  margin-bottom: 30px;
-  margin-top: 30px;
+  /* border: 1px solid black; */
+  width: 10%;
+  bottom: 50px;
+  margin: auto;
+  padding-left: 18px;
 }
 
 .joinBtn-writing{
@@ -174,4 +186,71 @@
   color: #fff;
   font-weight: 500;
   cursor: pointer;
+}
+
+.standard > span:nth-child(2){
+  cursor: pointer;
+} 
+
+.faq-container{
+  margin: 15px 15px auto;
+}
+
+.faq-container > h2{
+  margin-bottom: 10px;
+}
+
+.faq-list{
+  width: 100%;
+}
+
+.faq{
+  /* border-top: 1px solid rgb(155, 155, 155); */
+  border-bottom: 1px solid rgb(155, 155, 155);
+  /* margin-bottom: 1rem; */
+  /* padding: 1rem; */
+  cursor: pointer;
+
+  
+}
+
+.title-div{
+  display: flex;
+}
+
+.faq-title{
+  padding: 1rem;
+}
+.title-div:hover{
+  background-color: rgb(6, 118, 122, 0.3);
+  color: white;
+}
+
+.title-div > div:nth-child(1){
+  width: 3%;
+  padding: 1rem;
+}
+.title-div > div:nth-child(2){
+  width: 97%;
+}
+
+.faq-index{
+  font-weight: bold;
+  font-style: italic;
+}
+
+.faq-list > .faq:nth-child(1){
+  border-top: 1px solid rgb(155, 155, 155);
+}
+
+.faq-detail{
+  display: none;
+  margin-top: 10px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
+}
+
+.faq-detail.show{
+  display: block;
 }

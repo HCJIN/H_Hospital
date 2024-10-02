@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="replyMapper">
+
+    <resultMap id="reply" type="com.green.H_Hospital.reply.vo.ReplyVO">
+        <id column="REPLY_NUM"                  property="replyNum" />
+        <result column="REPLY_CONTENT"          property="replyContent"/>
+        <result column="REPLY_DATE"             property="replyDate"/>
+        <result column="BOARD_NUM"              property="boardNum"/>
+        <result column="MEM_NUM"                property="memNum"/>
+        <association property="memberVO" resultMap="memberMapper.member" />
+    </resultMap>
+
+    <!--댓글 목록 조회-->
+    <select id="getReplyList" resultMap="reply">
+        SELECT REPLY_NUM
+            , REPLY_CONTENT
+            , REPLY_DATE
+            , BOARD_NUM
+            , M.MEM_NUM
+            , EMAIL
+        FROM BOARD_REPLY R, HOSPITAL_MEMBER M
+        WHERE R.MEM_NUM = M.MEM_NUM
+        AND BOARD_NUM = #{boardNum}
+    </select>
+
+    <!--댓글 등록-->
+    <insert id="insertReply">
+        INSERT INTO BOARD_REPLY (
+            REPLY_CONTENT
+            , BOARD_NUM
+            , MEM_NUM
+        ) VALUES (
+            #{replyContent}
+            , #{boardNum}
+            , #{memNum}
+        )
+    </insert>
+
+    <!--댓글 삭제-->
+    <delete id="deleteReply">
+        DELETE FROM BOARD_REPLY
+        WHERE REPLY_NUM = #{replyNum}
+    </delete>
+
+    <delete id="deleteReplyByBoardNum">
+        DELETE FROM BOARD_REPLY
+        WHERE BOARD_NUM = #{boardNum}
+    </delete>
+
+</mapper>
+
+
+
+
+

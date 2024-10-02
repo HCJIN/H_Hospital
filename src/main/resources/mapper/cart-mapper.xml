@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="cartMapper">
+
+    <resultMap id="cart" type="com.green.H_Hospital.cart.vo.CartVO">
+        <id column="CART_CODE" property="cartCode"/>
+        <result column="ITEM_CODE" property="itemCode"/>
+        <result column="CART_CNT" property="cartCnt"/>
+        <result column="MEM_NUM" property="memNum"/>
+        <result column="CART_STATUS" property="cartStatus"/>
+        <result column="CART_DATE" property="cartDate"/>
+        <association property="itemVO" resultMap="itemMapper.item"/>
+    </resultMap>
+
+    <!--상품 등록-->
+    <insert id="insertCart">
+        INSERT INTO SHOP_CART (
+            ITEM_CODE
+            ,CART_CNT
+            ,MEM_NUM
+        ) VALUES (
+            #{itemCode}
+            ,#{cartCnt}
+            ,#{memNum}
+        )
+    </insert>
+
+    <!-- 발주 목록 조회 -->
+    <select id="getCartList" resultMap="cart">
+        SELECT
+            CART.CART_CODE,
+            ITEM.ITEM_NAME,
+            CART.CART_CNT,
+            CART.CART_DATE,
+            IMG.ATTACHED_FILE_NAME,
+            CART.CART_STATUS,
+            ITEM.ITEM_STOCK,
+            ITEM.ITEM_CODE,
+            ITEM.ITEM_PRICE
+        FROM
+            SHOP_CART CART
+        JOIN
+            SHOP_ITEM ITEM ON CART.ITEM_CODE = ITEM.ITEM_CODE
+        JOIN
+            ITEM_IMG IMG ON CART.ITEM_CODE = IMG.ITEM_CODE
+        <where>
+            CART.MEM_NUM = #{memNum}
+            AND IMG.IS_MAIN = 'Y'
+            <if test="searchValue != null and searchValue != ''">
+                AND (${searchType} LIKE CONCAT('%', #{searchValue}, '%'))
+            </if>
+        </where>
+    </select>
+
+    <!--전체 발주 목록 조회-->
+    <select id="getCartListAll" resultMap="cart">
+        SELECT
+            CART.CART_CODE,
+            ITEM.ITEM_NAME,
+            ITEM.ITEM_PRICE,
+            CART.CART_CNT,
+            CART.CART_DATE,
+            IMG.ATTACHED_FILE_NAME,
+            CART_STATUS,
+            ITEM.ITEM_CODE
+        FROM
+            shop_cart CART
+        JOIN
+            shop_item ITEM ON CART.ITEM_CODE = ITEM.ITEM_CODE
+        JOIN
+            item_img IMG ON CART.ITEM_CODE = IMG.ITEM_CODE
+        WHERE CART_STATUS != '주문등록';
+    </select>
+
+    <!--발주 제품 추가 전 등록여부 확인-->
+    <select id="checkCart" resultMap="cart">
+        SELECT CART_CODE
+        FROM SHOP_CART
+        WHERE ITEM_CODE = #{itemCode}
+        AND MEM_NUM = #{memNum}
+    </select>
+
+    <!--발주 제품 추가 시 수량 업데이트-->
+    <update id="updateItemCnt">
+        UPDATE shop_cart
+        SET
+            CART_CNT = cart_cnt + #{cartCnt},
+            CART_DATE = NOW()
+        WHERE ITEM_CODE = #{itemCode}
+        AND MEM_NUM = #{memNum}
+    </update>
+
+    <!-- 수량 수정시 수량 업데이트 -->
+    <update id="updateCart">
+        UPDATE shop_cart
+        SET
+            CART_CNT = #{cartCnt},
+            CART_DATE = NOW()
+        WHERE CART_CODE = #{cartCode}
+    </update>
+
+    <!-- 장바구니 목록 삭제 -->
+    <delete id="goDelete">
+        DELETE FROM SHOP_CART
+        WHERE CART_CODE = #{cartCode}
+    </delete>
+
+    <!-- 제품 상태 업데이트 -->
+    <update id="statusUpdate">
+        UPDATE shop_cart
+        SET
+        CART_STATUS = '발주요청'
+        WHERE CART_CODE = #{cartCode}
+    </update>
+
+    <!-- 제품 출하 -->
+    <update id="updateStockQuantity">
+        UPDATE shop_item
+        SET ITEM_STOCK = ITEM_STOCK - (SELECT CART_CNT FROM shop_cart WHERE CART_CODE = #{cartCode})
+        WHERE ITEM_CODE = (SELECT ITEM_CODE FROM shop_cart WHERE CART_CODE = #{cartCode});
+    </update>
+
+    <update id="goShipment">
+        UPDATE shop_cart
+        SET CART_STATUS = '제품출하'
+        WHERE CART_CODE = #{cartCode};
+    </update>
+
+    <update id="cancelItem">
+        UPDATE SHOP_CART
+        SET CART_STATUS = '출하취소'
+        WHERE CART_CODE = #{cartCode};
+    </update>
+
+</mapper>
+
+
+
+
+

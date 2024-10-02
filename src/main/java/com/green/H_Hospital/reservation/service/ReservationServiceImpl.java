@@ -50,9 +50,9 @@ public class ReservationServiceImpl implements ReservationService{
 
     //진료예약삭제
     @Override
-    public void deleteReservation(int memNum) {
+    public void deleteReservation(int resNum) {
 
-        sqlSession.delete("reservationMapper.deleteReservation", memNum);
+        sqlSession.delete("reservationMapper.deleteReservation", resNum);
     }
 
     //진료예약수정

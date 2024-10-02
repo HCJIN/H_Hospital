@@ -21,7 +21,7 @@ public interface ReservationService {
     ReservationVO getPatientInfoAll(String memNum, String resDate);
 
     //진료예약삭제
-    void deleteReservation(int memNum);
+    void deleteReservation(int resNum);
 
     //진료예약수정
     void updateReservation(ReservationVO reservationVO);

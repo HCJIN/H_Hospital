@@ -114,14 +114,14 @@ const doctors = {
 
   "소아과": [
     { id: 10, name: "윤소아", department:"소아과", intro: "소아신경외과, 소아 뇌종양, 수두", image: "/docImg/doc5.jpg"
-      ,graduation1:""
-      ,graduation2:""
-      ,graduation3:""
-      ,career1:""
-      ,career2:""
-      ,career3:""
-      ,career4:""
-      ,career5:""
+      ,graduation1:"한양대학교 의학과 학사(2002)"
+      ,graduation2:"연세대학교 의학과 석사(2016)"
+      ,graduation3:"연세대학교 의학과 박사(2019)"
+      ,career1:"2007-2010 국제협력의사, 탄자니아 Morogoro regional hospital"
+      ,career2:"2011-2012 연세대학교 의과대학 소아과학교실 소아.감염면역분과 연구조교수"
+      ,career3:"2012-2017 이화여자대학교 의과대학 소아과학교실 소아청소년과 임상조교수"
+      ,career4:"2017-2023 연세대학교 의과대학 소아과학교실 소아감염.면역분과 부교수"
+      ,career5:"2023- 현재 연세대학교 의과대학 소아과학교실 소아감염.면역분과 교수"
      },
 
     { id: 11, name: "정소아", department:"소아과", intro: "소아 구순구개열 및 선천성 안면 기형", image: "/docImg/doc5_1.jpg"

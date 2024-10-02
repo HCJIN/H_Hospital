@@ -111,7 +111,7 @@ const Login = ({loginInfo, setLoginInfo}) => {
 
         //직원 OR 일반 사용자 구분 후 리디렉션
         if(res.data.memRole != 'USER'){
-          navigate('/admin/patientChart')  
+          navigate('/admin/reservationCheck')  
         } else{
           navigate('/')
         }
@@ -233,7 +233,13 @@ const Login = ({loginInfo, setLoginInfo}) => {
                     <strong>아이디</strong>
                     <input type='text' name='email'
                       value={loginData.email}
-                      onChange={(e)=>{memberChange(e)}}/>
+                      onChange={(e)=>{memberChange(e)}}
+                      onKeyDown={(e) => {
+                        if(e.key == 'Enter'){
+                          login(); // Enter 키를 눌렀을 때 login 함수 호출
+                        }
+                      }}
+                    />
                   </li>
                   <li>
                     <strong>
@@ -241,7 +247,13 @@ const Login = ({loginInfo, setLoginInfo}) => {
                     </strong>
                     <input type='password' name='memPw'
                       value={loginData.memPw}
-                      onChange={(e)=>{memberChange(e)}}/>
+                      onChange={(e)=>{memberChange(e)}}
+                      onKeyDown={(e) => {
+                        if(e.key == 'Enter'){
+                          login(); // Enter 키를 눌렀을 때 login 함수 호출
+                        }
+                      }}
+                    />
                   </li>
                 </ul>
                 <button type='button' className='login-btn' onClick={()=>{login()}}>로그인</button>

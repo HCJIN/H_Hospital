@@ -86,7 +86,7 @@
    <!--진료예약삭제-->
    <delete id="deleteReservation">
       DELETE FROM HOSPITAL_RESERVATION
-      WHERE MEM_NUM = #{memNum}
+      WHERE RES_NUM = #{resNum}
    </delete>
 
    <!--진료예약수정-->
@@ -96,7 +96,7 @@
       SERVICE_TYPE = #{serviceType},
       RES_DATE = #{resDate},
       RES_TIME = #{resTime}
-      WHERE MEM_NUM = #{memNum}
+      WHERE RES_NUM = #{resNum}
    </update>
 
 </mapper>

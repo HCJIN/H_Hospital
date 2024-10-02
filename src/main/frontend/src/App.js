@@ -22,7 +22,7 @@ import AdminRegPage from './admin/AdminRegPage';
 import AdminJoinPage from './admin/AdminJoinPage';
 import SetNewPw from './component/SetNewPw';
 import ReservationCheck from './component/calendar/ReservationCheck';
-import ServiceCenter from './component/ServiceCenter';
+import ServiceCenter from './component/serviceCenter/ServiceCenter';
 import PatientChart from './component/PatientChart';
 import HospitalSheet from './component/HospitalSheet';
 import FindDoctor from './component/FindDoctor';
@@ -34,6 +34,12 @@ import Heart from './component/department/Heart';
 import Urology from './component/department/Urology';
 import Cancer from './component/department/Cancer';
 import DoctorPage from './component/department/DoctorPage';
+import AdminRegSchedule from './admin/AdminRegSchedule';
+import Store from './component/store/Store';
+import JoinwritingForm from './component/serviceCenter/JoinwritingForm';
+import WritingDetail from './component/serviceCenter/WritingDetail';
+import Supplier from './component/supplier/Supplier';
+import JoinUpdateForm from './component/serviceCenter/JoinUpdateForm';
 
 function App() {
 
@@ -77,7 +83,7 @@ function App() {
     if(window.scrollY > 250) {
       setShowBtn(true)
     }
-     else{
+    else{
       setShowBtn(false)
     }
   }
@@ -140,15 +146,21 @@ function App() {
   }, []);
   
   //직원 로그인 시 사이드바 숨기기
-  const showSideBar = !(loginInfo.memRole === 'admin')
+  //ID에 test가 포함된 경우 사이드바 숨김
+  const showSideBar = !(loginInfo.memRole === 'admin' || (loginInfo.email?.split('@')[0].includes('test')));
 
   //직원으로 로그인 했을때 상단에 '진료예약조회'메뉴 띄우는 함수 
   function upperMenu(){
     if(loginInfo.memRole == 'admin'){
       return(
         <div>
-          <span onClick={() => {navigate('/admin/patientChart')}}>진료차트</span>
           <span onClick={() => {navigate('/admin/reservationCheck')}}>진료예약조회</span>
+          <span onClick={() => {navigate('/admin/patientChart')}}>진료차트</span>
+          <span onClick={()=>{navigate('/admin/regSchedule')}}>진료일정등록</span>
+          <span onClick={()=>{navigate('/admin/store')}}>입고요청</span>
+          <span onClick={() => {
+            navigate('/serviceCenter')
+          }}>고객센터</span>
         </div>
       )
     }
@@ -317,8 +329,17 @@ function App() {
         {/* 예약 페이지 */}
         <Route path='/reservation' element={<Reservation />} />
 
-        {/* 고객센터 페이지 */}
+        {/* 고객센터 페이지*/}
         <Route path='/serviceCenter' element={<ServiceCenter/>}/>
+
+        {/* 고객센터 글쓰기 페이지 */}
+        <Route path='/joinWritingForm' element={<JoinwritingForm/>}/>
+
+        {/* 고객센터 글쓰기 상세보기 페이지 */}
+        <Route path='/writingDetail/:boardNum' element={<WritingDetail loginInfo={loginInfo}/>} />
+
+        {/* 고객센터 글쓰기 수정 페이지 */}
+        <Route path='/joinUpdateForm' element={<JoinUpdateForm/>}/>
 
         {/* 증명서 발급 페이지 */}
         <Route path='/hospitalSheet' element={<HospitalSheet />} />
@@ -368,7 +389,18 @@ function App() {
           {/* 환자 차트 페이지 */}
           <Route path='patientChart/:memNum/:resDate' element={<PatientChart/>}/>
 
+          {/* 진료 스케줄 등록 페이지 */}
+          <Route path='regSchedule' element={<AdminRegSchedule/>}/>
+
+          {/* 입고요청 페이지 */}
+          <Route path='store' element={<Store />} />
+
+          {/* 제품 카테고리 */}
+          <Route path='/admin/store/medicine/:category' element={<Store/>} />
         </Route> 
+
+        {/* 공급사용 */}
+        <Route path='/supplier' element={ <Supplier /> } />
 
       </Routes>
 
