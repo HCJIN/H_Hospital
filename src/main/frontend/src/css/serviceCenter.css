@@ -192,23 +192,31 @@
   cursor: pointer;
 } 
 
+.faq-container{
+  margin: 15px 15px auto;
+}
+
+.faq-container > h2{
+  margin-bottom: 10px;
+}
+
 .faq-list{
   width: 100%;
 }
 
 .faq{
-  border: 1px solid black;
-  border-radius: 8px;
+  border-top: 1px solid rgb(155, 155, 155);
+  border-bottom: 1px solid rgb(155, 155, 155);
   margin-bottom: 1rem;
-  background-color: #e5e5e5;
   padding: 1rem;
+  cursor: pointer;
 }
 
 .faq-detail{
   display: none;
+  margin-top: 10px;
 }
 
 .faq-detail.show{
   display: block;
-  background-color: aliceblue;
 }
