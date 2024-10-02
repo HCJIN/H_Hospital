@@ -8,6 +8,9 @@ import ItemDetail from './ItemDetail';
 const Supplier = () => {
   const navigate = useNavigate();
 
+  //총액
+  const [totalPrice, setTotalPrice] = useState(0);
+
   //발주요청 리스트
   const [cartList, setCartList] = useState([]);
 
@@ -261,7 +264,25 @@ const Supplier = () => {
     } else {
       setAllChecked(false);
     }
-  }, [checkItems, cartList]);
+  }, [checkItems]);
+
+  //선택된 제품이 변경될 때 마다 총액 업데이트
+  useEffect(()=>{
+    updateTotalPrice();
+  },[checkItems, cartList]);
+
+  //선택된 제품의 총액
+  const updateTotalPrice = ()=>{
+    const total = cartList.reduce((acc, cart) => {
+      if (checkItems.includes(cart.cartCode)) { 
+        return acc + (cart.cartCnt * cart.itemVO.itemPrice);
+      }
+      return acc; 
+    }, 0);
+    
+    setTotalPrice(total);
+  }
+
 
 
   return (
@@ -280,10 +301,11 @@ const Supplier = () => {
               <table className='ordering-table'>
                 <thead className='ordering-thead'>
                   <tr>
-                    <td><input type='checkbox' checked={allChecked} onChange={(e) => {checkAll(e)}}/></td>
+                    <td><input type='checkbox' checked={allChecked} onChange={(e) => {checkAll(e)}} /></td>
                     <td><p>제품</p></td>
                     <td><p>수량</p></td>
                     <td><p>주문일시</p></td>
+                    <td><p>가격</p></td>
                     <td><p>상태</p></td>
                   </tr>
                 </thead>
@@ -301,6 +323,11 @@ const Supplier = () => {
                             <button type='button' className='btn btn-Subprimary' onClick={()=>{
                               cntUpdate(cart.cartCode, cart.cartCnt)
                             }}>확인</button>
+                          </td>
+                          <td>
+                            {
+                            (cart.itemVO.itemPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                            }
                           </td>
                           <td>
                             {formatDate(cart.cartDate)}
@@ -327,6 +354,10 @@ const Supplier = () => {
                   }
                 </tbody>
               </table>
+              <p>
+              총액 : {totalPrice.toLocaleString('ko-KR', { style: 'currency', currency: 'KRW' })}
+              </p>
+
             </div>
           </div>
           <div className='list-div'>
