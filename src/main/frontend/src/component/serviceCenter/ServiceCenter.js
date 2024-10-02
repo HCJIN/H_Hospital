@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react'
 import '../../css/serviceCenter.css';
 import JoinwritingForm from './JoinwritingForm';
 import axios from 'axios';
+import { faqList } from './faqList';
 
 
-const ServiceCenter = ({answer}) => {
+const ServiceCenter = () => {
 
   const navigate = useNavigate();
 
@@ -14,6 +15,10 @@ const ServiceCenter = ({answer}) => {
 
   //state값에 따라 메인화면 바뀜
   const [sideMenu, setSideMenu] =useState('공지사항');
+
+  //상세보기 여부 state 변수
+  const [isDetailShow, setIsDetailShow] = useState(new Array(faqList.length).fill(false)) 
+
 
   function changeSideMenu(){
     if(sideMenu == '공지사항'){
@@ -63,25 +68,56 @@ const ServiceCenter = ({answer}) => {
     }
     else if(sideMenu == '자주묻는 질문'){
       return(
-        <div>
-          <h3>자주묻는 질문</h3>
+        <div className='faq-container'>
+          <h2>자주묻는 질문</h2>
           <div className='faq-list'>
-            <div className='faq'>
-              <div className='faq-title'>눈에 보이는 큰 내용</div>
-              <div className={answer == 1 ? 'faq-detail show' : 'faq-detail'}>숨겨져있는 세부 내용</div>
-            </div>
-            <div className='faq'>
-              <div className='faq-title'>눈에 보이는 큰 내용</div>
-              <div className={answer == 2 ? 'faq-detail show' : 'faq-detail'}>숨겨져있는 세부 내용</div>
-            </div>
+            
+            {
+              faqList.map((faq, i) => {
+                return (
+                  <div className='faq' key={i}>
+                    <div className='faq-title' onClick={(e) => {
+                      //isDetailShow = [false, false, false]
+                      const copyIsDetailShow = [...isDetailShow];
+                      copyIsDetailShow[i] = !copyIsDetailShow[i] // [true, false, false]
+                      //스테이트 변경함수는 원래 가지고 있는 값이 변경 될때만 실행
+                      setIsDetailShow(copyIsDetailShow)
+                    }}>{faq.title}</div>
+                    <div className={isDetailShow[i] ? 'faq-detail show' : 'faq-detail'}>{faq.content}</div>
+                  </div>
+                );
+              })
+            }
+
           </div>
         </div>
       )
     }
-    else if(sideMenu == '1:1 문의'){
+    else if(sideMenu == '고객의소리'){
       return(
         <div>
-          <h3>1:1 문의</h3>
+          <h3>고객의소리</h3>
+          <div>
+            <h4>건의합니다!</h4>
+            <p>제안 및 불만 고충 접수</p>
+            <button>건의합니다 글쓰기</button>
+          </div>
+          <div>
+            <h2>고객상담실 방문 및 전화상담 시간</h2>
+            <div>
+              <div></div>
+              <div>
+                <span>평일 : 오전 9시 ~ 오후 5시</span>
+                <span>본원/어린이/암병원 : </span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h2>고객상담 처리과정</h2>
+            <div>접수</div>
+            <div>확인</div>
+            <div>회신</div>
+          </div>
         </div>
       )
     }
@@ -134,8 +170,8 @@ const ServiceCenter = ({answer}) => {
                 <li onClick={() => {setSideMenu('자주묻는 질문')}}>
                   <h3>자주묻는 질문</h3>
                 </li>
-                <li onClick={() => {setSideMenu('1:1 문의')}}>
-                  <h3>1:1 문의</h3>
+                <li onClick={() => {setSideMenu('고객의소리')}}>
+                  <h3>고객의소리</h3>
                 </li>
               </ul>
             </div>
