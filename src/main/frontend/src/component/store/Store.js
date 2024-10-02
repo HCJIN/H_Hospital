@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import '../../css/store.css';
 import axios from 'axios';
 import ItemDetail from '../supplier/ItemDetail';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { nanumGothicFont } from '../../external-fonts';
 
 const Store = () => {
 
@@ -321,6 +324,73 @@ const Store = () => {
       });
   };
 
+  pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+  pdfMake.vfs['NanumGothic.ttf'] = nanumGothicFont;
+  
+  // 폰트 설정
+  pdfMake.fonts = {
+    NanumGothic: {
+      normal: 'NanumGothic.ttf',
+      bold: 'NanumGothic.ttf',
+      italics: 'NanumGothic.ttf',
+      bolditalics: 'NanumGothic.ttf'
+    }
+  };
+
+  // 새창에서 pdf 만드는 함수
+  // 새창에서 pdf 만드는 함수
+  const generatePDF = () => {
+    const tableData = cartList
+    .filter((_, i) => checkItems[i])
+    .map(e => [
+      e.itemVO.itemName,
+      e.cartCnt.toString(),
+      (e.itemVO.itemPrice * e.cartCnt).toString(),
+      formatDate(e.cartDate),
+      e.cartStatus
+    ]);
+
+    // PDF 문서 정의
+    const docDefinition = {
+      content: [
+        { text: '발주 내역 리스트', style: 'header' },
+        {
+          table: {
+            headerRows: 1,
+            widths: ['*', 'auto', 'auto', 'auto', 'auto'],
+            body: [
+              ['제품명', '수량', '가격','주문일시', '상태'],
+              ...tableData,
+              // 총 가격을 표시할 새로운 행 추가
+              // 총 가격 천 단위에 , 표시
+              [{ text: `총 가격 : ${totalPrice.toLocaleString()}원`, colSpan: 5, alignment: 'right' }, {}, {}, {}, {}]
+            ]
+          }
+        }
+      ],
+      styles: {
+        header: {
+          fontSize: 18,
+          bold: true,
+          alignment: 'center',
+          margin: [0, 0, 0, 10]
+        }
+      },
+      defaultStyle: {
+        font: 'NanumGothic' // NanumGothic 폰트를 기본으로 설정
+      }
+    };
+
+    // 새로운 창에서 PDF 생성 및 다운로드
+    const pdfWindow = window.open('', '_blank'); // 새로운 창 열기
+    pdfMake.createPdf(docDefinition).getBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      pdfWindow.location.href = url; // 새로운 창에서 PDF 다운로드
+    });
+  };
+
+
   return (
     <div className='store-div'>
       {
@@ -339,7 +409,7 @@ const Store = () => {
       <div className='store-table-div'>
         <div className='search-div'>
           <div>
-            <button type='button' onClick={() => {}}>발주 내역 리스트</button>
+            <button type='button' onClick={() => {generatePDF()}}>발주 내역 리스트</button>
           </div>
           <div>
             <select name='searchType' value={searchData.searchType} onChange={changeSearchData}>
