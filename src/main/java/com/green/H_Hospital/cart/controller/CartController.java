@@ -5,9 +5,11 @@ import com.green.H_Hospital.cart.vo.CartVO;
 import com.green.H_Hospital.search.vo.SearchVO;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -39,8 +41,29 @@ public class CartController {
 
     //전체 발주목록 조회
     @GetMapping("/getCartListAll")
-    public List<CartVO> getCartListAll(){
-        return cartService.getCartListAll();
+    public ResponseEntity<Map<String, Object>> getCartListAll(
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "limit", defaultValue = "10") int limit) {
+
+        // page가 1보다 작으면 기본값으로 1로 설정
+        if (page < 1) {
+            page = 1;
+        }
+
+        log.info("page : {}, limit : {}", page, limit);
+
+        // 페이징에 필요한 offset 계산
+        int offset = (page - 1) * limit;
+        List<CartVO> cartList = cartService.getCartListAll(offset, limit);
+        int totalItems = cartService.getTotalCartItems();
+        int totalPages = (int) Math.ceil((double) totalItems / limit);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("cartList", cartList);
+        response.put("totalPages", totalPages);
+        response.put("currentPage", page);
+
+        return ResponseEntity.ok(response);
     }
 
     //수량 업데이트
