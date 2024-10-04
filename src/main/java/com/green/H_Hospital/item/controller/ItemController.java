@@ -22,13 +22,22 @@ public class ItemController {
     private ItemService itemService;
 
     //아이템 리스트 조회
-    @PostMapping("/getItemList")
-    public Map<String, Object> getItemList() {
+    @GetMapping("/getItemAllList")
+    public List<ItemVO> getItemListAll(){
+        return itemService.getItemListAll();
+    }
+
+    //아이템 리스트 조회
+    @GetMapping("/getItemList/{page}")
+    public Map<String, Object> getItemList(@PathVariable(name = "page") int page) {
+
+        System.out.println(page);
         // 전체 게시글 수
         int totalDataCnt = itemService.getItemCnt();
 
         // 페이지 정보를 담을 수 있는 PageVO 객체 생성
         PageVO pageInfo = new PageVO(totalDataCnt);
+        pageInfo.setNowPage(page);
         pageInfo.setPageInfo(); // 페이지 정보 설정
 
         // 게시글 목록 데이터 (페이징 처리)

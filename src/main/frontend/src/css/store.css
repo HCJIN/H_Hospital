@@ -191,5 +191,22 @@
   font-weight: bold;
 }
 
+.page-div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 50px 0;
+}
 
+.page-span{
+  background-color: lightskyblue;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 8px;
+  color: #fff;
+  -webkit-text-stroke: none;
+  cursor: pointer;
+}
 

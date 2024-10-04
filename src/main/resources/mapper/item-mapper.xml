@@ -57,6 +57,24 @@
         ORDER BY item.ITEM_CODE DESC;
     </select>
 
+    <!-- 상품 전체 조회 -->
+    <select id="getItemListAll" resultMap="item">
+        SELECT item.ITEM_CODE
+        ,   item.ITEM_NAME
+        ,   item.ITEM_PRICE
+        ,   item.ITEM_STOCK
+        ,   item.CATE_CODE
+        ,   img.IMG_CODE
+        ,   img.ORIGIN_FILE_NAME
+        ,   img.ATTACHED_FILE_NAME
+        ,   img.IS_MAIN
+        ,   item.ITEM_INTRO
+        ,   item.ITEM_BRAND
+        FROM SHOP_ITEM item
+        LEFT JOIN ITEM_IMG img ON item.ITEM_CODE = img.ITEM_CODE
+        WHERE img.IS_MAIN = 'Y'
+        ORDER BY item.ITEM_CODE DESC
+    </select>
 
     <!-- 상품 목록 조회 -->
     <select id="getItemListWithPaging" resultMap="item">
