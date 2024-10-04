@@ -48,7 +48,7 @@ const Supplier = () => {
   const fetchCartList = () => {
     Promise.all([
       axios.get(`/cart/getCartListAll?page=${currentPage}&limit=${itemsPerPage}`),
-      axios.get('/item/getItemList')
+      axios.get('/item/getItemAllList')
     ])
       .then(([cartResponse, itemResponse]) => {
         console.log(cartResponse.data);
@@ -289,15 +289,6 @@ const Supplier = () => {
       setCheckItems(prev => prev.filter(item => item !== cartCode));
     }
   }
-
-  // 전체 선택 상태 관리
-  useEffect(() => {
-    if (cartList.length === checkItems.length) {
-      setAllChecked(true);
-    } else {
-      setAllChecked(false);
-    }
-  }, [checkItems]);
 
   //선택된 제품이 변경될 때 마다 총액 업데이트
   useEffect(()=>{
