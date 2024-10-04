@@ -14,10 +14,7 @@ const Store = () => {
   //제품 상세보기
   const [show, setShow] = useState(false);
 
-<<<<<<< HEAD
-  //선택된 카테고리 useState
-=======
->>>>>>> jhb
+
   const [selectedCategory, setSelectedCategory] = useState();
   //아이템 리스트 useState
   const [itemList, setItemList] = useState([]);
