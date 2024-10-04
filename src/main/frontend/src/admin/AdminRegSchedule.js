@@ -43,7 +43,7 @@ const AdminRegSchedule = () => {
           <p><strong>이름:</strong> {doctorInfo.name || '로그인 정보 없음'}</p>
           <p><strong>전문 분야:</strong> {doctorInfo.specialty}</p>
         </div>
-        <h>등록된 일정</h>
+        <h4>등록된 일정</h4>
       <div>
         {Object.entries(schedules).map(([date, times]) => (
           <div key={date} style={{ marginBottom: '10px' }}>
@@ -51,6 +51,7 @@ const AdminRegSchedule = () => {
           </div>
         ))}
       </div>
+
       </div>
       
       <h3>진료 일정 등록</h3>
