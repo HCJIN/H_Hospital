@@ -65,9 +65,12 @@ const Store = () => {
 
   //카테고리 클릭 시 처리
   const handleCategoryClick = (category) => {
-    filterItemsByCategory(category);
-    console.log(filteredItemList)
-    onCategory(category);
+    if (category === 'all') {
+      all(); // 전체 아이템을 가져옴
+    } else {
+      filterItemsByCategory(category);
+      onCategory(category);
+    }
   }
 
   //검색 데이터 변경 처리
@@ -152,11 +155,12 @@ useEffect(() => {
   //모든 아이템을 가져오는 함수
   function all(){
     axios
-      .post('/item/getItemList')
+      .get('/item/getItemAllList')
       .then((res) => {
         console.log(res.data)
-        setItemList(res.data);
-        setFilteredItemList(res.data);
+        setItemList(res.data.itemList);
+        setFilteredItemList(res.data.itemList);
+        setPageInfo(res.data.pageInfo);
       })
       .catch((error) => {
         console.log(error);
@@ -166,11 +170,12 @@ useEffect(() => {
   //마운트 시 모든 아이템 가져오기
   useEffect(() => {
     axios
-      .post('/item/getItemList')
+      .get('/item/getItemAllList')
       .then((res) => {
         console.log(res.data)
-        setItemList(res.data);
-        setFilteredItemList(res.data);
+        setItemList(res.data.itemList);
+        setFilteredItemList(res.data.itemList);
+        setPageInfo(res.data.pageInfo);
       })
       .catch((error) => {
         console.log(error);
@@ -394,55 +399,69 @@ useEffect(() => {
     });
   };
 
-  // 페이징 그리기 함수 수정
-function drawPagination(){
+// 페이지 변경 함수 추가
+function handlePageChange(page) {
+  getList(page); // 주어진 페이지로 리스트를 가져옴
+}
+
+// 페이징 그리기 함수 수정
+function drawPagination() {
   const arr = [];
 
-  if(pageInfo.prev){
+  // 이전 페이지 버튼
+  if (pageInfo.prev) {
     arr.push(
-      <span key="prev" className='page-span' onClick={() => getList(pageInfo.beginPage - 1)}>
+      <span key="prev" className='page-span' onClick={() => handlePageChange(pageInfo.beginPage - 1)}>
         이전
       </span>
-    )
+    );
   }
 
-  for(let i = pageInfo.beginPage; i <= pageInfo.endPage; i++){
+  // 페이지 번호 버튼
+  for (let i = pageInfo.beginPage; i <= pageInfo.endPage; i++) {
     arr.push(
-      <span 
-        className={`page-span ${pageInfo.currentPage === i ? 'current-page' : ''}`}
-        key={i} 
-        onClick={() => getList(i)}
+      <span
+        className={`page-span ${pageInfo.currentPage === i ? 'current-page' : ''}`} // currentPage 사용
+        key={i}
+        onClick={() => handlePageChange(i)} // handlePageChange 사용
       >
         {i}
       </span>
-    )
+    );
   }
 
-  if(pageInfo.next){
+  // 다음 페이지 버튼
+  if (pageInfo.next) {
     arr.push(
-      <span key="next" className='page-span' onClick={() => getList(pageInfo.endPage + 1)}>
+      <span key="next" className='page-span' onClick={() => handlePageChange(pageInfo.endPage + 1)}>
         다음
       </span>
-    )
+    );
   }
 
   return arr;
 }
 
 // 페이징 처리한 곳에서 숫자(페이지번호)를 클릭하면 다시 게시글을 조회
-function getList(pageNo){
+function getList(page) {
   axios
-  .post(`/item/getItemList/${pageNo}`)
-  .then((res)=>{
-    setItemList(res.data.itemList);
-    setPageInfo(res.data.pageInfo);
-    // 페이지 상단으로 스크롤
-    window.scrollTo(0, 0);
-  })
-  .catch((error)=>{
-    console.log(error)
-  })
+    .get(`/item/getItemList/${page}`) // 페이지 번호 추가
+    .then((res) => {
+      setItemList(res.data.itemList);
+      setFilteredItemList(res.data.itemList);
+      setPageInfo(res.data.pageInfo);
+      window.scrollTo(0, 0);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
+
+// 컴포넌트가 마운트될 때 처음 아이템 리스트를 가져옴
+useEffect(() => {
+  getList(1); // 페이지 번호를 1로 설정
+}, []);
+
 
   return (
     <div className='store-div'>
@@ -633,7 +652,7 @@ function getList(pageNo){
         )}
       </div>
       {/* 페이징 정보가 나오는 div */}
-      <div>
+      <div className='page-div'>
         {
           drawPagination()
         }

@@ -28,8 +28,8 @@ public class PageVO {
     public PageVO(int totalDataCnt) {
         this.totalDataCnt = totalDataCnt;
         this.nowPage = 1; // 기본값: 첫 페이지
-        this.displayPageCnt = 5; // 페이지 버튼 수
-        this.displayDataCnt = 3; // 한 페이지당 아이템 수
+        this.displayPageCnt = 3; // 페이지 버튼 수
+        this.displayDataCnt = 12; // 한 페이지당 아이템 수
         setPageInfo(); // 페이지 정보 설정
     }
 

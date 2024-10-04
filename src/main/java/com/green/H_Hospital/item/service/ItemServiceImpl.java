@@ -29,7 +29,6 @@ public class ItemServiceImpl implements ItemService{
         return sqlSession.selectList("itemMapper.getItemsByCategory",cateCode);
     }
 
-
     //아이템 등록
     @Override
     public void insertItem(ItemVO itemVO) {
@@ -52,6 +51,11 @@ public class ItemServiceImpl implements ItemService{
     @Override
     public List<ItemVO> getItemList() {
         return sqlSession.selectList("itemMapper.getItemList");
+    }
+
+    @Override
+    public List<ItemVO> getItemListAll() {
+        return sqlSession.selectList("itemMapper.getItemListAll");
     }
 
     //아이템 상세정보 조회
@@ -81,6 +85,9 @@ public class ItemServiceImpl implements ItemService{
     //아이템 리스트 조회 (페이징 처리)
     @Override
     public List<ItemVO> getItemList(PageVO pageVO) {
+        //전체 아아템 수를 설정
+        pageVO.setTotalDataCnt(getItemCnt());
+
         // 페이지 정보를 설정
         pageVO.setPageInfo();
 
