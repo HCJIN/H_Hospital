@@ -126,7 +126,7 @@
 
     <!-- 로그인 -->
     <select id="login" resultMap="member">
-        SELECT MEM_NUM, MEM_ID, MEM_NAME, MEM_ROLE, EMAIL
+        SELECT MEM_NUM, MEM_ID, MEM_NAME, MEM_ROLE, EMAIL, HOSPITAL_CODE
         FROM hospital_member
         WHERE EMAIL = #{email}
         AND MEM_PW = #{memPw};

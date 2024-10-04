@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import doctors from './department/doctorsData';
 import '../css/FindDoctor.css';
+import { useNavigate } from 'react-router-dom';
 
 const FindDoctor = () => {
+  const navigate = useNavigate();
+  
   const [selectedDepartment, setSelectedDepartment] = useState('');
   const [filteredDoctors, setFilteredDoctors] = useState([]);
 
@@ -11,6 +14,10 @@ const FindDoctor = () => {
     setSelectedDepartment(department);
     setFilteredDoctors(doctors[department] || []);
   };
+
+  const handleDoctorClick = (doctorId) =>{
+    navigate(`/doctor/${doctorId}`)
+  }
 
   return (
     <div className='find-div'>
@@ -46,6 +53,9 @@ const FindDoctor = () => {
                   <div className='doctor-details'>
                     <h4 className='doctor-name'>{doctor.name}</h4>
                     <p className='doctor-intro'>{doctor.intro}</p>
+                  </div>
+                  <div className='doctor-overlay'>
+                        <button type='button' className='doctor-intro-btn' onClick={()=>handleDoctorClick(doctor.id)}>의료진소개</button>
                   </div>
                 </div>
               ))}

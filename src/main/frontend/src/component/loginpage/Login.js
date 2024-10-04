@@ -92,11 +92,10 @@ const Login = ({loginInfo, setLoginInfo}) => {
           memName : res.data.memName,
           memRole : res.data.memRole,
           email : res.data.email,
-          memNum : res.data.memNum
+          memNum : res.data.memNum,
+          hospitalCode : res.data.hospitalCode
         }
 
-        //로그인 정보를 가진 객체를 문자열 형태로 변환 
-        //객체 -> 문자열로 변환한 데이터를 JSON 데이터로 부른다.
         window.sessionStorage.setItem('loginInfo', JSON.stringify(loginInfo));
 
         //로그인 정보를 저장하기 위해 만든 state 변수 loginInfo(App.js생성)에 로그인 정보를 저장
