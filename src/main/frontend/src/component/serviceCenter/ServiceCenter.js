@@ -25,7 +25,7 @@ const ServiceCenter = () => {
       return(
         <>
         <div className='right-top-div'>
-          <h3 className='right-title'>공지사항</h3>
+          <h2 className='right-title'>공지사항</h2>
         </div>
         <div className='right-bottom-div'>
           <div className='tab-content'>
@@ -76,7 +76,7 @@ const ServiceCenter = () => {
               faqList.map((faq, i) => {
                 return (
                   <div className='faq' key={i}>
-                    <div className='title-div'>
+                    <div className={isDetailShow[i] ? 'title-div bg' : 'title-div'}>
                       <div className='faq-index'>{faqList.length - i}</div>
                       <div className='faq-title' onClick={(e) => {
                         const copyIsDetailShow = [...isDetailShow];
@@ -99,28 +99,37 @@ const ServiceCenter = () => {
     }
     else if(sideMenu == '고객의소리'){
       return(
-        <div>
-          <h3>고객의소리</h3>
-          <div>
-            <h4>건의합니다!</h4>
+        <div className='customer-container'>
+          <h2>고객의소리</h2>
+          <div className='customer-suggestion'>
+            <h2>건의합니다!</h2>
             <p>제안 및 불만 고충 접수</p>
             <button>건의합니다 글쓰기</button>
           </div>
-          <div>
+          <div className='customer-call'>
             <h2>고객상담실 방문 및 전화상담 시간</h2>
-            <div>
-              <div></div>
+            <div className='customer-callInfo'>
+              <div><i class="bi bi-headset"></i></div>
               <div>
-                <span>평일 : 오전 9시 ~ 오후 5시</span>
-                <span>본원/어린이/암병원 : </span>
+                <span>평일 : 오전 9시 ~ 오후 5시</span><br/>
+                <span>본원/어린이/암병원 : 1599-1044</span>
               </div>
             </div>
           </div>
-          <div>
+          <div className='customer-process'>
             <h2>고객상담 처리과정</h2>
-            <div>접수</div>
-            <div>확인</div>
-            <div>회신</div>
+            <div>
+              <span><i class="bi bi-pencil-square"></i></span><br/>
+              <span>접수</span>
+            </div>
+            <div>
+              <span><i class="bi bi-check2-circle"></i></span><br/>
+              <span>확인</span>
+            </div>
+            <div>
+              <span><i class="bi bi-send"></i></span><br/>
+              <span>회신</span>
+            </div>
           </div>
         </div>
       )
