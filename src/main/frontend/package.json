@@ -9,13 +9,9 @@
     "axios": "^1.7.4",
     "bootstrap": "^5.3.3",
     "date-fns": "^3.6.0",
-<<<<<<< HEAD
     "http-proxy-middleware": "^3.0.2",
-=======
-    "http-proxy-middleware": "^3.0.1",
     "jspdf": "^2.5.2",
     "jspdf-autotable": "^3.8.3",
->>>>>>> 784f210069dd1ebe84c88a72ca00f6460e158095
     "moment": "^2.30.1",
     "pdfmake": "^0.2.13",
     "react": "^18.3.1",
