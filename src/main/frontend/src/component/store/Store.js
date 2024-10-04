@@ -158,9 +158,8 @@ useEffect(() => {
       .get('/item/getItemAllList')
       .then((res) => {
         console.log(res.data)
-        setItemList(res.data.itemList);
-        setFilteredItemList(res.data.itemList);
-        setPageInfo(res.data.pageInfo);
+        setItemList(res.data);
+        setFilteredItemList(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -173,9 +172,8 @@ useEffect(() => {
       .get('/item/getItemAllList')
       .then((res) => {
         console.log(res.data)
-        setItemList(res.data.itemList);
-        setFilteredItemList(res.data.itemList);
-        setPageInfo(res.data.pageInfo);
+        setItemList(res.data);
+        setFilteredItemList(res.data);
       })
       .catch((error) => {
         console.log(error);
