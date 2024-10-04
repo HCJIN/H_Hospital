@@ -48,7 +48,7 @@ const Supplier = () => {
   const fetchCartList = () => {
     Promise.all([
       axios.get(`/cart/getCartListAll?page=${currentPage}&limit=${itemsPerPage}`),
-      axios.get('/item/getItemList')
+      axios.get('/item/getItemAllList')
     ])
       .then(([cartResponse, itemResponse]) => {
         console.log(cartResponse.data);
