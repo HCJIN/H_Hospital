@@ -117,9 +117,8 @@
 }
 
 .right-title{
-  color: #333;
-  font-size: 1.2rem;
-  font-weight: 500;
+  color: #0e787c;
+  font-weight: 700;
 }
 
 /* right-title-end */
@@ -197,7 +196,9 @@
 }
 
 .faq-container > h2{
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+  color: #0e787c;
+  margin-left: 450px;
 }
 
 .faq-list{
@@ -205,13 +206,8 @@
 }
 
 .faq{
-  /* border-top: 1px solid rgb(155, 155, 155); */
   border-bottom: 1px solid rgb(155, 155, 155);
-  /* margin-bottom: 1rem; */
-  /* padding: 1rem; */
   cursor: pointer;
-
-  
 }
 
 .title-div{
@@ -220,10 +216,12 @@
 
 .faq-title{
   padding: 1rem;
+  font-weight: 700;
 }
 .title-div:hover{
-  background-color: rgb(6, 118, 122, 0.3);
+  background-color: rgba(20, 137, 141, 0.349);
   color: white;
+  /* font-weight: 700; */
 }
 
 .title-div > div:nth-child(1){
@@ -244,13 +242,24 @@
 }
 
 .faq-detail{
-  display: none;
-  margin-top: 10px;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-bottom: 1rem;
+  max-height: 0px;
+  overflow: hidden;
+  padding: 0 2rem;
+  line-height: 23px;
+  transition: all 0.3s ease;
 }
 
 .faq-detail.show{
-  display: block;
+  padding: 2rem 2rem;
+  max-height: 300px;
+}
+
+.title-div.bg{
+  background-color: rgba(20, 137, 141, 0.623);
+  color: white;
+}
+
+.side-menu-ul > li > h3{
+  font-weight: bold;
+  cursor: pointer;
 }
