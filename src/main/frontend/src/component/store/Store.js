@@ -41,13 +41,14 @@ const Store = () => {
   const filterItemsByCategory = (category) => {
     setSelectedCategory(category);
     if (category === 'all') {
-      setFilteredItemList(itemList);
+      setFilteredItemList(Array.isArray(itemList) ? itemList : []);
     } else {
-      const filtered = itemList.filter(item => item.itemCategory === category);
+      const filtered = Array.isArray(itemList) 
+        ? itemList.filter(item => item.itemCategory === category)
+        : [];
       setFilteredItemList(filtered);
     }
   };
-  console.log(selectedCategory)
 
   //선택된 카테고리의 아이템을 가져옴
   const onCategory = (category) => {
@@ -77,23 +78,26 @@ const Store = () => {
     });
   };
 
-  //장바구니 목록을 가져오는 함수
-  const fatchCartList = () => {
-    axios.get(`/cart/getCartList/${memNum}`)
-      .then((res) => {
-        setCartList(res.data);
-        calculateTotalPrice();
-      })
-      .catch((error) => {
-        alert('발주목록 조회 오류🤢🛒');
-        console.log(error);
-      });
-  };
+// 장바구니 목록을 가져오는 함수
+const fatchCartList = () => {
+  axios.get(`/cart/getCartList/${memNum}`)
+    .then((res) => {
+      setCartList(res.data);
+      setCheckItems(Array(res.data.length).fill(false)); // checkItems 초기화
+      calculateTotalPrice();
+    })
+    .catch((error) => {
+      alert('발주목록 조회 오류🤢🛒');
+      console.log(error);
+    });
+};
 
-  //체크된 아이템이 변경될 때마다 총 가격을 업데이트
-  useEffect(()=>{
+// 체크된 아이템이 변경될 때마다 총 가격을 업데이트
+useEffect(() => {
+  if (cartList.length > 0) {
     calculateTotalPrice();
-  },[checkItems])
+  }
+}, [checkItems, cartList]); // checkItems와 cartList 모두 의존성 배열에 추가
 
   //총 가격 계산
   const calculateTotalPrice = () => {
