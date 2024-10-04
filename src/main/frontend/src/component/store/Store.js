@@ -22,6 +22,8 @@ const Store = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   //자바에서 가져온 페이지 정보를 담을 변수
   const [pageInfo, setPageInfo] = useState({});
+  //페이징 처리 표시 여부
+  const [isPaginated, setIsPaginated] = useState(true);
   //검색데이터 useState
   const [searchData, setSearchData] = useState({
     searchType: 'ITEM_NAME',
@@ -42,11 +44,13 @@ const Store = () => {
     setSelectedCategory(category);
     if (category === 'all') {
       setFilteredItemList(Array.isArray(itemList) ? itemList : []);
+      setIsPaginated(true);
     } else {
       const filtered = Array.isArray(itemList) 
         ? itemList.filter(item => item.itemCategory === category)
         : [];
       setFilteredItemList(filtered);
+      setIsPaginated(false);
     }
   };
 
@@ -57,12 +61,14 @@ const Store = () => {
       .then((res) => {
         setItemList(res.data);
         setFilteredItemList(res.data); // 불러온 데이터를 필터링된 리스트로 설정
+        setIsPaginated(false);
       })
       .catch((error) => {
         console.log(error);
       });
-  };
-
+    };
+    console.log(isPaginated)
+    
   //카테고리 클릭 시 처리
   const handleCategoryClick = (category) => {
     if (category === 'all') {
@@ -154,31 +160,8 @@ useEffect(() => {
 
   //모든 아이템을 가져오는 함수
   function all(){
-    axios
-      .get('/item/getItemAllList')
-      .then((res) => {
-        console.log(res.data)
-        setItemList(res.data);
-        setFilteredItemList(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    getList(1);
   }
-
-  //마운트 시 모든 아이템 가져오기
-  useEffect(() => {
-    axios
-      .get('/item/getItemAllList')
-      .then((res) => {
-        console.log(res.data)
-        setItemList(res.data);
-        setFilteredItemList(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   // 수량 변경 시 처리
   const handleItemCntChange = (index, newCnt) => {
@@ -448,6 +431,7 @@ function getList(page) {
       setItemList(res.data.itemList);
       setFilteredItemList(res.data.itemList);
       setPageInfo(res.data.pageInfo);
+      setIsPaginated(true);
       window.scrollTo(0, 0);
     })
     .catch((error) => {
@@ -652,7 +636,10 @@ useEffect(() => {
       {/* 페이징 정보가 나오는 div */}
       <div className='page-div'>
         {
+          isPaginated ? 
           drawPagination()
+          :
+          <></>
         }
       </div>
     </div>
