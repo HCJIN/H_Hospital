@@ -21,6 +21,13 @@
   width: 70%;
 }
 
+.pagination-div{
+  position: absolute;
+  top: 65%;
+  left: 38%;
+  transform: translate(-40%);
+}
+
 .ordering-table {
   width: 100%;
   margin: 20px auto;

@@ -37,15 +37,21 @@ const Supplier = () => {
     itemBrand: ''
   });
 
+  // State 추가: 페이지 번호와 페이지당 표시할 아이템 개수 설정
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(5);  // 한 페이지에 표시할 발주 요청 수
+  const [totalPages, setTotalPages] = useState(0);
+  
   const fetchCartList = () => {
     Promise.all([
-      axios.get('/cart/getCartListAll'),
+      axios.get(`/cart/getCartListAll?page=${currentPage}&limit=${itemsPerPage}`),
       axios.get('/item/getItemList')
     ])
       .then(([cartResponse, itemResponse]) => {
         console.log(cartResponse.data);
         console.log(itemResponse.data);
-        setCartList(cartResponse.data);
+        setCartList(cartResponse.data.cartList);
+        setTotalPages(cartResponse.data.totalPages);
         setItemList(itemResponse.data);
       })
       .catch((error) => {
@@ -53,10 +59,42 @@ const Supplier = () => {
       });
   };
 
-  //발주요청으로 보내온 데이터 가져오기
-  useEffect(()=>{
-    fetchCartList();
-  },[])
+  useEffect(() => {
+    if(currentPage > 0){
+      fetchCartList();
+    }
+  }, [currentPage, itemsPerPage]);
+
+  // 자바에서 상품목록리스트 가져오기
+  // useEffect(() => {
+  //   fetchCartList();
+  // }, []); //currentPage가 변경될 때마다 실행 //currentPage
+
+  // 페이지 변경 핸들러
+  function handlePageChange(pageNumber) {
+    setCurrentPage(pageNumber);  // 클릭한 페이지로 변경
+  }
+
+  // 페이지네이션 컴포넌트
+  const Pagination = () => {
+    const pageNumbers = [];
+    for(let i = 1; i <= totalPages; i++){
+      pageNumbers.push(i);
+    }
+    return(
+      <div className='pagination-div'>
+        <ul className="pagination" style={{display:"flex"}}>
+          {pageNumbers.map(number => (
+            <li key={number} className='page-item'>
+              <button onClick={() => handlePageChange(number)} className="btn btn-Subprimary">
+                {number}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
 
   //자바에서 카테고리 목록 데이터 가져오기
   useEffect(() => {
@@ -68,11 +106,6 @@ const Supplier = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
-
-  // 자바에서 상품목록리스트 가져오기
-  useEffect(() => {
-    fetchCartList();
   }, []);
 
   //수량 수정
@@ -263,6 +296,7 @@ const Supplier = () => {
     }
   }, [checkItems, cartList]);
 
+  console.log(cartList)
 
   return (
     <div className='supplier-div'>
@@ -288,45 +322,33 @@ const Supplier = () => {
                   </tr>
                 </thead>
                 <tbody className='ordering-tbody'>
-                  {
-                    cartList.map((cart, i)=>{
-                      return(
-                        <tr key={i}>
-                          <td><input type='checkbox' checked={checkItems.includes(cart.cartCode)} onClick={(e) => {handleSingleCheck(e.target.checked, cart.cartCode)}} /></td>
-                          <td>
-                            {cart.itemVO.itemName}
-                          </td>
-                          <td>
-                            <input type='number' id='cntBtn' min='1' value={cart.cartCnt} onChange={(e)=>{cntChange(e,i)}}></input>
-                            <button type='button' className='btn btn-Subprimary' onClick={()=>{
-                              cntUpdate(cart.cartCode, cart.cartCnt)
-                            }}>확인</button>
-                          </td>
-                          <td>
-                            {formatDate(cart.cartDate)}
-                          </td>
-                          <td>
-                            {cart.cartStatus}
-                            {
-                              cart.cartStatus != '발주요청' ? 
-                              <></>
-                              :
-                              <>
-                              <button type='button' className='btn btn-Subprimary' onClick={()=>{
-                                goShipment(cart);
-                              }}>출하</button>
-                              <button type='button' className='btn btn-Subprimary' onClick={() => {
-                                cancelItem(cart);
-                              }}>취소</button>
-                              </>
-                            }
-                          </td>
-                        </tr>
-                      )
-                    })
-                  }
+                {cartList.map((cart, i) => (
+                  <tr key={i}>
+                    <td>
+                      <input type='checkbox' checked={checkItems.includes(cart.cartCode)} onClick={(e) => { handleSingleCheck(e.target.checked, cart.cartCode) }} />
+                    </td>
+                    <td>{cart.itemVO.itemName}</td>
+                    <td>
+                      <input type='number' id='cntBtn' min='1' value={cart.cartCnt} onChange={(e) => { cntChange(e, i) }} />
+                      <button type='button' className='btn btn-Subprimary' onClick={() => { cntUpdate(cart.cartCode, cart.cartCnt) }}>확인</button>
+                    </td>
+                    <td>{formatDate(cart.cartDate)}</td>
+                    <td>
+                      {cart.cartStatus}
+                      {
+                        cart.cartStatus !== '발주요청' ? 
+                        <></> : 
+                        <>
+                          <button type='button' className='btn btn-Subprimary' onClick={() => { goShipment(cart) }}>출하</button>
+                          <button type='button' className='btn btn-Subprimary' onClick={() => { cancelItem(cart) }}>취소</button>
+                        </>
+                      }
+                    </td>
+                  </tr>
+                ))}
                 </tbody>
               </table>
+              <Pagination />
             </div>
           </div>
           <div className='list-div'>
