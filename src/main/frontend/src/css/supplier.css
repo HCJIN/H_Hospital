@@ -37,7 +37,7 @@
 }
 
 .ordering-table thead {
-  background-color: #0e787c;
+  background-color: #00ABB1;
   color: white;
 }
 
@@ -69,24 +69,24 @@
 }
 
 .btn-primary {
-  background-color: #0e787c;
+  background-color: #00ABB1;
   color: white;
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #095e62;
+  background-color: #029196;
 }
 
 .btn-Subprimary {
-  background-color: #06767a;
+  background-color: #00ABB1;
   color: white;
   border: none;
   margin-left: 10px;
 }
 
 .btn-Subprimary:hover {
-  background-color: #055e62;
+  background-color: #029196;
 }
 
 .list-div {

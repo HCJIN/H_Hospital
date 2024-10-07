@@ -340,12 +340,14 @@ const Supplier = () => {
                       <td>
                         <input type='checkbox' checked={checkItems.includes(cart.cartCode)} onClick={(e) => { handleSingleCheck(e.target.checked, cart.cartCode) }} />
                       </td>
-                      <td>{cart.itemVO.itemName}</td>
+                      <td>{(cart.itemVO.itemName).toString()}</td>
                       <td>
                         <input type='number' id='cntBtn' min='1' value={cart.cartCnt} onChange={(e) => { cntChange(e, i) }} />
                         <button type='button' className='btn btn-Subprimary' onClick={() => { cntUpdate(cart.cartCode, cart.cartCnt) }}>확인</button>
                       </td>
                       <td>{formatDate(cart.cartDate)}</td>
+                      <td>{
+                      (cart.itemVO.itemPrice*cart.cartCnt).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</td>
                       <td>
                         {cart.cartStatus}
                         {

@@ -36,7 +36,7 @@
 }
 
 .logo{
-  width: 60%;
+  width: 70%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -56,7 +56,7 @@
 .logo div{
   cursor: pointer;
   position: absolute;
-  right: -225px;
+  right: 60px;
 }
 
 .logo div > span{
@@ -74,6 +74,12 @@
 /* 마지막 "|" 안보이게  */
 .logo div > span:last-child::after{
   content: "";
+}
+.hospital-logo{
+  margin-left: 100px;
+}
+.supplier-logo{
+  width: 170px;
 }
 
 .login{
