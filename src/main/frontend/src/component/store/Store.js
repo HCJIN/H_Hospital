@@ -307,7 +307,8 @@ useEffect(() => {
     return axios
       .delete(`/cart/cartDelete/${cartCode}`)
       .then(() => {
-        console.log(`삭제 완료: ${cartCode}`);
+        alert('삭제가 완료되었습니다.');
+        fatchCartList();
       })
       .catch((error) => {
         console.error('삭제 중 오류 발생:', error);
