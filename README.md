@@ -1,6 +1,6 @@
 # 🏥 SNS를 활용한 병원 로그인 및 회원가입
 
-![MAIN](./src/images/메인화면.PNG);
+![MAIN](./src/main/frontend/src/images/메인화면.PNG);
 
 ## 목차
 
