@@ -147,7 +147,9 @@ function App() {
   
   //직원 로그인 시 사이드바 숨기기
   //ID에 test가 포함된 경우 사이드바 숨김
-  const showSideBar = !(loginInfo.memRole === 'admin' || (loginInfo.email?.split('@')[0].includes('test')));
+  const showSideBar = !(loginInfo.memRole === 'admin' || 
+    (loginInfo.email?.split('@')[0].includes('test')) || 
+    location.pathname === '/supplier');
 
   //직원으로 로그인 했을때 상단에 '진료예약조회'메뉴 띄우는 함수 
   function upperMenu(){
@@ -165,6 +167,10 @@ function App() {
       )
     }
   }
+
+  //공급사로 이동 시
+  const showSupplierMenu = location.pathname === '/supplier'
+  
 
   return (
     <div className="App">
@@ -197,12 +203,22 @@ function App() {
         <div className='logo-header'>
           <div className='logo-div'>
             <div className='logo'>
-              <img onClick={()=>{
-                navigate('/')
-              }} src='http://localhost:8080/images/ulsan_logo.png'></img>
-              {
-                upperMenu()
-              }
+              {showSupplierMenu ? (
+                <img className='supplier-logo' 
+                  onClick={() => navigate('/supplier')}
+                  src='http://localhost:8080/images/koreanMedical_logo.png' 
+                  alt="Other Logo" 
+                />
+              ) : (
+                (
+                  <img className='hospital-logo'
+                    onClick={() => navigate('/')} 
+                    src='http://localhost:8080/images/ulsan_logo.png' 
+                    alt="Logo" 
+                  />
+                )
+              )}
+              {upperMenu()}
             </div>
           </div>
         </div>
