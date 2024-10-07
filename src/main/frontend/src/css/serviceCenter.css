@@ -263,3 +263,126 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+.customer-container > h2{
+  margin-bottom: 15px;
+
+}
+
+.customer-suggestion > div > button{
+  width: 150px;
+  height: 50px;
+  font-size: 15px;
+  border: 1px solid white;
+  font-weight: bold;
+  color: white;
+  background-color: #44839cbe;
+  cursor: pointer;
+}
+
+.customer-suggestion > div > button:hover{
+  background-color: #4cb1dabe;
+}
+
+.customer-suggestion{
+  width: 30%;
+  height: 200px;
+  border: 1px solid white;
+  background-color: #44839cbe;
+  color: white;
+  padding: 20px auto;
+  margin: 10px;
+}
+
+.customer-suggestion > div{
+  margin: 15px 20px;
+}
+
+.customer-suggestion > div > h2{
+  margin-bottom: 15px;
+}
+
+.customer-suggestion > div > p{
+  font-size: 15px;
+  color: white;
+  margin-bottom: 45px;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.customer-call{
+  margin-top: 40px;
+  /* border: 1px solid black; */
+  /* width: ; */
+  height: 120px;
+}
+
+.customer-call > h2{
+  margin-bottom: 15px;
+  margin: 10px;
+}
+
+.customer-callInfo{
+  display: flex;
+  gap: 10px;
+  margin: 10px;
+  padding-top: 5px;
+}
+
+.customer-callInfo > div:nth-child(1){
+  border: 1px solid rgb(151, 151, 151);
+  border-radius: 35px;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  font-size: 35px;
+  color: rgb(91, 113, 173);
+  padding-top: 11px;
+}
+
+.customer-callInfo > div:nth-child(2) > span:nth-child(1){
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(73, 73, 73);
+}
+
+.customer-callInfo > div:nth-child(2) > span{
+  
+}
+
+.customer-process{
+  margin-top: 30px;
+  /* border: 1px solid purple; */
+}
+
+.customer-process > h2{
+  margin: 10px;
+  margin-bottom: 13px;
+}
+
+.customer-process2{
+  display: flex;
+}
+
+.customer-process2 > div{
+  border: 1px solid rgb(151, 151, 151);
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  font-size: 17px;
+  color: rgb(91, 113, 173);
+  margin: auto;
+  text-align: center;
+  padding-top: 13px;
+}
+
+.customer-process2 > div > span:nth-child(1){
+  font-size: 30px;
+}
+
+.service-icon{
+  margin-top: 30px;
+  font-size: 25px;
+  font-weight: bold;
+  color: rgb(151, 151, 151);
+}

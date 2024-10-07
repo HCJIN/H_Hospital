@@ -102,9 +102,12 @@ const ServiceCenter = () => {
         <div className='customer-container'>
           <h2>고객의소리</h2>
           <div className='customer-suggestion'>
-            <h2>건의합니다!</h2>
-            <p>제안 및 불만 고충 접수</p>
-            <button>건의합니다 글쓰기</button>
+            <div>
+              <h2>건의합니다!              <i class="bi bi-chat-dots"></i>
+              </h2>
+              <p>제안 및 불만 고충 접수</p>
+              <button>건의합니다 글쓰기</button>
+            </div>
           </div>
           <div className='customer-call'>
             <h2>고객상담실 방문 및 전화상담 시간</h2>
@@ -118,17 +121,25 @@ const ServiceCenter = () => {
           </div>
           <div className='customer-process'>
             <h2>고객상담 처리과정</h2>
-            <div>
-              <span><i class="bi bi-pencil-square"></i></span><br/>
-              <span>접수</span>
-            </div>
-            <div>
-              <span><i class="bi bi-check2-circle"></i></span><br/>
-              <span>확인</span>
-            </div>
-            <div>
-              <span><i class="bi bi-send"></i></span><br/>
-              <span>회신</span>
+            <div className='customer-process2'>
+              <div>
+                <span><i class="bi bi-pencil-square"></i></span><br/>
+                <span>접수</span>
+              </div>
+              <span className='service-icon'>
+              <i class="bi bi-chevron-right"></i>
+              </span>
+              <div>
+                <span><i class="bi bi-check2-circle"></i></span><br/>
+                <span>확인</span>
+              </div>
+              <span className='service-icon'>
+              <i class="bi bi-chevron-right"></i>
+              </span>
+              <div>
+                <span><i class="bi bi-send"></i></span><br/>
+                <span>회신</span>
+              </div>
             </div>
           </div>
         </div>
