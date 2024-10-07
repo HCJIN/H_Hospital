@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CalendarComponent from '../component/calendar/CalendarComponent';
+import '../css/AdminRegSchedule.css'
 
 const AdminRegSchedule = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -36,32 +37,38 @@ const AdminRegSchedule = () => {
   };
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h3>의사 정보</h3>
-      <div style={{ marginBottom: '20px', padding: '10px', border: '1px solid #ccc', borderRadius: '5px' }}>
-        <div>
-          <p><strong>이름:</strong> {doctorInfo.name || '로그인 정보 없음'}</p>
-          <p><strong>전문 분야:</strong> {doctorInfo.specialty}</p>
+    <div>
+      <div className='check-schedule-div'>
+        <div className='check-doctor-div'>
+          <h3>의사 정보</h3>
+          <div className='check-doctor-schedule'>
+            <div>
+              <p><strong>이름:</strong> {doctorInfo.name || '로그인 정보 없음'}</p>
+              <p><strong>전문 분야:</strong> {doctorInfo.specialty}</p>
+            </div>
+            <h4>등록된 일정</h4>
         </div>
-        <h4>등록된 일정</h4>
-      <div>
-        {Object.entries(schedules).map(([date, times]) => (
-          <div key={date} style={{ marginBottom: '10px' }}>
-            <strong>{date}</strong>: {times.join(', ') || '등록된 일정 없음'}
-          </div>
-        ))}
+        <div className='reg-calendar'>
+          {Object.entries(schedules).map(([date, times]) => (
+            <div key={date} style={{ marginBottom: '10px' }}>
+              <strong>{date}</strong>: {times.join(', ') || '등록된 일정 없음'}
+            </div>
+          ))}
+        </div>
       </div>
 
       </div>
       
-      <h3>진료 일정 등록</h3>
-      <CalendarComponent onChange={setSelectedDate} value={selectedDate} />
-      <div style={{ margin: '20px 0' }}>
-        <button type='button' onClick={() => insertSchedule("오전 외래")}>오전 외래</button>
-        <button type='button' onClick={() => insertSchedule("오후 외래")}>오후 외래</button>
-        <button type='button' onClick={() => insertSchedule("기타")}>기타</button>
+      <div className='reg-check'>
+        <h3>진료 일정 등록</h3>
+        <CalendarComponent onChange={setSelectedDate} value={selectedDate} />
+        <div style={{ margin: '20px 0' }}>
+          <button type='button' onClick={() => insertSchedule("오전 외래")}>오전 외래</button>
+          <button type='button' onClick={() => insertSchedule("오후 외래")}>오후 외래</button>
+          <button type='button' onClick={() => insertSchedule("기타")}>기타</button>
+        </div>
+        <button type='button' onClick={handleSubmit}>일정 등록</button>
       </div>
-      <button type='button' onClick={handleSubmit}>일정 등록</button>
 
     </div>
   );
