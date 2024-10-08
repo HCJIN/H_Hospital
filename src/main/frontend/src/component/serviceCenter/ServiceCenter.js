@@ -5,7 +5,6 @@ import JoinwritingForm from './JoinwritingForm';
 import axios from 'axios';
 import { faqList } from './faqList';
 
-
 const ServiceCenter = () => {
 
   const navigate = useNavigate();
@@ -99,46 +98,75 @@ const ServiceCenter = () => {
     }
     else if(sideMenu == '고객의소리'){
       return(
-        <div className='customer-container'>
-          <h2>고객의소리</h2>
-          <div className='customer-suggestion'>
-            <div>
-              <h2>건의합니다!              <i class="bi bi-chat-dots"></i>
-              </h2>
-              <p>제안 및 불만 고충 접수</p>
-              <button>건의합니다 글쓰기</button>
+        <div className='customerAll'>
+          <div className='customerScroll'>
+            <div className='customerImg'>
+              <img src='http://localhost:8080/images/고객의소리.jpg'/>
+            </div>
+            <div className='scrollText'>
+              울산메디컬센터는 고객 여러분께서 보다 편리하게 진료를 받을 수 있도록 노력하고 있습니다. <br/> 
+              병원을 이용하면서 느낀 불편 사항을 말씀해 주시면 최선을 다해 처리해 드리겠습니다.<br/> <br/> 
+
+              불만 및 고충 사항은 방문 또는 전화, 열린소리함 엽서, 인터넷 홈페이지를 통해 접수할 수 있습니다.<br/> <br/> 
+
+              동관 지하1층 고객상담실에서 직원 면담으로 방문 접수가 가능하고 전화는 1599-1044를 이용할 수 있습니다.<br/>방문과 전화 접수의 경우 평일 오전 9시부터 오후 5시분까지 접수가 가능합니다.<br/> <br/> 
+
+              병동 면회실, 검사실, 외래 등 병원 내 비치된 제안, 불편, 건의 엽서에 내용을 작성하여 열린소리함에 접수하여 주십시오.<br/> 또한 병원 홈페이지에서 작성이 가능합니다.<br/> 엽서와 인터넷 접수는 휴일이 포함될 경우 접수와 회신이 지연될 수 있습니다.<br/> <br/> 
+
+              상담 및 접수 과정 중 환자와 호소자의 정보가 제공되지 않는 경우, 운영 취지에 맞지 않거나 모호한 내용, 비방과 욕설이 포함된 내용은 상담과 접수가 제한될 수 있습니다.<br/> <br/> 
+
+              접수된 사안은 고객 여러분과 해당 부서의 의견을 토대로 처리 방향을 검토합니다.<br/> 
+              사안에 따라 관련 부서와 협의하여 개선을 의뢰하거나 이관하여 처리합니다.<br/> <br/> 
+
+              상담 중 즉시 회신을 드리지 못한 경우는 2주 이내 회신을 드리기 위해 노력하고 있습니다.<br/> 
+              단, 사안에 따라 기간이 초과되는 경우는 고객에게 사전 통지합니다.<br/> <br/> 
+
+              고객의 소리를 경청하고 개선하여 고객과 소통하는 울산메티컬센터가 되겠습니다.
             </div>
           </div>
-          <div className='customer-call'>
-            <h2>고객상담실 방문 및 전화상담 시간</h2>
-            <div className='customer-callInfo'>
-              <div><i class="bi bi-headset"></i></div>
+
+          <div className='customer-container'>
+            <h2>고객의소리</h2>
+            <div className='customer-suggestion'>
               <div>
-                <span>평일 : 오전 9시 ~ 오후 5시</span><br/>
-                <span>본원/어린이/암병원 : 1599-1044</span>
+                <h2>건의합니다!              <i class="bi bi-chat-dots"></i>
+                </h2>
+                <p>제안 및 불만 고충 접수</p>
+                <button>건의합니다 글쓰기</button>
               </div>
             </div>
-          </div>
-          <div className='customer-process'>
-            <h2>고객상담 처리과정</h2>
-            <div className='customer-process2'>
-              <div>
-                <span><i class="bi bi-pencil-square"></i></span><br/>
-                <span>접수</span>
+            <div className='customer-call'>
+              <h2>고객상담실 방문 및 전화상담 시간</h2>
+              <div className='customer-callInfo'>
+                <div><i class="bi bi-headset"></i></div>
+                <div className='callInfo'>
+                  <span>평일 : 오전 9시 ~ 오후 5시</span><br/>
+                  <span className='callInfo2'>본원/어린이/암병원 : 1599-1044</span>
+                </div>
               </div>
-              <span className='service-icon'>
-              <i class="bi bi-chevron-right"></i>
-              </span>
-              <div>
-                <span><i class="bi bi-check2-circle"></i></span><br/>
-                <span>확인</span>
-              </div>
-              <span className='service-icon'>
-              <i class="bi bi-chevron-right"></i>
-              </span>
-              <div>
-                <span><i class="bi bi-send"></i></span><br/>
-                <span>회신</span>
+            </div>
+            <div className='customer-process'>
+              <h2>고객상담 처리과정</h2>
+              <div className='customer-process2'>
+                <div>
+                  <span><i class="bi bi-pencil-square"></i></span><br/>
+                  <span>접수</span>
+                </div>
+                <span className='service-icon'>
+                <i class="bi bi-chevron-right"></i>
+                </span>
+                <div>
+                  <span><i class="bi bi-check2-circle"></i></span><br/>
+                  <span>확인</span>
+                </div>
+                <span className='service-icon'>
+                <i class="bi bi-chevron-right"></i>
+                </span>
+                <div>
+                  <span><i class="bi bi-send"></i></span><br/>
+                  <span>회신</span>
+                  
+                </div>
               </div>
             </div>
           </div>

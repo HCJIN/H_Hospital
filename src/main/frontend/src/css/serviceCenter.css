@@ -264,9 +264,40 @@
   cursor: pointer;
 }
 
+.customerAll{
+  display: flex;
+}
+
+.customer-container{
+  /* border: 1px solid red; */
+  width: 50%;
+  height: 100%;
+}
+
+.customerScroll{
+  /* border: 1px solid blue; */
+  width: 50%;
+  height: 100%;
+}
+
+.customerImg{
+  margin-left: 40px;
+}
+
+.scrollText{
+  width: 450px;
+  max-height: 400px;
+  overflow-y: scroll;
+  /* margin: 10px; */
+  margin-left: 55px;
+  background-color: rgb(238, 236, 236);
+  border: 1px solid rgb(202, 202, 202);
+}
+
 .customer-container > h2{
   margin-bottom: 15px;
-
+  margin: 18px 26px;
+  color:  #0e787c;
 }
 
 .customer-suggestion > div > button{
@@ -285,13 +316,14 @@
 }
 
 .customer-suggestion{
-  width: 30%;
+  width: 300px;
   height: 200px;
   border: 1px solid white;
   background-color: #44839cbe;
   color: white;
   padding: 20px auto;
-  margin: 10px;
+  margin-left: 130px;
+  text-align: center;
 }
 
 .customer-suggestion > div{
@@ -311,21 +343,19 @@
 }
 
 .customer-call{
-  margin-top: 40px;
+  margin-top: 20px;
   /* border: 1px solid black; */
-  /* width: ; */
-  height: 120px;
+  height: 130px;
 }
 
 .customer-call > h2{
-  margin-bottom: 15px;
   margin: 10px;
 }
 
 .customer-callInfo{
   display: flex;
   gap: 10px;
-  margin: 10px;
+  margin: 15px;
   padding-top: 5px;
 }
 
@@ -346,22 +376,20 @@
   color: rgb(73, 73, 73);
 }
 
-.customer-callInfo > div:nth-child(2) > span{
-  
-}
-
 .customer-process{
-  margin-top: 30px;
+  margin-top: 10px;
   /* border: 1px solid purple; */
 }
 
 .customer-process > h2{
   margin: 10px;
-  margin-bottom: 13px;
+  margin-bottom: 20px;
 }
 
 .customer-process2{
-  display: flex;
+  display: inline-flex;
+  gap: 40px;
+  margin-left: 20px;
 }
 
 .customer-process2 > div{
@@ -385,4 +413,13 @@
   font-size: 25px;
   font-weight: bold;
   color: rgb(151, 151, 151);
+}
+
+.callInfo{
+  margin-top: 10px;
+}
+
+.callInfo2{
+  color: rgb(151, 151, 151);
+  font-weight: 600;
 }

@@ -24,7 +24,7 @@ const DoctorPage = () => {
         <div className='doctorPage-img'>
           <img src={doctor.image} alt={`${doctor.name}'s image`} />
         </div>
-       
+      
           <div className='doctor-profile'>
             <div className='doctor-profile-title'>
               <h1>{doctor.name}</h1>
