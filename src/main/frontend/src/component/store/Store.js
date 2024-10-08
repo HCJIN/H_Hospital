@@ -5,6 +5,9 @@ import ItemDetail from '../supplier/ItemDetail';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { nanumGothicFont } from '../../external-fonts';
+import base64Img from '../../base64Img';
+import base64ImgLogo from '../../base64ImgLogo';
+import { type } from '@testing-library/user-event/dist/type';
 
 const Store = () => {
 
@@ -296,6 +299,7 @@ useEffect(() => {
       .post(`/cart/statusUpdate/${cartCode}`)
       .then((res) => {
         alert('발주요청이 완료되었습니다.');
+        fatchCartList()
       })
       .catch((error) => {
         console.log(error);
@@ -345,7 +349,56 @@ useEffect(() => {
     // PDF 문서 정의
     const docDefinition = {
       content: [
-        { text: '발주 내역 리스트', style: 'header' },
+        {
+          text: '울산메디칼센터',
+          fontSize: 40,
+          color: 'lightgrey', // 워터마크 색상
+          bold: true,
+          opacity: 0.3, // 투명도 조정
+          absolutePosition: { x: 180, y: 400 } // 위치 조정
+        },
+        {
+          absolutePosition: { x: 450, y: 40 },
+          columns: [
+            {
+              width: 80,
+              stack: [
+                {
+                  canvas: [
+                    {
+                      type: 'rect',
+                      x: 0,
+                      y: 0,
+                      w: 80,
+                      h: 80,
+                      lineWidth: 1,
+                      lineColor: 'black',
+                    },
+                    {
+                      type: 'line',
+                      x1: 0,
+                      y1: 20,
+                      x2: 80,
+                      y2: 20,
+                      lineWidth:1
+                    },
+                  ]
+                },
+                {
+                  text:'병원장 인',
+                  absolutePosition: {x: 465, y: 43}
+                },
+                {
+                  image: base64Img(),
+                  width: 60,
+                  height: 55,
+                  absolutePosition: { x: 460, y: 63 }
+                }
+              ]
+            }
+          ]
+        },
+        { text: '발주 내역 리스트', style: 'header',margin: [0, 50, 0, 0] },
         {
           table: {
             headerRows: 1,
@@ -357,10 +410,9 @@ useEffect(() => {
               // 총 가격 천 단위에 , 표시
               [{ text: `총 가격 : ₩${totalPrice.toLocaleString()}원`, colSpan: 5, alignment: 'right' }, {}, {}, {}, {}]
             ]
-          }
+          },
+          margin: [0, 35, 0, 0]
         },
-        // 이미지 추가
-        {img: 'images/donue_signature.png', width: 200, alignment: 'center'}
       ],
       styles: {
         header: {
@@ -478,92 +530,94 @@ useEffect(() => {
             <button type='button' onClick={search}>검색</button>
           </div>
         </div>
-        <table className='store-table'>
-          <thead className='store-thead'>
-            <tr>
-              <td>
-                <input
-                  type='checkbox'
-                  className='checkboxAll'
-                  onChange={changeChkAll}
-                  checked={allChecked}
-                ></input>
-              </td>
-              <td>
-                <p>제품</p>
-              </td>
-              <td>
-                <p>수량</p>
-              </td>
-              <td>
-                <p>가격</p>
-              </td>
-              <td>
-                <p>주문일시</p>
-              </td>
-              <td>
-                <p>상태</p>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            {cartList.map((cart, i) => (
-              <tr key={i}>
+        <div className='table-div'>
+          <table className='store-table'>
+            <thead className='store-thead'>
+              <tr>
                 <td>
-                  <input 
-                    type='checkbox' 
-                    onChange={() => {
-                      const copyChks = [...checkItems];
-                      copyChks[i] = !copyChks[i];
-                      setCheckItems(copyChks);
-                    }}
-                    checked={checkItems[i] || false}
+                  <input
+                    type='checkbox'
+                    className='checkboxAll'
+                    onChange={changeChkAll}
+                    checked={allChecked}
                   ></input>
                 </td>
                 <td>
-                  <p>{cart.itemVO.itemName}</p>
+                  <p>제품</p>
                 </td>
                 <td>
-                  <input type='number'
-                    value={cart.cartCnt || 1}
-                    onChange={(e) => handleItemCntChange(i, Number(e.target.value))}
-                    min='1'
-                  ></input>
-                  <button type='button' className='supliierBtn' onClick={() => cntUpdate(cart.cartCode, cart.cartCnt)}>확인</button>
+                  <p>수량</p>
                 </td>
                 <td>
-                  <p>
-                    {
-                      (cart.itemVO.itemPrice * cart.cartCnt).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                    }
-                  </p>
+                  <p>가격</p>
                 </td>
                 <td>
-                  <p>{formatDate(cart.cartDate)}</p>
+                  <p>주문일시</p>
                 </td>
                 <td>
-                  <span>{cart.cartStatus}</span>
-                  {cart.cartStatus !== '주문등록' ? (
-                    <></>
-                  ) : (
-                    <>
-                      <button 
-                        type='button' 
-                        className='supliierBtn'
-                        onClick={() => goSupplier(cart.cartCode)}
-                      >발주</button>
-                      <button 
-                        type='button' 
-                        className='supliierBtn'
-                        onClick={() => goDelete(cart.cartCode)}
-                      >삭제</button>
-                    </>
-                  )}
+                  <p>상태</p>
                 </td>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className='store-tbody'>
+              {cartList.map((cart, i) => (
+                <tr key={i}>
+                  <td>
+                    <input 
+                      type='checkbox' 
+                      onChange={() => {
+                        const copyChks = [...checkItems];
+                        copyChks[i] = !copyChks[i];
+                        setCheckItems(copyChks);
+                      }}
+                      checked={checkItems[i] || false}
+                    ></input>
+                  </td>
+                  <td>
+                    <p>{cart.itemVO.itemName}</p>
+                  </td>
+                  <td>
+                    <input type='number'
+                      value={cart.cartCnt || 1}
+                      onChange={(e) => handleItemCntChange(i, Number(e.target.value))}
+                      min='1'
+                    ></input>
+                    <button type='button' className='supliierBtn' onClick={() => cntUpdate(cart.cartCode, cart.cartCnt)}>확인</button>
+                  </td>
+                  <td>
+                    <p>
+                      {
+                        (cart.itemVO.itemPrice * cart.cartCnt).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                      }
+                    </p>
+                  </td>
+                  <td>
+                    <p>{formatDate(cart.cartDate)}</p>
+                  </td>
+                  <td>
+                    <span>{cart.cartStatus}</span>
+                    {cart.cartStatus !== '주문등록' ? (
+                      <></>
+                    ) : (
+                      <>
+                        <button 
+                          type='button' 
+                          className='supliierBtn'
+                          onClick={() => goSupplier(cart.cartCode)}
+                        >발주</button>
+                        <button 
+                          type='button' 
+                          className='supliierBtn'
+                          onClick={() => goDelete(cart.cartCode)}
+                        >삭제</button>
+                      </>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <div className='total-div'>
           <p>
             총 구매금액 {totalPrice.toLocaleString(

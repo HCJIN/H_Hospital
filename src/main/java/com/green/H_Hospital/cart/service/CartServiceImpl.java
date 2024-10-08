@@ -53,18 +53,9 @@ public class CartServiceImpl implements CartService{
 
     //전체 발주 목록 조회
     @Override
-    public List<CartVO> getCartListAll(int offset, int limit) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("offset", offset);
-        params.put("limit", limit);
-        return sqlSession.selectList("cartMapper.getCartListAll", params);
+    public List<CartVO> getCartListAll() {
+        return sqlSession.selectList("cartMapper.getCartListAll");
     }
-
-    @Override
-    public int getTotalCartItems() {
-        return sqlSession.selectOne("cartMapper.getTotalCartItems");
-    }
-
 
     //수량 업데이트
     @Override

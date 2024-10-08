@@ -16,8 +16,7 @@ public interface CartService {
     List<CartVO> searchCartList(SearchVO searchVO);
 
     //전체 발주 목록 조회
-    List<CartVO> getCartListAll(int offset, int limit);
-    int getTotalCartItems();
+    List<CartVO> getCartListAll();
 
     //수량 업데이트
     void updateCart(CartVO cartVO);

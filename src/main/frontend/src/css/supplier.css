@@ -28,6 +28,11 @@
   transform: translate(-40%);
 }
 
+.ordering-table-div{
+  max-height: 800px;
+  overflow-y: scroll;
+}
+
 .ordering-table {
   width: 100%;
   margin: 20px auto;
@@ -37,6 +42,9 @@
 }
 
 .ordering-table thead {
+  position: sticky;
+  top: 0; 
+  z-index: 10; 
   background-color: #00ABB1;
   color: white;
 }

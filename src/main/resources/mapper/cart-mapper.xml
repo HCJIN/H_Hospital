@@ -75,7 +75,6 @@
         CART_STATUS != '주문등록'
         GROUP BY
         CART.CART_CODE, ITEM.ITEM_NAME, ITEM.ITEM_PRICE, CART.CART_CNT, CART.CART_DATE, CART_STATUS, ITEM.ITEM_CODE
-        LIMIT #{limit} OFFSET #{offset}
     </select>
 
     <select id="getTotalCartItems" resultType="int">

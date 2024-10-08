@@ -40,21 +40,15 @@ const Supplier = () => {
     itemBrand: ''
   });
 
-  // State 추가: 페이지 번호와 페이지당 표시할 아이템 개수 설정
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);  // 한 페이지에 표시할 발주 요청 수
-  const [totalPages, setTotalPages] = useState(0);
-
   const fetchCartList = () => {
     Promise.all([
-      axios.get(`/cart/getCartListAll?page=${currentPage}&limit=${itemsPerPage}`),
+      axios.get('/cart/getCartListAll'),
       axios.get('/item/getItemAllList')
     ])
       .then(([cartResponse, itemResponse]) => {
         console.log(cartResponse.data);
         console.log(itemResponse.data);
-        setCartList(cartResponse.data.cartList);
-        setTotalPages(cartResponse.data.totalPages);
+        setCartList(cartResponse.data);
         setItemList(itemResponse.data);
       })
       .catch((error) => {
@@ -63,36 +57,8 @@ const Supplier = () => {
   };
 
   useEffect(() => {
-    if(currentPage > 0){
-      fetchCartList();
-    }
-  }, [currentPage, itemsPerPage]);
-
-  // 페이지 변경 핸들러
-  function handlePageChange(pageNumber) {
-    setCurrentPage(pageNumber);  // 클릭한 페이지로 변경
-  }
-
-  // 페이지네이션 컴포넌트
-  const Pagination = () => {
-    const pageNumbers = [];
-    for(let i = 1; i <= totalPages; i++){
-      pageNumbers.push(i);
-    }
-    return(
-      <div className='pagination-div'>
-        <ul className="pagination" style={{display:"flex"}}>
-          {pageNumbers.map(number => (
-            <li key={number} className='page-item'>
-              <button onClick={() => handlePageChange(number)} className="btn btn-Subprimary">
-                {number}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  };
+    fetchCartList();
+  }, []);
 
   //자바에서 카테고리 목록 데이터 가져오기
   useEffect(() => {
@@ -320,6 +286,15 @@ const Supplier = () => {
             <h2>발주요청 리스트</h2>
             <div className='ordering-table-div'>
               <table className='ordering-table'>
+                <colgroup>
+                  <col width='5%'></col>
+                  <col width='20%'></col>
+                  <col width='18%'></col>
+                  <col width='15%'></col>
+                  <col width='10%'></col>
+                  <col width='*'></col>
+                </colgroup>
+
                 <thead className='ordering-thead'>
                   <tr>
                     <td><input type='checkbox' checked={allChecked} onChange={(e) => {checkAll(e)}} /></td>
@@ -359,11 +334,10 @@ const Supplier = () => {
                   ))}
                 </tbody>
               </table>
-              <p>
-              총액 : {totalPrice.toLocaleString('ko-KR', { style: 'currency', currency: 'KRW' })}
-              </p>
-              <Pagination />
             </div>
+            <p style={{fontSize:'20px'}}>
+              총액 : {totalPrice.toLocaleString('ko-KR', { style: 'currency', currency: 'KRW'})}
+            </p>
           </div>
           <div className='list-div'>
             <div className='regItem-div'>
