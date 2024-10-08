@@ -358,7 +358,9 @@ useEffect(() => {
               [{ text: `총 가격 : ₩${totalPrice.toLocaleString()}원`, colSpan: 5, alignment: 'right' }, {}, {}, {}, {}]
             ]
           }
-        }
+        },
+        // 이미지 추가
+        {img: 'images/donue_signature.png', width: 200, alignment: 'center'}
       ],
       styles: {
         header: {

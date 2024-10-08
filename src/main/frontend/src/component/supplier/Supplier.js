@@ -44,7 +44,7 @@ const Supplier = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);  // 한 페이지에 표시할 발주 요청 수
   const [totalPages, setTotalPages] = useState(0);
-  
+
   const fetchCartList = () => {
     Promise.all([
       axios.get(`/cart/getCartListAll?page=${currentPage}&limit=${itemsPerPage}`),
@@ -67,11 +67,6 @@ const Supplier = () => {
       fetchCartList();
     }
   }, [currentPage, itemsPerPage]);
-
-  // 자바에서 상품목록리스트 가져오기
-  // useEffect(() => {
-  //   fetchCartList();
-  // }, []); //currentPage가 변경될 때마다 실행 //currentPage
 
   // 페이지 변경 핸들러
   function handlePageChange(pageNumber) {
@@ -266,18 +261,19 @@ const Supplier = () => {
   const [allChecked, setAllChecked] = useState(false);
 
   // 전체 선택 체크박스 핸들러
-  function checkAll(e){
+  function checkAll(e) {
     const checked = e.target.checked;
     setAllChecked(checked);
-    if(checked){
-      // 모든 항목의 cartCode를 checkItems에 추가
+    
+    if (checked) {
+      // 전체 항목의 cartCode를 checkItems에 추가
       const allCartCodes = cartList.map(item => item.cartCode);
       setCheckItems(allCartCodes);
     } else {
       // checkItems 비우기
       setCheckItems([]);
     }
-    }
+  }
 
   // 개별 체크박스 핸들러
   function handleSingleCheck(checked, cartCode) {
