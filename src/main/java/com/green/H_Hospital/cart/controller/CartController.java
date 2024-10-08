@@ -43,7 +43,7 @@ public class CartController {
     @GetMapping("/getCartListAll")
     public ResponseEntity<Map<String, Object>> getCartListAll(
             @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "limit", defaultValue = "10") int limit) {
+            @RequestParam(name = "limit", defaultValue = "5") int limit) {
 
         // page가 1보다 작으면 기본값으로 1로 설정
         if (page < 1) {
