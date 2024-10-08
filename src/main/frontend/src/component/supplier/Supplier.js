@@ -188,7 +188,7 @@ const Supplier = () => {
     .post('/cart/goShipment', shipmentData)
     .then((res)=>{
       alert('제품 출하가 완료되었습니다.');
-
+      fetchCartList();
       // itemList에서 해당 제품의 재고 수량 업데이트
       setItemList((prevItemList) => 
         prevItemList.map((item) => 
@@ -197,13 +197,15 @@ const Supplier = () => {
             : item
         )
       );
-
-      fetchCartList();
     })
     .catch((error)=>{
       console.log(error)
     })
   }
+
+  useEffect(() => {
+    console.log('Item List Update', itemList)
+  }, [itemList])
 
   // 취소 버튼 클릭 시
   function cancelItem(cart){
