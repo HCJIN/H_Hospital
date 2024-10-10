@@ -189,6 +189,7 @@ const Supplier = () => {
     .then((res)=>{
       alert('제품 출하가 완료되었습니다.');
       fetchCartList();
+      window.location.reload()
       // itemList에서 해당 제품의 재고 수량 업데이트
       setItemList((prevItemList) => 
         prevItemList.map((item) => 
