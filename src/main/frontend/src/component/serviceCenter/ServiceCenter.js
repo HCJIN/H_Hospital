@@ -126,7 +126,7 @@ const ServiceCenter = () => {
           </div>
 
           <div className='customer-container'>
-            <h2>고객의소리</h2>
+            {/* <h2>고객의소리</h2> */}
             <div className='customer-suggestion'>
               <div>
                 <h2>건의합니다!              <i class="bi bi-chat-dots"></i>
@@ -166,6 +166,20 @@ const ServiceCenter = () => {
                   <span><i class="bi bi-send"></i></span><br/>
                   <span>회신</span>
                   
+                </div>
+              </div>
+              <div className='processText'>
+                <div>
+                  고객의 소리<br/>
+                  접수
+                </div>
+                <div>
+                  해당부서전달 <br/> 
+                  및 확인
+                </div>
+                <div>
+                  결과회신 <br/> 
+                  및 개선활동
                 </div>
               </div>
             </div>
