@@ -52,7 +52,7 @@ IoT 기반 스마트 헬스케어 웹서비스 개발
 ![css3](https://img.shields.io/badge/css3-1572B6?style=flat-square&logo=css3&logoColor=white)
 
 ### API
-![kakao](https://img.shields.io/badge/kakaoAPI-FFCD00?style=flat-square&logo=kakao&logoColor=white)
+![kakaotalk](https://img.shields.io/badge/kakaoAPI-FFCD00?style=flat-square&logo=kakaotalk&logoColor=white)
 ![naver](https://img.shields.io/badge/naverAPI-03C75A?style=flat-square&logo=naver&logoColor=white)
 
 ### 도구
