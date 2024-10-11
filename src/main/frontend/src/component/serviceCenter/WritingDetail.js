@@ -148,12 +148,17 @@ const WritingDetail = ({loginInfo}) => {
                 {contentDetail.boardTitle}
             </div>
             <div>
-              작성일: {contentDetail.createDate}
+              작성일 : {contentDetail.createDate}
             </div>
-            <div>
-              작성자: 
-            </div>
+            <>
+              {contentDetail.memberVO && contentDetail.memberVO.memName !== undefined ? (
+              <div>작성자 : {contentDetail.memberVO.memName}</div>
+            ) : (
+              <div>Loading...</div>
+            )}
+            </>
           </div>
+
           <div className='contentBody'>
             {contentDetail.boardContent}
           </div>

@@ -205,6 +205,7 @@
   width: 100%;
   max-height: 520px;
   overflow: hidden;
+  overflow-y: scroll;
 }
 
 .faq{
@@ -238,8 +239,6 @@
   font-weight: bold;
   font-style: italic;
 }
-
-
 
 .faq-list > .faq:nth-child(1){
   border-top: 1px solid rgb(155, 155, 155);
