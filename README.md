@@ -88,6 +88,11 @@ IoT 기반 스마트 헬스케어 웹서비스 개발
 
 ![Join](./src/main/frontend/src/images/회원가입.PNG)
 
+## SNS를 통한 회원가입
+
+SNS(KAKAO) 회원가입 버튼을 누르게 되면 KAKAO 로그인 화면으로 넘어가게 됩니다.
+![SnsJoin](./src/main/frontend/src/images/카카오 )
+
 ## 로그인
 
 회원가입시 입력한 정보들로 데이터베이스에서 조회하여 로그인기능을 처리합니다.
@@ -102,4 +107,3 @@ IoT 기반 스마트 헬스케어 웹서비스 개발
 
 ![JoinDB](./src/main/frontend/src/images/회원가입_데이터베이스.PNG)
 
-## SNS를 통한 회원가입
