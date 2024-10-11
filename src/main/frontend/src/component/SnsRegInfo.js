@@ -54,7 +54,7 @@ const SnsRegInfo = () => {
 
   //입력된 데이터 저장할 state
   const [member, setMember] = useState({
-    memName : '',
+    memName : userInfo.nickname || '',
     gender : '',
     memTel : '',
     birthday : '',
@@ -98,7 +98,7 @@ const SnsRegInfo = () => {
       console.log(error)
     })
   }
-
+  //onChange={(e)=>{memberChange(e)}}
   return (
     <div className='regInfo-div'>
       <RegBar step={3}/>
@@ -107,9 +107,8 @@ const SnsRegInfo = () => {
           <tr>
             <td>성명</td>
             <td>
-              <input className='inputText' type='text' name='memName' onChange={(e)=>{
-                memberChange(e)
-              }}></input>
+              <input className='inputText' type='text' name='memName' 
+              readOnly value={userInfo.nickname}/>
               <div className='feedback' ref={memName_valid_tag}></div>
             </td>
           </tr>
