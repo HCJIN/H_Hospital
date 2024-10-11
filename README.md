@@ -52,13 +52,12 @@ IoT 기반 스마트 헬스케어 웹서비스 개발
 ![css3](https://img.shields.io/badge/css3-1572B6?style=flat-square&logo=css3&logoColor=white)
 
 ### API
-![kakaotalk](https://img.shields.io/badge/kakaoAPI-FFCD00?style=flat-square&logo=kakaotalk&logoColor=white)
+![kakao](https://img.shields.io/badge/kakaoAPI-FFCD00?style=flat-square&logo=kakao&logoColor=white)
 ![naver](https://img.shields.io/badge/naverAPI-03C75A?style=flat-square&logo=naver&logoColor=white)
 
 ### 도구
 ![github](https://img.shields.io/badge/github-181717?style=flat-square&logo=github&logoColor=white)
 ![VisualStudioCode](https://img.shields.io/badge/VisualStudioCode-326CAC?style=flat-square&logo=VisualStudioCode&logoColor=white)
-![intellijidea](https://img.shields.io/badge/intellijidea-232F3E?style=flat-square&logo=intellijidea&logoColor=white)
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=HCJIN&layout=compact)](https://github.com/HCJIN/H_Hospital/github-readme-stats)
 
@@ -94,11 +93,14 @@ IoT 기반 스마트 헬스케어 웹서비스 개발
 SNS(KAKAO) 회원가입 버튼을 누르게 되면 KAKAO 로그인 화면으로 넘어가게 됩니다.
 
 ![SnsLogin](./src/main/frontend/src/images/카카오_로그인.png)
+
+KAKAO 로그인을 하며 로그인 성공 시 이름, email을 받아오게 되고, 나머지 정보를 입력한 후 회원가입이 진행됩니다.
+
 ![SnsJoin](./src/main/frontend/src/images/카카오_정보입력.png)
 
 ## 로그인
 
-회원가입시 입력한 정보들로 데이터베이스에서 조회하여 로그인기능을 처리합니다.
+일반 회원은 입력한 정보를 통해 데이터베이스에서 조회하여 로그인하고, SNS 회원은 KAKAO 로그인 아이콘을 클릭하면 KAKAO 로그인 화면으로 이동해, 로그인에 성공 시 해당 정보로 로그인 절차가 완료됩니다.
 
 ![Login](./src/main/frontend/src/images/로그인.PNG)
 
