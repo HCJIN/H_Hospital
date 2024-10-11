@@ -122,7 +122,7 @@ const WritingDetail = ({loginInfo}) => {
     });
   }
 
-  console.log(replyList);
+  console.log(replyData);
 
   return (
     <div className='contentContainer'>
