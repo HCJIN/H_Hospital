@@ -92,7 +92,8 @@ IoT 기반 스마트 헬스케어 웹서비스 개발
 
 SNS(KAKAO) 회원가입 버튼을 누르게 되면 KAKAO 로그인 화면으로 넘어가게 됩니다.
 
-![SnsJoin](./src/main/frontend/src/images/카카오 )
+![SnsLogin](./src/main/frontend/src/images/카카오_로그인.png)
+![SnsJoin](./src/main/frontend/src/images/카카오_정보입력.png)
 
 ## 로그인
 
