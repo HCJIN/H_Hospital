@@ -93,11 +93,14 @@ IoT 기반 스마트 헬스케어 웹서비스 개발
 SNS(KAKAO) 회원가입 버튼을 누르게 되면 KAKAO 로그인 화면으로 넘어가게 됩니다.
 
 ![SnsLogin](./src/main/frontend/src/images/카카오_로그인.png)
+
+KAKAO 로그인을 하며 로그인 성공 시 이름, email을 받아오게 되고, 나머지 정보를 입력한 후 회원가입이 진행됩니다.
+
 ![SnsJoin](./src/main/frontend/src/images/카카오_정보입력.png)
 
 ## 로그인
 
-회원가입시 입력한 정보들로 데이터베이스에서 조회하여 로그인기능을 처리합니다.
+일반 회원은 입력한 정보를 통해 데이터베이스에서 조회하여 로그인하고, SNS 회원은 KAKAO 로그인 아이콘을 클릭하면 KAKAO 로그인 화면으로 이동해, 로그인에 성공 시 해당 정보로 로그인 절차가 완료됩니다.
 
 ![Login](./src/main/frontend/src/images/로그인.PNG)
 
