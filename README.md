@@ -81,7 +81,8 @@
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=HCJIN&layout=compact)](https://github.com/HCJIN/H_Hospital/github-readme-stats)
 
-
+### 데이터베이스 관계도
+![DB](./src/main/frontend/src/images/데이터베이스_ERD.png)
 
 # 🏥 SNS를 활용한 병원 로그인 및 회원가입
 
@@ -127,7 +128,20 @@ KAKAO 로그인을 하며 로그인 성공 시 이름, email을 받아오게 되
 
 ![LoginSuccess](./src/main/frontend/src/images/로그인완료.PNG)
 
-회원가입 및 로그인 관련 데이터 베이스 입니다. 
+# 의료용품 수주/발주 프로그램
 
-![JoinDB](./src/main/frontend/src/images/회원가입_데이터베이스.PNG)
+병원 측 관리자로 로그인 후 입고요청 페이지로 이동하게 되면 첫 화면입니다.
 
+![store](./src/main/frontend/src/images/입고요청%20전체화면.png)
+
+상품을 추가하게 되면 상품에 상태가 주문등록으로 등록되게 했고, 발주요청을 하게 되면 공급사 페이지에 상품과 함께 발주요청이 나오도록 만들었습니다.
+
+짤 넣어야 할 것 같음
+
+공급사 페이지의 첫 화면입니다.
+기본적으로 발주요청을 받은 상품들을 확인 및 새로운 상품을 등록도 가능합니다.
+
+![supplierMain](./src/main/frontend/src/images/공급사페이지_발주요청리스트.png)
+![supplierMain](./src/main/frontend/src/images/공급사페이지_상품리스트.png)
+
+발주요청을 받은 상품 출하를 누르게 되면 제품이 출하되었다는 말과 함께 상태가 제품 출하로 바뀌게 됩니다.

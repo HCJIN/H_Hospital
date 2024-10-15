@@ -532,6 +532,14 @@ useEffect(() => {
         </div>
         <div className='table-div'>
           <table className='store-table'>
+            <colgroup>
+              <col width='5%'></col>
+              <col width='20%'></col>
+              <col width='16%'></col>
+              <col width='12%'></col>
+              <col width='18%'></col>
+              <col width='*'></col>
+              </colgroup>
             <thead className='store-thead'>
               <tr>
                 <td>
