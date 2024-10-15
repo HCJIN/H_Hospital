@@ -1,14 +1,20 @@
-.check-doctor-schedule{
-  width: 500px;
+.regSchedule-content{
 }
-.reg-calendar{
+ 
+.check-doctor-div{}
+.reg-schdule-check1{
 
 }
+.reg-schdule-check2{
+
+}
+
 
 .reg-check{
   
 }
-.reg-check button{
+.reg-check-btn button{
   border: none;
-
+  width: 100px;
+  height: 50px;
 }

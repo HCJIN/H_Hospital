@@ -273,9 +273,10 @@
   z-index: 2; /* Ensure the overlay is above the card */
 }
 
-.doctor-card:hover .doctor-overlay {
+.doctor-card:hover .doctor-overlay, .doctor-card:hover .doctor-intro-btn{
   opacity: 1;
   visibility: visible;
+  cursor: pointer;
 }
 
 .doctor-overlay button{

@@ -37,18 +37,18 @@ const AdminRegSchedule = () => {
   };
 
   return (
-    <div>
+    <div className='regSchedule-content'>
       <div className='check-schedule-div'>
         <div className='check-doctor-div'>
           <h3>의사 정보</h3>
-          <div className='check-doctor-schedule'>
+          <div className='reg-schdule-check1'>
             <div>
               <p><strong>이름:</strong> {doctorInfo.name || '로그인 정보 없음'}</p>
               <p><strong>전문 분야:</strong> {doctorInfo.specialty}</p>
             </div>
-            <h4>등록된 일정</h4>
         </div>
-        <div className='reg-calendar'>
+        <div className='reg-schdule-check2'>
+          <h4>등록된 일정</h4>
           {Object.entries(schedules).map(([date, times]) => (
             <div key={date} style={{ marginBottom: '10px' }}>
               <strong>{date}</strong>: {times.join(', ') || '등록된 일정 없음'}
@@ -62,12 +62,14 @@ const AdminRegSchedule = () => {
       <div className='reg-check'>
         <h3>진료 일정 등록</h3>
         <CalendarComponent onChange={setSelectedDate} value={selectedDate} />
-        <div style={{ margin: '20px 0' }}>
-          <button type='button' onClick={() => insertSchedule("오전 외래")}>오전 외래</button>
-          <button type='button' onClick={() => insertSchedule("오후 외래")}>오후 외래</button>
-          <button type='button' onClick={() => insertSchedule("기타")}>기타</button>
+        <div className='reg-check-btn'>
+          <div>
+            <button type='button' onClick={() => insertSchedule("오전 외래")}>오전 외래</button>
+            <button type='button' onClick={() => insertSchedule("오후 외래")}>오후 외래</button>
+            <button type='button' onClick={() => insertSchedule("기타")}>기타</button>
+          </div>
+          <button className='reg-check-btn' type='button' onClick={handleSubmit}>일정 등록</button>
         </div>
-        <button type='button' onClick={handleSubmit}>일정 등록</button>
       </div>
 
     </div>
