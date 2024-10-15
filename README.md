@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=waving&color=auto&width=100%)
+![header](https://capsule-render.vercel.app/api?type=waving&color=auto&width=1000)
 # 팀 도와조_울산메디컬센터
 
 ## 📄프로젝트 소개
