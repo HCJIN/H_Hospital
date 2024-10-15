@@ -1,3 +1,7 @@
+const headerColor = window.getComputedStyle(document.querySelector('header')).backgroundColor;
+const footer = document.querySelector('footer');
+footer.style.backgroundColor = headerColor; 
+
 ![header](https://capsule-render.vercel.app/api?type=waving&color=auto)
 # 팀 도와조_울산메디컬센터
 
@@ -147,13 +151,16 @@ KAKAO 로그인을 하며 로그인 성공 시 이름, email을 받아오게 되
 짤 넣으면 좋을 것 같음
 
 
-# 그 외 구현 기능
+# 🖊그 외 구현 기능
 
 ## 네이버 뉴스
 ![뉴스](https://github.com/user-attachments/assets/22c41b15-0bfb-4790-ad3c-83ae2d788d74)
+홈페이지 메인의 하단에 출력되는 뉴스입니다.
+새로고침 혹은 지정된 시간이 지난 후 새로운 뉴스로 갱신되도록 구현되었습니다.
 
 ## 진료과 찾기
 ![진료과-찾기](https://github.com/user-attachments/assets/1e6ebb5a-cad7-4a63-a83d-274767e65e0c)
+
 
 ## 진료 예약
 ![진료-예약](https://github.com/user-attachments/assets/ad33392d-3acc-49c0-a167-efbf1fd3fcfe)
