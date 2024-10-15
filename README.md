@@ -81,7 +81,8 @@
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=HCJIN&layout=compact)](https://github.com/HCJIN/H_Hospital/github-readme-stats)
 
-
+### 데이터베이스 관계도
+![DB](./src/main/frontend/src/images/데이터베이스_ERD.png)
 
 # 🏥 SNS를 활용한 병원 로그인 및 회원가입
 
