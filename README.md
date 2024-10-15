@@ -159,9 +159,18 @@ KAKAO 로그인을 하며 로그인 성공 시 이름, email을 받아오게 되
 ## 진료과 찾기
 ![진료과-찾기](https://github.com/user-attachments/assets/1e6ebb5a-cad7-4a63-a83d-274767e65e0c)
 
+진료과 찾기 페이지로 이동하면 병원에 소속된 진료과가 나옵니다.
+
+원하는 진료과를 선택하면 해당 진료과로 이동하게 됩니다.
+
+의료진을 클릭하면 해당 진료과의 의료진이 나오고 의료진 클릭 시 의료진 소개로 이동하며, 소개 클릭 시 해당 진료과의 소개를 볼 수 있습니다.
+
+진료과 상단의 진료 예약 버튼을 누르면 진료 예약 페이지로 이동하게 됩니다.
 
 ## 진료 예약
 ![진료-예약](https://github.com/user-attachments/assets/ad33392d-3acc-49c0-a167-efbf1fd3fcfe)
+
+
 
 
 ![footer](https://capsule-render.vercel.app/api?type=waving&color=auto&section=footer)
