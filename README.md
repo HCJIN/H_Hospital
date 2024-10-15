@@ -70,7 +70,7 @@
 ![css3](https://img.shields.io/badge/css3-1572B6?style=flat-square&logo=css3&logoColor=white)
 
 ### API
-![kakao](https://img.shields.io/badge/kakaoAPI-FFCD00?style=flat-square&logo=kakao&logoColor=white)
+![kakaoTalk](https://img.shields.io/badge/kakaoAPI-FFCD00?style=flat-square&logo=kakaoTalk&logoColor=white)
 ![naver](https://img.shields.io/badge/naverAPI-03C75A?style=flat-square&logo=naver&logoColor=white)
 
 ### 도구
