@@ -127,8 +127,3 @@ KAKAO 로그인을 하며 로그인 성공 시 이름, email을 받아오게 되
 로그인이 완료되게되면 회원가입시 작성한 이름으로 표시가 됩니다. 
 
 ![LoginSuccess](./src/main/frontend/src/images/로그인완료.PNG)
-
-회원가입 및 로그인 관련 데이터 베이스 입니다. 
-
-![JoinDB](./src/main/frontend/src/images/회원가입_데이터베이스.PNG)
-
