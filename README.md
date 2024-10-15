@@ -11,12 +11,10 @@
 ## SNS를 활용한 병원 로그인 및 회원가입
 #### 회원가입
 - 일반 회원가입
-- 직원용 회원가입
 - SNS를 통한 회원가입
 
 #### 로그인
 - 일반 로그인
-- 직원 로그인
 - SNS를 통한 로그인
 
 ## 의료용품 수주/발주 프로그램
@@ -72,7 +70,7 @@
 ![css3](https://img.shields.io/badge/css3-1572B6?style=flat-square&logo=css3&logoColor=white)
 
 ### API
-![kakao](https://img.shields.io/badge/kakaoAPI-FFCD00?style=flat-square&logo=kakao&logoColor=white)
+![kakaoTalk](https://img.shields.io/badge/kakaoAPI-FFCD00?style=flat-square&logo=kakaoTalk&logoColor=white)
 ![naver](https://img.shields.io/badge/naverAPI-03C75A?style=flat-square&logo=naver&logoColor=white)
 
 ### 도구
@@ -147,3 +145,4 @@ KAKAO 로그인을 하며 로그인 성공 시 이름, email을 받아오게 되
 발주요청을 받은 상품 출하를 누르게 되면 제품이 출하되었다는 말과 함께 상태가 제품 출하로 바뀌게 됩니다.
 
 짤 넣으면 좋을 것 같음
+![footer](https://capsule-render.vercel.app/api?type=waving&color=auto&section=footer)
