@@ -1,7 +1,4 @@
-<header style="background-color: auto;">
-  ![header](https://capsule-render.vercel.app/api?type=waving&color=auto)
-</header>
-
+![header](https://capsule-render.vercel.app/api?type=waving&color=auto)
 # 팀 도와조_울산메디컬센터
 
 ## 📄프로젝트 소개
@@ -165,11 +162,4 @@ KAKAO 로그인을 하며 로그인 성공 시 이름, email을 받아오게 되
 ![진료-예약](https://github.com/user-attachments/assets/ad33392d-3acc-49c0-a167-efbf1fd3fcfe)
 
 
-<footer>
-  <img id="footer" src="https://capsule-render.vercel.app/api?type=waving&color=auto&section=footer" />
-</footer>
-
-<script>
-  const headerColor = getComputedStyle(document.querySelector('header')).backgroundColor;
-  document.getElementById('footer').src = `https://capsule-render.vercel.app/api?type=waving&color=${headerColor}&section=footer`;
-</script>
+![footer](https://capsule-render.vercel.app/api?type=waving&color=auto&section=footer)
