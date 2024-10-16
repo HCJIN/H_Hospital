@@ -170,7 +170,8 @@ KAKAO 로그인을 하며 로그인 성공 시 이름, email을 받아오게 되
 ## 진료 예약
 ![진료-예약](https://github.com/user-attachments/assets/ad33392d-3acc-49c0-a167-efbf1fd3fcfe)
 
+진료 예약을 클릭하면 간편 예약 서비스 창이 뜹니다.
 
-
+증상 입력 후 날짜를 선택하면 달력의 날짜와 시간을 선택할 수 있는데 병원 운영 시간에만 선택할 수 있도록 설정해두었습니다.
 
 ![footer](https://capsule-render.vercel.app/api?type=waving&color=auto&section=footer)
