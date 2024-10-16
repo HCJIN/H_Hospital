@@ -144,7 +144,7 @@ KAKAO 로그인을 하며 로그인 성공 시 이름, email을 받아오게 되
 
 발주요청을 받은 상품 출하를 누르게 되면 제품이 출하되었다는 말과 함께 상태가 제품 출하로 바뀌게 됩니다.
 
-짤 넣으면 좋을 것 같음
+<img src="https://github.com/user-attachments/assets/4a887158-b545-415d-b4c1-c9ba4f8bf8df" height="600"/><br/>
 
 
 # 🖊그 외 구현 기능
