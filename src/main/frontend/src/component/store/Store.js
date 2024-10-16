@@ -34,7 +34,11 @@ const Store = () => {
   });
   //세션 스토리지에서 회원번호 가져오기
   const memNum = JSON.parse(window.sessionStorage.getItem('loginInfo')).memNum;
+<<<<<<< HEAD
   //발주 목록 리스트 useState
+=======
+  //발주 목록리스트 useState
+>>>>>>> main
   const [cartList, setCartList] = useState([]);
   console.log(cartList)
   //체크된 아이템 useState

@@ -132,15 +132,46 @@ KAKAO 로그인을 하며 로그인 성공 시 이름, email을 받아오게 되
 
 ![store](./src/main/frontend/src/images/입고요청%20전체화면.png)
 
-상품을 추가하게 되면 상품에 상태가 주문등록으로 등록되게 했고, 발주요청을 하게 되면 공급사 페이지에 상품과 함께 발주요청이 나오도록 만들었습니다.
+상품 추가 버튼을 클릭하면 주문 내역에 해당 상품이 추가되고, 수량을 조절할 수 있습니다. 이때 상태는 '주문 등록'으로 표시되며, 발주 버튼을 누르면 '발주 요청'으로 변경됩니다. 이후, 공급사 페이지에 해당 상품과 함께 '발주 요청' 상태로 나타나게 됩니다.
 
-짤 넣어야 할 것 같음
+<img src="https://github.com/user-attachments/assets/858fee66-9235-4042-87be-279cbe77ee73" height="600" /><br/>
 
 공급사 페이지의 첫 화면입니다.
-기본적으로 발주요청을 받은 상품들을 확인 및 새로운 상품을 등록도 가능합니다.
+발주요청을 받은 상품들을 확인 및 새로운 상품을 등록할 수 있도록 만들었습니다
 
 ![supplierMain](./src/main/frontend/src/images/공급사페이지_발주요청리스트.png)
 ![supplierMain](./src/main/frontend/src/images/공급사페이지_상품리스트.png)
 
 발주요청을 받은 상품 출하를 누르게 되면 제품이 출하되었다는 말과 함께 상태가 제품 출하로 바뀌게 됩니다.
+
+<img src="https://github.com/user-attachments/assets/4a887158-b545-415d-b4c1-c9ba4f8bf8df" height="600"/><br/>
+
+
+# 🖊그 외 구현 기능
+
+## 네이버 뉴스
+![뉴스](https://github.com/user-attachments/assets/22c41b15-0bfb-4790-ad3c-83ae2d788d74)
+
+홈페이지 메인의 하단에 출력되는 뉴스입니다.
+
+새로고침 혹은 지정된 시간이 지난 후 새로운 뉴스로 갱신되도록 구현되었습니다.
+
+## 진료과 찾기
+![진료과-찾기](https://github.com/user-attachments/assets/1e6ebb5a-cad7-4a63-a83d-274767e65e0c)
+
+진료과 찾기 페이지로 이동하면 병원에 소속된 진료과가 나옵니다.
+
+원하는 진료과를 선택하면 해당 진료과로 이동하게 됩니다.
+
+의료진을 클릭하면 해당 진료과의 의료진이 나오고 의료진 클릭 시 의료진 소개로 이동하며, 소개 클릭 시 해당 진료과의 소개를 볼 수 있습니다.
+
+진료과 상단의 진료 예약 버튼을 누르면 진료 예약 페이지로 이동하게 됩니다.
+
+## 진료 예약
+![진료-예약](https://github.com/user-attachments/assets/ad33392d-3acc-49c0-a167-efbf1fd3fcfe)
+
+일반 회원으로 로그인을 한 후 진료 예약을 클릭하면 간편 예약 서비스 창이 뜹니다.
+
+증상 입력 후 날짜를 선택하면 달력의 날짜와 시간을 선택할 수 있는데 병원 운영 시간에만 선택할 수 있도록 설정해두었습니다.
+
 ![footer](https://capsule-render.vercel.app/api?type=waving&color=auto&section=footer)
