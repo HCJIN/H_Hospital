@@ -34,7 +34,7 @@ const Store = () => {
   });
   //세션 스토리지에서 회원번호 가져오기
   const memNum = JSON.parse(window.sessionStorage.getItem('loginInfo')).memNum;
-  //장바구니리스트 useState
+  //발주 목록 리스트 useState
   const [cartList, setCartList] = useState([]);
   console.log(cartList)
   //체크된 아이템 useState
@@ -90,7 +90,7 @@ const Store = () => {
     });
   };
 
-// 장바구니 목록을 가져오는 함수
+// 발주 목록 목록을 가져오는 함수
 const fatchCartList = () => {
   axios.get(`/cart/getCartList/${memNum}`)
     .then((res) => {
@@ -109,7 +109,7 @@ useEffect(() => {
   if (cartList.length > 0) {
     calculateTotalPrice();
   }
-}, [checkItems, cartList]); // checkItems와 cartList 모두 의존성 배열에 추가
+}, [checkItems, cartList]); // checkItems와 cartList 모두 의존성 배열에 추가 
 
   //총 가격 계산
   const calculateTotalPrice = () => {
@@ -125,7 +125,7 @@ useEffect(() => {
   }
   console.log(checkItems)
 
-  //장바구니 검색 기능
+  //발주 목록 검색 기능
   const search = () => {
     axios
       .post('/cart/searchCartList', { ...searchData, memNum: memNum })
@@ -144,7 +144,7 @@ useEffect(() => {
     setCheckItems(newCheckItems);
   };
 
-  //장바구니가 변경될 때 체크 상태 초기화
+  //발주 목록가 변경될 때 체크 상태 초기화
   useEffect(() => {
     setCheckItems(Array(cartList.length).fill(false));
     setAllChecked(false);
@@ -183,7 +183,7 @@ useEffect(() => {
     );
   };
 
-  //장바구니 수량 업데이트 요청
+  //발주 목록 수량 업데이트 요청
   const cntUpdate = (cartCode, cartCnt) => {
     const updateData = {
       cartCode: cartCode,
@@ -199,7 +199,7 @@ useEffect(() => {
       });
   };
 
-  //장바구니에 아이템 추가하는 함수
+  //발주 목록에 아이템 추가하는 함수
   const handleAddToCart = (item) => {
     const existingCartItemIndex = cartList.findIndex(cart => cart.itemVO.itemCode === item.itemCode && cart.cartStatus === '주문등록');
 
@@ -228,12 +228,12 @@ useEffect(() => {
 
       axios.post('/cart/insert', insertCartData)
         .then((res) => {
-          alert('상품이 장바구니에 추가되었습니다.');
+          alert('상품이 발주 목록에 추가되었습니다.');
           fatchCartList();
         })
         .catch((error) => {
           console.log(error);
-          alert('장바구니 추가 중 오류 발생');
+          alert('발주 목록 추가 중 오류 발생');
         });
     }
   };
