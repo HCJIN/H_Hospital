@@ -31,9 +31,27 @@
 ####
 
 ## 😎팀원 소개😆
-| ![황찬진](https://github.com/user-attachments/assets/b314c478-7457-42e4-a6a2-eacbb54da5fb?width=200) | ![이동희](https://github.com/user-attachments/assets/f7ef8378-c84a-41b8-ac81-748cb564c726?width=200) | ![정보현](https://github.com/user-attachments/assets/fbfe7d7d-8ab7-4bb6-8b90-468ddb1cc590?width=200) | ![전하빈](https://github.com/user-attachments/assets/2a667016-cfcf-4e92-bc75-23525af3b9b5?width=200) |
-|:--:|:--:|:--:|:--:|
-| 황찬진<br> [@HCJIN](https://github.com/HCJIN) | 이동희<br> [@dlfjs4585](https://github.com/dlfjs4585) | 정보현<br> [@bohyeonjeong50](https://github.com/bohyeonjeong50) | 전하빈<br> [@kong2bine](https://github.com/kong2bine) |
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/b314c478-7457-42e4-a6a2-eacbb54da5fb" width="200">
+      <br>황찬진<br> <a href="https://github.com/HCJIN">@HCJIN</a>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/f7ef8378-c84a-41b8-ac81-748cb564c726" width="200">
+      <br>이동희<br> <a href="https://github.com/dlfjs4585">@dlfjs4585</a>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/fbfe7d7d-8ab7-4bb6-8b90-468ddb1cc590" width="200">
+      <br>정보현<br> <a href="https://github.com/bohyeonjeong50">@bohyeonjeong50</a>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/2a667016-cfcf-4e92-bc75-23525af3b9b5" width="200">
+      <br>전하빈<br> <a href="https://github.com/kong2bine">@kong2bine</a>
+    </td>
+  </tr>
+</table>
+
 
 
 ## 🖥 기술 스택
