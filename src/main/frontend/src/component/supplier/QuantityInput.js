@@ -58,6 +58,7 @@ const QuantityInput = ({ stock, itemIndex, setItemList, itemCode }) => {
     })
   }
 
+  // 삭제버튼 클릭시 실행되는 함수
   function goDelete(){
     axios
     .delete(`/item/deleteItem/${itemCode}`)
