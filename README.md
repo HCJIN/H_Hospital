@@ -40,10 +40,10 @@
       <img src="https://github.com/user-attachments/assets/f7ef8378-c84a-41b8-ac81-748cb564c726" width="200" height="200">
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/fbfe7d7d-8ab7-4bb6-8b90-468ddb1cc590" width="200" height="200">
+      <img src="https://github.com/user-attachments/assets/466c69e0-a76e-4c94-aea1-56ff0a35ed81" width="200" height="200">
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/2a667016-cfcf-4e92-bc75-23525af3b9b5" width="200" height="200">
+      <img src="https://github.com/user-attachments/assets/434d5703-90d4-458b-9ac2-95aa409aca21" width="200" height="200">
     </td>
   </tr>
       <tr>
